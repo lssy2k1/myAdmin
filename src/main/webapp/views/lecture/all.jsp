@@ -29,19 +29,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td class="py-1">IMG</td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-
-                            </tr>
+                            <c:forEach var="obj" items="${lecture}">
+                                <tr>
+                                    <td class="py-1"><img src="/uimg/${obj.img}"></td>
+                                    <td><a href="/lecture/detail?id="${obj.id}>${obj.id}</a></td>
+                                    <td>${obj.title}</td>
+                                    <td>${obj.teacher}</td>
+                                    <td>${obj.topic}</td>
+                                    <td>${obj.target}</td>
+                                    <td>${obj.rdate}</td>
+                                    <td>${obj.time}</td>
+                                    <td>${obj.price}</td>
+                                </tr>
+                            </c:forEach>
 
                             </tbody>
                         </table>

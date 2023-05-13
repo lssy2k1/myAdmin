@@ -15,6 +15,10 @@ public class LectureService implements MyAdminService<Integer, Lecture> {
     @Autowired
     LectureMapper mapper;
 
+    public LectureService(LectureMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public void register(Lecture lecture) throws Exception {
         mapper.insert(lecture);

@@ -13,46 +13,49 @@
                     <p class="card-description">
                         Add Lecture
                     </p>
-                    <form class="forms-sample">
+
+                    <form class="forms-sample" action="/lecture/addimpl" method="post" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="exampleInputName1">Name</label>
-                            <input type="text" class="form-control" id="exampleInputName1" placeholder="Name">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="input title">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail3">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
+                            <label for="teacher">Teacher</label>
+                            <input type="text" class="form-control" id="teacher" placeholder="input teacher">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword4">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword4" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleSelectGender">Gender</label>
-                            <select class="form-control" id="exampleSelectGender">
-                                <option>Male</option>
-                                <option>Female</option>
+                            <label for="topic">Topic</label>
+                            <select class="form-control" id="topic">
+                                <option>Programming</option>
+                                <option>CS</option>
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>File upload</label>
-                            <input type="file" name="img[]" class="file-upload-default">
+                            <label for="target">Target</label>
+                            <input type="text" class="form-control" id="target" placeholder="input target">
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Time</label>
+                            <input type="text" class="form-control" id="time" placeholder="input time">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="text" class="form-control" id="price" placeholder="input price">
+                        </div>
+
+                        <div class="form-group">
+                            <label>IMG upload</label>
+                            <input type="file" id = "imgfile" name="imgfile" class="file-upload-default">
                             <div class="input-group col-xs-12">
                                 <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
                                 <span class="input-group-append">
-                          <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
-                        </span>
+                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>
+                                </span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputCity1">City</label>
-                            <input type="text" class="form-control" id="exampleInputCity1" placeholder="Location">
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleTextarea1">Textarea</label>
-                            <textarea class="form-control" id="exampleTextarea1" rows="4"></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                        <button class="btn btn-light">Cancel</button>
+
+                        <button type="submit" class="btn btn-primary mr-2">Register</button>
+                        <button type="button" class="btn btn-light">Cancel</button>
                     </form>
                 </div>
             </div>
