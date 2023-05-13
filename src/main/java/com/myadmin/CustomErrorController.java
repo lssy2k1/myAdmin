@@ -11,6 +11,7 @@ public class CustomErrorController {
     public String except(Exception e, Model model){
         model.addAttribute("msg",e.getMessage());
         model.addAttribute("center","error/error_page1");
+        e.printStackTrace();
         return "index";
     }
 }
