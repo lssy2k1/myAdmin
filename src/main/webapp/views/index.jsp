@@ -121,6 +121,7 @@
       </div>
     </nav>
     <!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
       <!-- partial:partials/_settings-panel.html -->
       <div class="theme-setting-wrapper">
@@ -302,6 +303,7 @@
       </c:choose>
 
       <!-- partial -->
+
       <div class="main-panel">
         <c:choose>
           <c:when test="${center==null}">
@@ -352,6 +354,7 @@
   <script src="/js/dashboard.js"></script>
   <script src="/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
 </body>
 
 </html>
