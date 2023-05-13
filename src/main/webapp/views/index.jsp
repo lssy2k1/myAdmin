@@ -103,13 +103,13 @@
               <img src="/images/faces/face28.jpg" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/register">
                 <i class="ti-settings text-primary"></i>
-                Settings
+                Register
               </a>
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="/logins">
                 <i class="ti-power-off text-primary"></i>
-                Logout
+                Login
               </a>
             </div>
           </li>

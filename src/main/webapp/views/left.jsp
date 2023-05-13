@@ -85,6 +85,12 @@
                 </ul>
             </div>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="/adm/all" aria-expanded="false" aria-controls="admin">
+                <i class="icon-contract menu-icon"></i>
+                <span class="menu-title">Admin</span>
+            </a>
+        </li>
 
     </ul>
 </nav>
