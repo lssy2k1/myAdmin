@@ -32,7 +32,7 @@
                             <c:forEach var="obj" items="${lecture}">
                                 <tr>
                                     <td class="py-1"><img src="/uimg/${obj.img}"></td>
-                                    <td><a href="/lecture/detail?id="${obj.id}>${obj.id}</a></td>
+                                    <td><a href="/lecture/detail?id=${obj.id}">${obj.id}</a></td>
                                     <td>${obj.title}</td>
                                     <td>${obj.teacher}</td>
                                     <td>${obj.topic}</td>

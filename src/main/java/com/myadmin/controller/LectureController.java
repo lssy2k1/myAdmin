@@ -53,4 +53,45 @@ public class LectureController {
         }
         return "redirect:/lecture/all";
     }
+    @RequestMapping("/detail")
+    public String detail(Model model, Integer id) throws Exception {
+        try {
+            Lecture lecture = lectureService.get(id);
+            model.addAttribute("lecture", lecture);
+            model.addAttribute("center", dir+"detail");
+        } catch (Exception e) {
+            throw new Exception("lecture detail error");
+        }
+        return "index";
+    }
+    @RequestMapping("/updateimpl")
+    public String updateimpl(Model model, Lecture lecture) throws Exception {
+        MultipartFile mf = lecture.getImgfile();
+        String new_img = mf.getOriginalFilename();
+        if(new_img==null || new_img.equals("")){
+            try {
+                lectureService.modify(lecture);
+            } catch (Exception e) {
+                throw new Exception("lecture modify error");
+            }
+        } else{
+            try {
+                lecture.setImg(new_img);
+                lectureService.modify(lecture);
+                FileUploadUtil.saveFile(mf, imgdir);
+            } catch (Exception e) {
+                throw new Exception("lecture modify error");
+            }
+        }
+        return "redirect:/lecture/detail?id="+lecture.getId();
+    }
+    @RequestMapping("/deleteimpl")
+    public String deleteimpl(Model model, Integer id) throws Exception {
+        try {
+            lectureService.remove(id);
+        } catch (Exception e) {
+            throw new Exception("lecture deleteimpl error");
+        }
+        return "redirect:/lecture/all";
+    }
 }
