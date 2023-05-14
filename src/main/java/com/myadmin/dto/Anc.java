@@ -16,4 +16,14 @@ public class Anc {
     private String rdate;
     private String img;
 
+    public Anc(int id, String title, String writer, String contents, String rdate, String img) {
+        this.id = id;
+        this.title = title;
+        this.writer = writer;
+        this.contents = contents;
+        this.rdate = rdate;
+        this.img = img;
+    }
+
+    private MultipartFile imgfile;
 }

@@ -10,6 +10,9 @@
             $('#adm_can_btn').click(()=>{
                 location.href = '/';
             })
+            $('#recommend_id').click(() =>{
+                adm_register.giveid();
+            })
         },
         send:()=>{
             $('#adm_register_form').attr({
@@ -17,6 +20,16 @@
                 method:'post',
             });
             $('#adm_register_form').submit();
+        },
+        giveid: (result)=>{
+            $.ajax({
+                url:'/giveid',
+                success:(result)=>{
+                    if(result) {
+                        $('#id').val(result);
+                    }
+                }
+            });
         }
     };
     $(function(){
@@ -41,6 +54,7 @@
                         <div class="form-group">
                             <label for="id">ID</label>
                             <input type="text" class="form-control" name = "id" id="id" placeholder="input id">
+                            <button type = "button" id = "recommend_id">Recommend ID</button>
                         </div>
                         <div class="form-group">
                             <label for="pwd">PWD</label>
