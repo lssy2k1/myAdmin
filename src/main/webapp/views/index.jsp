@@ -29,7 +29,7 @@
   <script src="/js/makeKakaoMap2.js"></script>
   <script src="/js/makeKakaoMap3.js"></script>
 
-  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f15191dfbc91ce9a8cbdd265aeabcf7e"></script>
+  <script type="text/javascript" src="//"></script>
 
 </head>
 <body>
