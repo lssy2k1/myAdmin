@@ -18,9 +18,8 @@ public class StudentController {
     String dir = "student/";
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
-//        List<Student> list = null;
-//        list = studentService.get();
-//        model.addAttribute("slist", list);
+        List<Student> list = studentService.get();
+        model.addAttribute("std", list);
         model.addAttribute("center", dir+"all");
         return "index";
     }

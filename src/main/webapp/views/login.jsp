@@ -47,8 +47,7 @@
                             <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="input pwd">
                         </div>
 
-
-                        <button id = "adm_login_btn" type="button" class="btn btn-primary mr-2">Register</button>
+                        <button id = "adm_login_btn" type="button" class="btn btn-primary mr-2">Login</button>
                         <button id = "adm_can_btn" type="button" class="btn btn-light">Cancel</button>
                     </form>
                 </div>

@@ -123,7 +123,7 @@
               <img src="/images/loginprofile.png" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="/detail?id=${adm.id}">
+              <a class="dropdown-item" href="/adm/detail?id=${loginadm.id}">
                 <i class="ti-settings text-primary"></i>
                 Profile
               </a>

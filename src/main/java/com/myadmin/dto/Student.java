@@ -18,4 +18,12 @@ public class Student {
     private String img;
 
     private MultipartFile imgfile;
+
+    public Student(String id, String pwd, String name, String email, String contact) {
+        this.id = id;
+        this.pwd = pwd;
+        this.name = name;
+        this.email = email;
+        this.contact = contact;
+    }
 }
