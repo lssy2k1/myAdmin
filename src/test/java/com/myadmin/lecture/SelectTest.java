@@ -18,7 +18,7 @@ public class SelectTest {
     void contextLoads() {
 
         try {
-            service.get(100001);
+            service.get(100003);
             log.info("======================================");
             log.info("select 완료");
             log.info("======================================");

@@ -6,43 +6,56 @@
   <div class="content-wrapper">
     <div class="row">
       <div class="col-md-12 grid-margin">
-        <div class="row">
-          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-            <h3 class="font-weight-bold">Welcome Aamir</h3>
-            <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
-          </div>
-          <div class="col-12 col-xl-4">
-            <div class="justify-content-end d-flex">
-              <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                  <a class="dropdown-item" href="#">January - March</a>
-                  <a class="dropdown-item" href="#">March - June</a>
-                  <a class="dropdown-item" href="#">June - August</a>
-                  <a class="dropdown-item" href="#">August - November</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-6 grid-margin stretch-card">
-        <div class="card tale-bg">
-          <div class="card-people mt-auto">
-            <img src="/images/dashboard/people.svg" alt="people">
-            <div class="weather-info">
-              <div class="d-flex">
-                <div>
-                  <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
-                </div>
-                <div class="ml-2">
-                  <h4 class="location font-weight-normal">Bangalore</h4>
-                  <h6 class="font-weight-normal">India</h6>
-                </div>
+        <div class="col-lg-12 grid-margin stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <h4 class="card-title">Bordered table</h4>
+              <p class="card-description">
+                Add class <code>.table-bordered</code>
+              </p>
+              <div class="table-responsive pt-3">
+                <table class="table table-bordered">
+                  <thead>
+                  <tr>
+                    <th>
+                      #
+                    </th>
+                    <th>
+                      First name
+                    </th>
+                    <th>
+                      Progress
+                    </th>
+                    <th>
+                      Amount
+                    </th>
+                    <th>
+                      Deadline
+                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>
+                      1
+                    </td>
+                    <td>
+                      Herman Beck
+                    </td>
+                    <td>
+                      <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                      </div>
+                    </td>
+                    <td>
+                      $ 77.99
+                    </td>
+                    <td>
+                      May 15, 2015
+                    </td>
+                  </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>

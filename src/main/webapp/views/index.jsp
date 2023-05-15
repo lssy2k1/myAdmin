@@ -31,7 +31,8 @@
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-2" href="/"><img src="/uimg/logo_horizontal.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo mr-2" href="/"><img src="/images/logo.png" class="mr-2" alt="logo"/></a>
+        <a class="navbar-brand brand-logo-mini" href="/"><img src="/images/logo_s.png" alt="logo"/></a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -98,24 +99,45 @@
               </a>
             </div>
           </li>
+
+          <c:choose>
+            <c:when test="${loginadm == null}">
+              <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                  <img src="/images/adm.png" alt="profile"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="/register">
+                    <i class="ti-settings text-primary"></i>
+                    Register
+                  </a>
+                  <a class="dropdown-item" href="/logins">
+                    <i class="ti-power-off text-primary"></i>
+                    Login
+                  </a>
+                </div>
+            </c:when>
+            <c:otherwise>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="/images/faces/face28.jpg" alt="profile"/>
+              <img src="/images/loginprofile.png" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="/register">
+              <a class="dropdown-item" href="/detail?id=${adm.id}">
                 <i class="ti-settings text-primary"></i>
-                Register
+                Profile
               </a>
-              <a class="dropdown-item" href="/logins">
+              <a class="dropdown-item" href="/logoutimpl">
                 <i class="ti-power-off text-primary"></i>
-                Login
+                Logout
               </a>
             </div>
-          </li>
+            </c:otherwise>
+          </c:choose>
+
           <li class="nav-item nav-settings d-none d-lg-flex">
             <a class="nav-link" href="#">
-              <i class="icon-ellipsis"></i>
+              <i class="icon-ellipsis" style="margin-top: 5px"></i>
             </a>
           </li>
         </ul>
