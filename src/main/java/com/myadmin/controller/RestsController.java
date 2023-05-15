@@ -1,16 +1,25 @@
 package com.myadmin.controller;
 
+import com.myadmin.dto.Marker;
+import com.myadmin.service.MarkerService;
 import com.myadmin.util.GptUtil;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 @RestController
 public class RestsController {
+
+    @Autowired
+    MarkerService markerService;
 
     @RequestMapping("/giveid")
     public String giveid(Model model){
@@ -25,4 +34,25 @@ public class RestsController {
         return result;
     }
 
+    @RequestMapping("/givemarker")
+    public JSONArray givemarker(Model model) throws Exception {
+        JSONArray result = new JSONArray();
+        try {
+            List<Marker> list = markerService.get();
+            for(Marker obj : list){
+                JSONObject marker = new JSONObject();
+                marker.put("content", "<div>" +obj.getTitle() +"</div>");
+                JSONObject latlng = new JSONObject();
+                latlng.put("lat", obj.getLat());
+                latlng.put("lng", obj.getLng());
+                marker.put("latlng", latlng);
+                result.add(marker);
+            }
+        } catch (Exception e) {
+            throw new Exception("restcontroller marker error");
+        }
+        return result;
+    }
+//             [{ content: '<div>카카오</div>',
+//                latlng: new kakao.maps.LatLng(33.450705, 126.570677) }];
 }

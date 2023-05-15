@@ -25,6 +25,12 @@
           src="https://code.jquery.com/jquery-3.7.0.js"
           integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
           crossorigin="anonymous"></script>
+  <script src="/js/makeKakaoMap.js"></script>
+  <script src="/js/makeKakaoMap2.js"></script>
+  <script src="/js/makeKakaoMap3.js"></script>
+
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f15191dfbc91ce9a8cbdd265aeabcf7e"></script>
+
 </head>
 <body>
   <div class="container-scroller">
