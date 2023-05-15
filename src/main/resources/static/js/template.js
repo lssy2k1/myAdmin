@@ -11,9 +11,10 @@
     //Active class can be hard coded directly in html file also as required
 
     function addActiveClass(element) {
+      // console.log('currnt:', current);
       if (current === "") {
         //for root url
-        if (element.attr('href').indexOf("/") !== -1) {
+        if (element.attr('href') === '/') {
           element.parents('.nav-item').last().addClass('active');
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
@@ -23,7 +24,12 @@
       } else {
         //for other url
         if (element.attr('href').indexOf(current) !== -1) {
+          // console.log('el:', element);
+          // console.log('el prt:', element.parents('.nav-item'));
+          // console.log('el prt lst:', element.parents('.nav-item').last());
           element.parents('.nav-item').last().addClass('active');
+          // console.log('submn:', element.parents('.sub-menu').length);
+          // console.log('submn it:', element.parents('.submenu-item').length);
           if (element.parents('.sub-menu').length) {
             element.closest('.collapse').addClass('show');
             element.addClass('active');
@@ -35,15 +41,15 @@
       }
     }
 
-    // var current = location.pathname.split("/").slice(-1)[0].replace(/^\/|\/$/g, '');
-    // $('.nav li a', sidebar).each(function() {
-    //   var $this = $(this);
-    //   addActiveClass($this);
-    // })
+    var current = location.pathname.split("/").slice(-2)[0].replace(/^\/|\/$/g, '');
+    $('.nav li a', sidebar).each(function() {
+      var $this = $(this);
+      addActiveClass($this);
+    });
 
     $('.horizontal-menu .nav li a').each(function() {
       var $this = $(this);
-      addActiveClass($this);
+      //addActiveClass($this);
     })
 
     //Close other submenu in sidebar on opening any
@@ -96,7 +102,7 @@
           navItemClicked.removeClass('show-submenu');
         }
         $(this).toggleClass('show-submenu');
-      }        
+      }
     })
 
     $(window).scroll(function() {
@@ -115,5 +121,5 @@
   $('#navbar-search-icon').click(function() {
     $("#navbar-search-input").focus();
   });
-  
+
 })(jQuery);
