@@ -16,6 +16,10 @@ public class AdmService implements MyAdminService<String, Adm> {
     @Autowired
     AdmMapper mapper;
 
+    public AdmService(AdmMapper mapper) {
+        this.mapper = mapper;
+    }
+
     @Override
     public void register(Adm adm) throws Exception {
         mapper.insert(adm);

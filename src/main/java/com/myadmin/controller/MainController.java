@@ -23,4 +23,9 @@ public class MainController {
         model.addAttribute("center", "register");
         return "index";
     }
+    @RequestMapping("/mapTest")
+    public String mapTest(Model model){
+        model.addAttribute("center", "mapTest");
+        return "index";
+    }
 }
