@@ -10,8 +10,37 @@
 </style>
 
 <script>
+  let getWeather = {
+    init:()=>{
+      getWeather.getdata();
+    },
+    getdata:()=>{
+      $.ajax({
+        url:'/giveweather',
+        success:(result)=>{
+          let humi = result.humi;
+          let temper = result.temper;
+          if(temper > 30){
+            $('#temperimg').attr('class', 'mdi mdi-fire');
+          }
+          $('#temperature').text(temper);
+          $('#humidity').text(humi);
+          let rain = result.rain;
+          if(rain == 1 || rain == 2 || rain ==5){
+            $('#rain').attr('src', '/images/rain.png');
+            $('#temperimg').attr('class', 'mdi mdi-weather-rainy');
+          }
+          if(rain == 3 || rain == 6 || rain==7){
+            $('#rain').attr('src', '/images/snow.png');
+            $('#temperimg').attr('class', 'mdi mdi-weather-snowy');
+          }
+        }
+      })
+    }
+  }
   $(()=>{
     makeKakaoMap3.init();
+    getWeather.init();
   })
 </script>
 
@@ -44,18 +73,22 @@
       </div>
     </div>
     <div class="row">
+<%------------------------------------날씨창 수정-----------------------------------------%>
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card tale-bg">
           <div class="card-people mt-auto">
-            <img src="/images/dashboard/people.svg" alt="people">
+            <img id = "rain" src="/images/dashboard/people.svg" alt="people">
             <div class="weather-info">
               <div class="d-flex">
                 <div>
-                  <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>C</sup></h2>
+                </div>
+                <div>
+                  <h2 class="mb-0 font-weight-normal"><i class="mdi mdi-water-percent"></i><span id = "humidity"></span><sup>%</sup></h2>
                 </div>
                 <div class="ml-2">
-                  <h4 class="location font-weight-normal">Bangalore</h4>
-                  <h6 class="font-weight-normal">India</h6>
+                  <h4 class="location font-weight-normal">Seongsu</h4>
+                  <h6 class="font-weight-normal">Seoul</h6>
                 </div>
               </div>
             </div>

@@ -8,6 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
+
+  <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/vendors/feather/feather.css">
   <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
@@ -28,8 +30,7 @@
   <script src="/js/makeKakaoMap.js"></script>
   <script src="/js/makeKakaoMap2.js"></script>
   <script src="/js/makeKakaoMap3.js"></script>
-
-  <script type="text/javascript" src="//"></script>
+  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f15191dfbc91ce9a8cbdd265aeabcf7e"></script>
 
 </head>
 <body>
