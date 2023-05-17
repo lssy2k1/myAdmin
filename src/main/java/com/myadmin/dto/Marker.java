@@ -11,14 +11,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Marker {
-    private Integer id;
+    private int id;
     private String writer;
     private String keyword;
     private String title;
     private double lat;
     private double lng;
     private String img;
-    private Integer star;
+    private int star;
     private String detail;
 
     public Marker(int id, String writer, String keyword, String title, double lat, double lng, String img, int star, String detail) {
