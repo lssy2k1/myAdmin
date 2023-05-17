@@ -5,6 +5,24 @@
 
 <mapper namespace="com.myadmin.mapper.MarkerMapper">
 
+    <select id="search" parameterType="markerSearch" resultType="marker">
+        SELECT * FROM marker
+        <where>
+            <if test = "title != null and !title.equals('')">
+                AND title LIKE '%'||#{title}||'%'
+            </if>
+            <if test="star != null and !star.equals('')">
+                star = #{star}
+            </if>
+            <if test = "writer != null and !writer.equals('')">
+                AND writer LIKE '%'||#{writer}||'%'
+            </if>
+            <if test = "keyword != null and !keyword.equals('')">
+                AND keyword LIKE '%'||#{keyword}||'%'
+            </if>
+        </where>
+    </select>
+
     <select id="select" parameterType="Integer" resultType="Marker">
         SELECT *
         FROM marker
