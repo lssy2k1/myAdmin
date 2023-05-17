@@ -3,6 +3,7 @@ package com.myadmin.controller;
 import com.myadmin.dto.Marker;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.GptUtil;
+import com.myadmin.util.WeatherUtil;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -12,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
+import java.lang.ref.WeakReference;
 import java.net.URISyntaxException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class RestsController {
@@ -55,4 +59,16 @@ public class RestsController {
     }
 //             [{ content: '<div>카카오</div>',
 //                latlng: new kakao.maps.LatLng(33.450705, 126.570677) }];
+
+    @RequestMapping("/giveweather")
+    public Map<String, String> giveweather() throws Exception {
+        Map<String, String> map = new HashMap<>();
+        try {
+            String weather = WeatherUtil.getWeather();
+            map = WeatherUtil.getData(weather);
+        } catch (Exception e) {
+            throw new Exception("weather restcontroller error");
+        }
+        return map;
+    };
 }
