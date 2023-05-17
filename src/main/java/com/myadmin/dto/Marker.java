@@ -12,6 +12,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class Marker {
     private int id;
+    private String writer;
+    private String keyword;
     private String title;
     private Double lat;
     private Double lng;
@@ -19,8 +21,10 @@ public class Marker {
     private int star;
     private String detail;
 
-    public Marker(int id, String title, Double lat, Double lng, String img, int star, String detail) {
+    public Marker(int id, String writer, String keyword, String title, Double lat, Double lng, String img, int star, String detail) {
         this.id = id;
+        this.writer = writer;
+        this.keyword = keyword;
         this.title = title;
         this.lat = lat;
         this.lng = lng;

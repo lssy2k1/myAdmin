@@ -15,18 +15,20 @@ public class Lecture {
     private String topic;
     private String target;
     private String rdate;
-    private String time;
+    private String length;
+    private float rating;
     private int price;
     private String img;
 
-    public Lecture(int id, String title, String teacher, String topic, String target, String rdate, String time, int price, String img) {
+    public Lecture(int id, String title, String teacher, String topic, String target, String rdate, String length, float rating, int price, String img) {
         this.id = id;
         this.title = title;
         this.teacher = teacher;
         this.topic = topic;
         this.target = target;
         this.rdate = rdate;
-        this.time = time;
+        this.length = length;
+        this.rating = rating;
         this.price = price;
         this.img = img;
     }

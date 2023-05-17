@@ -17,12 +17,12 @@
     <insert id="insert" parameterType="Lecture">
         INSERT INTO lecture
         VALUES (lecture_seq.NEXTVAL,#{title},#{teacher}
-                ,#{topic}, #{target}, SYSDATE, #{time}, #{price}, #{img})
+                ,#{topic}, #{target}, SYSDATE, #{length}, #{rating}, #{price}, #{img})
     </insert>
     <update id="update" parameterType="Lecture">
         UPDATE lecture
         SET title=#{title}, teacher=#{teacher}, topic=#{topic}, target=#{target}
-            , rdate = SYSDATE, time=#{time}, price=#{price}, img=#{img}
+            , rdate = SYSDATE, length=#{length}, rating=#{rating}, price=#{price}, img=#{img}
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="Integer">

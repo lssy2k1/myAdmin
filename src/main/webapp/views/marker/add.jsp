@@ -49,6 +49,14 @@
 
                     <form id = "marker_register_form" class="forms-sample">
                         <div class="form-group">
+                            <label for="writer">Writer</label>
+                            <input type="text" class="form-control" name = "writer" id="writer" placeholder="input writer">
+                        </div>
+                        <div class="form-group">
+                            <label for="keyword">Keyword</label>
+                            <input type="text" class="form-control" name = "keyword" id="keyword" placeholder="input keyword">
+                        </div>
+                        <div class="form-group">
                             <label for="title">Title</label>
                             <input type="text" class="form-control" name = "title" id="title" placeholder="input title">
                         </div>

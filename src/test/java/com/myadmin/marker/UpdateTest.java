@@ -18,7 +18,7 @@ public class UpdateTest {
 
     @Test
     void contextLoads() {
-        Marker obj = new Marker(100000, "맛집22332", 37.0,132.0,"a.img",5,"노맛333입니다22");
+        Marker obj = new Marker(100000, "맛집22332","asdf","asdf", 37.0,132.0,"a.img",5,"노맛333입니다22");
 
         try {
             service.modify(obj);

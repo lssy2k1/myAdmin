@@ -1,6 +1,7 @@
 package com.myadmin.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter
@@ -9,8 +10,14 @@ import lombok.*;
 @NoArgsConstructor
 public class Study {
     private int id;
+    private String student_id;
     private String startTime;
     private String endTime;
     private String contents;
+    private String rdate;
+    private String fileName;
+    private String fileName_org;
+
+    private MultipartFile file;
 
 }
