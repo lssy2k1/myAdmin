@@ -16,10 +16,6 @@ public class MarkerService implements MyAdminService<Integer, Marker> {
     @Autowired
     MarkerMapper mapper;
 
-    public MarkerService(MarkerMapper mapper) {
-        this.mapper = mapper;
-    }
-
     @Override
     public void register(Marker marker) throws Exception {
         mapper.insert(marker);

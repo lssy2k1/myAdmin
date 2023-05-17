@@ -22,6 +22,8 @@
                                 <th>Lng</th>
                                 <th>Star</th>
                                 <th>Detail</th>
+                                <th>Writer</th>
+                                <th>Keyword</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -34,7 +36,8 @@
                                     <td>${obj.lng}</td>
                                     <td>${obj.star}</td>
                                     <td>${obj.detail}</td>
-
+                                    <td>${obj.writer}</td>
+                                    <td>${obj.keyword}</td>
                                 </tr>
                             </c:forEach>
 

@@ -15,23 +15,20 @@
                         <table class="table table-bordered">
                             <thead>
                             <tr>
-                                <th>IMG</th>
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>Writer</th>
                                 <th>Rdate</th>
-
+                                <th>File</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="obj" items="${anc}">
                                 <tr>
-                                    <td class="py-1"><img src="/uimg/${obj.img}"></td>
-                                    <td><a href="/anc/detail?id=${obj.id}">${obj.id}</a></td>
-                                    <td>${obj.title}</td>
+                                    <td>${obj.id}</td>
+                                    <td><a href="/anc/detail?id=${obj.id}">${obj.title}</a></td>
                                     <td>${obj.writer}</td>
                                     <td>${obj.rdate}</td>
-
                                 </tr>
                             </c:forEach>
 

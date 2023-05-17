@@ -1,8 +1,7 @@
 package com.myadmin.marker;
 
-import com.myadmin.dto.Lecture;
+
 import com.myadmin.dto.Marker;
-import com.myadmin.service.LectureService;
 import com.myadmin.service.MarkerService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,10 +17,9 @@ public class InsertTest {
 
     @Test
     void contextLoads() {
-        Marker obj = new Marker(0, "맛집22","asdf","asdf", 37.0,132.0,"a.img",3,"노맛입니다22");
+        Marker obj = new Marker(0, "abc", "abc","abc", 38.0, 124.0, "b.img", 3, "abc");
         try {
             service.register(obj);
-            service.get();
             log.info("======================================");
             log.info("등록완료");
             log.info("======================================");
