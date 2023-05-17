@@ -24,8 +24,9 @@
                                 <th>Topic</th>
                                 <th>Target</th>
                                 <th>Rdate</th>
-                                <th>Time</th>
+                                <th>Length</th>
                                 <th>Price</th>
+                                <th>Rating</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -38,8 +39,9 @@
                                     <td>${obj.topic}</td>
                                     <td>${obj.target}</td>
                                     <td>${obj.rdate}</td>
-                                    <td>${obj.time}</td>
+                                    <td>${obj.length}</td>
                                     <td>${obj.price}</td>
+                                    <td>${obj.rating}</td>
                                 </tr>
                             </c:forEach>
 

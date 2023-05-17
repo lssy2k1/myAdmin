@@ -64,14 +64,17 @@
                             <input type="text" class="form-control" name = "target" id="target" value = "${lecture.target}" placeholder="input target">
                         </div>
                         <div class="form-group">
-                            <label for="time">Time</label>
-                            <input type="text" class="form-control" name = "time" id="time" value = "${lecture.time}" placeholder="input time">
+                            <label for="length">Length</label>
+                            <input type="text" class="form-control" name = "length" id="length" value = "${lecture.length}" placeholder="input length">
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
                             <input type="text" class="form-control" name = "price" id="price" value = "${lecture.price}" placeholder="input price">
                         </div>
-
+                        <div class="form-group">
+                            <label for="rating">Rating</label>
+                            <input type="text" class="form-control" name = "rating" id="rating" value = "${lecture.rating}" placeholder="input rating">
+                        </div>
                         <div class="form-group">
                             <label>IMG upload</label><br/>
                             <input type="file" id = "imgfile" name="imgfile" class="btn btn-primary">
