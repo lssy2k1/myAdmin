@@ -1,6 +1,7 @@
 package com.myadmin.service;
 
 import com.myadmin.dto.Marker;
+import com.myadmin.dto.MarkerSearch;
 import com.myadmin.frame.MyAdminMapper;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.MarkerMapper;
@@ -39,5 +40,9 @@ public class MarkerService implements MyAdminService<Integer, Marker> {
     @Override
     public List<Marker> get() throws Exception {
         return mapper.selectall();
+    }
+
+    public List<Marker> search(MarkerSearch ms) throws Exception{
+        return mapper.search(ms);
     }
 }
