@@ -33,10 +33,12 @@ public class StudentController {
     }
 
     @RequestMapping("/add")
-    public String add(Model model, HttpSession session){
-//        if (session == null || session.equals("")) {
-//
-//        }
+    public String add(Model model, String id, HttpSession session){
+//        Adm adm = null;
+//        adm = (Adm) session.getAttribute("loginadm");
+//        System.out.println("--------------------------------");
+//        System.out.println(adm.getId());
+//        System.out.println("--------------------------------");
         model.addAttribute("center", dir+"add");
         return "index";
     }
