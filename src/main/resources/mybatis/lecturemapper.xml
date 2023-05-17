@@ -17,7 +17,7 @@
     <insert id="insert" parameterType="Lecture">
         INSERT INTO lecture
         VALUES (lecture_seq.NEXTVAL,#{title},#{teacher}
-                ,#{topic}, #{target}, SYSDATE, #{length}, #{rating}, #{price}, #{img})
+                ,#{topic}, #{target}, SYSDATE, #{length}, #{price}, #{img}, #{rating})
     </insert>
     <update id="update" parameterType="Lecture">
         UPDATE lecture

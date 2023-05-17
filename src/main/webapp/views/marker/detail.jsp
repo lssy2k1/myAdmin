@@ -49,6 +49,14 @@
                             <input type="text" class="form-control" name = "title" id="title" value="${marker.title}">
                         </div>
                         <div class="form-group">
+                            <label for="title">Writer</label>
+                            <input type="text" class="form-control" name = "writer" id="writer" value="${marker.writer}">
+                        </div>
+                        <div class="form-group">
+                            <label for="title">Keyword</label>
+                            <input type="text" class="form-control" name = "keyword" id="keyword" value="${marker.keyword}">
+                        </div>
+                        <div class="form-group">
                             <label for="detail">Detail</label>
                             <input type="text" class="form-control" name = "detail" id="detail"  value="${marker.detail}">
                         </div>
