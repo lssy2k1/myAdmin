@@ -18,7 +18,7 @@ public class InsertTest {
 
     @Test
     void contextLoads() {
-        Marker obj = new Marker(0, "맛집22","asdf","asdf", 37.0,132.0,"a.img",3,"노맛입니다22");
+        Marker obj = new Marker(0, "1","1","어니언", 37.23432234,132.23432324,"a.img",5,"노맛");
         try {
             service.register(obj);
             service.get();

@@ -16,12 +16,12 @@
     </select>
     <insert id="insert" parameterType="Marker">
         INSERT INTO marker
-        VALUES (marker_seq.NEXTVAL,#{writer},#{keyword},#{title},#{lat}
-                ,#{lng}, #{img}, #{star}, #{detail})
+        VALUES (MARKER_SEQ.NEXTVAL, #{title}
+        , #{lat}, #{lng}, #{img}, #{star}, #{detail}, #{writer}, #{keyword})
     </insert>
     <update id="update" parameterType="Marker">
         UPDATE marker
-        SET writer=#{writer},keyword={#keyword},title=#{title},lat=#{lat}, lng=#{lng}, img=#{img}
+        SET writer=#{writer},keyword=#{keyword},title=#{title},lat=#{lat}, lng=#{lng}, img=#{img}
             , star=#{star}, detail=#{detail}
         WHERE id=#{id}
     </update>
