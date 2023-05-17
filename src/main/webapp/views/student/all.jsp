@@ -9,12 +9,9 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h4 class="card-title">Bordered table</h4>
-              <p class="card-description">
-                Add class <code>.table-bordered</code>
-              </p>
+              <h3 class="card-title">All Students</h3>
               <div class="table-responsive pt-3">
-                <table class="table table-bordered">
+                <table class="table table-bordered text-center">
                   <thead>
                   <tr>
                     <th>
@@ -42,7 +39,11 @@
                       <tr>
                         <td>
                           <a href="#" data-toggle="modal" data-target="#target${obj.id}">
-                            <img id="item_img" src="/uimg/${obj.img}" alt="${obj.img}" style="width:100px; height:100px"/>
+                            <c:choose>
+                              <c:when test="${obj.img==null || (obj.img).equals('')}"><img id="item_img" src="/images/adm.png" alt="profile img" style="width:100px; height:100px">
+                              </c:when>
+                              <c:when test="${obj.img!=null || !(obj.img).equals('')}"><img id="item_img" src="/uimg/${obj.img}" alt="${obj.img}" style="width:100px; height:100px"/></c:when>
+                            </c:choose>
                           </a>
                         </td>
                         <td><a href="/student/detail?id=${obj.id}">${obj.id}</a></td>
