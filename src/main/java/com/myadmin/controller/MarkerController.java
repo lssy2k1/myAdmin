@@ -2,6 +2,7 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Lecture;
 import com.myadmin.dto.Marker;
+import com.myadmin.dto.MarkerSearch;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -93,5 +94,14 @@ public class MarkerController {
             throw new Exception("marker deleteimpl error");
         }
         return "redirect:/marker/all";
+    }
+
+    @RequestMapping("/search")
+    public String search(Model model, MarkerSearch ms) throws Exception {
+        List<Marker> list = markerService.search(ms);
+        model.addAttribute("ms", ms);
+        model.addAttribute("marker", list);
+        model.addAttribute("center", dir+"all");
+        return "index";
     }
 }
