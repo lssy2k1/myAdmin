@@ -18,6 +18,8 @@ public class Student {
     private String img;
 
     private MultipartFile imgfile;
+    private String insta;
+    private String facebook;
 
     public Student(String id, String pwd, String name, String email, String contact) {
         this.id = id;
@@ -26,4 +28,6 @@ public class Student {
         this.email = email;
         this.contact = contact;
     }
+
+
 }
