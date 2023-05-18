@@ -31,5 +31,29 @@
         WHERE id=#{id}
     </delete>
 
+    <select id="search" parameterType="LectureSearch" resultType="Lecture">
+        SELECT *
+        FROM lecture
+        <where>
+            <if test="topic != null and !topic.equals('')">
+                topic = #{topic}
+            </if>
+            <if test="title != null and !title.equals('')">
+                AND title LIKE '%'||#{title}||'%'
+            </if>
+            <if test="teacher != null and !teacher.equals('')">
+                AND teacher LIKE '%'||#{teacher}||'%'
+            </if>
+            <if test="lowerPrice != null and !lowerPrice.equals('') ">
+                AND price &gt; #{lowerPrice}
+            </if>
+            <if test="upperPrice != null and !upperPrice.equals('') ">
+                AND price &lt; #{upperPrice}
+            </if>
+            <if test="rating != null and !rating.equals('') ">
+                AND rating &gt; #{rating}
+            </if>
+        </where>
+    </select>
 
 </mapper>

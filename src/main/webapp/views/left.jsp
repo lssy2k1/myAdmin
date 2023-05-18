@@ -85,12 +85,13 @@
                 </ul>
             </div>
         </li>
+        <c:if test="${loginadm.lev>=3}">
         <li class="nav-item">
             <a class="nav-link" href="/adm/all" aria-expanded="false" aria-controls="admin">
                 <i class="icon-contract menu-icon"></i>
                 <span class="menu-title">Admin</span>
             </a>
         </li>
-
+        </c:if>
     </ul>
 </nav>

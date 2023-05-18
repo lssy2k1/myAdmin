@@ -22,7 +22,7 @@ public class MainController {
     }
     @RequestMapping("/logins")
     public String logins(Model model){
-        model.addAttribute("center", "login1");
+        model.addAttribute("center", "login");
         return "index";
     }
 

@@ -1,6 +1,7 @@
 package com.myadmin.service;
 
 import com.myadmin.dto.Lecture;
+import com.myadmin.dto.LectureSearch;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.LectureMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -42,5 +43,9 @@ public class LectureService implements MyAdminService<Integer, Lecture> {
     @Override
     public List<Lecture> get() throws Exception {
         return mapper.selectall();
+    }
+
+    public List<Lecture> search(LectureSearch ls){
+        return mapper.search(ls);
     }
 }

@@ -57,7 +57,7 @@ public class AdmController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, @Validated Adm adm, HttpSession session, Errors errors) throws Exception {
+    public String addimpl(Model model, HttpSession session, @Validated Adm adm, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";

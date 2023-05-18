@@ -26,7 +26,7 @@ public class WeatherUtil {
 
         String result = "";
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=YukcwROoaPIbJx0HNNcbPUdzIx3VOZml%2F%2Fg6BXiokY5U9XoBMbr9Gi3YUyQqUe0cJq%2FTyC5%2FKPcp4dhnf1zElg%3D%3D"); /*Service Key*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=AvirXFtHt0tkI6QMkjm5BJkK36om63ArjVinxF3z6s7Jzov1%2B4BzlCMPNlpSRCa5HE%2FOn9Bd9lRuMn%2FTadoE%2FQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("1000", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/

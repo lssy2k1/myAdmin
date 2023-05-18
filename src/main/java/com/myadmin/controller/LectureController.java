@@ -1,6 +1,9 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Lecture;
+import com.myadmin.dto.LectureSearch;
+import com.myadmin.dto.Marker;
+import com.myadmin.dto.MarkerSearch;
 import com.myadmin.service.LectureService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -117,5 +120,14 @@ public class LectureController {
             throw new Exception("lecture deleteimpl error");
         }
         return "redirect:/lecture/all";
+    }
+
+    @RequestMapping("/search")
+    public String search(Model model, LectureSearch ls) throws Exception {
+        List<Lecture> lecture = lectureService.search(ls);
+        model.addAttribute("ls", ls);
+        model.addAttribute("lecture", lecture);
+        model.addAttribute("center", dir+"all");
+        return "index";
     }
 }

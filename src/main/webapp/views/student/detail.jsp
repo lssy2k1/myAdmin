@@ -23,6 +23,9 @@
         }
     };
     $(function(){
+        if("${loginadm.lev}">=3){
+            $('#pwd').removeAttr('readonly');
+        };
         std_detail.init();
     });
 </script>
@@ -53,7 +56,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="pwd">PWD</label>
-                                <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="*****" readonly>
+                                <input type="password" class="form-control" name = "pwd" id="pwd" value="${std.pwd}" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="name">NAME</label>
