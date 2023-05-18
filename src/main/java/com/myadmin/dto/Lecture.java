@@ -3,6 +3,9 @@ package com.myadmin.dto;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+
 @Getter
 @Setter
 @ToString
@@ -10,13 +13,20 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class Lecture {
     private int id;
+    @NotEmpty(message = "title는 필수항목입니다.")
     private String title;
+    @NotEmpty(message = "teacher는 필수항목입니다.")
     private String teacher;
+    @NotEmpty(message = "topic는 필수항목입니다.")
     private String topic;
+    @NotEmpty(message = "target는 필수항목입니다.")
     private String target;
     private String rdate;
+    @NotEmpty(message = "length는 필수항목입니다.")
     private String length;
+    @NotEmpty(message = "rating는 필수항목입니다.")
     private float rating;
+    @NotEmpty(message = "price는 필수항목입니다.")
     private int price;
     private String img;
 

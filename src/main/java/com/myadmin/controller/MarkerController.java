@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -41,7 +44,17 @@ public class MarkerController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, Marker marker) throws Exception {
+    public String addimpl(Model model, @Validated Marker marker, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         MultipartFile mf = marker.getImgfile();
         String img = mf.getOriginalFilename();
         marker.setImg(img);
@@ -65,7 +78,17 @@ public class MarkerController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, Marker marker) throws Exception {
+    public String updateimpl(Model model, @Validated Marker marker, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         MultipartFile mf = marker.getImgfile();
         String new_img = mf.getOriginalFilename();
         if(new_img==null || new_img.equals("")){

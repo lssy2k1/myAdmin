@@ -24,6 +24,7 @@ public class StudentController {
     @Autowired
     BCryptPasswordEncoder encoder;
     String dir = "student/";
+
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         List<Student> list = studentService.get();
@@ -44,7 +45,17 @@ public class StudentController {
     }
 
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, Student std, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Student std, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         std.setPwd(encoder.encode(std.getPwd()));
         studentService.register(std);
         return "redirect:/student/all";
@@ -62,7 +73,17 @@ public class StudentController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, Student std) throws Exception {
+    public String updateimpl(Model model, @Validated Student std, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         try {
             std.setPwd(encoder.encode(std.getPwd()));
             studentService.modify(std);
