@@ -3,6 +3,7 @@ package com.myadmin.dto;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotEmpty;
 import java.util.Date;
 
 @Getter
@@ -12,8 +13,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class Marker {
     private int id;
+    @NotEmpty(message = "세션이 종료되어 writer가 없습니다. 다시 로그인 하세요.")
     private String writer;
+    @NotEmpty(message = "keyword는 필수입력 요소입니다.")
     private String keyword;
+    @NotEmpty(message = "title는 필수입력 요소입니다.")
     private String title;
     private double lat;
     private double lng;

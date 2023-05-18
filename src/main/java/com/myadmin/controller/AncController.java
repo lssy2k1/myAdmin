@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -47,7 +50,17 @@ public class AncController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, Anc anc) throws Exception {
+    public String addimpl(Model model, @Validated Anc anc, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         MultipartFile mf = anc.getImgfile();
         String img = mf.getOriginalFilename();
         anc.setImg(img);
@@ -75,7 +88,17 @@ public class AncController {
     }
 
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, Anc anc) throws Exception {
+    public String updateimpl(Model model, @Validated Anc anc, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         MultipartFile mf = anc.getImgfile();
         String new_img = mf.getOriginalFilename();
         if(new_img==null || new_img.equals("")){

@@ -17,7 +17,7 @@ public class InsertTest {
     @Test
     void contextLoads() {
         Lecture obj = new Lecture(1, "title", "teacher", "topic", "target","asdf",
-                "rdate", 3, 100000, "a.jpg");
+                3, 3, 100000, "a.jpg");
         try {
             service.register(obj);
             service.get();

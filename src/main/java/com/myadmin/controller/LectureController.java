@@ -7,9 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -41,7 +45,17 @@ public class LectureController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, Lecture lecture) throws Exception {
+    public String addimpl(Model model, @Validated Lecture lecture, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         MultipartFile mf = lecture.getImgfile();
         String img = mf.getOriginalFilename();
         lecture.setImg(img);
@@ -65,7 +79,17 @@ public class LectureController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, Lecture lecture) throws Exception {
+    public String updateimpl(Model model, @Validated Lecture lecture, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         MultipartFile mf = lecture.getImgfile();
         String new_img = mf.getOriginalFilename();
         if(new_img==null || new_img.equals("")){

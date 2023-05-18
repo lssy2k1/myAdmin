@@ -8,10 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -53,7 +57,17 @@ public class AdmController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, Adm adm, HttpSession session) throws Exception {
+    public String addimpl(Model model, @Validated Adm adm, HttpSession session, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         String nextPage = "registerFail";//Error Controller가 있어서 필요없음. 그냥 구현해 봄.
         try {
             adm.setPwd(encoder.encode(adm.getPwd()));
@@ -80,7 +94,17 @@ public class AdmController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, Adm adm) throws Exception {
+    public String updateimpl(Model model, @Validated Adm adm, Errors errors) throws Exception {
+        if(errors.hasErrors()){
+            List<ObjectError> es = errors.getAllErrors();
+            String msg = "";
+            for(ObjectError e: es){
+                msg += "<h4>";
+                msg += e.getDefaultMessage();
+                msg += "</h4>";
+            }
+            throw new Exception(msg);
+        }
         try {
             adm.setPwd(encoder.encode(adm.getPwd()));
             admService.modify(adm);
