@@ -13,6 +13,4 @@ public class Cart {
     private String Lecture_id;
     private String rdate;
 
-
-
 }

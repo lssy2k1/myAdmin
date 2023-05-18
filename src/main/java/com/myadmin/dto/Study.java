@@ -10,7 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 @NoArgsConstructor
 public class Study {
     private int id;
-    private String student_id;
+    private String writer;
     private String startTime;
     private String endTime;
     private String contents;
