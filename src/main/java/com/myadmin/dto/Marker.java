@@ -19,12 +19,9 @@ public class Marker {
     private String keyword;
     @NotEmpty(message = "title는 필수입력 요소입니다.")
     private String title;
-    @NotEmpty(message = "lat는 필수입력 요소입니다. 지도를 클릭하세요")
     private Double lat;
-    @NotEmpty(message = "lng는 필수입력 요소입니다. 지도를 클릭하세요")
     private Double lng;
     private String img;
-    @NotEmpty(message = "star는 필수입력 요소입니다.")
     private int star;
     private String detail;
 

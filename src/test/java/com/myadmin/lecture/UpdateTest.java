@@ -17,7 +17,7 @@ public class UpdateTest {
     @Test
     void contextLoads() {
         Lecture obj = new Lecture(100000, "title0", "teacher0", "topic0", "target0",
-                "rdate","33", 1, 200000, "img0");
+                "asd",3, 1, 200000, "img0");
         try {
             service.modify(obj);
             service.get();
