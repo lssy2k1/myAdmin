@@ -22,8 +22,16 @@ public class MainController {
     }
     @RequestMapping("/logins")
     public String logins(Model model){
-        model.addAttribute("center", "login");
+        model.addAttribute("center", "login1");
         return "index";
+    }
+
+    @RequestMapping("logouts")
+    public String logouts(Model model, HttpSession session){
+        if (session != null){
+            session.invalidate();
+        }
+        return "redirect:/";
     }
     @RequestMapping("/register")
     public String register(Model model){

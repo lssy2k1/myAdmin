@@ -47,7 +47,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">PWD</label>
-                            <input type="password" class="form-control" name = "pwd" id="pwd">
+                            <input type="password" class="form-control" name = "pwd" id="pwd" >
                         </div>
                         <div class="form-group">
                             <label for="lev">LEVEL</label>

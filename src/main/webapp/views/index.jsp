@@ -8,7 +8,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
-
   <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/vendors/feather/feather.css">
   <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
@@ -115,7 +114,7 @@
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                   <a class="dropdown-item" href="/register">
-                    <i class="ti-settings text-primary"></i>
+                    <i class="ti-plus text-primary"></i>
                     Register
                   </a>
                   <a class="dropdown-item" href="/logins">
@@ -131,10 +130,10 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item" href="/adm/detail?id=${loginadm.id}">
-                <i class="ti-settings text-primary"></i>
+                <i class="ti-face-smile text-primary"></i>
                 Profile
               </a>
-              <a class="dropdown-item" href="/logoutimpl">
+              <a class="dropdown-item" href="/logouts">
                 <i class="ti-power-off text-primary"></i>
                 Logout
               </a>
@@ -365,6 +364,7 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+
 
   <!-- plugins:js -->
   <script src="/vendors/js/vendor.bundle.base.js"></script>
