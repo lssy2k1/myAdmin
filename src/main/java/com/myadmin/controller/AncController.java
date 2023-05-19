@@ -70,6 +70,8 @@ public class AncController {
         } catch (Exception e) {
             throw new Exception("anc add error");
         }
+
+        model.addAttribute("imgname", img);
 //        model.addAttribute("center", dir + "all");
 //        model all로 던지면 foreach 오류가 발생. list를 model로 또 던져줘야함
         return "redirect:/anc/all";
