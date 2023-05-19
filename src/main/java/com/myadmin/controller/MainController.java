@@ -1,9 +1,12 @@
 package com.myadmin.controller;
 
+import com.myadmin.dto.Adm;
 import com.myadmin.dto.Marker;
+import com.myadmin.service.AdmService;
 import com.myadmin.service.MarkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +19,10 @@ public class MainController {
 
     @Autowired
     MarkerService markerService;
+    @Autowired
+    AdmService admService;
+    @Autowired
+    BCryptPasswordEncoder encoder;
 
     @Value("${adminserver}")
     String adminserver;
@@ -27,6 +34,25 @@ public class MainController {
     @RequestMapping("/logins")
     public String logins(Model model){
         model.addAttribute("center", "login");
+        return "index";
+    }
+
+    @RequestMapping("/loginimpl")
+    public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
+        Adm adm = null;
+        String nextPage = "loginFail";
+        try {
+            adm = admService.get(id);
+            if(adm != null && encoder.matches(pwd, adm.getPwd())){
+                nextPage = "center";
+            }
+            session.setMaxInactiveInterval(60000);
+            session.setAttribute("loginadm", adm);
+
+        } catch (Exception e) {
+            throw new Exception("adm login error");
+        }
+        model.addAttribute("center", nextPage);
         return "index";
     }
 

@@ -28,43 +28,45 @@
 <!-- partial -->
 
 <div class="content-wrapper">
-    <div class="row">
+    <div class="row" style="justify-content: center">
 
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add Announcement</h4>
                     <p class="card-description">
-                        Add Announcement
+                        Fill in the blanks below
                     </p>
 
-                    <form id = "anc_register_form" class="forms-sample">
+                    <form id = "anc_register_form" class="forms-sample" name="anc_register_form" enctype="multipart/form-data" method="post">
                         <div class="form-group">
                             <label for="writer">Writer</label>
                             <input type="text" class="form-control" name = "writer" id="writer" value = "${loginadm.id}"} readonly>
                         </div>
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" name = "title" id="title" placeholder="input title">
+                            <input type="text" class="form-control" name = "title" id="title" placeholder="Input Title">
                         </div>
-
                         <div class="form-group">
                             <label for="contents">Contents</label>
                             <textarea class="form-control" id="contents" name="contents" rows="6"></textarea>
                         </div>
-                        <div class="form-group">
-                            <label>IMG upload</label><br/>
-                            <input type="file" id = "imgfile" name="imgfile" class="btn btn-primary">
-<%--                            <div class="input-group col-xs-12">--%>
-<%--                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">--%>
-<%--                                <span class="input-group-append">--%>
-<%--                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>--%>
-<%--                                </span>--%>
-<%--                            </div>--%>
-                        </div>
 
-                        <button id = "anc_register_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                        <button id = "anc_can_btn" type="button" class="btn btn-light">Delete</button>
+                        <div class="form-group">
+                            <label>File upload</label>
+                            <input type="file" name="filename" class="file-upload-default">
+                            <div class="input-group col-xs-12" id="fileForm">
+                                <input id="fileName" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
+                                <label for="chooseFile" class="input-group-prepend" style="height: 46px">
+                                    <div class="file-upload-browse btn btn-outline-primary">Upload</div>
+                                </label>
+                                <input type="file" name="imgfile" id="chooseFile" hidden onchange="loadFile(this)">
+                            </div>
+                        </div>
+                        <div style="float: right">
+                            <button id = "anc_register_btn" type="button" class="btn btn-primary mr-2">Update</button>
+                            <button id = "anc_can_btn" type="button" class="btn btn-outline-primary">Delete</button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -72,4 +74,3 @@
 
     </div>
 </div>
-<!-- content-wrapper ends -->

@@ -14,7 +14,7 @@
         },
         send:()=>{
             $('#adm_login_form').attr({
-                action:'/adm/loginimpl',
+                action:'/loginimpl',
                 method:'post'
             });
             $('#adm_login_form').submit();

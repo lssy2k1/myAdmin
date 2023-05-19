@@ -29,15 +29,22 @@
                                     <td><a href="/anc/detail?id=${obj.id}">${obj.title}</a></td>
                                     <td>${obj.writer}</td>
                                     <td>${obj.rdate}</td>
+                                    <td></td>
                                 </tr>
                             </c:forEach>
 
                             </tbody>
                         </table>
                     </div>
+                    <a type="button" href="/anc/add" class="btn btn-outline-primary btn-icon-text" style="margin-top:15px; float:right">
+                        <i class="ti-file btn-icon-prepend"></i>
+                        ADD
+                    </a>
                 </div>
             </div>
+
         </div>
+
 
     </div>
 </div>

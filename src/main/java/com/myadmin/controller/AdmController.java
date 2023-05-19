@@ -28,23 +28,6 @@ public class AdmController {
     @Autowired
     BCryptPasswordEncoder encoder;
 
-    @RequestMapping("/loginimpl")
-    public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
-        Adm adm = null;
-        try {
-            adm = admService.get(id);
-            if(adm != null && encoder.matches(pwd, adm.getPwd())){
-                session.setMaxInactiveInterval(60000);
-                session.setAttribute("loginadm", adm);
-                model.addAttribute("center", dir + "loginOk");
-            } else{
-                model.addAttribute("center", dir + "loginFail");
-            }
-        } catch (Exception e) {
-            throw new Exception("adm login error");
-        }
-        return "index";
-    }
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         try {
@@ -57,7 +40,8 @@ public class AdmController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, HttpSession session, @Validated Adm adm, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Adm adm, Errors errors, HttpSession session) throws Exception {
+//        validate랑 에러가 같이 움직이는 것 같다고 하심! 그래서 세션을 validate랑 에러 사이에 넣으면 에러메시지가 요~상하게 나옴
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";

@@ -10,6 +10,19 @@
 </style>
 
 <script>
+  let getDate = {
+    init: ()=>{
+      getDate.getdate();
+    },
+    getdate : ()=>{
+      $.ajax({
+        url: "/getdate",
+        success: (result)=>{
+          $('#getdate').text(result);
+        }
+      })
+    }
+  }
   let getWeather = {
     init:()=>{
       getWeather.getdata();
@@ -36,11 +49,12 @@
           }
         }
       })
-    }
+    },
   }
   $(()=>{
     makeKakaoMap3.init();
     getWeather.init();
+    getDate.init();
   })
 </script>
 
@@ -50,28 +64,47 @@
     <div class="row">
       <div class="col-md-12 grid-margin">
         <div class="row">
-          <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-            <h3 class="font-weight-bold">Welcome Aamir</h3>
-            <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
+          <div class="col-12 mb-4 mb-xl-0" style="display: flex; justify-content: space-between">
+            <h1 class="font-weight-bold" >Welcome ${loginadm.id}!</h1>
+            <div class="btn btn-sm btn-light bg-white" style="height: 40px">
+              <i class="mdi mdi-calendar" style="margin-right: 10px"></i><span id="getdate" style="font-size: 17px"></span>
+            </div>
           </div>
-          <div class="col-12 col-xl-4">
-            <div class="justify-content-end d-flex">
-              <div class="dropdown flex-md-grow-1 flex-xl-grow-0">
-                <button class="btn btn-sm btn-light bg-white dropdown-toggle" type="button" id="dropdownMenuDate2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                  <i class="mdi mdi-calendar"></i> Today (10 Jan 2021)
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuDate2">
-                  <a class="dropdown-item" href="#">January - March</a>
-                  <a class="dropdown-item" href="#">March - June</a>
-                  <a class="dropdown-item" href="#">June - August</a>
-                  <a class="dropdown-item" href="#">August - November</a>
+          <c:if test="${loginadm == null}">
+            <MARQUEE behavior="scroll" direction="right" style="margin-top:15px"><img src="/images/carrot.png" style="width:30px; height:30px"/> [DIGI Campus 당케] 관리자 전용 화면입니다.<img src="/images/carrot.png" style="width:30px; height:30px"/></MARQUEE>
+          </c:if>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <c:if test="${loginadm == null}">
+        <%------------------------------------날씨창 수정-----------------------------------------%>
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card tale-bg">
+          <div class="card-people mt-auto">
+            <img id = "rain" src="/images/dashboard/people.svg" alt="people">
+            <div class="weather-info">
+              <div class="d-flex">
+                <div>
+                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>C</sup></h2>
+                </div>
+                <div>
+                  <h2 class="mb-0 font-weight-normal"><i class="mdi mdi-water-percent"></i><span id = "humidity"></span><sup>%</sup></h2>
+                </div>
+                <div class="ml-2">
+                  <h4 class="location font-weight-normal">Seongsu</h4>
+                  <h6 class="font-weight-normal">Seoul</h6>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </c:if>
+  <c:if test="${loginadm != null}">
     <div class="row">
 <%------------------------------------날씨창 수정-----------------------------------------%>
       <div class="col-md-6 grid-margin stretch-card">
@@ -679,5 +712,6 @@
 
       </div>
     </div>
+  </c:if>
   </div>
   <!-- content-wrapper ends -->
