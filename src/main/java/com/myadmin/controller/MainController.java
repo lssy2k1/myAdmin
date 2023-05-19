@@ -3,6 +3,7 @@ package com.myadmin.controller;
 import com.myadmin.dto.Marker;
 import com.myadmin.service.MarkerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,9 @@ public class MainController {
 
     @Autowired
     MarkerService markerService;
+
+    @Value("${adminserver}")
+    String adminserver;
 
     @RequestMapping("/")
     public String main(Model model) throws Exception {
@@ -41,6 +45,24 @@ public class MainController {
     @RequestMapping("/mapTest")
     public String mapTest(Model model){
         model.addAttribute("center", "mapTest");
+        return "index";
+    }
+    @RequestMapping("/websocket")
+    public String websocket(Model model){
+        model.addAttribute("adminserver", adminserver);
+        model.addAttribute("center", "websocket");
+        return "index";
+    }
+    @RequestMapping("/oneonone")
+    public String oneonone(Model model){
+        model.addAttribute("adminserver", adminserver);
+        model.addAttribute("center", "oneonone");
+        return "index";
+    }
+    @RequestMapping("/chatbot")
+    public String chatbot(Model model){
+        model.addAttribute("adminserver", adminserver);
+        model.addAttribute("center", "chatbot");
         return "index";
     }
 }

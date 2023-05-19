@@ -50,7 +50,7 @@
                     <form id = "marker_register_form" class="forms-sample">
                         <div class="form-group">
                             <label for="writer">Writer</label>
-                            <input type="text" class="form-control" name = "writer" id="writer" placeholder="input writer">
+                            <input type="text" class="form-control" name = "writer" id="writer" placeholder="input writer" value="${loginadm.id}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="keyword">Keyword</label>
