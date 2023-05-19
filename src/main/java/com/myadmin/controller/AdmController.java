@@ -28,23 +28,6 @@ public class AdmController {
     @Autowired
     BCryptPasswordEncoder encoder;
 
-    @RequestMapping("/loginimpl")
-    public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
-        Adm adm = null;
-        try {
-            adm = admService.get(id);
-            if(adm != null && encoder.matches(pwd, adm.getPwd())){
-                session.setMaxInactiveInterval(60000);
-                session.setAttribute("loginadm", adm);
-                model.addAttribute("center", dir + "loginOk");
-            } else{
-                model.addAttribute("center", dir + "loginFail");
-            }
-        } catch (Exception e) {
-            throw new Exception("adm login error");
-        }
-        return "index";
-    }
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         try {

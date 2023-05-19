@@ -3,6 +3,7 @@ package com.myadmin.controller;
 import com.myadmin.dto.Marker;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.FileUploadUtil;
+import com.myadmin.util.GetDateUtil;
 import com.myadmin.util.GptUtil;
 import com.myadmin.util.WeatherUtil;
 import org.json.simple.JSONArray;
@@ -74,4 +75,10 @@ public class RestsController {
         return map;
     };
 
+    @RequestMapping("/getdate")
+    public String getdate() throws Exception {
+        String result = "";
+        result = GetDateUtil.getDate();
+        return result;
+    };
 }
