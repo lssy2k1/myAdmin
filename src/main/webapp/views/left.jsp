@@ -13,7 +13,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-                <i class="icon-layout menu-icon"></i>
+                <i class="icon-head menu-icon"></i>
                 <span class="menu-title">Student</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -26,7 +26,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                <i class="icon-columns menu-icon"></i>
+                <i class="icon-book menu-icon"></i>
                 <span class="menu-title">Lectures</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -41,13 +41,13 @@
 
         <li class="nav-item">
             <a class="nav-link" href="/study/all" aria-expanded="false" aria-controls="icons">
-                <i class="icon-contract menu-icon"></i>
+                <i class="icon-paper-clip menu-icon"></i>
                 <span class="menu-title">Study</span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <i class="icon-head menu-icon"></i>
+                <i class="icon-circle-check menu-icon"></i>
                 <span class="menu-title">Test</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -61,7 +61,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
-                <i class="icon-bar-graph menu-icon"></i>
+                <i class="icon-map menu-icon"></i>
                 <span class="menu-title">Markers</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -73,22 +73,15 @@
             </div>
         </li>
         <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-                <i class="icon-grid-2 menu-icon"></i>
+            <a class="nav-link" href="/anc/all">
+                <i class="icon-microphone menu-icon"></i>
                 <span class="menu-title">Announcement</span>
-                <i class="menu-arrow"></i>
             </a>
-            <div class="collapse" id="tables">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="/anc/all">List</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="/anc/add">Add Announcement</a></li>
-                </ul>
-            </div>
         </li>
         <c:if test="${loginadm.lev>=3}">
         <li class="nav-item">
             <a class="nav-link" href="/adm/all" aria-expanded="false" aria-controls="admin">
-                <i class="icon-contract menu-icon"></i>
+                <i class="icon-star menu-icon"></i>
                 <span class="menu-title">Admin</span>
             </a>
         </li>

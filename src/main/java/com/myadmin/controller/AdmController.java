@@ -57,7 +57,8 @@ public class AdmController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, HttpSession session, @Validated Adm adm, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Adm adm, Errors errors, HttpSession session) throws Exception {
+//        validate랑 에러가 같이 움직이는 것 같다고 하심! 그래서 세션을 validate랑 에러 사이에 넣으면 에러메시지가 요~상하게 나옴
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
