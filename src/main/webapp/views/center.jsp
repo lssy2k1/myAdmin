@@ -88,11 +88,11 @@
             <img id = "rain" src="/images/dashboard/people.svg" alt="people">
             <div class="weather-info">
               <div class="d-flex">
-                <div>
-                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>C</sup></h2>
+                <div style="margin-right: 7px">
+                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>
                 </div>
-                <div>
-                  <h2 class="mb-0 font-weight-normal"><i class="mdi mdi-water-percent"></i><span id = "humidity"></span><sup>%</sup></h2>
+                <div style="margin-right: 7px">
+                  <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>
                 </div>
                 <div class="ml-2">
                   <h4 class="location font-weight-normal">Seongsu</h4>
@@ -113,11 +113,11 @@
             <img id = "rain" src="/images/dashboard/people.svg" alt="people">
             <div class="weather-info">
               <div class="d-flex">
-                <div>
-                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>C</sup></h2>
+                <div style="margin-right: 7px">
+                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>
                 </div>
-                <div>
-                  <h2 class="mb-0 font-weight-normal"><i class="mdi mdi-water-percent"></i><span id = "humidity"></span><sup>%</sup></h2>
+                <div style="margin-right: 7px">
+                  <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>
                 </div>
                 <div class="ml-2">
                   <h4 class="location font-weight-normal">Seongsu</h4>

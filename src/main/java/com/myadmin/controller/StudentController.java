@@ -97,7 +97,7 @@ public class StudentController {
         try {
             studentService.remove(id);
         } catch (Exception e) {
-            throw new Exception("Student delet error");
+            throw new Exception("Student delete error");
         }
         return "redirect:/student/all";
     }

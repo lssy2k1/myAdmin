@@ -19,7 +19,7 @@ public class DeleteTest {
     void contextLoads() {
 
         try {
-            service.remove("st01");
+            service.remove("student");
             service.get();
             log.info("======================================");
             log.info("제거완료");
