@@ -11,5 +11,5 @@ public class MarkerSearch {
     private String writer;
     private String keyword;
     private String title;
-    private Integer star;
+    private Integer rating;
 }

@@ -66,8 +66,8 @@
                         </div>
                         <div class = "row">
                             <div class="form-group col-4">
-                                <label for="star">Star</label>
-                                <select class="form-control" id="star" name = "star" >
+                                <label for="rating">Rating</label>
+                                <select class="form-control" id="rating" name = "rating" >
                                     <option>5</option>
                                     <option>4</option>
                                     <option>3</option>

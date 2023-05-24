@@ -13,23 +13,23 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 public class Anc {
     private int id;
-    @NotEmpty(message = "TITLE은 필수항목입니다.")
+//    @NotEmpty(message = "제목은 필수항목입니다.")
     private String title;
-    @NotEmpty(message = "WRITER은 필수항목입니다. 세션이 만료되었으니 다시 로그인 하세요")
+//    @NotEmpty(message = "작성자는 필수항목입니다.")
     private String writer;
-    @NotEmpty(message = "CONTENTS는 필수항목입니다.")
+//    @NotEmpty(message = "내용은 필수항목입니다.")
     private String contents;
-    private String rdate;
     private String img;
+    private String rdate;
 
-    public Anc(int id, String title, String writer, String contents, String rdate, String img) {
+    private MultipartFile imgfile;
+
+    public Anc(int id, String title, String writer, String contents, String img, String rdate) {
         this.id = id;
         this.title = title;
         this.writer = writer;
         this.contents = contents;
-        this.rdate = rdate;
         this.img = img;
+        this.rdate = rdate;
     }
-
-    private MultipartFile imgfile;
 }

@@ -12,35 +12,22 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Lecture {
-    private int id;
-    @NotEmpty(message = "title는 필수항목입니다.")
+    private Integer id;
+    private Integer lectureCode;
+    private String admId;
     private String title;
-    @NotEmpty(message = "teacher는 필수항목입니다.")
     private String teacher;
     private String topic;
-    @NotEmpty(message = "target는 필수항목입니다.")
     private String target;
     private String rdate;
-    @NotNull(message = "length는 필수항목입니다.")
-    private Integer length;
-    @NotNull(message = "rating는 필수항목입니다.")
-    private Integer rating;
-    @NotNull(message = "price는 필수항목입니다.")
+    private String length;
+    private double rating;
     private Integer price;
     private String img;
-
-    public Lecture(int id, String title, String teacher, String topic, String target, String rdate, Integer length, Integer rating, Integer price, String img) {
-        this.id = id;
-        this.title = title;
-        this.teacher = teacher;
-        this.topic = topic;
-        this.target = target;
-        this.rdate = rdate;
-        this.length = length;
-        this.rating = rating;
-        this.price = price;
-        this.img = img;
-    }
+    private double discountRate;
+    private String isDelete;
+    private String deleteDate;
+    private Integer hit;
 
     private MultipartFile imgfile;
 }

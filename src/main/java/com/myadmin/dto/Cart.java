@@ -8,9 +8,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cart {
-    private int id;
     private String studentId;
     private String lectureId;
+    private Integer id;
     private String rdate;
-
 }

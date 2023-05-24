@@ -32,14 +32,14 @@
                         <input type="text" class="form-control mb-2 mr-sm-2" id="writer" name="writer" placeholder="Input Writer" value="${ms.writer}">
                         <label for="title" style="margin: 0 10px">Keyword</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="keyword" name="keyword" placeholder="Input Keyword" value="${ms.keyword}">
-                        <label for="star" style="margin: 0 10px">Star</label>
-                        <select id="star" name="star" value="${ms.star}" class="form-control mb-2 mr-2">
+                        <label for="rating" style="margin: 0 10px">Rating</label>
+                        <select id="rating" name="rating" value="${ms.rating}" class="form-control mb-2 mr-2">
                             <option value="">전체</option>
-                            <option value="1" <c:if test="${ms.star==1}">selected</c:if> >1</option>
-                            <option value="2" <c:if test="${ms.star==2}">selected</c:if>>2</option>
-                            <option value="3" <c:if test="${ms.star==3}">selected</c:if>>3</option>
-                            <option value="4" <c:if test="${ms.star==4}">selected</c:if>>4</option>
-                            <option value="5" <c:if test="${ms.star==5}">selected</c:if>>5</option>
+                            <option value="1" <c:if test="${ms.rating==1}">selected</c:if> >1</option>
+                            <option value="2" <c:if test="${ms.rating==2}">selected</c:if>>2</option>
+                            <option value="3" <c:if test="${ms.rating==3}">selected</c:if>>3</option>
+                            <option value="4" <c:if test="${ms.rating==4}">selected</c:if>>4</option>
+                            <option value="5" <c:if test="${ms.rating==5}">selected</c:if>>5</option>
                         </select>
                         <button type="button" id="search_btn" class="btn btn-primary mb-2" style="margin-left: 20px">Search</button>
                     </form>
@@ -61,7 +61,7 @@
                                 <th>Title</th>
                                 <th>Lat</th>
                                 <th>Lng</th>
-                                <th>Star</th>
+                                <th>Rating</th>
                                 <th>Detail</th>
                                 <th>Writer</th>
                                 <th>Keyword</th>
@@ -75,7 +75,7 @@
                                     <td>${obj.title}</td>
                                     <td>${obj.lat}</td>
                                     <td>${obj.lng}</td>
-                                    <td>${obj.star}</td>
+                                    <td>${obj.rating}</td>
                                     <td>${obj.detail}</td>
                                     <td>${obj.writer}</td>
                                     <td>${obj.keyword}</td>

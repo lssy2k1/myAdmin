@@ -12,20 +12,20 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Marker {
-    private int id;
-    @NotEmpty(message = "세션이 종료되어 writer가 없습니다. 다시 로그인 하세요.")
+    private Integer id;
     private String writer;
-    @NotEmpty(message = "keyword는 필수입력 요소입니다.")
-    private String keyword;
-    @NotEmpty(message = "title는 필수입력 요소입니다.")
-    private String title;
     private double lat;
     private double lng;
     private String img;
-    private int star;
+    private double rating;
     private String detail;
+    private String keyword;
+    private String title;
+    private String rdate;
 
-    public Marker(int id, String writer, String keyword, String title, double lat, double lng, String img, int star, String detail) {
+    private MultipartFile imgfile;
+
+    public Marker(int id, String writer, String keyword, String title, double lat, double lng, String img, double rating, String detail) {
         this.id = id;
         this.writer = writer;
         this.keyword = keyword;
@@ -33,9 +33,7 @@ public class Marker {
         this.lat = lat;
         this.lng = lng;
         this.img = img;
-        this.star = star;
+        this.rating = rating;
         this.detail = detail;
     }
-
-    private MultipartFile imgfile;
 }

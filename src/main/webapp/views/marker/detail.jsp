@@ -61,13 +61,13 @@
                             <input type="text" class="form-control" name = "detail" id="detail"  value="${marker.detail}">
                         </div>
                         <div class="form-group">
-                            <label for="star">Star</label>
-                            <select class="form-control" id="star" name = "star" >
-                                <option <c:if test="${marker.star=='5'}">selected</c:if>>5</option>
-                                <option <c:if test="${marker.star=='4'}">selected</c:if>>4</option>
-                                <option <c:if test="${marker.star=='3'}">selected</c:if>>3</option>
-                                <option <c:if test="${marker.star=='2'}">selected</c:if>>2</option>
-                                <option <c:if test="${marker.star=='1'}">selected</c:if>>1</option>
+                            <label for="rating">Rating</label>
+                            <select class="form-control" id="rating" name = "rating" >
+                                <option <c:if test="${marker.rating=='5'}">selected</c:if>>5</option>
+                                <option <c:if test="${marker.rating=='4'}">selected</c:if>>4</option>
+                                <option <c:if test="${marker.rating=='3'}">selected</c:if>>3</option>
+                                <option <c:if test="${marker.rating=='2'}">selected</c:if>>2</option>
+                                <option <c:if test="${marker.rating=='1'}">selected</c:if>>1</option>
                             </select>
                         </div>
                         <div class="form-group">
