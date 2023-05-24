@@ -9,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 public class CartDesc {
     private int id;
-    private String Student_id;
-    private String Lecture_id;
+    private String studentId;
+    private String lectureId;
 
 }
