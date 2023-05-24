@@ -37,11 +37,11 @@
                         <label for="teacher" style="margin: 0 10px">Teacher</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="teacher" name="teacher" placeholder="Input teacher" value="${ls.teacher}">
                         <label for="rating" style="margin: 0 10px">Rating</label>
-                        <input type="Number" class="form-control mb-2 mr-sm-2" id="rating" name="rating" placeholder="Input rating" value="${ls.rating}">
+                        <input type="number" class="form-control mb-2 mr-sm-2" id="rating" name="rating" placeholder="Input rating" value="${ls.rating}">
                         <label for="lowerPrice" style="margin: 0 10px">lowerPrice</label>
-                        <input type="Number" class="form-control mb-2 mr-sm-2" id="lowerPrice" name="lowerPrice" placeholder="Input lowerPrice" value="${ls.lowerPrice}">
+                        <input type="number" class="form-control mb-2 mr-sm-2" id="lowerPrice" name="lowerPrice" placeholder="Input lowerPrice" value="${ls.lowerPrice}">
                         <label for="upperPrice" style="margin: 0 10px">upperPrice</label>
-                        <input type="Number" class="form-control mb-2 mr-sm-2" id="upperPrice" name="upperPrice" placeholder="Input upperPrice" value="${ls.upperPrice}">
+                        <input type="number" class="form-control mb-2 mr-sm-2" id="upperPrice" name="upperPrice" placeholder="Input upperPrice" value="${ls.upperPrice}">
 
                         <button type="button" id="lec_search_btn" class="btn btn-primary mb-2" style="margin-left: 20px">Search</button>
                     </form>

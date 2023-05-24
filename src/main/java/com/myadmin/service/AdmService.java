@@ -9,9 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-@Service
 @Slf4j
+@Service
 public class AdmService implements MyAdminService<String, Adm> {
     @Autowired
     AdmMapper mapper;

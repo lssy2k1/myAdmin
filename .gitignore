@@ -33,6 +33,7 @@ build/
 .vscode/
 
 src/main/resources/application.properties
+src/main/resources/logback.xml
 
 .DS_Store
 /src/main/resources/log4jdbc.log4j2.properties
