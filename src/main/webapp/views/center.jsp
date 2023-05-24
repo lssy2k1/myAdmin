@@ -53,9 +53,9 @@
     },
   }
   $(()=>{
-    makeKakaoMap3.init();
     getWeather.init();
     getDate.init();
+    makeKakaoMap3.init();
   })
 </script>
 
