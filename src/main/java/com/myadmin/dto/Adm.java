@@ -19,9 +19,12 @@ public class Adm {
     @Size(min=4, max=15, message = "PWD는 최소 4글자, 최대 15글자입니다.")
     private String pwd;
     private Integer lev;
+    @NotEmpty(message = "이메일은 필수항목입니다.")
     private String email;
     private String rdate;
+    @NotEmpty(message = "연락처는 필수항목입니다.")
     private String contact;
+    @NotEmpty(message = "주소는 필수항목입니다.")
     private String addr;
     private String isDelete;
     private String deleteDate;
