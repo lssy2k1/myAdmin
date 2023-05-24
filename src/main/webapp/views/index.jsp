@@ -125,20 +125,20 @@
                 </div>
             </c:when>
             <c:otherwise>
-          <li class="nav-item nav-profile dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="/images/loginprofile.png" alt="profile"/>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="/adm/detail?id=${loginadm.id}">
-                <i class="ti-face-smile text-primary"></i>
-                Profile
-              </a>
-              <a class="dropdown-item" href="/logouts">
-                <i class="ti-power-off text-primary"></i>
-                Logout
-              </a>
-            </div>
+              <li class="nav-item nav-profile dropdown">
+                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                  <img src="/images/loginprofile.png" alt="profile"/>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                  <a class="dropdown-item" href="/adm/detail?id=${loginadm.id}">
+                    <i class="ti-face-smile text-primary"></i>
+                    Profile
+                  </a>
+                  <a class="dropdown-item" href="/logouts">
+                    <i class="ti-power-off text-primary"></i>
+                    Logout
+                  </a>
+                </div>
             </c:otherwise>
           </c:choose>
 

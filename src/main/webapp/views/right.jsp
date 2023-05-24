@@ -65,6 +65,18 @@
           <small class="text-muted my-auto">19 min</small>
         </li>
 
+        <li>
+            <h1 id="adm_id">${loginadm.id}</h1>
+            <H1 id="status">Status</H1>
+            <button id="connect">Connect</button>
+            <button id="disconnect">Disconnect</button>
+
+            <h3>All</h3>
+            <input type="text" id="alltext"><button id="sendall">Send</button>
+            <div id="all"></div>
+
+        </li>
+
       </ul>
     </div>
     <!-- chat tab ends -->

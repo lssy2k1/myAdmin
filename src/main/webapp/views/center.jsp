@@ -10,6 +10,7 @@
 </style>
 
 <script>
+
   let getDate = {
     init: ()=>{
       getDate.getdate();
@@ -70,40 +71,39 @@
               <i class="mdi mdi-calendar" style="margin-right: 10px"></i><span id="getdate" style="font-size: 17px"></span>
             </div>
           </div>
+
+
           <c:if test="${loginadm == null}">
-            <MARQUEE behavior="scroll" direction="right" style="margin-top:15px"><img src="/images/carrot.png" style="width:30px; height:30px"/> [DIGI Campus 당케] 관리자 전용 화면입니다.<img src="/images/carrot.png" style="width:30px; height:30px"/></MARQUEE>
+            <MARQUEE behavior="scroll" direction="right" style="margin-top:15px; font-weight: 600"><img src="/images/carrot.png" style="width:30px; height:30px"/> [DIGI Campus 당케] 관리자 전용 화면입니다.<img src="/images/carrot.png" style="width:30px; height:30px"/></MARQUEE>
+
           </c:if>
-
-
-
-
         </div>
       </div>
     </div>
-    <c:if test="${loginadm == null}">
-        <%------------------------------------날씨창 수정-----------------------------------------%>
-      <div class="col-md-12 grid-margin stretch-card">
-        <div class="card tale-bg">
-          <div class="card-people mt-auto">
-            <img id = "rain" src="/images/dashboard/people.svg" alt="people">
-            <div class="weather-info">
-              <div class="d-flex">
-                <div style="margin-right: 7px">
-                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>
-                </div>
-                <div style="margin-right: 7px">
-                  <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>
-                </div>
-                <div class="ml-2">
-                  <h4 class="location font-weight-normal">Seongsu</h4>
-                  <h6 class="font-weight-normal">Seoul</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </c:if>
+<%--    <c:if test="${loginadm == null}">--%>
+<%--        &lt;%&ndash;----------------------------------날씨창 수정---------------------------------------&ndash;%&gt;--%>
+<%--      <div class="col-md-12 grid-margin stretch-card">--%>
+<%--        <div class="card tale-bg">--%>
+<%--          <div class="card-people mt-auto">--%>
+<%--            <img id = "rain" src="/images/dashboard/people.svg" alt="people">--%>
+<%--            <div class="weather-info">--%>
+<%--              <div class="d-flex">--%>
+<%--                <div style="margin-right: 7px">--%>
+<%--                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>--%>
+<%--                </div>--%>
+<%--                <div style="margin-right: 7px">--%>
+<%--                  <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>--%>
+<%--                </div>--%>
+<%--                <div class="ml-2">--%>
+<%--                  <h4 class="location font-weight-normal">Seongsu</h4>--%>
+<%--                  <h6 class="font-weight-normal">Seoul</h6>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--    </c:if>--%>
   <c:if test="${loginadm != null}">
     <div class="row">
 <%------------------------------------날씨창 수정-----------------------------------------%>

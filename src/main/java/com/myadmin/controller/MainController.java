@@ -4,6 +4,11 @@ import com.myadmin.dto.Adm;
 import com.myadmin.dto.Marker;
 import com.myadmin.service.AdmService;
 import com.myadmin.service.MarkerService;
+import com.myadmin.util.AlphaVantageUtil;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -89,6 +94,11 @@ public class MainController {
     public String chatbot(Model model){
         model.addAttribute("adminserver", adminserver);
         model.addAttribute("center", "chatbot");
+        return "index";
+    }
+    @RequestMapping("/trypage")
+    public String trypage(Model model) throws ParseException {
+        model.addAttribute("center", "tryPage");
         return "index";
     }
 }

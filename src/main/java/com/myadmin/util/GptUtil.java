@@ -17,6 +17,7 @@ public class GptUtil {
     private static final String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
     public static String getResult(String msg) throws URISyntaxException, IOException, InterruptedException, ParseException {
+
         String result = "";
         HttpClient client = HttpClient.newHttpClient();
         //OpenAI API에 요청을 보낼 http객체를 생성
@@ -36,13 +37,17 @@ public class GptUtil {
 
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         //만들어진 http request를 send로 보낸다. send의 두번째 매개변수는 응답본문을 문자열로 바꾸는 bodyHandler를 생성하는 메서드
+
         String responseBody = response.body();
         result = GptUtil.getData(responseBody);
         System.out.println(result.toString());
         client = null;
+        //클라이언트 누수 방지
+
         return result;
     }
 
+    //받아온 데이터 파싱. 콘텐츠 부분만 남길 것
     public static String getData(String str) throws ParseException {
         JSONParser jsonParser = new JSONParser();
         //string은 파싱이 안되므로 jsonParser를 이용하여 캐스팅함.
