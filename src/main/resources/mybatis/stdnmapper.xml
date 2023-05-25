@@ -3,22 +3,22 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.myadmin.mapper.StudentMapper">
+<mapper namespace="com.myadmin.mapper.StdnMapper">
 
-    <select id="select" parameterType="String" resultType="Student">
+    <select id="select" parameterType="String" resultType="Stdn">
         SELECT *
         FROM stdn
         WHERE id=#{id}
     </select>
-    <select id="selectall" resultType="Student">
+    <select id="selectall" resultType="Stdn">
         SELECT *
         FROM stdn
     </select>
-    <insert id="insert" parameterType="Student">
+    <insert id="insert" parameterType="Stdn">
         INSERT INTO stdn (id, pwd, name, email, contact)
         VALUES (#{id}, #{pwd}, #{name}, #{email}, #{contact})
     </insert>
-    <update id="update" parameterType="Student">
+    <update id="update" parameterType="Stdn">
         UPDATE stdn
         SET pwd=#{pwd}, name=#{name}, email=#{email}, contact=#{contact}
         WHERE id=#{id}

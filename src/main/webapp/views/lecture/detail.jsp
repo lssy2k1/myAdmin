@@ -10,13 +10,13 @@
             $('#lec_delete_btn').click(()=>{
                 let b = confirm("삭제하시겠습니까?");
                 if(b){
-                    location.href = '/lecture/deleteimpl?id=${lecture.id}';
+                    location.href = '/lec/deleteimpl?id=${lec.id}';
                 }
             })
         },
         send:()=>{
             $('#lec_update_form').attr({
-                action:'/lecture/updateimpl',
+                action:'/lec/updateimpl',
                 method:'post',
                 enctype:'multipart/form-data'
             });
@@ -42,38 +42,38 @@
                     </p>
 
                     <form id = "lec_update_form" class="forms-sample">
-                        <input type = "hidden" id = "id" name = "id" value = "${lecture.id}">
-                        <input type = "hidden" id = "img" name = "img" value = "${lecture.img}">
+                        <input type = "hidden" id = "id" name = "id" value = "${lec.id}">
+                        <input type = "hidden" id = "img" name = "img" value = "${lec.img}">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" name = "title" id="title" value = "${lecture.title}" placeholder="input title">
+                            <input type="text" class="form-control" name = "title" id="title" value = "${lec.title}" placeholder="input title">
                         </div>
                         <div class="form-group">
                             <label for="teacher">Teacher</label>
-                            <input type="text" class="form-control" name = "teacher" id="teacher" value = "${lecture.teacher}" placeholder="input teacher">
+                            <input type="text" class="form-control" name = "teacher" id="teacher" value = "${lec.teacher}" placeholder="input teacher">
                         </div>
                         <div class="form-group">
                             <label for="topic">Topic</label>
                             <select class="form-control" id="topic" name = "topic">
-                                <option <c:if test="${lecture.topic=='Programming'}">selected</c:if>>Programming</option>
-                                <option <c:if test="${lecture.topic=='CS'}">selected</c:if>>CS</option>
+                                <option <c:if test="${lec.topic=='Programming'}">selected</c:if>>Programming</option>
+                                <option <c:if test="${lec.topic=='CS'}">selected</c:if>>CS</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="target">Target</label>
-                            <input type="text" class="form-control" name = "target" id="target" value = "${lecture.target}" placeholder="input target">
+                            <input type="text" class="form-control" name = "target" id="target" value = "${lec.target}" placeholder="input target">
                         </div>
                         <div class="form-group">
                             <label for="length">Length</label>
-                            <input type="text" class="form-control" name = "length" id="length" value = "${lecture.length}" placeholder="input length">
+                            <input type="text" class="form-control" name = "length" id="length" value = "${lec.length}" placeholder="input length">
                         </div>
                         <div class="form-group">
                             <label for="price">Price</label>
-                            <input type="text" class="form-control" name = "price" id="price" value = "${lecture.price}" placeholder="input price">
+                            <input type="text" class="form-control" name = "price" id="price" value = "${lec.price}" placeholder="input price">
                         </div>
                         <div class="form-group">
                             <label for="rating">Rating</label>
-                            <input type="text" class="form-control" name = "rating" id="rating" value = "${lecture.rating}" placeholder="input rating">
+                            <input type="text" class="form-control" name = "rating" id="rating" value = "${lec.rating}" placeholder="input rating">
                         </div>
                         <div class="form-group">
                             <label>IMG upload</label><br/>

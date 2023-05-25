@@ -7,7 +7,7 @@
             $('#search_btn').click(function(){
                 $('#search_form').attr({
                     method: 'post',
-                    action: '/marker/search'
+                    action: '/mrk/search'
                 });
                 $('#search_form').submit();
             });
@@ -68,10 +68,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="obj" items="${marker}">
+                            <c:forEach var="obj" items="${mrk}">
                                 <tr>
                                     <td class="py-1"><img src="/uimg/${obj.img}"></td>
-                                    <td><a href="/marker/detail?id=${obj.id}">${obj.id}</a></td>
+                                    <td><a href="/mrk/detail?id=${obj.id}">${obj.id}</a></td>
                                     <td>${obj.title}</td>
                                     <td>${obj.lat}</td>
                                     <td>${obj.lng}</td>

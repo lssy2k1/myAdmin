@@ -3,7 +3,7 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Mrk;
 import com.myadmin.dto.MrkSearch;
-import com.myadmin.service.MarkerService;
+import com.myadmin.service.MrkService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,21 +18,21 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
-@RequestMapping("/marker")
+@RequestMapping("/mrk")
 public class MrkController {
 
-    String dir = "marker/";
+    String dir = "mrk/";
     @Value("${uploadimgdir}")
     String imgdir;
 
     @Autowired
-    MarkerService markerService;
+    MrkService mrkService;
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         try {
-            List<Mrk> list = markerService.get();
-            model.addAttribute("marker",list);
+            List<Mrk> list = mrkService.get();
+            model.addAttribute("mrk",list);
             model.addAttribute("center",dir+"all");
         } catch (Exception e) {
             throw new Exception("marker all error");
@@ -45,7 +45,7 @@ public class MrkController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, @Validated Marker marker, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Mrk mrk, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -56,22 +56,22 @@ public class MrkController {
             }
             throw new Exception(msg);
         }
-        MultipartFile mf = marker.getImgfile();
+        MultipartFile mf = mrk.getImgfile();
         String img = mf.getOriginalFilename();
-        marker.setImg(img);
+        mrk.setImg(img);
         try {
-            markerService.register(marker);
+            mrkService.register(mrk);
             FileUploadUtil.saveFile(mf, imgdir);
         } catch (Exception e) {
             throw new Exception("marker addimpl error");
         }
-        return "redirect:/marker/all";
+        return "redirect:/mrk/all";
     }
     @RequestMapping("/detail")
     public String detail(Model model, Integer id) throws Exception {
         try {
-            Marker marker = markerService.get(id);
-            model.addAttribute("marker", marker);
+            Mrk mrk = mrkService.get(id);
+            model.addAttribute("mrk", mrk);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
             throw new Exception("marker detail error");
@@ -79,7 +79,7 @@ public class MrkController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, @Validated Marker marker, Errors errors) throws Exception {
+    public String updateimpl(Model model, @Validated Mrk mrk, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -90,40 +90,40 @@ public class MrkController {
             }
             throw new Exception(msg);
         }
-        MultipartFile mf = marker.getImgfile();
+        MultipartFile mf = mrk.getImgfile();
         String new_img = mf.getOriginalFilename();
         if(new_img==null || new_img.equals("")){
             try {
-                markerService.modify(marker);
+                mrkService.modify(mrk);
             } catch (Exception e) {
                 throw new Exception("marker modify error");
             }
         } else{
             try {
-                marker.setImg(new_img);
-                markerService.modify(marker);
+                mrk.setImg(new_img);
+                mrkService.modify(mrk);
                 FileUploadUtil.saveFile(mf, imgdir);
             } catch (Exception e) {
                 throw new Exception("marker modify error");
             }
         }
-        return "redirect:/marker/detail?id="+marker.getId();
+        return "redirect:/mrk/detail?id="+mrk.getId();
     }
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model, Integer id) throws Exception {
         try {
-            markerService.remove(id);
+            mrkService.remove(id);
         } catch (Exception e) {
             throw new Exception("marker deleteimpl error");
         }
-        return "redirect:/marker/all";
+        return "redirect:/mrk/all";
     }
 
     @RequestMapping("/search")
     public String search(Model model, MrkSearch ms) throws Exception {
-        List<Marker> list = markerService.search(ms);
+        List<Mrk> list = mrkService.search(ms);
         model.addAttribute("ms", ms);
-        model.addAttribute("marker", list);
+        model.addAttribute("mrk", list);
         model.addAttribute("center", dir+"all");
         return "index";
     }

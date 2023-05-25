@@ -10,27 +10,27 @@
 </style>
 
 <script>
-    let marker_register = {
+    let mrk_register = {
         init:()=>{
-            $('#marker_register_btn').click(() =>{
-                marker_register.send();
+            $('#mrk_register_btn').click(() =>{
+                mrk_register.send();
             });
-            $('#marker_can_btn').click(()=>{
-                location.href = '/marker/all';
+            $('#mrk_can_btn').click(()=>{
+                location.href = '/mrk/all';
             })
         },
         send:()=>{
-            $('#marker_register_form').attr({
-                action:'/marker/addimpl',
+            $('#mrk_register_form').attr({
+                action:'/mrk/addimpl',
                 method:'post',
                 enctype:'multipart/form-data'
             });
-            $('#marker_register_form').submit();
+            $('#mrk_register_form').submit();
         }
     };
     $(function(){
         makeKakaoMap.init();
-        marker_register.init();
+        mrk_register.init();
     });
 </script>
 
@@ -47,7 +47,7 @@
                         Add Marker
                     </p>
 
-                    <form id = "marker_register_form" class="forms-sample">
+                    <form id = "mrk_register_form" class="forms-sample">
                         <div class="form-group">
                             <label for="writer">Writer</label>
                             <input type="text" class="form-control" name = "writer" id="writer" placeholder="input writer" value="${loginadm.id}" readonly>
@@ -91,8 +91,8 @@
                             <label>IMG upload</label><br/>
                             <input type="file" id = "imgfile" name="imgfile" class="btn btn-primary">
                         </div>
-                        <button id = "marker_register_btn" type="button" class="btn btn-primary mr-2">Register</button>
-                        <button id = "marker_can_btn" type="button" class="btn btn-light">Cancel</button>
+                        <button id = "mrk_register_btn" type="button" class="btn btn-primary mr-2">Register</button>
+                        <button id = "mrk_can_btn" type="button" class="btn btn-light">Cancel</button>
                     </form>
                 </div>
             </div>

@@ -2,11 +2,7 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
 import com.myadmin.service.AdmService;
-import com.myadmin.service.MarkerService;
-import com.myadmin.util.AlphaVantageUtil;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
+import com.myadmin.service.MrkService;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,13 +12,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class MainController {
 
     @Autowired
-    MarkerService markerService;
+    MrkService mrkService;
     @Autowired
     AdmService admService;
     @Autowired

@@ -1,7 +1,9 @@
 package com.myadmin.controller;
 
 
-import com.myadmin.service.LectureService;
+import com.myadmin.dto.Lec;
+import com.myadmin.dto.LecSearch;
+import com.myadmin.service.LecService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,22 +18,22 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Controller
-@RequestMapping("/lecture")
+@RequestMapping("/lec")
 public class LecController {
 
-    String dir = "lecture/";
+    String dir = "lec/";
 
     @Value("${uploadimgdir}")
     String imgdir;
 
     @Autowired
-    LectureService lectureService;
+    LecService lecService;
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         try {
-            List<Lecture> list = lectureService.get();
-            model.addAttribute("lecture", list);
+            List<Lec> list = lecService.get();
+            model.addAttribute("lec", list);
             model.addAttribute("center", dir+"all");
         } catch (Exception e) {
             throw new Exception("lecture controller all error");
@@ -44,7 +46,7 @@ public class LecController {
         return "index";
     }
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, @Validated Lecture lecture, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Lec lec, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -55,22 +57,22 @@ public class LecController {
             }
             throw new Exception(msg);
         }
-        MultipartFile mf = lecture.getImgfile();
+        MultipartFile mf = lec.getImgfile();
         String img = mf.getOriginalFilename();
-        lecture.setImg(img);
+        lec.setImg(img);
         try {
-            lectureService.register(lecture);
+            lecService.register(lec);
             FileUploadUtil.saveFile(mf, imgdir);
         } catch (Exception e) {
             throw new Exception("lecture addimpl error");
         }
-        return "redirect:/lecture/all";
+        return "redirect:/lec/all";
     }
     @RequestMapping("/detail")
     public String detail(Model model, Integer id) throws Exception {
         try {
-            Lecture lecture = lectureService.get(id);
-            model.addAttribute("lecture", lecture);
+            Lec lec = lecService.get(id);
+            model.addAttribute("lec", lec);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
             throw new Exception("lecture detail error");
@@ -78,7 +80,7 @@ public class LecController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, @Validated Lecture lecture, Errors errors) throws Exception {
+    public String updateimpl(Model model, @Validated Lec lec, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -89,40 +91,40 @@ public class LecController {
             }
             throw new Exception(msg);
         }
-        MultipartFile mf = lecture.getImgfile();
+        MultipartFile mf = lec.getImgfile();
         String new_img = mf.getOriginalFilename();
         if(new_img==null || new_img.equals("")){
             try {
-                lectureService.modify(lecture);
+                lecService.modify(lec);
             } catch (Exception e) {
                 throw new Exception("lecture modify error");
             }
         } else{
             try {
-                lecture.setImg(new_img);
-                lectureService.modify(lecture);
+                lec.setImg(new_img);
+                lecService.modify(lec);
                 FileUploadUtil.saveFile(mf, imgdir);
             } catch (Exception e) {
                 throw new Exception("lecture modify error");
             }
         }
-        return "redirect:/lecture/detail?id="+lecture.getId();
+        return "redirect:/lec/detail?id="+lec.getId();
     }
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model, Integer id) throws Exception {
         try {
-            lectureService.remove(id);
+            lecService.remove(id);
         } catch (Exception e) {
             throw new Exception("lecture deleteimpl error");
         }
-        return "redirect:/lecture/all";
+        return "redirect:/lec/all";
     }
 
     @RequestMapping("/search")
-    public String search(Model model, LectureSearch ls) throws Exception {
-        List<Lecture> lecture = lectureService.search(ls);
+    public String search(Model model, LecSearch ls) throws Exception {
+        List<Lec> lec = lecService.search(ls);
         model.addAttribute("ls", ls);
-        model.addAttribute("lecture", lecture);
+        model.addAttribute("lec", lec);
         model.addAttribute("center", dir+"all");
         return "index";
     }

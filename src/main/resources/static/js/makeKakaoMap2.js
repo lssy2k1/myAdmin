@@ -48,7 +48,7 @@ let makeKakaoMap2 = {
     },
     getdata:(callback)=>{
         $.ajax({
-            url:'/givemarker',
+            url:'/givemrk',
             success:(result)=>{
                 callback(result);
             }

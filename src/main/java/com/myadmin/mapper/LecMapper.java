@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 @Mapper
-public interface LectureMapper extends MyAdminMapper<Integer, Lec> {
+public interface LecMapper extends MyAdminMapper<Integer, Lec> {
 
     public List<Lec> search(LecSearch ls);
 }

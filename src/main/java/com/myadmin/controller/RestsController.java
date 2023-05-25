@@ -1,39 +1,26 @@
 package com.myadmin.controller;
 
-import com.myadmin.service.MarkerService;
-import com.myadmin.util.FileUploadUtil;
+import com.myadmin.dto.Mrk;
+import com.myadmin.service.MrkService;
 import com.myadmin.util.GetDateUtil;
 import com.myadmin.util.GptUtil;
 import com.myadmin.util.WeatherUtil;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.mail.Message;
-import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
 @RestController
 public class RestsController {
 
     @Autowired
-    MarkerService markerService;
+    MrkService mrkService;
 
     @RequestMapping("/giveid")
     public String giveid(Model model){
@@ -48,19 +35,19 @@ public class RestsController {
         return result;
     }
 
-    @RequestMapping("/givemarker")
-    public JSONArray givemarker(Model model) throws Exception {
+    @RequestMapping("/givemrk")
+    public JSONArray givemrk(Model model) throws Exception {
         JSONArray result = new JSONArray();
         try {
-            List<Marker> list = markerService.get();
-            for(Marker obj : list){
-                JSONObject marker = new JSONObject();
-                marker.put("content", "<div>" +obj.getTitle() +"</div>");
+            List<Mrk> list = mrkService.get();
+            for(Mrk obj : list){
+                JSONObject mrk = new JSONObject();
+                mrk.put("content", "<div>" +obj.getTitle() +"</div>");
                 JSONObject latlng = new JSONObject();
                 latlng.put("lat", obj.getLat());
                 latlng.put("lng", obj.getLng());
-                marker.put("latlng", latlng);
-                result.add(marker);
+                mrk.put("latlng", latlng);
+                result.add(mrk);
             }
         } catch (Exception e) {
             throw new Exception("restcontroller marker error");

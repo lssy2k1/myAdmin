@@ -2,7 +2,7 @@ package com.myadmin.service;
 
 import com.myadmin.dto.Stdn;
 import com.myadmin.frame.MyAdminService;
-import com.myadmin.mapper.StudentMapper;
+import com.myadmin.mapper.StdnMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,10 +11,10 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class StudentService implements MyAdminService<String, Stdn> {
+public class StdnService implements MyAdminService<String, Stdn> {
 
     @Autowired
-    StudentMapper mapper;
+    StdnMapper mapper;
 
     @Override
     public void register(Stdn stdn) throws Exception {

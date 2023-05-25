@@ -5,7 +5,7 @@
         init: ()=> {
             $('#lec_search_btn').click(() => {
                 $('#lec_search_form').attr({
-                    action: '/lecture/search',
+                    action: '/lec/search',
                     method: 'post'
                 });
                 $('#lec_search_form').submit();
@@ -73,10 +73,10 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="obj" items="${lecture}">
+                            <c:forEach var="obj" items="${lec}">
                                 <tr>
                                     <td class="py-1"><img src="/uimg/${obj.img}"></td>
-                                    <td><a href="/lecture/detail?id=${obj.id}">${obj.id}</a></td>
+                                    <td><a href="/lec/detail?id=${obj.id}">${obj.id}</a></td>
                                     <td>${obj.title}</td>
                                     <td>${obj.teacher}</td>
                                     <td>${obj.topic}</td>

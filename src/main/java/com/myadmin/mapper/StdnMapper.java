@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 @Mapper
-public interface StudentMapper extends MyAdminMapper<String, Stdn> {
+public interface StdnMapper extends MyAdminMapper<String, Stdn> {
 }

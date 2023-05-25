@@ -2,29 +2,29 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-    let marker_detail = {
+    let mrk_detail = {
         init:()=>{
-            $('#marker_update_btn').click(() =>{
-                marker_detail.send();
+            $('#mrk_update_btn').click(() =>{
+                mrk_detail.send();
             });
-            $('#marker_delete_btn').click(()=>{
+            $('#mrk_delete_btn').click(()=>{
                 let b = confirm("delete?");
                 if(b){
-                    location.href = '/marker/deleteimpl?id=${marker.id}';
+                    location.href = '/mrk/deleteimpl?id=${mrk.id}';
                 }
             })
         },
         send:()=>{
-            $('#marker_detail_form').attr({
-                action:'/marker/updateimpl',
+            $('#mrk_detail_form').attr({
+                action:'/mrk/updateimpl',
                 method:'post',
                 enctype:'multipart/form-data'
             });
-            $('#marker_detail_form').submit();
+            $('#mrk_detail_form').submit();
         }
     };
     $(function(){
-        marker_detail.init();
+        mrk_detail.init();
     });
 </script>
 
@@ -41,42 +41,42 @@
                         Detail Marker
                     </p>
 
-                    <form id = "marker_detail_form" class="forms-sample">
-                        <input type="hidden" id="id" name="id" value="${marker.id}">
-                        <input type="hidden" id="img" name="img" value="${marker.img}">
+                    <form id = "mrk_detail_form" class="forms-sample">
+                        <input type="hidden" id="id" name="id" value="${mrk.id}">
+                        <input type="hidden" id="img" name="img" value="${mrk.img}">
                         <div class="form-group">
                             <label for="title">Title</label>
-                            <input type="text" class="form-control" name = "title" id="title" value="${marker.title}">
+                            <input type="text" class="form-control" name = "title" id="title" value="${mrk.title}">
                         </div>
                         <div class="form-group">
                             <label for="title">Writer</label>
-                            <input type="text" class="form-control" name = "writer" id="writer" value="${marker.writer}">
+                            <input type="text" class="form-control" name = "writer" id="writer" value="${mrk.writer}">
                         </div>
                         <div class="form-group">
                             <label for="title">Keyword</label>
-                            <input type="text" class="form-control" name = "keyword" id="keyword" value="${marker.keyword}">
+                            <input type="text" class="form-control" name = "keyword" id="keyword" value="${mrk.keyword}">
                         </div>
                         <div class="form-group">
                             <label for="detail">Detail</label>
-                            <input type="text" class="form-control" name = "detail" id="detail"  value="${marker.detail}">
+                            <input type="text" class="form-control" name = "detail" id="detail"  value="${mrk.detail}">
                         </div>
                         <div class="form-group">
                             <label for="rating">Rating</label>
                             <select class="form-control" id="rating" name = "rating" >
-                                <option <c:if test="${marker.rating=='5'}">selected</c:if>>5</option>
-                                <option <c:if test="${marker.rating=='4'}">selected</c:if>>4</option>
-                                <option <c:if test="${marker.rating=='3'}">selected</c:if>>3</option>
-                                <option <c:if test="${marker.rating=='2'}">selected</c:if>>2</option>
-                                <option <c:if test="${marker.rating=='1'}">selected</c:if>>1</option>
+                                <option <c:if test="${mrk.rating=='5'}">selected</c:if>>5</option>
+                                <option <c:if test="${mrk.rating=='4'}">selected</c:if>>4</option>
+                                <option <c:if test="${mrk.rating=='3'}">selected</c:if>>3</option>
+                                <option <c:if test="${mrk.rating=='2'}">selected</c:if>>2</option>
+                                <option <c:if test="${mrk.rating=='1'}">selected</c:if>>1</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="lat">lat</label>
-                            <input type="text" class="form-control" name = "lat" id="lat"  value="${marker.lat}">
+                            <input type="text" class="form-control" name = "lat" id="lat"  value="${mrk.lat}">
                         </div>
                         <div class="form-group">
                             <label for="lng">lng</label>
-                            <input type="text" class="form-control" name = "lng" id="lng"  value="${marker.lng}">
+                            <input type="text" class="form-control" name = "lng" id="lng"  value="${mrk.lng}">
                         </div>
 
                         <div class="form-group">
@@ -84,8 +84,8 @@
                             <input type="file" id = "imgfile" name="imgfile" class="btn btn-primary">
                         </div>
 
-                        <button id = "marker_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                        <button id = "marker_delete_btn" type="button" class="btn btn-light">Delete</button>
+                        <button id = "mrk_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
+                        <button id = "mrk_delete_btn" type="button" class="btn btn-light">Delete</button>
                     </form>
                 </div>
             </div>

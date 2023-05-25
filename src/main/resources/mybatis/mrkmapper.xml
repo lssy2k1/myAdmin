@@ -3,10 +3,10 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.myadmin.mapper.MarkerMapper">
+<mapper namespace="com.myadmin.mapper.MrkMapper">
 
-    <select id="search" parameterType="markerSearch" resultType="marker">
-        SELECT * FROM marker
+    <select id="search" parameterType="mrkSearch" resultType="Mrk">
+        SELECT * FROM mrk
         <where>
             <if test = "title != null and !title.equals('')">
                 AND title LIKE '%'||#{title}||'%'
@@ -23,27 +23,27 @@
         </where>
     </select>
 
-    <select id="select" parameterType="Integer" resultType="Marker">
+    <select id="select" parameterType="Integer" resultType="Mrk">
         SELECT *
-        FROM marker
+        FROM mrk
         WHERE id=#{id}
     </select>
-    <select id="selectall" resultType="Marker">
+    <select id="selectall" resultType="Mrk">
         SELECT *
-        FROM marker
+        FROM mrk
     </select>
-    <insert id="insert" parameterType="Marker">
-        INSERT INTO marker VALUES (marker_seq.NEXTVAL,#{title},#{lat},#{lng},#{img},#{rating},#{detail},#{writer},#{keyword})
+    <insert id="insert" parameterType="Mrk">
+        INSERT INTO mrk VALUES (mrk_seq.NEXTVAL,#{title},#{lat},#{lng},#{img},#{rating},#{detail},#{writer},#{keyword})
     </insert>
-    <update id="update" parameterType="Marker">
-        UPDATE marker
+    <update id="update" parameterType="Mrk">
+        UPDATE mrk
         SET writer=#{writer},keyword=#{keyword},title=#{title},lat=#{lat}, lng=#{lng}, img=#{img}
             , rating=#{rating}, detail=#{detail}
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="Integer">
         DELETE
-        FROM marker
+        FROM mrk
         WHERE id=#{id}
     </delete>
 

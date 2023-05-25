@@ -46,8 +46,8 @@
                 </a>
                 <div class="collapse" id="form-elements">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"><a class="nav-link" href="/lecture/all">List</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/lecture/add">Add Lecture</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/lec/all">List</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/lec/add">Add Lecture</a></li>
                     </ul>
                 </div>
             </li>
@@ -81,8 +81,8 @@
                 </a>
                 <div class="collapse" id="charts">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/marker/all">List</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/marker/add">Add Marker</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/mrk/all">List</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/mrk/add">Add Marker</a></li>
                     </ul>
                 </div>
             </li>

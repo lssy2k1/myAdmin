@@ -11,6 +11,6 @@ import java.util.List;
 
 @Repository
 @Mapper
-public interface MarkerMapper extends MyAdminMapper<Integer, Mrk> {
+public interface MrkMapper extends MyAdminMapper<Integer, Mrk> {
     public List<Mrk> search(MrkSearch ms);
 }

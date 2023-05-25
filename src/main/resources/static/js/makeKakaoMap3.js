@@ -43,7 +43,7 @@ let makeKakaoMap3 = {
     getdata: () => {
         return new Promise((resolve, reject) => {
             $.ajax({
-                url: '/givemarker',
+                url: '/givemrk',
                 success: (result) => {
                     resolve(result); // 비동기 작업이 성공한 경우 데이터 반환
                 },

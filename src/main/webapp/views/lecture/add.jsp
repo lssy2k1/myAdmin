@@ -8,12 +8,12 @@
                 lec_register.send();
             });
             $('#lec_can_btn').click(()=>{
-                location.href = '/lecture/all';
+                location.href = '/lec/all';
             })
         },
         send:()=>{
             $('#lec_register_form').attr({
-                action:'/lecture/addimpl',
+                action:'/lec/addimpl',
                 method:'post',
                 enctype:'multipart/form-data'
             });

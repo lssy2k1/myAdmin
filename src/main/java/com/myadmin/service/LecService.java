@@ -3,7 +3,7 @@ package com.myadmin.service;
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.LecSearch;
 import com.myadmin.frame.MyAdminService;
-import com.myadmin.mapper.LectureMapper;
+import com.myadmin.mapper.LecMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,17 +12,17 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class LectureService implements MyAdminService<Integer, Lec> {
+public class LecService implements MyAdminService<Integer, Lec> {
     @Autowired
-    LectureMapper mapper;
+    LecMapper mapper;
 
-    public LectureService(LectureMapper mapper) {
+    public LecService(LecMapper mapper) {
         this.mapper = mapper;
     }
 
     @Override
-    public void register(Lec lecture) throws Exception {
-        mapper.insert(lecture);
+    public void register(Lec lec) throws Exception {
+        mapper.insert(lec);
     }
 
     @Override
@@ -31,8 +31,8 @@ public class LectureService implements MyAdminService<Integer, Lec> {
     }
 
     @Override
-    public void modify(Lec lecture) throws Exception {
-        mapper.update(lecture);
+    public void modify(Lec lec) throws Exception {
+        mapper.update(lec);
     }
 
     @Override

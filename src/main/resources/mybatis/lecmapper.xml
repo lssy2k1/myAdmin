@@ -3,37 +3,37 @@
         PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.myadmin.mapper.LectureMapper">
+<mapper namespace="com.myadmin.mapper.LecMapper">
 
-    <select id="select" parameterType="Integer" resultType="Lecture">
+    <select id="select" parameterType="Integer" resultType="Lec">
         SELECT *
-        FROM lecture
+        FROM lec
         WHERE id=#{id}
     </select>
-    <select id="selectall" resultType="Lecture">
+    <select id="selectall" resultType="Lec">
         SELECT *
-        FROM lecture
+        FROM lec
     </select>
-    <insert id="insert" parameterType="Lecture">
-        INSERT INTO lecture
-        VALUES (lecture_seq.NEXTVAL,#{title},#{teacher}
+    <insert id="insert" parameterType="Lec">
+        INSERT INTO lec
+        VALUES (lec_seq.NEXTVAL,#{title},#{teacher}
                 ,#{topic}, #{target}, SYSDATE, #{length}, #{price}, #{img}, #{rating})
     </insert>
-    <update id="update" parameterType="Lecture">
-        UPDATE lecture
+    <update id="update" parameterType="Lec">
+        UPDATE lec
         SET title=#{title}, teacher=#{teacher}, topic=#{topic}, target=#{target}
             , rdate = SYSDATE, length=#{length}, rating=#{rating}, price=#{price}, img=#{img}
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="Integer">
         DELETE
-        FROM lecture
+        FROM lec
         WHERE id=#{id}
     </delete>
 
-    <select id="search" parameterType="LectureSearch" resultType="Lecture">
+    <select id="search" parameterType="LecSearch" resultType="Lec">
         SELECT *
-        FROM lecture
+        FROM lec
         <where>
             <if test="topic != null and !topic.equals('')">
                 topic = #{topic}

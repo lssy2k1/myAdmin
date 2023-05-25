@@ -3,7 +3,7 @@ package com.myadmin.service;
 import com.myadmin.dto.Mrk;
 import com.myadmin.dto.MrkSearch;
 import com.myadmin.frame.MyAdminService;
-import com.myadmin.mapper.MarkerMapper;
+import com.myadmin.mapper.MrkMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,13 +12,13 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class MarkerService implements MyAdminService<Integer, Mrk> {
+public class MrkService implements MyAdminService<Integer, Mrk> {
     @Autowired
-    MarkerMapper mapper;
+    MrkMapper mapper;
 
     @Override
-    public void register(Mrk marker) throws Exception {
-        mapper.insert(marker);
+    public void register(Mrk mrk) throws Exception {
+        mapper.insert(mrk);
     }
 
     @Override
@@ -27,8 +27,8 @@ public class MarkerService implements MyAdminService<Integer, Mrk> {
     }
 
     @Override
-    public void modify(Mrk marker) throws Exception {
-        mapper.update(marker);
+    public void modify(Mrk mrk) throws Exception {
+        mapper.update(mrk);
     }
 
     @Override

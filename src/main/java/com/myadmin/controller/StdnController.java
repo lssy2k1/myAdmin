@@ -1,7 +1,7 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Stdn;
-import com.myadmin.service.StudentService;
+import com.myadmin.service.StdnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -15,18 +15,18 @@ import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/stdn")
+public class StdnController {
 
     @Autowired
-    StudentService studentService;
+    StdnService stdnService;
     @Autowired
     BCryptPasswordEncoder encoder;
-    String dir = "student/";
+    String dir = "stdn/";
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
-        List<Stdn> list = studentService.get();
+        List<Stdn> list = stdnService.get();
         model.addAttribute("std", list);
         model.addAttribute("center", dir+"all");
         return "index";
@@ -56,14 +56,14 @@ public class StudentController {
             throw new Exception(msg);
         }
         std.setPwd(encoder.encode(std.getPwd()));
-        studentService.register(std);
-        return "redirect:/student/all";
+        stdnService.register(std);
+        return "redirect:/stdn/all";
     }
 
     @RequestMapping("/detail")
     public String detail(Model model, String id) throws Exception {
         try {
-            Stdn std = studentService.get(id);
+            Stdn std = stdnService.get(id);
             model.addAttribute("std", std);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
@@ -85,19 +85,19 @@ public class StudentController {
         }
         try {
             std.setPwd(encoder.encode(std.getPwd()));
-            studentService.modify(std);
+            stdnService.modify(std);
         } catch (Exception e) {
             throw new Exception("Student update error");
         }
-        return "redirect:/student/detail?id="+std.getId();
+        return "redirect:/stdn/detail?id="+std.getId();
     }
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model, String id) throws Exception {
         try {
-            studentService.remove(id);
+            stdnService.remove(id);
         } catch (Exception e) {
             throw new Exception("Student delete error");
         }
-        return "redirect:/student/all";
+        return "redirect:/stdn/all";
     }
 }
