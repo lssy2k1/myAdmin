@@ -1,8 +1,6 @@
 package com.myadmin.student;
 
-import com.myadmin.dto.Adm;
-import com.myadmin.dto.Student;
-import com.myadmin.service.AdmService;
+import com.myadmin.dto.Stdn;
 import com.myadmin.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,7 @@ public class InsertTest {
 
     @Test
     void contextLoads() {
-        Student obj = new Student("st01", "pwd01", "karina", "digi@gmail.com", "0100000000");
+        Stdn obj = new Stdn("st01", "pwd01", "karina", "digi@gmail.com", "0100000000");
         try {
             service.register(obj);
             service.get();

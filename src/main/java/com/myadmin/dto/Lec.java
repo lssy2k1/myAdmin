@@ -3,18 +3,15 @@ package com.myadmin.dto;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-
 @Getter
 @Setter
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Lecture {
+public class Lec {
     private Integer id;
-    private Integer lectureCode;
     private String admId;
+    private Integer lecCode;
     private String title;
     private String teacher;
     private String topic;
@@ -24,9 +21,9 @@ public class Lecture {
     private double rating;
     private Integer price;
     private String img;
-    private double discountRate;
+    private double discRate;
     private String isDelete;
-    private String deleteDate;
+    private String delDate;
     private Integer hit;
 
     private MultipartFile imgfile;

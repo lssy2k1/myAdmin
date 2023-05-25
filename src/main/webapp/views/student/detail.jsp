@@ -10,13 +10,13 @@
             $('#std_delete_btn').click(()=>{
                 let d = confirm("wanna delete?");
                 if(d){
-                    location.href = '/student/deleteimpl?id=${std.id}';
+                    location.href = '/stdn/deleteimpl?id=${std.id}';
                 }
             });
         },
         send:()=>{
             $('#std_detail_form').attr({
-                action:'/student/updateimpl',
+                action:'/stdn/updateimpl',
                 method:'post',
             });
             $('#std_detail_form').submit();

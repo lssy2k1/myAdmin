@@ -7,25 +7,25 @@
 
     <select id="select" parameterType="String" resultType="Student">
         SELECT *
-        FROM student
+        FROM stdn
         WHERE id=#{id}
     </select>
     <select id="selectall" resultType="Student">
         SELECT *
-        FROM student
+        FROM stdn
     </select>
     <insert id="insert" parameterType="Student">
-        INSERT INTO student (id, pwd, name, email, contact)
+        INSERT INTO stdn (id, pwd, name, email, contact)
         VALUES (#{id}, #{pwd}, #{name}, #{email}, #{contact})
     </insert>
     <update id="update" parameterType="Student">
-        UPDATE student
+        UPDATE stdn
         SET pwd=#{pwd}, name=#{name}, email=#{email}, contact=#{contact}
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="String">
         DELETE
-        FROM student
+        FROM stdn
         WHERE id=#{id}
     </delete>
 </mapper>

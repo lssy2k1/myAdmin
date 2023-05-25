@@ -1,8 +1,6 @@
 package com.myadmin.student;
 
-import com.myadmin.dto.Adm;
-import com.myadmin.dto.Student;
-import com.myadmin.service.AdmService;
+import com.myadmin.dto.Stdn;
 import com.myadmin.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,7 @@ public class UpdateTest {
 
     @Test
     void contextLoads() {
-        Student obj = new Student("st01", "pwdpwd", "karina", "kwangya@gmail.com", "01012341234");
+        Stdn obj = new Stdn("st01", "pwdpwd", "karina", "kwangya@gmail.com", "01012341234");
         try {
             service.modify(obj);
             service.get();

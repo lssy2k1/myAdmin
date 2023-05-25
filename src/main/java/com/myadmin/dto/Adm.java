@@ -27,7 +27,7 @@ public class Adm {
 //    @NotEmpty(message = "주소는 필수항목입니다.")
     private String addr;
     private String isDelete;
-    private String deleteDate;
+    private String delDate;
 
     public Adm(String id, String pwd, Integer lev, String email, String rdate, String contact, String addr) {
         this.id = id;

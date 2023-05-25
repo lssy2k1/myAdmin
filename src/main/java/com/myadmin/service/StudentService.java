@@ -1,9 +1,8 @@
 package com.myadmin.service;
 
 import com.myadmin.dto.Lecture;
-import com.myadmin.dto.Student;
+import com.myadmin.dto.Stdn;
 import com.myadmin.frame.MyAdminService;
-import com.myadmin.mapper.LectureMapper;
 import com.myadmin.mapper.StudentMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +12,14 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class StudentService implements MyAdminService<String, Student> {
+public class StudentService implements MyAdminService<String, Stdn> {
 
     @Autowired
     StudentMapper mapper;
 
     @Override
-    public void register(Student student) throws Exception {
-        mapper.insert(student);
+    public void register(Stdn stdn) throws Exception {
+        mapper.insert(stdn);
     }
 
     @Override
@@ -29,17 +28,17 @@ public class StudentService implements MyAdminService<String, Student> {
     }
 
     @Override
-    public void modify(Student student) throws Exception {
-        mapper.update(student);
+    public void modify(Stdn stdn) throws Exception {
+        mapper.update(stdn);
     }
 
     @Override
-    public Student get(String s) throws Exception {
+    public Stdn get(String s) throws Exception {
         return mapper.select(s);
     }
 
     @Override
-    public List<Student> get() throws Exception {
+    public List<Stdn> get() throws Exception {
         return mapper.selectall();
     }
 }

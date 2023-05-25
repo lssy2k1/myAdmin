@@ -2,7 +2,7 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Lecture;
 import com.myadmin.dto.Marker;
-import com.myadmin.dto.MarkerSearch;
+import com.myadmin.dto.MrkSearch;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -120,7 +120,7 @@ public class MarkerController {
     }
 
     @RequestMapping("/search")
-    public String search(Model model, MarkerSearch ms) throws Exception {
+    public String search(Model model, MrkSearch ms) throws Exception {
         List<Marker> list = markerService.search(ms);
         model.addAttribute("ms", ms);
         model.addAttribute("marker", list);

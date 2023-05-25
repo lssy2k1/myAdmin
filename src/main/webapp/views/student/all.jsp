@@ -46,7 +46,7 @@
                             </c:choose>
                           </a>
                         </td>
-                        <td><a href="/student/detail?id=${obj.id}">${obj.id}</a></td>
+                        <td><a href="/stdn/detail?id=${obj.id}">${obj.id}</a></td>
                         <td>${obj.name}</td>
                         <td>
                           <div class="progress">

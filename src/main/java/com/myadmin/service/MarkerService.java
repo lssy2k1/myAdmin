@@ -1,8 +1,7 @@
 package com.myadmin.service;
 
 import com.myadmin.dto.Marker;
-import com.myadmin.dto.MarkerSearch;
-import com.myadmin.frame.MyAdminMapper;
+import com.myadmin.dto.MrkSearch;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.MarkerMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +41,7 @@ public class MarkerService implements MyAdminService<Integer, Marker> {
         return mapper.selectall();
     }
 
-    public List<Marker> search(MarkerSearch ms) throws Exception{
+    public List<Marker> search(MrkSearch ms) throws Exception{
         return mapper.search(ms);
     }
 }

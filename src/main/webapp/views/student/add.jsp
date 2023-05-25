@@ -8,12 +8,12 @@
                 std_add.send();
             });
             $('#std_can_btn').click(()=>{
-                location.href = '/student/all';
+                location.href = '/stdn/all';
             })
         },
         send:()=>{
             $('#std_add_form').attr({
-                action:'/student/addimpl',
+                action:'/stdn/addimpl',
                 method:'post',
             });
             $('#std_add_form').submit();
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Add Student</h4>
                     <p class="card-description">
-                        Fill in the form below to add new student
+                        Fill in the form below to add new stdn
                     </p>
 
                     <form id = "std_add_form" class="forms-sample">

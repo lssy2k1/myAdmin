@@ -1,7 +1,5 @@
 package com.myadmin.student;
 
-import com.myadmin.dto.Student;
-import com.myadmin.service.AdmService;
 import com.myadmin.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;

@@ -7,9 +7,12 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class MarkerSearch {
-    private String writer;
-    private String keyword;
+public class LecSearch {
     private String title;
+    private String teacher;
+    private String topic;
     private Integer rating;
+    private Integer lowerPrice;
+    private Integer upperPrice;
+
 }

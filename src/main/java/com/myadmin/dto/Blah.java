@@ -7,9 +7,10 @@ import lombok.*;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Cart {
+public class Blah {
+    private Integer likeId;
     private String stdnId;
-    private String lecId;
-    private Integer id;
+    private String contents;
     private String rdate;
+    private Integer likes;
 }

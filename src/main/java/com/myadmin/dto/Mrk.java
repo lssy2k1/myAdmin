@@ -8,15 +8,17 @@ import org.springframework.web.multipart.MultipartFile;
 @ToString
 @AllArgsConstructor
 @NoArgsConstructor
-public class Study {
+public class Mrk {
     private Integer id;
     private String writer;
-    private String startTime;
-    private String endTime;
-    private String contents;
+    private double lat;
+    private double lng;
+    private String img;
+    private double rating;
+    private String detail;
+    private String keyword;
+    private String title;
     private String rdate;
-    private String fileName;
-    private String filenameOrg;
 
-    private MultipartFile file;
+    private MultipartFile imgfile;
 }

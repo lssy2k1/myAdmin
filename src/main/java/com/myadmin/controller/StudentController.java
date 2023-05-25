@@ -1,7 +1,6 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.Adm;
-import com.myadmin.dto.Student;
+import com.myadmin.dto.Stdn;
 import com.myadmin.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -27,7 +26,7 @@ public class StudentController {
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
-        List<Student> list = studentService.get();
+        List<Stdn> list = studentService.get();
         model.addAttribute("std", list);
         model.addAttribute("center", dir+"all");
         return "index";
@@ -45,7 +44,7 @@ public class StudentController {
     }
 
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, @Validated Student std, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Stdn std, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -64,7 +63,7 @@ public class StudentController {
     @RequestMapping("/detail")
     public String detail(Model model, String id) throws Exception {
         try {
-            Student std = studentService.get(id);
+            Stdn std = studentService.get(id);
             model.addAttribute("std", std);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
@@ -73,7 +72,7 @@ public class StudentController {
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, @Validated Student std, Errors errors) throws Exception {
+    public String updateimpl(Model model, @Validated Stdn std, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
