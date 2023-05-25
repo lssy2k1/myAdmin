@@ -15,14 +15,18 @@
         FROM lec
     </select>
     <insert id="insert" parameterType="Lec">
-        INSERT INTO lec
-        VALUES (lec_seq.NEXTVAL,#{title},#{teacher}
-                ,#{topic}, #{target}, SYSDATE, #{length}, #{price}, #{img}, #{rating})
+        INSERT INTO lec (id, adm_id, lec_code, title, teacher, topic, target
+        , rdate, length, rating, price, img, disc_rate, is_delete, del_date, hit)
+        VALUES (lec_seq.NEXTVAL, #{admId},#{lecCode}, #{title}, #{teacher}, #{topic}
+        , #{target}, TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'), #{length}, 0, #{price}, #{img}, 0
+        , '0', null, 0)
     </insert>
+<!--    초기 insert시 별점, 할인률, 삭제여부 0, 삭제날짜 0, 수강생수 0으로 설정함.-->
     <update id="update" parameterType="Lec">
         UPDATE lec
-        SET title=#{title}, teacher=#{teacher}, topic=#{topic}, target=#{target}
-            , rdate = SYSDATE, length=#{length}, rating=#{rating}, price=#{price}, img=#{img}
+        SET lec_code=#{lecCode}, title=#{title}, teacher=#{teacher}, topic=#{topic}, target=#{target}
+            , rdate = TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'), length=#{length}, rating=#{rating}, price=#{price}
+            , img=#{img}, disc_rate=#{discRate}, is_delete=#{isDelete}, del_date=#{delDate, jdbcType=NULL}, hit=#{hit}
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="Integer">

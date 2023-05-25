@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 @Slf4j
 public class LecService implements MyAdminService<Integer, Lec> {
+
     @Autowired
     LecMapper mapper;
 
