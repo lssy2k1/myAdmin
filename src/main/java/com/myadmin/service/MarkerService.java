@@ -1,6 +1,6 @@
 package com.myadmin.service;
 
-import com.myadmin.dto.Marker;
+import com.myadmin.dto.Mrk;
 import com.myadmin.dto.MrkSearch;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.MarkerMapper;
@@ -12,12 +12,12 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class MarkerService implements MyAdminService<Integer, Marker> {
+public class MarkerService implements MyAdminService<Integer, Mrk> {
     @Autowired
     MarkerMapper mapper;
 
     @Override
-    public void register(Marker marker) throws Exception {
+    public void register(Mrk marker) throws Exception {
         mapper.insert(marker);
     }
 
@@ -27,21 +27,21 @@ public class MarkerService implements MyAdminService<Integer, Marker> {
     }
 
     @Override
-    public void modify(Marker marker) throws Exception {
+    public void modify(Mrk marker) throws Exception {
         mapper.update(marker);
     }
 
     @Override
-    public Marker get(Integer integer) throws Exception {
+    public Mrk get(Integer integer) throws Exception {
         return mapper.select(integer);
     }
 
     @Override
-    public List<Marker> get() throws Exception {
+    public List<Mrk> get() throws Exception {
         return mapper.selectall();
     }
 
-    public List<Marker> search(MrkSearch ms) throws Exception{
+    public List<Mrk> search(MrkSearch ms) throws Exception{
         return mapper.search(ms);
     }
 }

@@ -2,7 +2,6 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
 import com.myadmin.dto.Anc;
-import com.myadmin.dto.Lecture;
 import com.myadmin.service.AdmService;
 import com.myadmin.service.AncService;
 import com.myadmin.util.FileUploadUtil;

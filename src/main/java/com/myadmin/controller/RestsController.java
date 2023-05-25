@@ -1,6 +1,5 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.Marker;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.FileUploadUtil;
 import com.myadmin.util.GetDateUtil;

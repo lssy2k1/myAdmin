@@ -1,7 +1,7 @@
 package com.myadmin.service;
 
-import com.myadmin.dto.Lecture;
-import com.myadmin.dto.LectureSearch;
+import com.myadmin.dto.Lec;
+import com.myadmin.dto.LecSearch;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.LectureMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class LectureService implements MyAdminService<Integer, Lecture> {
+public class LectureService implements MyAdminService<Integer, Lec> {
     @Autowired
     LectureMapper mapper;
 
@@ -21,7 +21,7 @@ public class LectureService implements MyAdminService<Integer, Lecture> {
     }
 
     @Override
-    public void register(Lecture lecture) throws Exception {
+    public void register(Lec lecture) throws Exception {
         mapper.insert(lecture);
     }
 
@@ -31,21 +31,21 @@ public class LectureService implements MyAdminService<Integer, Lecture> {
     }
 
     @Override
-    public void modify(Lecture lecture) throws Exception {
+    public void modify(Lec lecture) throws Exception {
         mapper.update(lecture);
     }
 
     @Override
-    public Lecture get(Integer integer) throws Exception {
+    public Lec get(Integer integer) throws Exception {
         return mapper.select(integer);
     }
 
     @Override
-    public List<Lecture> get() throws Exception {
+    public List<Lec> get() throws Exception {
         return mapper.selectall();
     }
 
-    public List<Lecture> search(LectureSearch ls){
+    public List<Lec> search(LecSearch ls){
         return mapper.search(ls);
     }
 }

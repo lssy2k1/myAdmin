@@ -1,7 +1,7 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.Lecture;
-import com.myadmin.dto.Marker;
+
+import com.myadmin.dto.Mrk;
 import com.myadmin.dto.MrkSearch;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.FileUploadUtil;
@@ -19,7 +19,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/marker")
-public class MarkerController {
+public class MrkController {
 
     String dir = "marker/";
     @Value("${uploadimgdir}")
@@ -31,7 +31,7 @@ public class MarkerController {
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
         try {
-            List<Marker> list = markerService.get();
+            List<Mrk> list = markerService.get();
             model.addAttribute("marker",list);
             model.addAttribute("center",dir+"all");
         } catch (Exception e) {

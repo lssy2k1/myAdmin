@@ -1,7 +1,6 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
-import com.myadmin.dto.Lecture;
 import com.myadmin.service.AdmService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package com.myadmin.service;
 
 import com.myadmin.dto.Adm;
-import com.myadmin.dto.Lecture;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.AdmMapper;
 import lombok.extern.slf4j.Slf4j;

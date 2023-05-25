@@ -1,8 +1,6 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.Lecture;
-import com.myadmin.dto.LectureSearch;
-import com.myadmin.dto.Marker;
+
 import com.myadmin.service.LectureService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +17,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/lecture")
-public class LectureController {
+public class LecController {
 
     String dir = "lecture/";
 

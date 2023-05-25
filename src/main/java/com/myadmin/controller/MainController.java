@@ -1,7 +1,6 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
-import com.myadmin.dto.Marker;
 import com.myadmin.service.AdmService;
 import com.myadmin.service.MarkerService;
 import com.myadmin.util.AlphaVantageUtil;

@@ -1,6 +1,5 @@
 package com.myadmin.service;
 
-import com.myadmin.dto.Lecture;
 import com.myadmin.dto.Stdn;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.StudentMapper;
