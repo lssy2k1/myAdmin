@@ -11,8 +11,9 @@ public class LecSearch {
     private String title;
     private String teacher;
     private String topic;
-    private Integer rating;
-    private Integer lowerPrice;
-    private Integer upperPrice;
+    private String sortOption;
+//    private Integer rating;
+//    private Integer hit;
+//    private String rdate;
 
 }

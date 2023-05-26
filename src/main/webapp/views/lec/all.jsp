@@ -26,22 +26,20 @@
                     <h4 class="card-title">Search</h4>
                     <form id="lec_search_form" class="form-inline">
 
-                        <label for="topic" style="margin-right: 10px">Topic</label>
-                        <select id="topic" name="topic" value="${ls.topic}" class="form-control mb-2 mr-2">
-                            <option value="">전체</option>
-                            <option value="CS" <c:if test="${ls.topic=='CS'}">selected</c:if>>CS</option>
-                            <option value="Programming" <c:if test="${ls.topic=='Programming'}">selected</c:if>>Programming</option>
+                        <label for="sortOption" style="margin-right: 10px">정렬옵션</label>
+                        <select id="sortOption" name="sortOption" class="form-control mb-2 mr-2">
+                            <option value="default"></option>
+                            <option value="price" <c:if test="${ls.sortOption=='price'}">selected</c:if>>가격</option>
+                            <option value="hit" <c:if test="${ls.sortOption=='hit'}">selected</c:if>>수강생 수</option>
+                            <option value="rating" <c:if test="${ls.sortOption=='rating'}">selected</c:if>>별점</option>
+                            <option value="rdate" <c:if test="${ls.sortOption=='rdate'}">selected</c:if>>등록일자</option>
                         </select>
-                        <label for="title" style="margin: 0 10px">Title</label>
+                        <label for="title" style="margin: 0 10px">강의명</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="title" name="title" placeholder="Input title" value="${ls.title}">
-                        <label for="teacher" style="margin: 0 10px">Teacher</label>
+                        <label for="teacher" style="margin: 0 10px">강사</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="teacher" name="teacher" placeholder="Input teacher" value="${ls.teacher}">
-                        <label for="rating" style="margin: 0 10px">Rating</label>
-                        <input type="Number" class="form-control mb-2 mr-sm-2" id="rating" name="rating" placeholder="Input rating" value="${ls.rating}">
-                        <label for="lowerPrice" style="margin: 0 10px">lowerPrice</label>
-                        <input type="Number" class="form-control mb-2 mr-sm-2" id="lowerPrice" name="lowerPrice" placeholder="Input lowerPrice" value="${ls.lowerPrice}">
-                        <label for="upperPrice" style="margin: 0 10px">upperPrice</label>
-                        <input type="Number" class="form-control mb-2 mr-sm-2" id="upperPrice" name="upperPrice" placeholder="Input upperPrice" value="${ls.upperPrice}">
+                        <label for="topic" style="margin: 0 10px">분야</label>
+                        <input type="text" class="form-control mb-2 mr-sm-2" id="topic" name="topic" placeholder="Input topic" value="${ls.topic}">
 
                         <button type="button" id="lec_search_btn" class="btn btn-primary mb-2" style="margin-left: 20px">Search</button>
                     </form>
@@ -52,44 +50,43 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Lecture List</h4>
-<%--                    <p class="card-description">--%>
-<%--                        Add class <code>.table-striped</code>--%>
-<%--                    </p>--%>
+                    <h4 class="card-title">강의 목록</h4>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>IMG</th>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Teacher</th>
-                                <th>Topic</th>
-                                <th>Target</th>
-                                <th>Rdate</th>
-                                <th>Length</th>
-                                <th>Price</th>
-                                <th>Rating</th>
+<%----------------------------전체 리스트에서 보여질 내역--------------------------%>
+                                <th>강의명</th>
+                                <th>강사</th>
+                                <th>분야</th>
+                                <th>별점</th>
+                                <th>가격</th>
+                                <th>할인률</th>
+                                <th>수강생 수</th>
+                                <th>등록일자</th>
+                                <th>공개(삭제여부)</th>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="obj" items="${lec}">
                                 <tr>
-                                    <td class="py-1"><img src="/uimg/${obj.img}"></td>
-                                    <td><a href="/lec/detail?id=${obj.id}">${obj.id}</a></td>
-                                    <td>${obj.title}</td>
+                                    <td><a href="/lec/detail?id=${obj.id}">${obj.title}</a></td>
                                     <td>${obj.teacher}</td>
                                     <td>${obj.topic}</td>
-                                    <td>${obj.target}</td>
-                                    <td>${obj.rdate}</td>
-                                    <td>${obj.length}</td>
-                                    <td>${obj.price}</td>
                                     <td>${obj.rating}</td>
+                                    <td>${obj.price}</td>
+                                    <td>${obj.discRate}</td>
+                                    <td>${obj.hit}</td>
+                                    <td>${obj.rdate}</td>
+                                    <td>${obj.isDelete}</td>
                                 </tr>
                             </c:forEach>
 
                             </tbody>
                         </table>
+                        <div style="display: flex; justify-content: end; margin-top: 20px">
+                            <a href ="/lec/add" type="button" class="btn btn-primary mb-2" style="margin-right: 20px">강의 등록</a>
+                        </div>
                     </div>
                 </div>
             </div>

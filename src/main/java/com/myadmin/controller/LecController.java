@@ -79,6 +79,17 @@ public class LecController {
         }
         return "index";
     }
+    @RequestMapping("/edit")
+    public String edit(Model model, Integer id) throws Exception {
+        try {
+            Lec lec = lecService.get(id);
+            model.addAttribute("lec", lec);
+            model.addAttribute("center", dir+"edit");
+        } catch (Exception e) {
+            throw new Exception("lecture detail error");
+        }
+        return "index";
+    }
     @RequestMapping("/updateimpl")
     public String updateimpl(Model model, @Validated Lec lec, Errors errors) throws Exception {
         if(errors.hasErrors()){
