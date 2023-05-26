@@ -82,6 +82,10 @@
                   </tbody>
                 </table>
               </div>
+              <a type="button" href="/stdn/add" class="btn btn-outline-primary btn-icon-text" style="margin-top:15px; float:right">
+                <i class="ti-plus btn-icon-prepend"></i>
+                추가
+              </a>
             </div>
           </div>
         </div>

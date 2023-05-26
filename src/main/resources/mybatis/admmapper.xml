@@ -15,7 +15,7 @@
         FROM adm
     </select>
     <insert id="insert" parameterType="Adm">
-        INSERT INTO adm
+        INSERT INTO adm (id, pwd, lev)
         VALUES (#{id},#{pwd},#{lev})
     </insert>
     <update id="update" parameterType="Adm">

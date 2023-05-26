@@ -44,36 +44,80 @@
         <div class="col-sm-6">
                 <div class="card" style="margin: 0 10px">
                     <div class="card-body">
-                        <h4 class="card-title">Student Detail</h4>
-                        <p class="card-description">
-                            Student Detail
-                        </p>
+                        <h4 class="card-title">수강생 상세조회</h4>
 
-                        <form id = "std_detail_form" class="forms-sample">
-                            <div class="form-group">
-                                <label for="id">ID</label>
-                                <input type="text" class="form-control" name = "id" id="id" value="${std.id}" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="pwd">PWD</label>
-                                <input type="password" class="form-control" name = "pwd" id="pwd" value="${std.pwd}" readonly>
-                            </div>
-                            <div class="form-group">
-                                <label for="name">NAME</label>
-                                <input type="text" class="form-control" id="name" name = "name" value="${std.name}">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">EMAIL</label>
-                                <input type="text" class="form-control" id="email" name = "email" value="${std.email}">
-                            </div>
-                            <div class="form-group">
-                                <label for="contact">CONTACT</label>
-                                <input type="text" class="form-control" id="contact" name = "contact" value="${std.contact}">
-                            </div>
+                        <div class="table-responsive pt-3">
+                            <table class="table table-bordered text-center">
+                                <thead>
+                                <tr>
+                                    <th>
+                                        Image
+                                    </th>
+                                    <th>
+                                        ID
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Attendance
+                                    </th>
+                                    <th>
+                                        Email
+                                    </th>
+                                    <th>
+                                        Contact
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="obj" items="${std}">
+                                    <tr>
+                                        <td>
+                                            <a href="#" data-toggle="modal" data-target="#target${obj.id}">
+                                                <c:choose>
+                                                    <c:when test="${obj.img==null || (obj.img).equals('')}"><img id="item_img" src="/images/adm.png" alt="profile img" style="width:100px; height:100px">
+                                                    </c:when>
+                                                    <c:when test="${obj.img!=null || !(obj.img).equals('')}"><img id="item_img" src="/uimg/${obj.img}" alt="${obj.img}" style="width:100px; height:100px"/></c:when>
+                                                </c:choose>
+                                            </a>
+                                        </td>
+                                        <td><a href="/stdn/detail?id=${obj.id}">${obj.id}</a></td>
+                                        <td>${obj.name}</td>
+                                        <td>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </td>
+                                        <td>${obj.email}</td>
+                                        <td>${obj.contact}</td>
+                                    </tr>
 
-                            <button id = "std_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                            <button id = "std_delete_btn" type="button" class="btn btn-light">Delete</button>
-                        </form>
+
+                                    <!-- Modal -->
+                                    <div id="target${obj.id}" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title">${obj.name}</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <img src="/uimg/${obj.img}" alt="${obj.img}" style="width:445px; height:445px" style="align-items: center"/>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href="detail?id=${obj.id}" class="btn btn-primary" role="button">상세조회</a>
+                                                    <a href="#" class="btn btn-outline-primary" role="button" data-dismiss="modal">닫기</a>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
         </div>

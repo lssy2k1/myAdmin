@@ -30,4 +30,13 @@ public class Stdn {
     private String sbj2;
     private String sbj3;
     private String loginError;
+
+    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
+        this.id = id;
+        this.pwd = pwd;
+        this.name = name;
+        this.isSubsc = isSubsc;
+        this.isExit = isExit;
+        this.isJoin = isJoin;
+    }
 }
