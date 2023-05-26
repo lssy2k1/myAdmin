@@ -8,7 +8,7 @@
         <li class="nav-item">
             <a class="nav-link" href="/">
                 <i class="icon-grid menu-icon"></i>
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title">대시보드</span>
             </a>
         </li>
         <li class="nav-item">
@@ -22,19 +22,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">
                     <i class="icon-grid menu-icon"></i>
-                    <span class="menu-title">Dashboard</span>
+                    <span class="menu-title">대시보드</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
                     <i class="icon-head menu-icon"></i>
-                    <span class="menu-title">Student</span>
+                    <span class="menu-title">수강생</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="ui-basic">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/stdn/all">List</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/stdn/add">Add Student</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/stdn/all">수강생 목록</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/stdn/attd">출석</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/stdn/stdy">스터디</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/stdn/test">테스트</a></li>
                     </ul>
                 </div>
             </li>
