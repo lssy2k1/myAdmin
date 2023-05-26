@@ -6,14 +6,15 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
-  <!-- plugins:css -->
+  <title>DIGI Campus 당케!</title>
+  <!-- plugins:css -->z
   <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/vendors/feather/feather.css">
   <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="/vendors/jquery-bar-rating/css-stars.css">
   <link rel="stylesheet" href="/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="/js/select.dataTables.min.css">
@@ -176,12 +177,9 @@
         </div>
       </div>
 
-
 <%-------------------------------------------------------------------------------------%>
       <jsp:include page="right.jsp"/>
 <%-------------------------------------------------------------------------------------%>
-
-
 
       <!-- partial -->
       <c:choose>
@@ -234,6 +232,7 @@
   <script src="/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="/js/dataTables.select.min.js"></script>
   <script src="/js/filename.js"></script>
+  <script src="/vendors/jquery-bar-rating/jquery.barrating.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
@@ -246,6 +245,7 @@
   <!-- Custom js for this page-->
   <script src="/js/dashboard.js"></script>
   <script src="/js/Chart.roundedBarCharts.js"></script>
+  <script src="/js/profile-demo.js"></script>
   <!-- End custom js for this page-->
 
 </body>

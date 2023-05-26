@@ -32,6 +32,14 @@ public class StdnController {
         return "index";
     }
 
+    @RequestMapping("/profile")
+    public String profile(Model model) throws Exception {
+//        List<Stdn> list = stdnService.get();
+//        model.addAttribute("std", list);
+        model.addAttribute("center", dir+"profile");
+        return "index";
+    }
+
     @RequestMapping("/add")
     public String add(Model model, String id, HttpSession session){
 //        Adm adm = null;

@@ -65,7 +65,7 @@
                       <!-- Modal content-->
                       <div class="modal-content">
                         <div class="modal-header">
-                          <h4 class="modal-title">${obj.name}</h4>
+                          <h4 class="modal-title">${obj.name}님의 프로필 이미지</h4>
                         </div>
                         <div class="modal-body">
                           <img src="/uimg/${obj.img}" alt="${obj.img}" style="width:445px; height:445px" style="align-items: center"/>
