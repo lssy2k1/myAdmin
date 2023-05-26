@@ -29,13 +29,10 @@ public class Adm {
     private String isDelete;
     private String delDate;
 
-    public Adm(String id, String pwd, Integer lev, String email, String rdate, String contact, String addr) {
+    public Adm(String id, String pwd, Integer lev, String email) {
         this.id = id;
         this.pwd = pwd;
         this.lev = lev;
         this.email = email;
-        this.rdate = rdate;
-        this.contact = contact;
-        this.addr = addr;
     }
 }
