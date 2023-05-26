@@ -43,9 +43,7 @@
                     <form id = "adm_edit_form" class="forms-sample">
                         <div class="form-group">
                             <label for="id">아이디</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" name = "id" id="id" value = "${adm.id}" readonly aria-label="input id">
-                            </div>
+                            <input type="text" class="form-control" name = "id" id="id" value = "${adm.id}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="pwd">비밀번호</label>
@@ -56,16 +54,20 @@
                             <div class="form-group">
                                 <label for="lev">권한 타입</label>
                                 <select class="form-control" id="lev" name = "lev" >
-                                    <option <c:if test="${adm.lev=='1'}">selected</c:if>>1</option>
-                                    <option <c:if test="${adm.lev=='2'}">selected</c:if>>2</option>
-                                    <option <c:if test="${adm.lev=='3'}">selected</c:if>>3</option>
+                                    <option value = '1' <c:if test="${adm.lev=='1'}">selected</c:if>>1</option>
+                                    <option value = '2' <c:if test="${adm.lev=='2'}">selected</c:if>>2</option>
+                                    <option value = '3' <c:if test="${adm.lev=='3'}">selected</c:if>>3</option>
                                 </select>
                             </div>
                         </c:if>
 
                         <div class="form-group">
-                            <label for="email">연락처</label>
+                            <label for="email">이메일</label>
                             <input type="email" class="form-control" name = "email" id="email" value="${adm.email}">
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">연락처</label>
+                            <input type="text" class="form-control" name = "contact" id="contact" value="${adm.contact}">
                         </div>
                         <div class="form-group">
                             <label for="addr">주소</label>
