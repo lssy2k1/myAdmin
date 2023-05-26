@@ -6,21 +6,28 @@
 <mapper namespace="com.myadmin.mapper.AdmMapper">
 
     <select id="select" parameterType="String" resultType="Adm">
-        SELECT *
+        SELECT id, pwd, lev, email, rdate, contact, addr
+                , is_delete as isDelete, del_date as delDate
         FROM adm
         WHERE id=#{id}
     </select>
     <select id="selectall" resultType="Adm">
-        SELECT *
+        SELECT id, pwd, lev, email, rdate, contact, addr
+             , is_delete as isDelete, del_date as delDate
         FROM adm
     </select>
+<!--    초기 register 화면에서는 4가지만 입력받을 예정. 추가 입력은 update-->
     <insert id="insert" parameterType="Adm">
-        INSERT INTO adm
-        VALUES (#{id},#{pwd},#{lev})
+        INSERT INTO adm (id, pwd, lev, email, rdate, contact
+                        , addr, is_delete, del_date)
+        VALUES (#{id},#{pwd},#{lev}, #{email}, SYSDATE, NULL
+                , NULL, '0', NULL)
     </insert>
     <update id="update" parameterType="Adm">
         UPDATE adm
-        SET pwd=#{pwd}, lev=#{lev}
+        SET pwd=#{pwd}, lev=#{lev}, email=#{email}, rdate=SYSDATE
+                ,contact=#{contact}, addr=#{addr}, is_delete=#{isDelete}
+                ,del_date=SYSDATE
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="String">
