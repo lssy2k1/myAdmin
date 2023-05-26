@@ -9,14 +9,16 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Admin List</h4>
+                    <h4 class="card-title">관리자 리스트</h4>
 
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>ID</th>
-                                <th>Level</th>
+                                <th>아이디</th>
+                                <th>권한 타입</th>
+                                <th>이메일</th>
+                                <th>연락처</th>
 
                             </tr>
                             </thead>
@@ -25,12 +27,17 @@
                                 <tr>
                                     <td><a href="/adm/detail?id=${obj.id}">${obj.id}</a></td>
                                     <td>${obj.lev}</td>
+                                    <td>${obj.email}</td>
+                                    <td>${obj.contact}</td>
                                 </tr>
                             </c:forEach>
 
                             </tbody>
                         </table>
                     </div>
+
+                    <a href = "/adm/add" type="button" class="btn btn-outline-primary mr-2" style="float:right;">관리자 등록</a>
+
                 </div>
             </div>
         </div>

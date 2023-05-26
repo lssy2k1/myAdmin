@@ -4,22 +4,12 @@
 <script>
     let adm_detail = {
         init:()=>{
-            $('#adm_update_btn').click(() =>{
-                adm_detail.send();
-            });
             $('#adm_delete_btn').click(()=>{
-                let b = confirm("wanna delete?");
+                let b = confirm("삭제하시겠습니까?");
                 if(b){
                     location.href = '/adm/deleteimpl?id=${adm.id}';
                 }
-            });
-        },
-        send:()=>{
-            $('#adm_detail_form').attr({
-                action:'/adm/updateimpl',
-                method:'post',
-            });
-            $('#adm_detail_form').submit();
+            })
         }
     };
     $(function(){
@@ -32,39 +22,71 @@
 <div class="content-wrapper">
     <div class="row">
 
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Admin Detail</h4>
-                    <p class="card-description">
-                        Admin Detail
-                    </p>
+                    <h4 class="card-title">관리자 상세조회</h4>
 
-                    <form id = "adm_detail_form" class="forms-sample">
-                        <div class="form-group">
-                            <label for="id">ID</label>
-                            <input type="text" class="form-control" name = "id" id="id" value="${adm.id}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="pwd">PWD</label>
-                            <input type="password" class="form-control" name = "pwd" id="pwd" >
-                        </div>
-                        <div class="form-group">
-                            <label for="lev">LEVEL</label>
-                            <select class="form-control" id="lev" name = "lev" >
-                                <option <c:if test="${adm.lev=='1'}">selected</c:if>>1</option>
-                                <option <c:if test="${adm.lev=='2'}">selected</c:if>>2</option>
-                                <option <c:if test="${adm.lev=='3'}">selected</c:if>>3</option>
-                            </select>
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>항목</th>
+                                    <th>내용</th>
+                                </tr>
+                            </thead>
+                            <tbody>
 
-                        <button id = "adm_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                        <button id = "adm_delete_btn" type="button" class="btn btn-light">Delete</button>
-                    </form>
+                                <tr>
+                                    <td>아이디</td>
+                                    <td>${adm.id}</td>
+                                </tr>
+                                <tr>
+                                    <td>권한 타입</td>
+                                    <td>${adm.lev}</td>
+                                </tr>
+                                <tr>
+                                    <td>이메일</td>
+                                    <td>${adm.email}</td>
+                                </tr>
+                                <tr>
+                                    <td>연락처</td>
+                                    <td>${adm.contact}</td>
+                                </tr>
+                                <tr>
+                                    <td>주소</td>
+                                    <td>${adm.addr}</td>
+                                </tr>
+                                <tr>
+                                    <td>등록일자</td>
+                                    <td>${adm.rdate}</td>
+                                </tr>
+                                <tr>
+                                    <td>삭제여부</td>
+                                    <td>${adm.isDelete}</td>
+                                </tr>
+                                <tr>
+                                    <td>삭제날짜</td>
+                                    <td>
+                                        <c:if test="${adm.isDelete=='1'}">
+                                            ${adm.delDate}
+                                        </c:if>
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div style = "float:right;">
+                        <a href = "/adm/edit?id=${adm.id}" type="button" class="btn btn-outline-primary mr-2">수정</a>
+                        <button id="adm_delete_btn" type="button" class="btn btn-outline-primary mr-2">삭제</button>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
 </div>
-<!-- content-wrapper ends -->
+                <!-- content-wrapper ends -->
