@@ -1,6 +1,10 @@
 package com.myadmin.controller;
 
+import com.myadmin.dto.Attd;
+import com.myadmin.dto.MyPage;
 import com.myadmin.dto.Stdn;
+import com.myadmin.service.AttdService;
+import com.myadmin.service.MyPageService;
 import com.myadmin.service.StdnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -20,6 +24,10 @@ public class StdnController {
 
     @Autowired
     StdnService stdnService;
+    @Autowired
+    MyPageService myPageService;
+    @Autowired
+    AttdService attdService;
     @Autowired
     BCryptPasswordEncoder encoder;
     String dir = "stdn/";
@@ -63,9 +71,13 @@ public class StdnController {
     @RequestMapping("/detail")
     public String detail(Model model, String id) throws Exception {
         try {
-            Stdn std = stdnService.get(id);
-            model.addAttribute("std", std);
-            model.addAttribute("center", dir+"detail");
+            Stdn stdn = stdnService.get(id);
+            MyPage myPage = myPageService.get(id);
+            Attd attd = attdService.get(id);
+            model.addAttribute("stdn", stdn);
+            model.addAttribute("mypage", myPage);
+            model.addAttribute("attd", attd);
+            model.addAttribute("center", dir+"profile");
         } catch (Exception e) {
             throw new Exception("Student detail error");
         }

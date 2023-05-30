@@ -21,12 +21,12 @@ public class Lec {
     private double rating;
     private Integer price;
     private String img;
-    private double discRate;
+    private Integer discRate;
     private String isDelete;
     private String delDate;
     private Integer hit;
 
-    public Lec(Integer id, String admId, Integer lecCode, String title, String teacher, String topic, String target, String rdate, String length, double rating, Integer price, String img, double discRate, String isDelete, String delDate, Integer hit) {
+    public Lec(Integer id, String admId, Integer lecCode, String title, String teacher, String topic, String target, String rdate, String length, double rating, Integer price, String img, Integer discRate, String isDelete, String delDate, Integer hit) {
         this.id = id;
         this.admId = admId;
         this.lecCode = lecCode;
