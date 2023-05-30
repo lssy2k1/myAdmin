@@ -1,6 +1,10 @@
 package com.myadmin.controller;
 
+import com.myadmin.dto.Attd;
+import com.myadmin.dto.MyPage;
 import com.myadmin.dto.Stdn;
+import com.myadmin.service.AttdService;
+import com.myadmin.service.MyPageService;
 import com.myadmin.service.StdnService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +25,10 @@ public class StdnController {
     @Autowired
     StdnService stdnService;
     @Autowired
+    MyPageService myPageService;
+    @Autowired
+    AttdService attdService;
+    @Autowired
     BCryptPasswordEncoder encoder;
     String dir = "stdn/";
 
@@ -29,14 +37,6 @@ public class StdnController {
         List<Stdn> list = stdnService.get();
         model.addAttribute("std", list);
         model.addAttribute("center", dir+"all");
-        return "index";
-    }
-
-    @RequestMapping("/profile")
-    public String profile(Model model) throws Exception {
-//        List<Stdn> list = stdnService.get();
-//        model.addAttribute("std", list);
-        model.addAttribute("center", dir+"profile");
         return "index";
     }
 
@@ -52,7 +52,7 @@ public class StdnController {
     }
 
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, @Validated Stdn std, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Stdn stdn, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -63,24 +63,28 @@ public class StdnController {
             }
             throw new Exception(msg);
         }
-        std.setPwd(encoder.encode(std.getPwd()));
-        stdnService.register(std);
+        stdn.setPwd(encoder.encode(stdn.getPwd()));
+        stdnService.register(stdn);
         return "redirect:/stdn/all";
     }
 
     @RequestMapping("/detail")
     public String detail(Model model, String id) throws Exception {
         try {
-            Stdn std = stdnService.get(id);
-            model.addAttribute("std", std);
-            model.addAttribute("center", dir+"detail");
+            Stdn stdn = stdnService.get(id);
+            MyPage myPage = myPageService.get(id);
+            Attd attd = attdService.get(id);
+            model.addAttribute("stdn", stdn);
+            model.addAttribute("mypage", myPage);
+            model.addAttribute("attd", attd);
+            model.addAttribute("center", dir+"profile");
         } catch (Exception e) {
             throw new Exception("Student detail error");
         }
         return "index";
     }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, @Validated Stdn std, Errors errors) throws Exception {
+    public String updateimpl(Model model, @Validated Stdn stdn, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -92,12 +96,12 @@ public class StdnController {
             throw new Exception(msg);
         }
         try {
-            std.setPwd(encoder.encode(std.getPwd()));
-            stdnService.modify(std);
+            stdn.setPwd(encoder.encode(stdn.getPwd()));
+            stdnService.modify(stdn);
         } catch (Exception e) {
             throw new Exception("Student update error");
         }
-        return "redirect:/stdn/detail?id="+std.getId();
+        return "redirect:/stdn/detail?id="+stdn.getId();
     }
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model, String id) throws Exception {

@@ -1,211 +1,206 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-      <div class="content-wrapper">
-        <div class="row">
-          <div class="col-12">
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-12">
             <div class="card">
-              <div class="card-body">
-                <div class="row">
-                  <div class="col-lg-4">
-                    <div class="border-bottom text-center pb-4">
-                      <img src="../../../../images/faces/face12.jpg" alt="profile" class="img-lg rounded-circle mb-3"/>
-                      <div class="mb-3">
-                        <h3>David Grey. H</h3>
-                        <div class="d-flex align-items-center justify-content-center">
-                          <h5 class="mb-0 me-2 text-muted">Canada</h5>
-                          <select id="profile-rating" name="rating" autocomplete="off">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                          </select>
+                <div class="card-body" style="padding: 40px">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="border-bottom text-center pb-4">
+                                <c:choose>
+                                    <c:when test="${stdn.img==null || (stdn.img).equals('')}"><img id="stdn_img"
+                                                                                                   src="/images/adm.png"
+                                                                                                   alt="profile img"
+                                                                                                   class="img-lg rounded-circle mb-3"/>
+                                    </c:when>
+                                    <c:when test="${stdn.img!=null || !(stdn.img).equals('')}"><img id="stdn_img"
+                                                                                                    src="/uimg/${stdn.img}"
+                                                                                                    alt="profile img"
+                                                                                                    class="img-lg rounded-circle mb-3"/>
+                                    </c:when>
+                                </c:choose>
+                                <div class="mb-3">
+                                    <h3>${stdn.name}</h3>
+                                    <div class="d-flex align-items-center justify-content-center">
+                                        <h5 class="mb-0 me-2 text-muted">KB국민은행</h5>
+                                    </div>
+                                </div>
+                                <p class="w-75 mx-auto mb-3">"${mypage.detail}"</p>
+                                <div class="d-flex justify-content-center">
+                                    <p class="nav-link">
+                                        <i class="ti-calendar"></i>
+                                        입행일 : ${mypage.comdate}
+                                    </p>
+                                    <p class="nav-link">
+                                        <i class="ti-calendar"></i>
+                                        입과일 : ${mypage.digidate}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="border-bottom py-4">
+                                <p>관심사</p>
+                                <div>
+                                    <label class="badge badge-outline-dark">${stdn.sbj1}</label>
+                                    <label class="badge badge-outline-dark">${stdn.sbj2}</label>
+                                    <label class="badge badge-outline-dark">${stdn.sbj3}</label>
+                                </div>
+                            </div>
+                            <div class="border-bottom py-4">
+                                <div class="d-flex mb-3">
+                                    <div class="progress progress-md flex-grow">
+                                        <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="55"
+                                             style="width: 55%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex">
+                                    <div class="progress progress-md flex-grow">
+                                        <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75"
+                                             style="width: 75%" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="py-4">
+                                <p class="clearfix">
+                                    <span class="float-left">출결</span>
+                                    <span class="float-right text-muted">
+                                        <c:choose>
+                                            <c:when test="${attd.isAttend == '1'}">
+                                                <span class="badge badge-outline-success" style="padding:1px">출석</span>
+                                            </c:when>
+                                            <c:when test="${attd.isAttend == '2'}">
+                                                <span class="badge badge-outline-warning">지각</span>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <span class="badge badge-outline-danger"
+                                                      style="padding:4px 6px">결석</span>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left">연락처</span>
+                                    <span class="float-right text-muted">${stdn.contact}</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left">이메일</span>
+                                    <span class="float-right text-muted">${stdn.email}</span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left">Instagram</span>
+                                    <span class="float-right text-muted">
+                                        <a href="${mypage.insta}">바로가기</a>
+                                    </span>
+                                </p>
+                                <p class="clearfix">
+                                    <span class="float-left">Facebook</span>
+                                    <span class="float-right text-muted">
+                                        <c:choose>
+                                            <c:when test="${mypage.facebook == null}">
+                                                없음
+                                            </c:when>
+                                            <c:otherwise>
+                                                <a href="${mypage.facebook}">바로가기</a>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                    </span>
+                                </p>
+                            </div>
+                            <a class="btn btn-primary btn-block mb-2" href="/stdn/all" type="button">
+                                목록으로 돌아가기
+                            </a>
                         </div>
-                      </div>
-                      <p class="w-75 mx-auto mb-3">Bureau Oberhaeuser is a design bureau focused on Information- and Interface Design. </p>
-                      <div class="d-flex justify-content-center">
-                        <button class="btn btn-success me-1">Hire Me</button>
-                        <button class="btn btn-success">Follow</button>
-                      </div>
-                    </div>
-                    <div class="border-bottom py-4">
-                      <p>Skills</p>
-                      <div>
-                        <label class="badge badge-outline-dark">Chalk</label>
-                        <label class="badge badge-outline-dark">Hand lettering</label>
-                        <label class="badge badge-outline-dark">Information Design</label>
-                        <label class="badge badge-outline-dark">Graphic Design</label>
-                        <label class="badge badge-outline-dark">Web Design</label>
-                      </div>
-                    </div>
-                    <div class="border-bottom py-4">
-                      <div class="d-flex mb-3">
-                        <div class="progress progress-md flex-grow">
-                          <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="55" style="width: 55%" aria-valuemin="0" aria-valuemax="100"></div>
+                        <div class="col-lg-8">
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="profile-tab" data-bs-toggle="tab" href="#profile-1" role="tab"
+                                       aria-controls="profile-1" aria-selected="false">기본정보</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="attd-tab" data-bs-toggle="tab" href="#attd-1"
+                                       role="tab" aria-controls="attd-1" aria-selected="false">출결</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="study-tab" data-bs-toggle="tab" href="#study-1"
+                                       role="tab" aria-controls="study-1" aria-selected="true">스터디</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="test-tab" data-bs-toggle="tab" href="#test-1"
+                                       role="tab" aria-controls="test-1" aria-selected="true">테스트</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane fade active show" id="profile-1" role="tabpanel" aria-labelledby="profile-tab">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="mt-0">Why choose us?</h4>
+                                            <p>
+                                                Far curiosity incommode now led smallness allowance. Favour bed assure
+                                                son things yet. She consisted
+                                                consulted elsewhere happiness disposing household any old the. Widow
+                                                downs you new shade drift hopes
+                                                small. So otherwise commanded sweetness we improving. Instantly by
+                                                daughters resembled unwilling principle
+                                                so middleton.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="attd-1" role="tabpanel" aria-labelledby="attd-tab">
+                                    <div class="media">
+                                        <img class="me-3 w-25 rounded" src="../../../../images/faces/face12.jpg"
+                                             alt="sample image">
+                                        <div class="media-body">
+                                            <h4 class="mt-0">John Doe</h4>
+                                            <p>
+                                                Fail most room even gone her end like. Comparison dissimilar unpleasant
+                                                six compliment two unpleasing
+                                                any add. Ashamed my company thought wishing colonel it prevent he in.
+                                                Pretended residence are something
+                                                far engrossed old off.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="study-1" role="tabpanel"
+                                     aria-labelledby="study-tab">
+                                    <h4>Contact us </h4>
+                                    <p>
+                                        Feel free to contact us if you have any questions!
+                                    </p>
+                                    <p>
+                                        <i class="ti-headphone-alt text-info"></i>
+                                        +123456789
+                                    </p>
+                                    <p>
+                                        <i class="ti-email text-success"></i>
+                                        contactus@example.com
+                                    </p>
+                                </div>
+                                <div class="tab-pane fade" id="test-1" role="tabpanel"
+                                     aria-labelledby="test-tab">
+                                    <h4>Contact us </h4>
+                                    <p>
+                                        Feel free to contact us if you have any questions!
+                                    </p>
+                                    <p>
+                                        <i class="ti-headphone-alt text-info"></i>
+                                        +123456789
+                                    </p>
+                                    <p>
+                                        <i class="ti-email text-success"></i>
+                                        contactus@example.com
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                      </div>
-                      <div class="d-flex">
-                        <div class="progress progress-md flex-grow">
-                          <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75" style="width: 75%" aria-valuemin="0" aria-valuemax="100"></div>
-                        </div>
-                      </div>
                     </div>
-                    <div class="py-4">
-                      <p class="clearfix">
-                          <span class="float-left">
-                            Status
-                          </span>
-                        <span class="float-right text-muted">
-                            Active
-                          </span>
-                      </p>
-                      <p class="clearfix">
-                          <span class="float-left">
-                            Phone
-                          </span>
-                        <span class="float-right text-muted">
-                            006 3435 22
-                          </span>
-                      </p>
-                      <p class="clearfix">
-                          <span class="float-left">
-                            Mail
-                          </span>
-                        <span class="float-right text-muted">
-                            Jacod@testmail.com
-                          </span>
-                      </p>
-                      <p class="clearfix">
-                          <span class="float-left">
-                            Facebook
-                          </span>
-                        <span class="float-right text-muted">
-                            <a href="#">David Grey</a>
-                          </span>
-                      </p>
-                      <p class="clearfix">
-                          <span class="float-left">
-                            Twitter
-                          </span>
-                        <span class="float-right text-muted">
-                            <a href="#">@davidgrey</a>
-                          </span>
-                      </p>
-                    </div>
-                    <button class="btn btn-primary btn-block mb-2">Preview</button>
-                  </div>
-                  <div class="col-lg-8">
-                    <div class="d-block d-md-flex justify-content-between mt-4 mt-md-0">
-                      <div class="text-center mt-4 mt-md-0">
-                        <button class="btn btn-outline-primary">Message</button>
-                        <button class="btn btn-primary">Request</button>
-                      </div>
-                    </div>
-                    <div class="mt-4 py-2 border-top border-bottom">
-                      <ul class="nav profile-navbar">
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">
-                            <i class="ti-user"></i>
-                            Info
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link active" href="#">
-                            <i class="ti-receipt"></i>
-                            Feed
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">
-                            <i class="ti-calendar"></i>
-                            Agenda
-                          </a>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link" href="#">
-                            <i class="ti-clip"></i>
-                            Resume
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                    <div class="profile-feed">
-                      <div class="d-flex align-items-start profile-feed-item">
-                        <img src="../../../../images/faces/face13.jpg" alt="profile" class="img-sm rounded-circle"/>
-                        <div class="ms-4">
-                          <h6>
-                            Mason Beck
-                            <small class="ms-4 text-muted"><i class="ti-time me-1"></i>10 hours</small>
-                          </h6>
-                          <p>
-                            There is no better advertisement campaign that is low cost and also successful at the same time.
-                          </p>
-                          <p class="small text-muted mt-2 mb-0">
-                              <span>
-                                <i class="ti-star me-1"></i>4
-                              </span>
-                            <span class="ms-2">
-                                <i class="ti-comment me-1"></i>11
-                              </span>
-                            <span class="ms-2">
-                                <i class="ti-share"></i>
-                              </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-start profile-feed-item">
-                        <img src="../../../../images/faces/face16.jpg" alt="profile" class="img-sm rounded-circle"/>
-                        <div class="ms-4">
-                          <h6>
-                            Willie Stanley
-                            <small class="ms-4 text-muted"><i class="ti-time me-1"></i>10 hours</small>
-                          </h6>
-                          <img src="../../../../images/samples/1280x768/12.jpg" alt="sample" class="rounded mw-100"/>
-                          <p class="small text-muted mt-2 mb-0">
-                              <span>
-                                <i class="ti-star me-1"></i>4
-                              </span>
-                            <span class="ms-2">
-                                <i class="ti-comment me-1"></i>11
-                              </span>
-                            <span class="ms-2">
-                                <i class="ti-share"></i>
-                              </span>
-                          </p>
-                        </div>
-                      </div>
-                      <div class="d-flex align-items-start profile-feed-item">
-                        <img src="../../../../images/faces/face19.jpg" alt="profile" class="img-sm rounded-circle"/>
-                        <div class="ms-4">
-                          <h6>
-                            Dylan Silva
-                            <small class="ms-4 text-muted"><i class="ti-time me-1"></i>10 hours</small>
-                          </h6>
-                          <p>
-                            When I first got into the online advertising business, I was looking for the magical combination
-                            that would put my website into the top search engine rankings
-                          </p>
-                          <img src="../../../../images/samples/1280x768/5.jpg" alt="sample" class="rounded mw-100"/>
-                          <p class="small text-muted mt-2 mb-0">
-                              <span>
-                                <i class="ti-star me-1"></i>4
-                              </span>
-                            <span class="ms-2">
-                                <i class="ti-comment me-1"></i>11
-                              </span>
-                            <span class="ms-2">
-                                <i class="ti-share"></i>
-                              </span>
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                 </div>
-              </div>
             </div>
-          </div>
         </div>
-      </div>
-      <!-- content-wrapper ends -->
+    </div>
+</div>
+
+<!-- content-wrapper ends -->
