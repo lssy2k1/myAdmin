@@ -1,30 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <script>
-    let anc_detail = {
+    let anc_edit = {
         init:()=>{
-            $('#anc_update_btn').click(() =>{
-                anc_detail.send();
-            });
             $('#anc_delete_btn').click(()=>{
-                let b = confirm("delete?");
+                let b = confirm("삭제하시겠습니까?");
                 if(b){
                     location.href = '/anc/deleteimpl?id=${anc.id}';
                 }
             });
-        },
-        send:()=>{
-            $('#anc_detail_form').attr({
-                action:'/anc/updateimpl',
-                method:'post',
-                enctype:'multipart/form-data'
-            });
-            $('#anc_detail_form').submit();
         }
     };
     $(function(){
-        anc_detail.init();
+        anc_edit.init();
     });
 </script>
 
@@ -33,48 +23,56 @@
 <div class="content-wrapper">
     <div class="row">
 
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Detail Announcement</h4>
-                    <p class="card-description">
-                        Detail Announcement
-                    </p>
+                    <h4 class="card-title">상세보기</h4>
 
-                    <form id = "anc_detail_form" class="forms-sample">
-                        <input type = "hidden" id = "id" name = "id" value = "${anc.id}">
-                        <input type = "hidden" id = "img" name = "img" value = "${anc.img}">
-                        <div class="form-group">
-                            <label for="writer">Writer</label>
-                            <input type="text" class="form-control" name = "writer" id="writer" value = "${anc.writer}" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="title">Title</label>
-                            <input type="text" class="form-control" name = "title" id="title" value = "${anc.title}">
-                        </div>
+                    <div class="table-responsive">
+                        <table class="table table-borderless">
 
-                        <div class="form-group">
-                            <label for="contents">Contents</label>
-                            <textarea class="form-control" id="contents" name="contents" rows="6">${anc.contents}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>IMG upload</label><br/>
-                            <input type="file" id = "imgfile" name="imgfile" class="btn btn-primary">
-<%--                            <div class="input-group col-xs-12">--%>
-<%--                                <input type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">--%>
-<%--                                <span class="input-group-append">--%>
-<%--                                    <button class="file-upload-browse btn btn-primary" type="button">Upload</button>--%>
-<%--                                </span>--%>
-<%--                            </div>--%>
-                        </div>
 
-                        <button id = "anc_update_btn" type="button" class="btn btn-primary mr-2">Register</button>
-                        <button id = "anc_delete_btn" type="button" class="btn btn-light">Cancel</button>
-                    </form>
+                            <tbody>
+                                <tr>
+                                    <td width="200">글번호</td>
+                                    <td>${anc.id}</td>
+                                </tr>
+                                <tr>
+                                    <td>작성자</td>
+                                    <td>${anc.writer}</td>
+                                </tr>
+                                <tr>
+                                    <td>제목</td>
+                                    <td>${anc.title}</td>
+                                </tr>
+                                <tr>
+                                    <td>내용</td>
+                                    <td>${anc.contents}</td>
+                                </tr>
+                                <tr>
+                                    <td>등록일자</td>
+                                    <td>${anc.rdate}</td>
+                                </tr>
+                                <tr>
+                                    <td>첨부파일</td>
+                                    <td><img src = "/uimg/${anc.img}"></td>
+                                </tr>
+
+                                </tbody>
+                        </table>
+                    </div>
+                    <div  style="margin-top:15px; float:right">
+                        <a type="button" href="/anc/edit?id=${anc.id}" class="btn btn-outline-primary btn-icon-text">
+                            수정하기
+                        </a>
+                        <button id = "anc_delete_btn" type="button" class="btn btn-light">삭제하기</button>
+                    </div>
                 </div>
             </div>
+
         </div>
+
 
     </div>
 </div>
-<!-- content-wrapper ends -->
+                <!-- content-wrapper ends -->

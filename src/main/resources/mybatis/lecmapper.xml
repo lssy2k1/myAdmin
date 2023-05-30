@@ -7,7 +7,7 @@
 
     <select id="select" parameterType="Integer" resultType="Lec">
         SELECT id, adm_id as admId, lec_code as lecCode, title, teacher, topic, target, rdate, length
-                ,length, rating, price, img, disc_rate as discRate, is_delete as isDelete, del_date as delDate, hit
+                 ,length, rating, price, img, disc_rate as discRate, is_delete as isDelete, del_date as delDate, hit
         FROM lec
         WHERE id=#{id}
         ORDER BY is_delete

@@ -5,6 +5,7 @@ import com.myadmin.dto.Anc;
 import com.myadmin.dto.Lec;
 import com.myadmin.service.AdmService;
 import com.myadmin.service.AncService;
+import com.myadmin.util.FileDownloadUtil;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -15,9 +16,14 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.*;
 import java.util.List;
 
 @Controller
@@ -32,6 +38,23 @@ public class AncController {
     AncService ancService;
     @Autowired
     BCryptPasswordEncoder encoder;
+
+
+    @RequestMapping(value = "/document/fileDownload.do")
+    public void fileDownload(
+            @RequestParam("document_nm") String document_nm,
+            HttpSession session,
+            HttpServletRequest req,
+            HttpServletResponse res,
+            ModelAndView mav) throws Throwable {
+        try {
+            String fileName = document_nm;
+            String filePath = imgdir + fileName;
+            FileDownloadUtil.downloadFile(filePath, fileName, req, res);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @RequestMapping("/add")
     public String add(Model model){
@@ -88,7 +111,17 @@ public class AncController {
         }
         return "index";
     }
-
+    @RequestMapping("/edit")
+    public String edit(Model model, Integer id) throws Exception {
+        try {
+            Anc anc = ancService.get(id);
+            model.addAttribute("anc", anc);
+        model.addAttribute("center", dir+"edit");
+    } catch (Exception e) {
+            throw new Exception("anc edit error");
+        }
+        return "index";
+    }
     @RequestMapping("/updateimpl")
     public String updateimpl(Model model, @Validated Anc anc, Errors errors) throws Exception {
         if(errors.hasErrors()){
@@ -130,4 +163,5 @@ public class AncController {
         }
         return "redirect:/anc/all";
     }
+
 }

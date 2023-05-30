@@ -67,11 +67,7 @@ public class MainController {
         model.addAttribute("center", "register");
         return "index";
     }
-    @RequestMapping("/mapTest")
-    public String mapTest(Model model){
-        model.addAttribute("center", "mapTest");
-        return "index";
-    }
+
     @RequestMapping("/websocket")
     public String websocket(Model model){
         model.addAttribute("adminserver", adminserver);
@@ -92,7 +88,7 @@ public class MainController {
     }
     @RequestMapping("/trypage")
     public String trypage(Model model) throws ParseException {
-        model.addAttribute("center", "tryPage");
+        model.addAttribute("center", "trypage");
         return "index";
     }
 }

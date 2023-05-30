@@ -33,27 +33,27 @@
         <div class="col-8 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Announcement</h4>
+                    <h4 class="card-title">공지사항 글쓰기</h4>
                     <p class="card-description">
-                        Fill in the blanks below
+                        아래 내용을 채워주세요.
                     </p>
 
                     <form id = "anc_register_form" class="forms-sample" name="anc_register_form" enctype="multipart/form-data" method="post">
                         <div class="form-group">
-                            <label for="writer">Writer</label>
+                            <label for="writer">작성자</label>
                             <input type="text" class="form-control" name = "writer" id="writer" value = "${loginadm.id}"} readonly>
                         </div>
                         <div class="form-group">
-                            <label for="title">Title</label>
+                            <label for="title">제목</label>
                             <input type="text" class="form-control" name = "title" id="title" placeholder="Input Title">
                         </div>
                         <div class="form-group">
-                            <label for="contents">Contents</label>
+                            <label for="contents">내용</label>
                             <textarea class="form-control" id="contents" name="contents" rows="6"></textarea>
                         </div>
 
                         <div class="form-group">
-                            <label>File upload</label>
+                            <label>첨부 파일</label>
                             <input type="file" name="filename" class="file-upload-default">
                             <div class="input-group col-xs-12" id="fileForm">
                                 <input id="fileName" type="text" class="form-control file-upload-info" disabled placeholder="Upload Image">
@@ -64,8 +64,8 @@
                             </div>
                         </div>
                         <div style="float: right">
-                            <button id = "anc_register_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                            <button id = "anc_can_btn" type="button" class="btn btn-outline-primary">Delete</button>
+                            <button id = "anc_register_btn" type="button" class="btn btn-primary mr-2">등록</button>
+                            <button id = "anc_can_btn" type="button" class="btn btn-outline-primary">취소</button>
                         </div>
                     </form>
                 </div>

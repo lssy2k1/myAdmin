@@ -6,17 +6,17 @@
 <mapper namespace="com.myadmin.mapper.AncMapper">
 
     <select id="select" parameterType="Integer" resultType="Anc">
-        SELECT *
+        SELECT id, title, writer, contents, img, rdate
         FROM anc
         WHERE id=#{id}
     </select>
     <select id="selectall" resultType="Anc">
-        SELECT *
+        SELECT id, title, writer, contents, img, rdate
         FROM anc
     </select>
     <insert id="insert" parameterType="Anc">
-        INSERT INTO anc
-        VALUES (anc_seq.NEXTVAL,#{title},#{writer},#{contents},SYSDATE,#{img})
+        INSERT INTO anc (id, title, writer, contents, img, rdate)
+        VALUES (anc_seq.NEXTVAL,#{title},#{writer},#{contents},#{img},SYSDATE)
     </insert>
     <update id="update" parameterType="Anc">
         UPDATE anc

@@ -43,13 +43,13 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
                     <i class="icon-book menu-icon"></i>
-                    <span class="menu-title">Lectures</span>
+                    <span class="menu-title">강의</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="form-elements">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"><a class="nav-link" href="/lec/all">List</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/lec/add">Add Lecture</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/lec/all">강의 목록</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/lec/sbj/add">강의코드 추가</a></li>
                     </ul>
                 </div>
             </li>
