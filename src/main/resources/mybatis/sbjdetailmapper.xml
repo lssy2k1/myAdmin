@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myadmin.mapper.SbjDetailMapper">
+
+    <select id="select" parameterType="Integer" resultType="SbjDetail">
+        SELECT sbj_code as sbjCode, sbj_name as sbjName, sbj_code2 as sbjCode2
+        FROM sbj_detail
+        WHERE sbj_code=#{sbjCode}
+    </select>
+
+    <select id="selectall" resultType="SbjDetail">
+        SELECT sbj_code as sbjCode, sbj_name as sbjName, sbj_code2 as sbjCode2
+        FROM sbj_detail
+    </select>
+
+    <insert id="insert" parameterType="SbjDetail">
+        <selectKey keyProperty="sbjCode" resultType="java.lang.Integer" order="BEFORE">
+            SELECT sbj_detail_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO sbj_detail (sbj_code, sbj_name, sbj_code2)
+        VALUES (#{sbjCode}, #{sbjName}, #{sbjCode2})
+    </insert>
+
+    <update id="update" parameterType="SbjDetail">
+        UPDATE sbj_detail
+        SET sbj_name=#{sbjName}, sbj_code2=#{sbjCode2}
+        WHERE sbj_code=#{sbjCode}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE
+        FROM sbj_detail
+        WHERE sbj_code=#{sbjCode}
+    </delete>
+
+    <select id="searchbig" resultType="SbjDetail">
+        SELECT sbj_code as sbjCode, sbj_name as sbjName, sbj_code2 as sbjCode2
+        FROM sbj_detail
+        WHERE sbj_code2 is null
+    </select>
+
+</mapper>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myadmin.mapper.LecCategoryMapper">
+
+    <select id="select" parameterType="Integer" resultType="LecCategory">
+        SELECT lec_code as lecCode, sbj_code as sbjCode, sbj_code2 as sbjCode2, sbj_code3 as sbjCode3
+        FROM lec_category
+        WHERE lec_code = #{lecCode}
+    </select>
+
+    <select id="selectall" resultType="LecCategory">
+        SELECT lec_code as lecCode, sbj_code as sbjCode, sbj_code2 as sbjCode2, sbj_code3 as sbjCode3
+        FROM lec_category
+    </select>
+
+    <insert id="insert" parameterType="LecCategory">
+        <selectKey keyProperty="lecCode" resultType="java.lang.Integer" order="BEFORE">
+            SELECT lec_category_seq.NEXTVAL FROM dual
+        </selectKey>
+        INSERT INTO lec_category (lec_code, sbj_code, sbj_code2, sbj_code3)
+        VALUES (#{lecCode}, #{sbjCode}, #{sbjCode2}, #{sbjCode3})
+    </insert>
+
+    <update id="update" parameterType="LecCategory">
+        UPDATE lec_category
+        SET sbj_code=#{sbjCode}, sbj_code2=#{sbjCode2}, sbj_code3=#{sbjCode3}
+        WHERE lec_code = #{lecCode}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE
+        FROM lec_category
+        WHERE lec_code = #{lecCode}
+    </delete>
+
+
+</mapper>

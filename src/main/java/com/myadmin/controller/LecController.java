@@ -3,7 +3,9 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.LecSearch;
+import com.myadmin.dto.SbjDetail;
 import com.myadmin.service.LecService;
+import com.myadmin.service.SbjDetailService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,6 +30,8 @@ public class LecController {
 
     @Autowired
     LecService lecService;
+    @Autowired
+    SbjDetailService sbjDetailService;
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {
@@ -42,6 +46,14 @@ public class LecController {
     }
     @RequestMapping("/add")
     public String add(Model model){
+        try {
+            List<SbjDetail> sbjlistbig = sbjDetailService.searchBig();
+            List<SbjDetail> sbjlist = sbjDetailService.get();
+            model.addAttribute("sbjlist", sbjlist);
+            model.addAttribute("sbjlistbig", sbjlistbig);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
         model.addAttribute("center", dir+"add");
         return "index";
     }
@@ -137,6 +149,20 @@ public class LecController {
         model.addAttribute("ls", ls);
         model.addAttribute("lec", lec);
         model.addAttribute("center", dir+"all");
+        return "index";
+    }
+    @RequestMapping("/sbj/add")
+    public String sbjadd(Model model){
+        try {
+            List<SbjDetail> sbjlistbig = sbjDetailService.searchBig();
+            List<SbjDetail> sbjlist = sbjDetailService.get();
+            model.addAttribute("sbjlist", sbjlist);
+            model.addAttribute("sbjlistbig", sbjlistbig);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+        model.addAttribute("center", dir+"sbjadd");
         return "index";
     }
 }

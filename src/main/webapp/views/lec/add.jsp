@@ -9,7 +9,7 @@
             });
             $('#lec_can_btn').click(()=>{
                 location.href = '/lec/all';
-            })
+            });
         },
         send:()=>{
             $('#lec_register_form').attr({
@@ -20,8 +20,30 @@
             $('#lec_register_form').submit();
         }
     };
+
+    let lec_code_maker = {
+        init : () => {
+            $('#lec_code_btn').click(() => {
+                $.ajax({
+                    url:'/leccodemaker',
+                    data: {
+                        sbjCode : $('#sbjCode').val(),
+                        sbjCode2 : $('#sbjCode2').val(),
+                        sbjCode3 : $('#sbjCode3').val()
+                    },
+                    success:(result)=>{
+                        console.log(result);
+                        if(result) {
+                            $('#lecCode').val(result);
+                        }
+                    }
+                })
+            })
+        }
+    }
     $(function(){
         lec_register.init();
+        lec_code_maker.init();
     });
 </script>
 
@@ -38,6 +60,40 @@
                         강의 세부 내용을 입력하세요...
                     </p>
 
+
+                    <h4 class="card-title">Search</h4>
+                    <form id="lec_code_form" class="form-inline">
+
+                        <label for="sbjCode">과목 분류 </label>
+                        <select class="form-control" id="sbjCode" name = "sbjCode" style = "margin-right:50px">
+                            <c:forEach var="obj" items="${sbjlist}">
+                                <option value =${obj.sbjCode}>
+                                        ${obj.sbjName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                        <label for="sbjCode2">과목 분류 </label>
+                        <select class="form-control" id="sbjCode2" name = "sbjCode2" style = "margin-right:50px">
+                            <c:forEach var="obj" items="${sbjlist}">
+                                <option value =${obj.sbjCode}>
+                                        ${obj.sbjName}
+                                </option>
+                            </c:forEach>
+                        </select>
+                        <label for="sbjCode3">과목 분류 </label>
+                        <select class="form-control" id="sbjCode3" name = "sbjCode3" style = "margin-right:50px">
+                            <c:forEach var="obj" items="${sbjlist}">
+                                <option value =${obj.sbjCode}>
+                                        ${obj.sbjName}
+                                </option>
+                            </c:forEach>
+                        </select>
+
+                        <button type="button" id="lec_code_btn" class="btn btn-primary mb-2" style="margin-left: 20px">강의 코드 생성</button>
+                    </form>
+
+
+
                     <form id = "lec_register_form" class="forms-sample">
 <%--                        id(시퀀스), rdate, delDate(타임스탬프), rating, hit(외부데이터)는 인풋 불가--%>
                         <div class="form-group">
@@ -50,20 +106,22 @@
                         </div>
                         <div class="form-group">
                             <label for="admId">작성자</label>
-                            <input type="text" class="form-control" name = "admId" id="admId" value="${loginadm.id}">
+                            <input type="text" class="form-control" name = "admId" id="admId" value="${loginadm.id}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="lecCode">강의코드</label>
-                            <input type="Number" class="form-control" name = "lecCode" id="lecCode" placeholder="강의코드를 입력하세요...">
+                            <input type="Number" class="form-control" name = "lecCode" id="lecCode" placeholder="페이지 위의 강의코드 생성을 누르세요" readonly>
                         </div>
                         <div class="form-group">
                             <label for="topic">분야</label>
                             <select class="form-control" id="topic" name = "topic" >
-                                <option>프론트엔드</option>
-                                <option>백엔드</option>
-                                <option>네트워크</option>
-                                <option>운영체제</option>
-                                <option>데이터베이스</option>
+
+                                <c:forEach var="objbig" items="${sbjlistbig}">
+                                    <option>
+                                            ${objbig.sbjName}
+                                    </option>
+                                </c:forEach>
+
                             </select>
                         </div>
                         <div class="form-group">

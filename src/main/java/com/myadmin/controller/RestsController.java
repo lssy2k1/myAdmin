@@ -1,7 +1,11 @@
 package com.myadmin.controller;
 
+import com.myadmin.dto.LecCategory;
 import com.myadmin.dto.Mrk;
+import com.myadmin.dto.SbjDetail;
+import com.myadmin.service.LecCategoryService;
 import com.myadmin.service.MrkService;
+import com.myadmin.service.SbjDetailService;
 import com.myadmin.util.GetDateUtil;
 import com.myadmin.util.GptUtil;
 import com.myadmin.util.WeatherUtil;
@@ -21,6 +25,12 @@ public class RestsController {
 
     @Autowired
     MrkService mrkService;
+
+    @Autowired
+    LecCategoryService lecCategoryService;
+
+    @Autowired
+    SbjDetailService sbjDetailService;
 
     @RequestMapping("/giveid")
     public String giveid(Model model){
@@ -76,5 +86,25 @@ public class RestsController {
         return result;
     };
 
+    @RequestMapping("/leccodemaker")
+    public Integer leccodemaker(LecCategory lecCategory){
+        try {
+            lecCategoryService.register(lecCategory);
+            Integer lecCode = lecCategory.getLecCode();
+            return lecCode;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @RequestMapping("/sbjcodemaker")
+    public Integer sbjcodemaker(SbjDetail sbjDetail){
+        try {
+            sbjDetailService.register(sbjDetail);
+            Integer sbjCode3 = sbjDetail.getSbjCode();
+            return sbjCode3;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

@@ -49,32 +49,13 @@
                 <div class="collapse" id="form-elements">
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"><a class="nav-link" href="/lec/all">강의 목록</a></li>
+                        <c:if test="${loginadm.lev>=3}">
                         <li class="nav-item"><a class="nav-link" href="/lec/sbj/add">강의코드 추가</a></li>
+                        </c:if>
                     </ul>
                 </div>
             </li>
 
-
-            <li class="nav-item">
-                <a class="nav-link" href="/study/all" aria-expanded="false" aria-controls="icons">
-                    <i class="icon-paper-clip menu-icon"></i>
-                    <span class="menu-title">Study</span>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                    <i class="icon-circle-check menu-icon"></i>
-                    <span class="menu-title">Test</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="auth">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/test/all">List</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/test/add">Register</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/test/add">Score</a></li>
-                    </ul>
-                </div>
-            </li>
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                     <i class="icon-map menu-icon"></i>
@@ -91,14 +72,14 @@
             <li class="nav-item">
                 <a class="nav-link" href="/anc/all">
                     <i class="icon-microphone menu-icon"></i>
-                    <span class="menu-title">Announcement</span>
+                    <span class="menu-title">공지사항</span>
                 </a>
             </li>
             <c:if test="${loginadm.lev>=3}">
             <li class="nav-item">
                 <a class="nav-link" href="/adm/all" aria-expanded="false" aria-controls="admin">
                     <i class="icon-star menu-icon"></i>
-                    <span class="menu-title">Admin</span>
+                    <span class="menu-title">관리자</span>
                 </a>
             </li>
             </c:if>
