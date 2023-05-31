@@ -19,6 +19,6 @@ public class LecReview {
     private String img;
     private String isDelete;
     private String delDate;
-    private String up_review;
+    private String upReview;
     private Integer likes;
 }
