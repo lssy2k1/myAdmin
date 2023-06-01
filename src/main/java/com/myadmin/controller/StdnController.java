@@ -1,9 +1,11 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Attd;
+import com.myadmin.dto.AttdTrckr;
 import com.myadmin.dto.MyPage;
 import com.myadmin.dto.Stdn;
 import com.myadmin.service.AttdService;
+import com.myadmin.service.AttdTrckrService;
 import com.myadmin.service.MyPageService;
 import com.myadmin.service.StdnService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,10 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/stdn")
@@ -28,6 +33,8 @@ public class StdnController {
     MyPageService myPageService;
     @Autowired
     AttdService attdService;
+    @Autowired
+    AttdTrckrService attdTrckrService;
     @Autowired
     BCryptPasswordEncoder encoder;
     String dir = "stdn/";
@@ -74,6 +81,7 @@ public class StdnController {
             Stdn stdn = stdnService.get(id);
             MyPage myPage = myPageService.get(id);
             Attd attd = attdService.get(id);
+
             model.addAttribute("stdn", stdn);
             model.addAttribute("mypage", myPage);
             model.addAttribute("attd", attd);

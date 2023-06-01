@@ -1,20 +1,83 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<style>
+    .tab-pane {
+        overflow-y: auto; /* 반드시 overlay 처리 */
+    }
 
+    .tab-pane::-webkit-scrollbar {
+        width: 14px;
+        height: 14px;
+    }
+
+    .tab-pane::-webkit-scrollbar-thumb {
+        outline: none;
+        border-radius: 10px;
+        border: 4px solid transparent;
+        box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.15);
+    }
+
+    .tab-pane::-webkit-scrollbar-thumb:hover {
+        border: 4px solid transparent;
+        box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.3);
+    }
+
+    .tab-pane::-webkit-scrollbar-track {
+        box-shadow: none;
+        background-color: transparent;
+    }
+</style>
 <script>
-    $(document).ready(function(){
-        $('ul.nav-tabs li a').click(function(){
-            var tab_id = $(this).attr('aria-controls');
+    let tab = {
+        init: function() {
+            $('ul.nav-tabs li a').click(function(){
+                var tab_id = $(this).attr('aria-controls');
 
-            $('ul.nav-tabs li a').removeClass('active');
-            $('.tab-pane').removeClass('active');
+                $('ul.nav-tabs li a').removeClass('active');
+                $('.tab-pane').removeClass('active');
 
-            $(this).addClass('active');
-            $("#"+tab_id).addClass('active show');
-        });
+                $(this).addClass('active');
+                $("#"+tab_id).addClass('active show');
+            });
+        }
+    };
+    let trckattd = {
+        init: function() {
+            var stdnId = $('#stdnId').val();
+            var day = $('#tableDay').text();
+            var month = $('#tableMonth').text();
+            $.ajax({
+                url: '/trckattd',
+                data: {
+                    stdnId: stdnId,
+                    month: month,
+                    day: day
+                },
+                success: function (data) {
+                    console.log(data);
+                    var attd = data;
+                    var cellId = "#" + month + "_" + day;
+                    var attdImg;
 
-    });
+                    if (attd === '1') {
+                        attdImg = 'attended.png';
+                    } else if (attd === '2') {
+                        attdImg = 'late.png';
+                    } else {
+                        attdImg = 'absent.png';
+                    }
+
+                    // 이미지 출력
+                    $(cellId).html('<img src="/images/'+attdImg+'">');
+                }
+            });
+        }
+    }
+    $(function(){
+        tab.init();
+        trckattd.init();
+    })
 </script>
 
 <div class="content-wrapper">
@@ -150,34 +213,49 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="home-1" role="tabpanel" aria-labelledby="home-tab">
                                     <div class="media">
-                                        <div class="media-body">
-                                            <h4 class="mt-0">Why choose us?</h4>
-                                            <p>
-                                                Far curiosity incommode now led smallness allowance. Favour bed assure
-                                                son things yet. She consisted
-                                                consulted elsewhere happiness disposing household any old the. Widow
-                                                downs you new shade drift hopes
-                                                small. So otherwise commanded sweetness we improving. Instantly by
-                                                daughters resembled unwilling principle
-                                                so middleton.
-                                            </p>
-                                        </div>
+<%--                                        <div class="float-left card-title text-primary" style="padding: 0 40px 0 20px">--%>
+<%--                                            <i class="fa fa-user-o"></i> 아이디--%>
+<%--                                        </div>--%>
+<%--                                        <div class="float-right">${stdn.id}</div>--%>
+                                        <ul class="list-star">
+                                            <li>아이디 : ${stdn.id}</li>
+                                            <li>생일 : ${stdn.birthday}</li>
+                                            <li>구독여부 : ${stdn.isSubsc}</li>
+                                            <li>쿠폰 보유 :
+                                                <c:choose>
+                                                    <c:when test="${cpn != null && !cpn.eqauls('')}">${stdn.cpn}개</c:when>
+                                                    <c:otherwise>0개</c:otherwise>
+                                                </c:choose>
+                                            </li>
+                                            <li>최종 접속일 : ${stdn.lastVisit}</li>
+                                            <li>비밀번호 오류횟수 :
+                                                <c:choose>
+                                                    <c:when test="${loginError != null && !loginError.eqauls('')}">${stdn.loginError}회</c:when>
+                                                    <c:otherwise>0회</c:otherwise>
+                                                </c:choose>
+                                            </li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="attd-1" role="tabpanel" aria-labelledby="attd-tab">
+                                <div class="tab-pane fade" id="attd-1" role="tabpanel" aria-labelledby="attd-tab"  style="overflow: scroll">
                                     <div class="media">
-                                        <img class="me-3 w-25 rounded" src="../../../../images/faces/face12.jpg"
-                                             alt="sample image">
-                                        <div class="media-body">
-                                            <h4 class="mt-0">John Doe</h4>
-                                            <p>
-                                                Fail most room even gone her end like. Comparison dissimilar unpleasant
-                                                six compliment two unpleasing
-                                                any add. Ashamed my company thought wishing colonel it prevent he in.
-                                                Pretended residence are something
-                                                far engrossed old off.
-                                            </p>
-                                        </div>
+                                        <input type="hidden" id="stdnId" name="stdnId" value="${stdn.id}"/>
+                                        <table class="table-bordered" style="text-align: center">
+                                            <tr>
+                                                <th>월\일</th>
+                                                <c:forEach var="day" begin="1" end="31">
+                                                    <th class="w-10 p-2" id="tableDay">${String.format("%02d", day)}</th>
+                                                </c:forEach>
+                                            </tr>
+                                            <c:forEach var="month" begin="2" end="7">
+                                                <tr>
+                                                    <th class="w-10 p-2"><span id="tableMonth">${String.format("%02d", month)}</span>월</th>
+                                                    <c:forEach var="day" begin="1" end="31">
+                                                        <td id="${month}_${day}"></td>
+                                                    </c:forEach>
+                                                </tr>
+                                            </c:forEach>
+                                        </table>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="study-1" role="tabpanel"

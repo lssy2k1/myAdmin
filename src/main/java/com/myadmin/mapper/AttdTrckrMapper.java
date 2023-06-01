@@ -10,5 +10,6 @@ import java.util.List;
 
 @Repository
 @Mapper
-public interface AttdMapper extends MyAdminMapper<String, Attd> {
+public interface AttdTrckrMapper {
+    public List<Attd> trckattd(AttdTrckr attdTrckr);
 }

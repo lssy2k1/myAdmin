@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
+
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -17,6 +18,7 @@
   <link rel="stylesheet" href="/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="/vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="/js/select.dataTables.min.css">
+  <link rel="stylesheet" href="/vendors/font-awesome/css/font-awesome.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
   <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
