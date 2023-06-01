@@ -13,6 +13,7 @@
     <select id="selectall" resultType="Anc">
         SELECT id, title, writer, contents, img, rdate
         FROM anc
+        ORDER BY id DESC
     </select>
     <insert id="insert" parameterType="Anc">
         INSERT INTO anc (id, title, writer, contents, img, rdate)
@@ -28,5 +29,9 @@
         FROM anc
         WHERE id=#{id}
     </delete>
-
+    <select id="getpage" resultType="Anc">
+        SELECT id, title, writer, contents, img, rdate
+        FROM Anc
+        ORDER BY id DESC
+    </select>
 </mapper>

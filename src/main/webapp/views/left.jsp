@@ -59,16 +59,21 @@
             <li class="nav-item">
                 <a class="nav-link" data-toggle="collapse" href="#charts" aria-expanded="false" aria-controls="charts">
                     <i class="icon-map menu-icon"></i>
-                    <span class="menu-title">Markers</span>
+                    <span class="menu-title">서비스 관리</span>
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="charts">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/mrk/all">List</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/mrk/add">Add Marker</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/cart/all">카트 관리</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/ord/all">주문 관리(학생별)</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/orddetail/all">주문상세 관리(과목단위)</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/curri/all">커리큘럼 관리</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/mrk/all">마커 리스트</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/mrk/add">마커 추가</a></li>
                     </ul>
                 </div>
             </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="/anc/all">
                     <i class="icon-microphone menu-icon"></i>

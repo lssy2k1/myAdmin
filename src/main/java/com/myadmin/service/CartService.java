@@ -3,8 +3,10 @@ package com.myadmin.service;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.myadmin.dto.Anc;
+import com.myadmin.dto.Cart;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.AncMapper;
+import com.myadmin.mapper.CartMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +15,19 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class AncService implements MyAdminService<Integer, Anc> {
+public class CartService implements MyAdminService<Integer, Cart> {
 
     @Autowired
-    AncMapper mapper;
+    CartMapper mapper;
 
-    public AncService(AncMapper mapper) {
+    public CartService(CartMapper mapper) {
         this.mapper = mapper;
     }
 
+
     @Override
-    public void register(Anc anc) throws Exception {
-        mapper.insert(anc);
+    public void register(Cart cart) throws Exception {
+        mapper.insert(cart);
     }
 
     @Override
@@ -33,22 +36,17 @@ public class AncService implements MyAdminService<Integer, Anc> {
     }
 
     @Override
-    public void modify(Anc anc) throws Exception {
-        mapper.update(anc);
+    public void modify(Cart cart) throws Exception {
+        mapper.update(cart);
     }
 
     @Override
-    public Anc get(Integer integer) throws Exception {
+    public Cart get(Integer integer) throws Exception {
         return mapper.select(integer);
     }
 
     @Override
-    public List<Anc> get() throws Exception {
+    public List<Cart> get() throws Exception {
         return mapper.selectall();
-    }
-
-    public Page<Anc> getPage(int pageNo) throws Exception{
-        PageHelper.startPage(pageNo, 7);
-        return mapper.getpage();
     }
 }

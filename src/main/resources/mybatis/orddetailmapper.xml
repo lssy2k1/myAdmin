@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myadmin.mapper.OrdDetailMapper">
+<!--    <select id="getByOrd" parameterType="Integer" resultType="OrdDetail">-->
+<!--        SELECT od.id, od.lec_id AS lecId, od.ord_id AS ordId, od.stdy_hour AS stdyHour-->
+<!--             , l.lec_code AS lecCode, l.title AS lecTitle, l.teacher AS lecTeacher-->
+<!--             , l.topic AS lecTopic, l.target AS lecTarget, l.length AS lecLength-->
+<!--             , l.img AS img, o.stdn_id AS stdnId, s.name AS stdnName-->
+<!--        FROM ord_detail od, ord o, lec l, stdn s-->
+<!--        WHERE od.ord_id=o.id-->
+<!--          AND od.lec_id=l.id-->
+<!--          AND o.stdn_id=s.id-->
+<!--          AND od.ord_id=#{ordId}-->
+<!--    </select>-->
+
+
+<!--    <select id="getMyOrdDetail" parameterType="String" resultType="OrdDetail">-->
+<!--        SELECT od.id, od.lec_id AS lecId, od.ord_id AS ordId, od.stdy_hour AS stdyHour-->
+<!--             , l.lec_code AS lecCode, l.title AS lecTitle, l.teacher AS lecTeacher-->
+<!--             , l.topic AS lecTopic, l.target AS lecTarget, l.length AS lecLength-->
+<!--             , l.img AS img, o.stdn_id AS stdnId, s.name AS stdnName-->
+<!--        FROM ord_detail od, ord o, lec l, stdn s-->
+<!--        WHERE od.ord_id=o.id-->
+<!--          AND od.lec_id=l.id-->
+<!--          AND o.stdn_id=s.id-->
+<!--          AND o.stdn_id=#{stdnId}-->
+<!--    </select>-->
+
+    <select id="getpage" resultType="OrdDetail">
+        SELECT od.id, od.lec_id AS lecId, od.ord_id AS ordId, od.stdy_hour AS stdyHour
+            , od.disc_rate AS discRate, od.price AS price
+            , l.lec_code AS lecCode, l.title AS lecTitle, l.teacher AS lecTeacher
+            , l.topic AS lecTopic, l.target AS lecTarget, l.length AS lecLength
+            , l.img AS img, o.stdn_id AS stdnId
+        FROM ord_detail od, ord o, lec l
+        WHERE od.ord_id=o.id
+            AND od.lec_id=l.id
+        ORDER BY od.id DESC
+    </select>
+
+    <select id="select" parameterType="Integer" resultType="OrdDetail">
+        SELECT od.id, od.lec_id AS lecId, od.ord_id AS ordId, od.stdy_hour AS stdyHour
+            , od.disc_rate AS discRate, od.price AS price
+            , l.lec_code AS lecCode, l.title AS lecTitle, l.teacher AS lecTeacher
+            , l.topic AS lecTopic, l.target AS lecTarget, l.length AS lecLength
+            , l.img AS img, o.stdn_id AS stdnId
+        FROM ord_detail od, ord o, lec l
+        WHERE od.ord_id=o.id
+              AND od.lec_id=l.id
+              AND od.id=#{id}
+    </select>
+
+    <select id="searchord" parameterType="Integer" resultType="OrdDetail">
+        SELECT od.id, od.lec_id AS lecId, od.ord_id AS ordId, od.stdy_hour AS stdyHour
+        , od.disc_rate AS discRate, od.price AS price
+        , l.lec_code AS lecCode, l.title AS lecTitle, l.teacher AS lecTeacher
+        , l.topic AS lecTopic, l.target AS lecTarget, l.length AS lecLength
+        , l.img AS img, o.stdn_id AS stdnId
+        FROM ord_detail od, ord o, lec l
+        WHERE od.ord_id=o.id
+        AND od.lec_id=l.id
+        AND od.ord_id=#{ordId}
+    </select>
+
+    <select id="selectall" resultType="OrdDetail">
+        SELECT od.id, od.lec_id AS lecId, od.ord_id AS ordId, od.stdy_hour AS stdyHour
+             , od.disc_rate AS discRate, od.price AS price
+             , l.lec_code AS lecCode, l.title AS lecTitle, l.teacher AS lecTeacher
+             , l.topic AS lecTopic, l.target AS lecTarget, l.length AS lecLength
+             , l.img AS img, o.stdn_id AS stdnId
+        FROM ord_detail od, ord o, lec l
+        WHERE od.ord_id=o.id
+          AND od.lec_id=l.id
+    </select>
+
+    <insert id="insert" parameterType="OrdDetail">
+        INSERT INTO ord_detail (id, lec_id, ord_id, stdy_hour, disc_rate, price)
+        VALUES (ord_detail_seq.NEXTVAL, #{lecId}, #{ordId},'0', #{discRate}, #{price})
+    </insert>
+
+    <update id="update" parameterType="OrdDetail">
+        UPDATE ord_detail
+        SET stdy_hour=#{stdyHour}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE
+        FROM ord_detail
+        WHERE id=#{id}
+    </delete>
+
+</mapper>

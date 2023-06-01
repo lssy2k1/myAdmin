@@ -36,7 +36,7 @@
                             </thead>
 
                             <tbody>
-                            <c:forEach var="obj" items="${anc}">
+                            <c:forEach var="obj" items="${cpage.getList()}">
                                 <tr>
                                     <td>${obj.id}</td>
                                     <td>${obj.writer}</td>
@@ -54,6 +54,7 @@
 
                             </tbody>
                         </table>
+                        <jsp:include page="../page.jsp"/>
                     </div>
                     <a type="button" href="/anc/add" class="btn btn-outline-primary btn-icon-text" style="margin-top:15px; float:right">
                         <i class="ti-plus btn-icon-prepend"></i>
