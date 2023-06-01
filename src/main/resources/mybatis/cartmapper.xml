@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myadmin.mapper.CartMapper">
+
+<!--    <select id="thisCart" parameterType="map" resultType="Cart">-->
+<!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate-->
+<!--             , s.name AS stdnName, l.teacher AS lecTeacher-->
+<!--             , l.title As lecTitle, l.disc_rate AS lecDiscRate-->
+<!--             , l.topic AS lecTopic, l.price AS lecPrice-->
+<!--             , l.target AS lecTarget, l.img AS lecImg-->
+<!--        FROM cart c, stdn s, lec l-->
+<!--        WHERE c.stdn_id = s.id-->
+<!--          AND c.lec_id = l.id-->
+<!--          AND c.lec_id = #{lecId}-->
+<!--          AND c.stdn_id = #{stdnId}-->
+<!--    </select>-->
+
+    <select id="select" parameterType="Integer" resultType="Cart">
+        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate
+             , s.name AS stdnName, l.teacher AS lecTeacher
+             , l.title As lecTitle, l.disc_rate AS lecDiscRate
+             , l.topic AS lecTopic, l.price AS lecPrice
+             , l.target AS lecTarget, l.img AS lecImg
+        FROM cart c, stdn s, lec l
+        WHERE c.stdn_id = s.id
+          AND c.lec_id = l.id
+          AND c.id = #{id}
+    </select>
+<!--    <select id="getMyCart" parameterType="String" resultType="Cart">-->
+<!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate-->
+<!--             , s.name AS stdnName, l.teacher AS lecTeacher-->
+<!--             , l.title As lecTitle, l.disc_rate AS lecDiscRate-->
+<!--             , l.topic AS lecTopic, l.price AS lecPrice-->
+<!--             , l.target AS lecTarget, l.img AS lecImg-->
+<!--        FROM cart c, stdn s, lec l-->
+<!--        WHERE c.stdn_id = s.id-->
+<!--          AND c.lec_id = l.id-->
+<!--          AND c.stdn_id=#{stdnId}-->
+<!--        ORDER BY c.id DESC-->
+<!--    </select>-->
+
+<!--    <select id="cntMyCart" parameterType="String" resultType="Integer">-->
+<!--        SELECT COUNT(id) AS cnt-->
+<!--        FROM cart-->
+<!--        WHERE stdn_id = #{stdnId}-->
+<!--    </select>-->
+
+    <select id="selectall" resultType="Cart">
+        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate
+             , s.name AS stdnName, l.teacher AS lecTeacher
+             , l.title As lecTitle, l.disc_rate AS lecDiscRate
+             , l.topic AS lecTopic, l.price AS lecPrice
+             , l.target AS lecTarget, l.img AS lecImg
+        FROM cart c, stdn s, lec l
+        WHERE c.stdn_id = s.id
+          AND c.lec_id = l.id
+    </select>
+
+    <insert id="insert" parameterType="Cart">
+        INSERT INTO cart (id, stdn_id, lec_id, rdate)
+        VALUES (cart_seq.NEXTVAL, #{stdnId}, #{lecId},TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'))
+    </insert>
+
+    <!--사실상 업데이트 쓸모 없음-->
+    <update id="update" parameterType="Cart">
+        UPDATE cart SET
+        stdn_id=#{stdnId}, lec_id=#{lecId}
+        WHERE id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Integer">
+        DELETE FROM cart WHERE id=#{id}
+    </delete>
+
+
+</mapper>

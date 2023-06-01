@@ -1,5 +1,6 @@
 package com.myadmin.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.myadmin.dto.Adm;
 import com.myadmin.dto.Anc;
 import com.myadmin.dto.Lec;
@@ -62,11 +63,13 @@ public class AncController {
         return "index";
     }
     @RequestMapping("/all")
-    public String all(Model model) throws Exception {
+    public String all(@RequestParam(required = false, defaultValue= "1") int pageNo, Model model) throws Exception {
+        PageInfo<Anc> p;
         try {
-            List<Anc> list = ancService.get();
-            model.addAttribute("anc",list);
+            p=new PageInfo<>(ancService.getPage(pageNo), 5);
+            model.addAttribute("cpage",p);
             model.addAttribute("center",dir+"all");
+            model.addAttribute("target","anc");
         } catch (Exception e) {
             throw new Exception("anc all error");
         }

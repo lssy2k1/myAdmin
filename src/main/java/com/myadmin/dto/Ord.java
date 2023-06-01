@@ -14,6 +14,16 @@ public class Ord {
     private String isDone;
     private Integer ordPrice;
     private String payMethod;
-    private String upDate;
+    private String updDate;
     private Integer useCpn;
+
+    public Ord(Integer id, String stdnId, String rdate, String isDone, Integer ordPrice, String payMethod, Integer useCpn) {
+        this.id = id;
+        this.stdnId = stdnId;
+        this.rdate = rdate;
+        this.isDone = isDone;
+        this.ordPrice = ordPrice;
+        this.payMethod = payMethod;
+        this.useCpn = useCpn;
+    }
 }
