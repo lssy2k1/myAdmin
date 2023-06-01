@@ -6,9 +6,15 @@
 <mapper namespace="com.myadmin.mapper.AttdMapper">
 
     <select id="select" parameterType="String" resultType="Attd">
-        SELECT id, rdate, start_time as startTime, end_time as endTime, is_attend as isAttend
+        SELECT id, stdn_id as stdnId, rdate, start_time as startTime, end_time as endTime, is_attend as isAttend
         FROM attd
-        WHERE stdn_id=#{stdnId}
+        WHERE stdn_id = #{stdnId} AND rdate = TO_CHAR(CURRENT_DATE, 'YYYY.MM.DD')
     </select>
-
+<!--    <select id="attdtrckr" parameterType="String" resultType="AttdTrckr">-->
+<!--        <![CDATA[-->
+<!--        SELECT stdn_id as stdnId, TO_CHAR(rdate, 'MM') as month, TO_CHAR(rdate, 'dd') as day, is_attend as isAttend-->
+<!--        FROM attd-->
+<!--        WHERE stdn_id = #{stdnId}-->
+<!--        ]]>-->
+<!--    </select>-->
 </mapper>

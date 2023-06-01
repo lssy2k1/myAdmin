@@ -9,28 +9,28 @@
         <div class="col-lg-12 grid-margin stretch-card">
           <div class="card">
             <div class="card-body">
-              <h3 class="card-title">All Students</h3>
+              <h3 class="card-title">전체 수강생 목록</h3>
               <div class="table-responsive pt-3">
                 <table class="table table-bordered text-center">
                   <thead>
                   <tr>
                     <th>
-                      Image
+                      이미지
                     </th>
                     <th>
-                      ID
+                      아이디
                     </th>
                     <th>
-                      Name
+                      이름
                     </th>
                     <th>
-                      Attendance
+                      출결
                     </th>
                     <th>
-                      Email
+                      이메일
                     </th>
                     <th>
-                      Contact
+                      연락처
                     </th>
                   </tr>
                   </thead>
