@@ -13,4 +13,6 @@ public class Curri {
     private String lecId;
     private String rdate;
     private String isOpen;
+
+
 }

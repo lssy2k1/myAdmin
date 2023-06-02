@@ -17,12 +17,12 @@
                             <tr>
 
                                 <th>주문상세번호</th>
+                                <th>주문번호</th>
                                 <th>강의번호</th>
                                 <th>강의제목</th>
                                 <th>가격</th>
                                 <th>할인률</th>
                                 <th>학생ID</th>
-                                <th>주문번호</th>
 
                             </tr>
                             </thead>
@@ -30,13 +30,14 @@
                             <tbody>
                             <c:forEach var="obj" items="${cpage.getList()}">
                                 <tr>
+
                                     <td>${obj.id}</td>
+                                    <td><a href="/orddetail/detail?ordDetailId=${obj.id}">${obj.ordId}</a></td>
                                     <td>${obj.lecId}</td>
                                     <td><a href="/lec/detail?id=${obj.lecId}">${obj.lecTitle}</a></td>
                                     <td>${obj.price}</td>
                                     <td>${obj.discRate}</td>
                                     <td><a href="/stdn/detail?id=${obj.stdnId}">${obj.stdnId}</a></td>
-                                    <td>${obj.ordId}</td>
 
                                 </tr>
                             </c:forEach>

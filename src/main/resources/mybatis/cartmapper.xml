@@ -4,18 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myadmin.mapper.CartMapper">
 
-<!--    <select id="thisCart" parameterType="map" resultType="Cart">-->
-<!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate-->
-<!--             , s.name AS stdnName, l.teacher AS lecTeacher-->
-<!--             , l.title As lecTitle, l.disc_rate AS lecDiscRate-->
-<!--             , l.topic AS lecTopic, l.price AS lecPrice-->
-<!--             , l.target AS lecTarget, l.img AS lecImg-->
-<!--        FROM cart c, stdn s, lec l-->
-<!--        WHERE c.stdn_id = s.id-->
-<!--          AND c.lec_id = l.id-->
-<!--          AND c.lec_id = #{lecId}-->
-<!--          AND c.stdn_id = #{stdnId}-->
-<!--    </select>-->
+
 
     <select id="select" parameterType="Integer" resultType="Cart">
         SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate
@@ -27,25 +16,9 @@
         WHERE c.stdn_id = s.id
           AND c.lec_id = l.id
           AND c.id = #{id}
+        ORDER BY c.id DESC
     </select>
-<!--    <select id="getMyCart" parameterType="String" resultType="Cart">-->
-<!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate-->
-<!--             , s.name AS stdnName, l.teacher AS lecTeacher-->
-<!--             , l.title As lecTitle, l.disc_rate AS lecDiscRate-->
-<!--             , l.topic AS lecTopic, l.price AS lecPrice-->
-<!--             , l.target AS lecTarget, l.img AS lecImg-->
-<!--        FROM cart c, stdn s, lec l-->
-<!--        WHERE c.stdn_id = s.id-->
-<!--          AND c.lec_id = l.id-->
-<!--          AND c.stdn_id=#{stdnId}-->
-<!--        ORDER BY c.id DESC-->
-<!--    </select>-->
 
-<!--    <select id="cntMyCart" parameterType="String" resultType="Integer">-->
-<!--        SELECT COUNT(id) AS cnt-->
-<!--        FROM cart-->
-<!--        WHERE stdn_id = #{stdnId}-->
-<!--    </select>-->
 
     <select id="selectall" resultType="Cart">
         SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate
@@ -56,6 +29,7 @@
         FROM cart c, stdn s, lec l
         WHERE c.stdn_id = s.id
           AND c.lec_id = l.id
+        ORDER BY c.id DESC
     </select>
 
     <insert id="insert" parameterType="Cart">
@@ -74,5 +48,35 @@
         DELETE FROM cart WHERE id=#{id}
     </delete>
 
+    <!--    <select id="thisCart" parameterType="map" resultType="Cart">-->
+    <!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate-->
+    <!--             , s.name AS stdnName, l.teacher AS lecTeacher-->
+    <!--             , l.title As lecTitle, l.disc_rate AS lecDiscRate-->
+    <!--             , l.topic AS lecTopic, l.price AS lecPrice-->
+    <!--             , l.target AS lecTarget, l.img AS lecImg-->
+    <!--        FROM cart c, stdn s, lec l-->
+    <!--        WHERE c.stdn_id = s.id-->
+    <!--          AND c.lec_id = l.id-->
+    <!--          AND c.lec_id = #{lecId}-->
+    <!--          AND c.stdn_id = #{stdnId}-->
+    <!--    </select>-->
 
+    <!--    <select id="getMyCart" parameterType="String" resultType="Cart">-->
+    <!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate-->
+    <!--             , s.name AS stdnName, l.teacher AS lecTeacher-->
+    <!--             , l.title As lecTitle, l.disc_rate AS lecDiscRate-->
+    <!--             , l.topic AS lecTopic, l.price AS lecPrice-->
+    <!--             , l.target AS lecTarget, l.img AS lecImg-->
+    <!--        FROM cart c, stdn s, lec l-->
+    <!--        WHERE c.stdn_id = s.id-->
+    <!--          AND c.lec_id = l.id-->
+    <!--          AND c.stdn_id=#{stdnId}-->
+    <!--        ORDER BY c.id DESC-->
+    <!--    </select>-->
+
+    <!--    <select id="cntMyCart" parameterType="String" resultType="Integer">-->
+    <!--        SELECT COUNT(id) AS cnt-->
+    <!--        FROM cart-->
+    <!--        WHERE stdn_id = #{stdnId}-->
+    <!--    </select>-->
 </mapper>

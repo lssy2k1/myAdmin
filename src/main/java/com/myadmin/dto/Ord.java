@@ -26,4 +26,7 @@ public class Ord {
         this.payMethod = payMethod;
         this.useCpn = useCpn;
     }
+
+    public Integer odId;
+
 }

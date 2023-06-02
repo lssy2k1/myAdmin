@@ -4,17 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.myadmin.mapper.CurriMapper">
 
-<!--    <select id="thisCurri" parameterType="map" resultType="Curri">-->
-<!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate, c.is_open AS isOpen-->
-<!--             , s.name AS stdnName, l.title As lecTitle-->
-<!--             , l.topic AS lecTopic, l.price AS lecPrice-->
-<!--             , l.target AS lecTarget, l.img AS lecImg-->
-<!--        FROM curri c, stdn s, lec l-->
-<!--        WHERE c.stdn_id = s.id-->
-<!--          AND c.lec_id = l.id-->
-<!--          AND c.lec_id = #{lecId}-->
-<!--          AND c.stdn_id = #{stdnId}-->
-<!--    </select>-->
 
     <select id="select" parameterType="Integer" resultType="Curri">
         SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate, c.is_open AS isOpen
@@ -26,22 +15,7 @@
           AND c.lec_id = l.id
           AND c.id = #{id}
     </select>
-<!--    <select id="getMyCurri" parameterType="String" resultType="Curri">-->
-<!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate, c.is_open AS isOpen-->
-<!--             , s.name AS stdnName, l.title As lecTitle-->
-<!--             , l.topic AS lecTopic, l.price AS lecPrice-->
-<!--             , l.target AS lecTarget, l.img AS lecImg-->
-<!--        FROM curri c, stdn s, lec l-->
-<!--        WHERE c.stdn_id = s.id-->
-<!--          AND c.lec_id = l.id-->
-<!--          AND c.stdn_id=#{stdnId}-->
-<!--    </select>-->
 
-<!--    <select id="cntMyCurri" parameterType="String" resultType="Integer">-->
-<!--        SELECT COUNT(id) AS cnt-->
-<!--        FROM curri-->
-<!--        WHERE stdn_id = #{stdnId}-->
-<!--    </select>-->
 
     <select id="selectall" resultType="Curri">
         SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate, c.is_open AS isOpen
@@ -68,5 +42,32 @@
         DELETE FROM curri WHERE id=#{id}
     </delete>
 
+    <!--    <select id="thisCurri" parameterType="map" resultType="Curri">-->
+    <!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate, c.is_open AS isOpen-->
+    <!--             , s.name AS stdnName, l.title As lecTitle-->
+    <!--             , l.topic AS lecTopic, l.price AS lecPrice-->
+    <!--             , l.target AS lecTarget, l.img AS lecImg-->
+    <!--        FROM curri c, stdn s, lec l-->
+    <!--        WHERE c.stdn_id = s.id-->
+    <!--          AND c.lec_id = l.id-->
+    <!--          AND c.lec_id = #{lecId}-->
+    <!--          AND c.stdn_id = #{stdnId}-->
+    <!--    </select>-->
 
+    <!--    <select id="getMyCurri" parameterType="String" resultType="Curri">-->
+    <!--        SELECT c.id, c.stdn_id AS stdnId, c.lec_id AS lecId, c.rdate, c.is_open AS isOpen-->
+    <!--             , s.name AS stdnName, l.title As lecTitle-->
+    <!--             , l.topic AS lecTopic, l.price AS lecPrice-->
+    <!--             , l.target AS lecTarget, l.img AS lecImg-->
+    <!--        FROM curri c, stdn s, lec l-->
+    <!--        WHERE c.stdn_id = s.id-->
+    <!--          AND c.lec_id = l.id-->
+    <!--          AND c.stdn_id=#{stdnId}-->
+    <!--    </select>-->
+
+    <!--    <select id="cntMyCurri" parameterType="String" resultType="Integer">-->
+    <!--        SELECT COUNT(id) AS cnt-->
+    <!--        FROM curri-->
+    <!--        WHERE stdn_id = #{stdnId}-->
+    <!--    </select>-->
 </mapper>

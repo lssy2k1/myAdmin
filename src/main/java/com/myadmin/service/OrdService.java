@@ -54,4 +54,7 @@ public class OrdService implements MyAdminService<Integer, Ord> {
         PageHelper.startPage(pageNo, 10);
         return mapper.getpage();
     }
+    public List<Ord> searchOrdDetail(Integer orddetailid) throws Exception{
+        return mapper.searchorddetail(orddetailid);
+    }
 }

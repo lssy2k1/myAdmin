@@ -37,6 +37,19 @@
         ORDER BY id DESC
     </select>
 
+    <select id="searchorddetail" parameterType="Integer" resultType="Ord">
+        SELECT o.id AS id, o.stdn_id AS stdnId, o.rdate AS rdate
+            , o.is_done AS isDone
+            , o.ord_price AS ordPrice, o.pay_method AS payMethod
+            , o.upd_date AS updDate, o.use_cpn AS useCpn
+            , od.id AS odId
+        FROM ord o, ord_detail od
+        WHERE o.id = od.ord_id
+<!--        AND o.id = #{id}-->
+        AND od.id= #{odId}
+        ORDER BY o.id DESC
+    </select>
+
     <insert id="insert" parameterType="Ord">
         INSERT INTO ord (id, stdn_id, rdate, is_done, ord_price, pay_method, use_cpn)
         VALUES (ord_seq.NEXTVAL,#{stdnId}, TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'),'1',#{ordPrice},#{payMethod},#{useCpn})
