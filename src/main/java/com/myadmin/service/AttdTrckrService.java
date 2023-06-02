@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -40,7 +41,7 @@ public class AttdTrckrService implements MyAdminService<String, AttdTrckr> {
         return null;
     }
 
-    public List<Attd> trckAttd(AttdTrckr attdTrckr) throws Exception{
-        return mapper.trckattd(attdTrckr);
+    public List<AttdTrckr> trckattd(String s) throws Exception{
+        return mapper.trckattd(s);
     }
 }
