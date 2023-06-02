@@ -16,7 +16,7 @@ class LecDeleteTest {
     @Test
     void contextLoads() {
         try {
-            lecService.remove(101);
+            lecService.remove(124);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

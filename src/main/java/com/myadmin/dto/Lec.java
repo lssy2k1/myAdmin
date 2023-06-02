@@ -18,7 +18,6 @@ public class Lec {
     private String target;
     private String rdate;
     private String length;
-    private double rating;
     private Integer price;
     private String img;
     private Integer discRate;
@@ -26,7 +25,7 @@ public class Lec {
     private String delDate;
     private Integer hit;
 
-    public Lec(Integer id, String admId, Integer lecCode, String title, String teacher, String topic, String target, String rdate, String length, double rating, Integer price, String img, Integer discRate, String isDelete, String delDate, Integer hit) {
+    public Lec(Integer id, String admId, Integer lecCode, String title, String teacher, String topic, String target, String rdate, String length, Integer price, String img, Integer discRate, String isDelete, String delDate, Integer hit) {
         this.id = id;
         this.admId = admId;
         this.lecCode = lecCode;
@@ -36,7 +35,6 @@ public class Lec {
         this.target = target;
         this.rdate = rdate;
         this.length = length;
-        this.rating = rating;
         this.price = price;
         this.img = img;
         this.discRate = discRate;
@@ -44,6 +42,8 @@ public class Lec {
         this.delDate = delDate;
         this.hit = hit;
     }
+
+    private double rating;
 
     private MultipartFile imgfile;
 }

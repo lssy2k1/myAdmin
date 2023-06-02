@@ -6,30 +6,44 @@
 <mapper namespace="com.myadmin.mapper.LecMapper">
 
     <select id="select" parameterType="Integer" resultType="Lec">
-        SELECT id, adm_id as admId, lec_code as lecCode, title, teacher, topic, target, rdate, length
-                 ,length, rating, price, img, disc_rate as discRate, is_delete as isDelete, del_date as delDate, hit
-        FROM lec
-        WHERE id=#{id}
-        ORDER BY is_delete
+        SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
+                , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
+                , SUM(lr.rating)/COUNT(lr.id) as rating
+                , l.price, l.img, l.disc_rate as discRate
+                , l.is_delete as isDelete, l.del_date as delDate, l.hit
+        FROM lec l
+        LEFT JOIN lec_review lr ON l.id = lr.lec_id
+        WHERE l.id=#{id}
+        GROUP BY l.id,
+        l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+        ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
+        ORDER BY l.is_delete, l.id DESC
     </select>
     <select id="selectall" resultType="Lec">
-        SELECT id, adm_id as admId, lec_code as lecCode, title, teacher, topic, target, rdate, length
-                ,length, rating, price, img, disc_rate as discRate, is_delete as isDelete, del_date as delDate, hit
-        FROM lec
-        ORDER BY is_delete
+        SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
+        , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
+        , SUM(lr.rating)/COUNT(lr.id) as rating
+        , l.price, l.img, l.disc_rate as discRate
+        , l.is_delete as isDelete, l.del_date as delDate, l.hit
+        FROM lec l
+        LEFT JOIN lec_review lr ON l.id = lr.lec_id
+        GROUP BY l.id,
+        l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+        ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
+        ORDER BY l.is_delete, l.id DESC
     </select>
     <insert id="insert" parameterType="Lec">
         INSERT INTO lec (id, adm_id, lec_code, title, teacher, topic, target
-                , rdate, length, rating, price, img, disc_rate, is_delete, del_date, hit)
+                , rdate, length, price, img, disc_rate, is_delete, del_date, hit)
         VALUES (lec_seq.NEXTVAL, #{admId},#{lecCode}, #{title}, #{teacher}, #{topic}
-                , #{target}, TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'), #{length}, 0, #{price}, #{img}, 0
+                , #{target}, TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'), #{length}, #{price}, #{img}, 0
                 , '0', null, 0)
     </insert>
 <!--    초기 insert시 별점, 할인률, 삭제여부 0, 삭제날짜 0, 수강생수 0으로 설정함.-->
     <update id="update" parameterType="Lec">
         UPDATE lec
         SET lec_code=#{lecCode}, title=#{title}, teacher=#{teacher}, topic=#{topic}, target=#{target}
-            , rdate = TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'), length=#{length}, rating=#{rating}, price=#{price}
+            , rdate = TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss'), length=#{length}, price=#{price}
             , img=#{img}, disc_rate=#{discRate}, is_delete=#{isDelete}, del_date = TO_CHAR(SYSDATE,'yyyy.MM.dd hh24:mi:ss')
             , hit=#{hit, jdbcType=NULL}
         WHERE id=#{id}
@@ -42,37 +56,90 @@
 <!--강의명, 강사, 분야
 별점, 가격, 할인률, 수강생수, 등록일자-->
     <select id="search" parameterType="LecSearch" resultType="Lec">
-        SELECT id, adm_id as admId, lec_code as lecCode, title, teacher, topic, target, rdate, length
-        ,length, rating, price, img, disc_rate as discRate, is_delete as isDelete, del_date as delDate, hit
-        FROM lec
+        SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
+                , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
+                , SUM(lr.rating)/COUNT(lr.id) as rating
+                , l.price, l.img, l.disc_rate as discRate
+                , l.is_delete as isDelete, l.del_date as delDate, l.hit
+        FROM lec l
+        LEFT JOIN lec_review lr ON l.id = lr.lec_id
         <where>
             <if test="title != null and !title.equals('')">
-                AND title LIKE '%'||#{title}||'%'
+                AND UPPER(l.title) LIKE '%'||UPPER(#{title})||'%'
             </if>
             <if test="teacher != null and !teacher.equals('')">
-                AND teacher LIKE '%'||#{teacher}||'%'
+                AND UPPER(l.teacher) LIKE '%'||UPPER(#{teacher})||'%'
             </if>
             <if test="topic != null and !topic.equals('')">
-                topic = #{topic}
+                AND UPPER(l.topic) LIKE '%'||UPPER(#{topic})||'%'
             </if>
         </where>
         <choose>
             <when test="sortOption == 'price'">
+                GROUP BY l.id,
+                l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+                ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
                 ORDER BY isDelete, price DESC
             </when>
             <when test="sortOption == 'hit'">
+                GROUP BY l.id,
+                l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+                ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
                 ORDER BY isDelete, hit DESC
             </when>
             <when test="sortOption == 'rdate'">
+                GROUP BY l.id,
+                l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+                ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
                 ORDER BY isDelete, rdate DESC
             </when>
             <when test="sortOption == 'rating'">
-                ORDER BY isDelete, rating DESC
+                GROUP BY l.id,
+                l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+                ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
+                ORDER BY isDelete, rating
             </when>
             <otherwise>
+                GROUP BY l.id,
+                l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+                ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
                 ORDER BY id
             </otherwise>
         </choose>
     </select>
+
+    <!--    <select id="search" parameterType="LecSearch" resultType="Lec">-->
+<!--    SELECT id, adm_id as admId, lec_code as lecCode, title, teacher, topic, target, rdate, length-->
+<!--    ,length, rating, price, img, disc_rate as discRate, is_delete as isDelete, del_date as delDate, hit-->
+<!--    FROM lec-->
+<!--    <where>-->
+<!--        <if test="title != null and !title.equals('')">-->
+<!--            AND title LIKE '%'||#{title}||'%'-->
+<!--        </if>-->
+<!--        <if test="teacher != null and !teacher.equals('')">-->
+<!--            AND teacher LIKE '%'||#{teacher}||'%'-->
+<!--        </if>-->
+<!--        <if test="topic != null and !topic.equals('')">-->
+<!--            topic = #{topic}-->
+<!--        </if>-->
+<!--    </where>-->
+<!--    <choose>-->
+<!--        <when test="sortOption == 'price'">-->
+<!--            ORDER BY isDelete, price DESC-->
+<!--        </when>-->
+<!--        <when test="sortOption == 'hit'">-->
+<!--            ORDER BY isDelete, hit DESC-->
+<!--        </when>-->
+<!--        <when test="sortOption == 'rdate'">-->
+<!--            ORDER BY isDelete, rdate DESC-->
+<!--        </when>-->
+<!--        <when test="sortOption == 'rating'">-->
+<!--            ORDER BY isDelete, rating DESC-->
+<!--        </when>-->
+<!--        <otherwise>-->
+<!--            ORDER BY id-->
+<!--        </otherwise>-->
+<!--    </choose>-->
+<!--</select>-->
 
 </mapper>
