@@ -4,16 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.myadmin.mapper.AttdTrckrMapper">
-    <select id="trckattd" parameterType="AttdTrckr" resultType="Attd">
+    <select id="trckattd" parameterType="String" resultType="AttdTrckr">
 <!--        <![CDATA[-->
 <!--        SELECT stdn_id as stdnId, TO_CHAR(rdate, 'MM') as month, TO_CHAR(rdate, 'dd') as day, is_attend as isAttend-->
 <!--        FROM attd-->
 <!--        WHERE stdn_id = #{stdnId}-->
 <!--        ]]>-->
-        SELECT stdn_id as stdnId, SUBSTR(rdate, 6, 2) as month, SUBSTR(rdate, 9, 2) as day, is_attend as isAttend
+        SELECT SUBSTR(rdate, 6, 2) as month, SUBSTR(rdate, 9, 2) as day, is_attend as isAttend
         FROM attd
         WHERE stdn_Id = #{stdnId}
-        AND SUBSTR(rdate, 6, 2) = #{month}
-        AND SUBSTR(rdate, 9, 2) = #{day}
     </select>
 </mapper>

@@ -18,10 +18,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/stdn")
@@ -82,10 +79,41 @@ public class StdnController {
             MyPage myPage = myPageService.get(id);
             Attd attd = attdService.get(id);
 
+            ArrayList<AttdTrckr> data2 = new ArrayList<>();
+            ArrayList<AttdTrckr> data3 = new ArrayList<>();
+            ArrayList<AttdTrckr> data4 = new ArrayList<>();
+            ArrayList<AttdTrckr> data5 = new ArrayList<>();
+            ArrayList<AttdTrckr> data6 = new ArrayList<>();
+            ArrayList<AttdTrckr> data7 = new ArrayList<>();
+
+            List<AttdTrckr> attdList = attdTrckrService.trckattd(id);
+            for (AttdTrckr a:attdList) {
+                System.out.println(a.getMonth());
+                if (a.getMonth().equals("02")) {
+                    data2.add(a);
+                } if (a.getMonth().equals("03")) {
+                    data3.add(a);
+                } if (a.getMonth().equals("04")) {
+                    data4.add(a);
+                } if (a.getMonth().equals("05")) {
+                    data5.add(a);
+                } if (a.getMonth().equals("06")) {
+                    data6.add(a);
+                } if (a.getMonth().equals("07")) {
+                    data7.add(a);
+                }
+            }
+
             model.addAttribute("stdn", stdn);
             model.addAttribute("mypage", myPage);
             model.addAttribute("attd", attd);
-            model.addAttribute("center", dir+"profile");
+            model.addAttribute("data1",data2);
+            model.addAttribute("data2",data3);
+            model.addAttribute("data3",data4);
+            model.addAttribute("data4",data5);
+            model.addAttribute("data5",data6);
+            model.addAttribute("data6",data7);
+            model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
             throw new Exception("Student detail error");
         }
