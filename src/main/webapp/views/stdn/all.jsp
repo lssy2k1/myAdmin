@@ -40,9 +40,9 @@
                         <td>
                           <a href="#" data-toggle="modal" data-target="#target${obj.id}">
                             <c:choose>
-                              <c:when test="${obj.img==null || (obj.img).equals('')}"><img id="item_img" src="/images/adm.png" alt="profile img" style="width:100px; height:100px">
+                              <c:when test="${obj.img==null || (obj.img).equals('') || obj.img=='default.jpg'}"><img id="item_img" src="/images/adm.png" alt="profile img" style="width:100px; height:100px">
                               </c:when>
-                              <c:when test="${obj.img!=null || !(obj.img).equals('')}"><img id="item_img" src="/uimg/${obj.img}" alt="${obj.img}" style="width:100px; height:100px"/></c:when>
+                              <c:when test="${obj.img!=null || !(obj.img).equals('')}"><img id="item_img" src="/images/${obj.img}" alt="${obj.img}" style="width:100px; height:100px"/></c:when>
                             </c:choose>
                           </a>
                         </td>

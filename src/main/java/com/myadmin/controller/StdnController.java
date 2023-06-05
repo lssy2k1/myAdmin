@@ -1,13 +1,7 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.Attd;
-import com.myadmin.dto.AttdTrckr;
-import com.myadmin.dto.MyPage;
-import com.myadmin.dto.Stdn;
-import com.myadmin.service.AttdService;
-import com.myadmin.service.AttdTrckrService;
-import com.myadmin.service.MyPageService;
-import com.myadmin.service.StdnService;
+import com.myadmin.dto.*;
+import com.myadmin.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -32,6 +26,8 @@ public class StdnController {
     AttdService attdService;
     @Autowired
     AttdTrckrService attdTrckrService;
+    @Autowired
+    TestTrckrService testTrckrService;
     @Autowired
     BCryptPasswordEncoder encoder;
     String dir = "stdn/";
@@ -88,7 +84,6 @@ public class StdnController {
 
             List<AttdTrckr> attdList = attdTrckrService.trckattd(id);
             for (AttdTrckr a:attdList) {
-                System.out.println(a.getMonth());
                 if (a.getMonth().equals("02")) {
                     data2.add(a);
                 } if (a.getMonth().equals("03")) {
@@ -104,6 +99,30 @@ public class StdnController {
                 }
             }
 
+            ArrayList<TestTrckr> test2 = new ArrayList<>();
+            ArrayList<TestTrckr> test3 = new ArrayList<>();
+            ArrayList<TestTrckr> test4 = new ArrayList<>();
+            ArrayList<TestTrckr> test5 = new ArrayList<>();
+            ArrayList<TestTrckr> test6 = new ArrayList<>();
+            ArrayList<TestTrckr> test7 = new ArrayList<>();
+
+            List<TestTrckr> testList = testTrckrService.trcktest(id);
+            for (TestTrckr t:testList) {
+                if (t.getMonth().equals("02")) {
+                    test2.add(t);
+                } if (t.getMonth().equals("03")) {
+                    test3.add(t);
+                } if (t.getMonth().equals("04")) {
+                    test4.add(t);
+                } if (t.getMonth().equals("05")) {
+                    test5.add(t);
+                } if (t.getMonth().equals("06")) {
+                    test6.add(t);
+                } if (t.getMonth().equals("07")) {
+                    test7.add(t);
+                }
+            }
+
             model.addAttribute("stdn", stdn);
             model.addAttribute("mypage", myPage);
             model.addAttribute("attd", attd);
@@ -113,6 +132,12 @@ public class StdnController {
             model.addAttribute("data4",data5);
             model.addAttribute("data5",data6);
             model.addAttribute("data6",data7);
+            model.addAttribute("test1", test2);
+            model.addAttribute("test2", test3);
+            model.addAttribute("test3", test4);
+            model.addAttribute("test4", test5);
+            model.addAttribute("test5", test6);
+            model.addAttribute("test6", test7);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
             throw new Exception("Student detail error");

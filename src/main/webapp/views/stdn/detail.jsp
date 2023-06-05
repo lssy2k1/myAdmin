@@ -27,6 +27,23 @@
             box-shadow: none;
             background-color: transparent;
         }
+
+        .scoreText {
+            background-color: #ffffff;
+            color: #000000;
+            display:none;
+            font-size: smaller;
+        }
+
+        .scoreTd:hover {
+            background-color: #FFFFFF;
+        }
+        .scoreTd:hover .scoreTitle {
+            display: none;
+        }
+        .scoreTd:hover .scoreText {
+            display:block;
+        }
     </style>
     <script>
         let tab = {
@@ -42,41 +59,8 @@
                 });
             }
         };
-        // let trckattd = {
-        //     init: function() {
-        //         var stdnId = $('#stdnId').val();
-        //         var day = $('#tableDay').text();
-        //         var month = $('#tableMonth').text();
-        //         $.ajax({
-        //             url: '/trckattd',
-        //             data: {
-        //                 stdnId: stdnId,
-        //                 month: month,
-        //                 day: day
-        //             },
-        //             success: function (data) {
-        //                 console.log(data);
-        //                 var attd = data;
-        //                 var cellId = "#" + month + "_" + day;
-        //                 var attdImg;
-        //
-        //                 if (attd === '1') {
-        //                     attdImg = 'attended.png';
-        //                 } else if (attd === '2') {
-        //                     attdImg = 'late.png';
-        //                 } else {
-        //                     attdImg = 'absent.png';
-        //                 }
-        //
-        //                 // 이미지 출력
-        //                 $(cellId).html('<img src="/images/'+attdImg+'">');
-        //             }
-        //         });
-        //     }
-        // }
         $(function(){
             tab.init();
-            // trckattd.init();
         })
     </script>
 
@@ -213,11 +197,7 @@
                                 <div class="tab-content" style="padding:30px 30px 20px 30px">
                                     <div class="tab-pane fade active show" id="home-1" role="tabpanel" aria-labelledby="home-tab">
                                         <div class="media">
-    <%--                                        <div class="float-left card-title text-primary" style="padding: 0 40px 0 20px">--%>
-    <%--                                            <i class="fa fa-user-o"></i> 아이디--%>
-    <%--                                        </div>--%>
-    <%--                                        <div class="float-right">${stdn.id}</div>--%>
-                                            <ul class="list-star">
+                                            <ul class="list-star" style="font-size: medium">
                                                 <li>아이디 : ${stdn.id}</li>
                                                 <li>생일 : ${stdn.birthday}</li>
                                                 <li>구독여부 : ${stdn.isSubsc}</li>
@@ -237,14 +217,18 @@
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="tab-pane fade" id="attd-1" role="tabpanel" aria-labelledby="attd-tab"  style="overflow: scroll">
+                                    <div class="tab-pane fade" id="attd-1" role="tabpanel" aria-labelledby="attd-tab"  style="overflow: auto">
                                         <div class="media">
-                                            <table class="table-bordered" style="text-align: center">
+                                            <table class="table-bordered" style="text-align: center; vertical-align: center;">
                                                 <thead>
                                                     <tr>
-                                                        <th class="px-lg-2 py-lg-3"><div style="width: 45px">월 \ 일</div></th>
+                                                        <th class="px-lg-2 py-lg-1">
+                                                            <div style="width: 45px; height: 50px; padding-top: 13px">월 \ 일</div>
+                                                        </th>
                                                         <c:forEach var="day" begin="1" end="31">
-                                                            <th class="px-lg-2"><div style="width: 50px">${String.format("%02d", day)}일</div></th>
+                                                            <th class="px-lg-2">
+                                                                <div style="width: 50px; height: 50px; padding-top: 13px">${String.format("%02d", day)}일</div>
+                                                            </th>
                                                         </c:forEach>
                                                     </tr>
                                                 </thead>
@@ -254,14 +238,14 @@
                                                         <c:set var="num" value="${cnt = cnt+1}"></c:set>
                                                         <c:set var="lname" value="data${num}"></c:set>
                                                         <tr>
-                                                            <th class="py-lg-3"><span>${month}월</th>
+                                                            <th class="py-lg-1"><span>${month}월</th>
                                                             <c:forEach var="day" begin="1" end="31">
-                                                                <td id="${String.format("%02d", month)}_${String.format("%02d", day)}">
+                                                                <td id="${String.format("%02d", month)}_${String.format("%02d", day)}" style="height: 65px">
                                                                     <c:forEach var="a" items="${requestScope[lname]}">
                                                                         <c:if test="${a.month eq String.format('%02d', month) && a.day eq day}">
-                                                                            <c:if test="${a.isAttend == '1'}"><img src="/images/attended.png" style="width:80%; height:80%"></c:if>
-                                                                            <c:if test="${a.isAttend == '2'}"><img src="/images/late.png" style="width:80%; height:80%"></c:if>
-                                                                            <c:if test="${a.isAttend == '0'}"><img src="/images/absent.png" style="width:80%; height:80%"></c:if>
+                                                                            <c:if test="${a.isAttend == '1'}"><img src="/images/attended.png" style="width:45px; height:45px"></c:if>
+                                                                            <c:if test="${a.isAttend == '2'}"><img src="/images/late.png" style="width:45px; height:45px"></c:if>
+                                                                            <c:if test="${a.isAttend == '0'}"><img src="/images/absent.png" style="width:45px; height:45px"></c:if>
                                                                         </c:if>
                                                                     </c:forEach>
                                                                 </td>
@@ -277,44 +261,60 @@
                                             <div style="margin-right: 10px"><img src="/images/absent.png" style="width: 40px; height: 40px"> : 결석</div>
                                         </div>
                                     </div>
-<%--                                    <div class="tab-pane fade" id="attd-1" role="tabpanel" aria-labelledby="attd-tab"  style="overflow: scroll">--%>
-<%--                                        <div class="media">--%>
-<%--                                            <input type="hidden" id="stdnId" name="stdnId" value=${stdn.id}>--%>
-<%--                                            <table class="table-bordered" style="text-align: center">--%>
-<%--                                                <tr>--%>
-<%--                                                    <th>월\일</th>--%>
-<%--                                                    <c:forEach var="day" begin="1" end="31">--%>
-<%--                                                        <th class="w-10 p-2" id="tableDay">${String.format("%02d", day)}</th>--%>
-<%--                                                    </c:forEach>--%>
-<%--                                                </tr>--%>
-<%--                                                <c:forEach var="month" begin="5" end="7">--%>
-<%--                                                    <tr>--%>
-<%--                                                        <th class="w-10 p-2"><span id="tableMonth">${String.format("%02d", month)}</span>월</th>--%>
-<%--                                                        <c:forEach var="day" begin="1" end="31">--%>
-<%--                                                            <td id="${String.format("%02d", month)}_${String.format("%02d", day)}"></td>--%>
-<%--                                                        </c:forEach>--%>
-<%--                                                    </tr>--%>
-<%--                                                </c:forEach>--%>
-<%--                                            </table>--%>
-<%--                                        </div>--%>
-<%--                                    </div>--%>
-                                    <div class="tab-pane fade" id="study-1" role="tabpanel"
-                                         aria-labelledby="study-tab">
-                                        <h4>Contact us </h4>
-                                        <p>
-                                            Feel free to contact us if you have any questions!
-                                        </p>
-                                        <p>
-                                            <i class="ti-headphone-alt text-info"></i>
-                                            +123456789
-                                        </p>
-                                        <p>
-                                            <i class="ti-email text-success"></i>
-                                            contactus@example.com
-                                        </p>
-                                    </div>
                                     <div class="tab-pane fade" id="test-1" role="tabpanel"
                                          aria-labelledby="test-tab">
+                                        <div class="media">
+                                            <table class="table-bordered" style="text-align: center;">
+                                                <thead>
+                                                <tr>
+                                                    <th class="px-lg-2 py-lg-1">
+                                                        <div style="width: 45px; height: 50px; padding-top: 13px">월 \ 일</div>
+                                                    </th>
+                                                    <c:forEach var="day" begin="1" end="31">
+                                                        <th class="px-lg-2">
+                                                            <div style="width: 50px; height: 50px; padding-top: 13px">${String.format("%02d", day)}일</div>
+                                                        </th>
+                                                    </c:forEach>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <c:set value="0" var="cnt"></c:set>
+                                                <c:forEach var="month" begin="2" end="7">
+                                                    <c:set var="num" value="${cnt = cnt+1}"></c:set>
+                                                    <c:set var="lname" value="test${num}"></c:set>
+                                                    <tr>
+                                                        <th class="py-lg-1"><span>${month}월</th>
+                                                        <c:forEach var="day" begin="1" end="31">
+                                                            <td class="scoreTd" id="${String.format("%02d", month)}_${String.format("%02d", day)}" style="height: 65px">
+                                                                <c:forEach var="t" items="${requestScope[lname]}">
+                                                                    <c:if test="${t.month eq String.format('%02d', month) && t.day eq day}">
+                                                                        <c:if test="${t.score > 50}">
+                                                                            <img src="/images/pass.png" class="scoreTitle"  style="width:45px; height:45px" alt="pass">
+                                                                            <div class="scoreText">
+                                                                                <div style="font-weight: bold"><span style="font-weight: bolder; color: #008a00"> 주제:</span> ${t.sbj}</div>
+                                                                                <div style="font-weight: bold"><span style="font-weight: bolder; color: #008a00"> 점수:</span> ${t.score}</div>
+                                                                            </div>
+                                                                        </c:if>
+                                                                        <c:if test="${t.score <= 50}">
+                                                                            <img src="/images/fail.png" class="scoreTitle" style="width:45px; height:45px" alt="fail">
+                                                                            <div class="scoreText">
+                                                                                <div style="font-weight: bold"><span style="font-weight: bolder; color: #aa1111"> 주제:</span> ${t.sbj}</div>
+                                                                                <div style="font-weight: bold"><span style="font-weight: bolder; color: #aa1111"> 점수:</span> ${t.score}</div>
+                                                                            </div>
+                                                                        </c:if>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </td>
+                                                        </c:forEach>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div style=" writing-mode: horizontal-tb">상세 점수 확인을 위해서는 아이콘 위에 마우스 커서를 올려주세요!</div>
+                                    </div>
+                                    <div class="tab-pane fade" id="study-1" role="tabpanel"
+                                         aria-labelledby="study-tab">
                                         <h4>Contact us </h4>
                                         <p>
                                             Feel free to contact us if you have any questions!

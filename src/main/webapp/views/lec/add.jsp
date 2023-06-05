@@ -57,43 +57,47 @@
                 <div class="card-body">
                     <h4 class="card-title">강의 등록</h4>
                     <p class="card-description">
-                        강의 세부 내용을 입력하세요...
+                        강의 세부 내용을 입력하세요
                     </p>
 
+                    <form id="lec_code_form" class="form-inline mt-lg-3"  style="margin-bottom: 0">
+                        <div class="form-group" style="display: flex; justify-content: space-between">
+                            <label for="sbjCode">과목 분류 </label>
+                            <select class="form-control" id="sbjCode" name = "sbjCode" style = "margin-right:50px">
+                                <c:forEach var="obj" items="${sbjlist}">
+                                    <option value =${obj.sbjCode}>
+                                            ${obj.sbjName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                            <label for="sbjCode2">과목 분류 </label>
+                            <select class="form-control" id="sbjCode2" name = "sbjCode2" style = "margin-right:50px">
+                                <c:forEach var="obj" items="${sbjlist}">
+                                    <option value =${obj.sbjCode}>
+                                            ${obj.sbjName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                            <label for="sbjCode3">과목 분류 </label>
+                            <select class="form-control" id="sbjCode3" name = "sbjCode3" style = "margin-right:50px">
+                                <c:forEach var="obj" items="${sbjlist}">
+                                    <option value =${obj.sbjCode}>
+                                            ${obj.sbjName}
+                                    </option>
+                                </c:forEach>
+                            </select>
 
-                    <h4 class="card-title">Search</h4>
-                    <form id="lec_code_form" class="form-inline">
-
-                        <label for="sbjCode">과목 분류 </label>
-                        <select class="form-control" id="sbjCode" name = "sbjCode" style = "margin-right:50px">
-                            <c:forEach var="obj" items="${sbjlist}">
-                                <option value =${obj.sbjCode}>
-                                        ${obj.sbjName}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <label for="sbjCode2">과목 분류 </label>
-                        <select class="form-control" id="sbjCode2" name = "sbjCode2" style = "margin-right:50px">
-                            <c:forEach var="obj" items="${sbjlist}">
-                                <option value =${obj.sbjCode}>
-                                        ${obj.sbjName}
-                                </option>
-                            </c:forEach>
-                        </select>
-                        <label for="sbjCode3">과목 분류 </label>
-                        <select class="form-control" id="sbjCode3" name = "sbjCode3" style = "margin-right:50px">
-                            <c:forEach var="obj" items="${sbjlist}">
-                                <option value =${obj.sbjCode}>
-                                        ${obj.sbjName}
-                                </option>
-                            </c:forEach>
-                        </select>
-
-                        <button type="button" id="lec_code_btn" class="btn btn-primary mb-2" style="margin-left: 20px">강의 코드 생성</button>
+                            <button type="button" id="lec_code_btn" class="btn btn-primary mb-2" style="margin-left: 20px">강의 코드 생성</button>
+                        </div>
                     </form>
+                </div>
+            </div>
+        </div>
 
 
-
+        <div class="col-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
                     <form id = "lec_register_form" class="forms-sample">
 <%--                        id(시퀀스), rdate, delDate(타임스탬프), rating, hit(외부데이터)는 인풋 불가--%>
                         <div class="form-group">
