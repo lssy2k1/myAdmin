@@ -5,10 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class GetTimeUtil {
-    public String getTime(String timeStr1, String timeStr2) {
+    public static String getTime(String timeStr1, String timeStr2) {
         String result = "";
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh24:mi:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
             Date date1 = dateFormat.parse(timeStr1);
             Date date2 = dateFormat.parse(timeStr2);

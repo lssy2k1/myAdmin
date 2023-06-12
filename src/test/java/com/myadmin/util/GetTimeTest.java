@@ -12,7 +12,7 @@ public class GetTimeTest {
     @Test
     void GetTimeTest() {
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd hh:mm:ss");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
 
             String timeStr1 = "2023.06.01 20:00:00";
             String timeStr2 = "2023.06.01 19:59:00";
