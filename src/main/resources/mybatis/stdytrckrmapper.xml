@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myadmin.mapper.StdyTrckrMapper">
+
+    <select id="trckstdy" parameterType="String" resultType="StdyTrckr">
+        SELECT start_time as startTime, end_time as endTime, SUBSTR(rdate, 6, 2) as month, SUBSTR(rdate, 9, 2) as day
+        FROM stdy
+        WHERE writer = #{writer}
+    </select>
+</mapper>

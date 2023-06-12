@@ -2,6 +2,7 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.*;
 import com.myadmin.service.*;
+import com.myadmin.util.GetTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -29,7 +30,10 @@ public class StdnController {
     @Autowired
     TestTrckrService testTrckrService;
     @Autowired
+    StdyTrckrService stdyTrckrService;
+    @Autowired
     BCryptPasswordEncoder encoder;
+
     String dir = "stdn/";
 
     @RequestMapping("/all")
@@ -107,6 +111,7 @@ public class StdnController {
             ArrayList<TestTrckr> test7 = new ArrayList<>();
 
             List<TestTrckr> testList = testTrckrService.trcktest(id);
+            int testCnt = testList.size();
             for (TestTrckr t:testList) {
                 if (t.getMonth().equals("02")) {
                     test2.add(t);
@@ -123,6 +128,47 @@ public class StdnController {
                 }
             }
 
+            ArrayList<StdyTrckr> stdy2 = new ArrayList<>();
+            ArrayList<StdyTrckr> stdy3 = new ArrayList<>();
+            ArrayList<StdyTrckr> stdy4 = new ArrayList<>();
+            ArrayList<StdyTrckr> stdy5 = new ArrayList<>();
+            ArrayList<StdyTrckr> stdy6 = new ArrayList<>();
+            ArrayList<StdyTrckr> stdy7 = new ArrayList<>();
+            int totalTime = 0;
+            List<Integer> timeList = new ArrayList<>();
+
+            List<StdyTrckr> stdyList = stdyTrckrService.trckstdy(id);
+            GetTimeUtil getTimeUtil = new GetTimeUtil();
+
+            for (StdyTrckr s:stdyList) {
+                String startTime = s.getStartTime();
+                String endTime = s.getEndTime();
+
+                String timeDiff = GetTimeUtil.getTime(startTime, endTime);
+                int parsedTimeDiff = Integer.parseInt(timeDiff.substring(0, timeDiff.length() - 1));
+                s.setTime(timeDiff);
+                totalTime += parsedTimeDiff;
+
+                if (s.getMonth().equals("02")) {
+                    stdy2.add(s);
+                } if (s.getMonth().equals("03")) {
+                    stdy3.add(s);
+                } if (s.getMonth().equals("04")) {
+                    stdy4.add(s);
+                } if (s.getMonth().equals("05")) {
+                    stdy5.add(s);
+                } if (s.getMonth().equals("06")) {
+                    stdy6.add(s);
+                } if (s.getMonth().equals("07")) {
+                    stdy7.add(s);
+                }
+            }
+            int totalH = totalTime / 60;
+            int totalM = totalTime % 60;
+            timeList.add(totalH);
+            timeList.add(totalM);
+            timeList.add(totalTime);
+
             model.addAttribute("stdn", stdn);
             model.addAttribute("mypage", myPage);
             model.addAttribute("attd", attd);
@@ -138,6 +184,14 @@ public class StdnController {
             model.addAttribute("test4", test5);
             model.addAttribute("test5", test6);
             model.addAttribute("test6", test7);
+            model.addAttribute("testCnt", testCnt);
+            model.addAttribute("stdy1", stdy2);
+            model.addAttribute("stdy2", stdy3);
+            model.addAttribute("stdy3", stdy4);
+            model.addAttribute("stdy4", stdy5);
+            model.addAttribute("stdy5", stdy6);
+            model.addAttribute("stdy6", stdy7);
+            model.addAttribute("totalTime", timeList);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
             throw new Exception("Student detail error");

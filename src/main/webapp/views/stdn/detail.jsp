@@ -91,15 +91,15 @@
                                         </div>
                                     </div>
                                     <p class="w-75 mx-auto mb-3">"${mypage.detail}"</p>
-                                    <div class="d-flex justify-content-center">
-                                        <p class="nav-link">
+                                    <div>
+                                        <div class="nav-link" style="padding: 20px 0 0 0">
                                             <i class="ti-calendar"></i>
                                             입행일 : ${mypage.comdate}
-                                        </p>
-                                        <p class="nav-link">
+                                        </div>
+                                        <div class="nav-link">
                                             <i class="ti-calendar"></i>
                                             입과일 : ${mypage.digidate}
-                                        </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="border-bottom py-4">
@@ -113,14 +113,12 @@
                                 <div class="border-bottom py-4">
                                     <div class="d-flex mb-3">
                                         <div class="progress progress-md flex-grow">
-                                            <div class="progress-bar bg-primary" role="progressbar" aria-valuenow="55"
-                                                 style="width: 55%" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-primary" role="progressbar" style="width: ${totalTime.get(2)/1920*100}%" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="d-flex">
                                         <div class="progress progress-md flex-grow">
-                                            <div class="progress-bar bg-success" role="progressbar" aria-valuenow="75"
-                                                 style="width: 75%" aria-valuemin="0" aria-valuemax="100"></div>
+                                            <div class="progress-bar bg-success" role="progressbar" style="width: ${testCnt/50*100}%" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -255,7 +253,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div style="margin-top:20px; display: inline-flex; float: right">
+                                        <div style="margin-top:20px; display: inline-flex; float: right; font-weight: 800">
                                             <div style="margin-right: 40px"><img src="/images/attended.png" style="width: 40px; height: 40px"> : 출석</div>
                                             <div style="margin-right: 35px"><img src="/images/late.png" style="width: 40px; height: 40px"> : 지각</div>
                                             <div style="margin-right: 10px"><img src="/images/absent.png" style="width: 40px; height: 40px"> : 결석</div>
@@ -315,18 +313,44 @@
                                     </div>
                                     <div class="tab-pane fade" id="study-1" role="tabpanel"
                                          aria-labelledby="study-tab">
-                                        <h4>Contact us </h4>
-                                        <p>
-                                            Feel free to contact us if you have any questions!
-                                        </p>
-                                        <p>
-                                            <i class="ti-headphone-alt text-info"></i>
-                                            +123456789
-                                        </p>
-                                        <p>
-                                            <i class="ti-email text-success"></i>
-                                            contactus@example.com
-                                        </p>
+                                        <div class="media">
+                                            <table class="table-bordered" style="text-align: center;">
+                                                <thead>
+                                                <tr>
+                                                    <th class="px-lg-2 py-lg-1">
+                                                        <div style="width: 45px; height: 50px; padding-top: 13px">월 \ 일</div>
+                                                    </th>
+                                                    <c:forEach var="day" begin="1" end="31">
+                                                        <th class="px-lg-2">
+                                                            <div style="width: 50px; height: 50px; padding-top: 13px">${String.format("%02d", day)}일</div>
+                                                        </th>
+                                                    </c:forEach>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <c:set value="0" var="cnt"></c:set>
+                                                <c:forEach var="month" begin="2" end="7">
+                                                    <c:set var="num" value="${cnt = cnt+1}"></c:set>
+                                                    <c:set var="lname" value="stdy${num}"></c:set>
+                                                    <tr>
+                                                        <th class="py-lg-1"><span>${month}월</th>
+                                                        <c:forEach var="day" begin="1" end="31">
+                                                            <td id="${String.format("%02d", month)}_${String.format("%02d", day)}" style="height: 65px">
+                                                                <c:forEach var="s" items="${requestScope[lname]}">
+                                                                    <c:if test="${s.month eq String.format('%02d', month) && s.day eq day}">
+                                                                        <div style="height: 65px; background-color: lemonchiffon; display: flex; align-items: center; justify-content: center">
+                                                                            <div style="font-weight: bold"><span style="font-weight: bolder; color: #008a00"></span> ${s.time}</div>
+                                                                        </div>
+                                                                    </c:if>
+                                                                </c:forEach>
+                                                            </td>
+                                                        </c:forEach>
+                                                    </tr>
+                                                </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div style="writing-mode: horizontal-tb; margin-top: 20px; font-weight: 800; display: flex; align-items: center"><i class="mdi mdi-alarm" style="margin-right: 10px"></i> 스터디 총 합계 : ${totalTime.get(0)}시간 ${totalTime.get(1)}분</div>
                                     </div>
                                 </div>
                             </div>
