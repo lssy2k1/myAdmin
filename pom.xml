@@ -167,6 +167,12 @@
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>3.0.3</version>
         </dependency>
+<!--        gpt-->
+        <dependency>
+            <groupId>io.github.flashvayne</groupId>
+            <artifactId>chatgpt-spring-boot-starter</artifactId>
+            <version>1.0.4</version>
+        </dependency>
     </dependencies>
 
     <build>

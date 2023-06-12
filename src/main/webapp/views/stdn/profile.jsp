@@ -43,41 +43,50 @@
         }
     };
     let trckattd = {
-        init: function() {
+        init: async function() {
             var stdnId = $('#stdnId').val();
             var day = $('#tableDay').text();
             var month = $('#tableMonth').text();
-            $.ajax({
-                url: '/trckattd',
-                data: {
-                    stdnId: stdnId,
-                    month: month,
-                    day: day
-                },
-                success: function (data) {
-                    console.log(data);
-                    var attd = data;
-                    var cellId = "#" + month + "_" + day;
-                    var attdImg;
 
-                    if (attd === '1') {
-                        attdImg = 'attended.png';
-                    } else if (attd === '2') {
-                        attdImg = 'late.png';
-                    } else {
-                        attdImg = 'absent.png';
+            try {
+                const data = await $.ajax({
+                    url: '/trckattd',
+                    data: {
+                        stdnId: stdnId,
+                        month: month,
+                        day: day
                     }
+                });
 
-                    // 이미지 출력
-                    $(cellId).html('<img src="/images/'+attdImg+'">');
+                console.log(data);
+                var attd = data;
+                var cellId = "#" + month + "_" + day;
+                var attdImg;
+
+                if (attd === '1') {
+                    attdImg = 'attended.png';
+                } else if (attd === '2') {
+                    attdImg = 'late.png';
+                } else {
+                    attdImg = 'absent.png';
                 }
-            });
+
+                // 이미지 출력
+                $(cellId).html('<img src="/images/' + attdImg + '">');
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
-    }
-    $(function(){
+    };
+
+    (async function() {
+        await trckattd.init();
+        // 추가 작업 수행
         tab.init();
-        trckattd.init();
-    })
+    })();
+    // $(function(){
+    //
+    // })
 </script>
 
 <div class="content-wrapper">
