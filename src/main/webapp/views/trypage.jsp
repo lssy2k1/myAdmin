@@ -7,6 +7,13 @@
 
 <div class="content-wrapper">
   <div class="row">
+
+    <div class="col-md-12 grid-margin" style = "display: flex; flex-direction: row;">
+      <jsp:include page="toall.jsp"/>
+      <jsp:include page="oneonone.jsp"/>
+      <jsp:include page="chatbot.jsp"/>
+    </div>
+
     <div class="col-md-12 grid-margin" style = "display: flex; flex-direction: row;">
 
       <%-----------네이버 메일 폼 양식-----------------------------------------%>

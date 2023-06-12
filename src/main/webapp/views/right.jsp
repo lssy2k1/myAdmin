@@ -55,7 +55,9 @@
         <p class="settings-heading border-top-0 mb-3 pl-3 pt-0 border-bottom-0 pb-0">Friends</p>
         <small class="settings-heading border-top-0 mb-3 pt-0 border-bottom-0 pb-0 pr-3 font-weight-normal">See All</small>
       </div>
+
       <ul class="chat-list">
+
         <li class="list active">
           <div class="profile"><img src="/images/faces/face1.jpg" alt="image"><span class="online"></span></div>
           <div class="info">
@@ -63,18 +65,6 @@
             <p>Available</p>
           </div>
           <small class="text-muted my-auto">19 min</small>
-        </li>
-
-        <li>
-            <h1 id="adm_id">${loginadm.id}</h1>
-            <H1 id="status">Status</H1>
-            <button id="connect">Connect</button>
-            <button id="disconnect">Disconnect</button>
-
-            <h3>All</h3>
-            <input type="text" id="alltext"><button id="sendall">Send</button>
-            <div id="all"></div>
-
         </li>
 
       </ul>

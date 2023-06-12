@@ -13,7 +13,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class GptUtil {
-    private static final String API_KEY = "";
+    private static final String API_KEY = "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";
     private static final String API_ENDPOINT = "https://api.openai.com/v1/chat/completions";
 
     public static String getResult(String msg) throws URISyntaxException, IOException, InterruptedException, ParseException {

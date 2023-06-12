@@ -68,10 +68,10 @@ public class MainController {
         return "index";
     }
 
-    @RequestMapping("/websocket")
+    @RequestMapping("/toall")
     public String websocket(Model model){
         model.addAttribute("adminserver", adminserver);
-        model.addAttribute("center", "websocket");
+        model.addAttribute("center", "toall");
         return "index";
     }
     @RequestMapping("/oneonone")

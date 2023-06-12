@@ -24,7 +24,7 @@ public class StomWebSocketConfig implements WebSocketMessageBrokerConfigurer{
     /* 어플리케이션 내부에서 사용할 path를 지정할 수 있음 */
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
-        registry.enableSimpleBroker("/send","/sendadm");
+        registry.enableSimpleBroker("/send","/sendadm", "/chsend");
     }
     //각각 send, broadcast는 inbound, outbound
     // send는 클라이언트가 서버로 보낼 떄, broadcasat는 서버가 클라이언트로 보낼 때
