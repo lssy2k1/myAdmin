@@ -186,12 +186,12 @@
                                            role="tab" aria-controls="attd-1" aria-selected="false">출결</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" id="study-tab" data-bs-toggle="tab" href="#"
-                                           role="tab" aria-controls="study-1" aria-selected="true">스터디</a>
-                                    </li>
-                                    <li class="nav-item">
                                         <a class="nav-link" id="test-tab" data-bs-toggle="tab" href="#"
                                            role="tab" aria-controls="test-1" aria-selected="true">테스트</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="study-tab" data-bs-toggle="tab" href="#"
+                                           role="tab" aria-controls="study-1" aria-selected="true">스터디</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" style="padding:30px 30px 20px 30px">
@@ -311,7 +311,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div style=" writing-mode: horizontal-tb">상세 점수 확인을 위해서는 아이콘 위에 마우스 커서를 올려주세요!</div>
+                                        <div style="writing-mode: horizontal-tb; margin-top: 20px; font-weight: 800; display: flex; align-items: center"><i class="mdi mdi-comment-question-outline" style="margin-right: 10px"></i> 상세 점수 확인을 위해서는 아이콘 위에 마우스 커서를 올려주세요!</div>
                                     </div>
                                     <div class="tab-pane fade" id="study-1" role="tabpanel"
                                          aria-labelledby="study-tab">
