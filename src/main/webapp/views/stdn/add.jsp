@@ -32,35 +32,32 @@
         <div class="col-6 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Add Student</h4>
-                    <p class="card-description">
-                        Fill in the form below to add new stdn
-                    </p>
+                    <div class="card-title text-primary mb-lg-5">수강생 추가</div>
 
                     <form id = "std_add_form" class="forms-sample">
                         <div class="form-group">
-                            <label for="id">ID</label>
+                            <label for="id">아이디</label>
                             <input type="text" class="form-control" name = "id" id="id" placeholder="Input ID">
                         </div>
                         <div class="form-group">
-                            <label for="pwd">PWD</label>
+                            <label for="pwd">비밀번호</label>
                             <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="Input Password">
                         </div>
                         <div class="form-group">
-                            <label for="name">NAME</label>
+                            <label for="name">이름</label>
                             <input type="text" class="form-control" id="name" name = "name" placeholder="Input Name">
                         </div>
                         <div class="form-group">
-                            <label for="email">EMAIL</label>
+                            <label for="email">이메일</label>
                             <input type="text" class="form-control" id="email" name = "email" placeholder="Input Email">
                         </div>
                         <div class="form-group">
-                            <label for="contact">CONTACT</label>
+                            <label for="contact">연락처</label>
                             <input type="text" class="form-control" id="contact" name = "contact" placeholder="Input Mobile Phone Number">
                         </div>
 
-                        <button id = "std_add_btn" type="button" class="btn btn-primary mr-2">Add</button>
-                        <button id = "std_can_btn" type="button" class="btn btn-light">Cancel</button>
+                        <button id = "std_can_btn" type="button" class="btn btn-outline-primary mt-3" style="float: right">취소</button>
+                        <button id = "std_add_btn" type="button" class="btn btn-primary mt-3 mr-sm-2" style="float: right">추가</button>
                     </form>
                 </div>
             </div>

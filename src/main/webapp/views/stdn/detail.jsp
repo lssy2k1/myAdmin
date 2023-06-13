@@ -111,12 +111,14 @@
                                     </div>
                                 </div>
                                 <div class="border-bottom py-4">
-                                    <div class="d-flex mb-3">
+                                    <div class="d-flex mb-3" style="display:inline-flex; justify-content: space-between; align-items: center">
+                                        <p class="mr-1 my-0" style="width: 3rem">출결</p>
                                         <div class="progress progress-md flex-grow">
                                             <div class="progress-bar bg-primary" role="progressbar" style="width: ${totalTime.get(2)/1920*100}%" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                     <div class="d-flex">
+                                        <p class="mr-1 my-0" style="width: 3rem">테스트</p>
                                         <div class="progress progress-md flex-grow">
                                             <div class="progress-bar bg-success" role="progressbar" style="width: ${testCnt/50*100}%" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
@@ -169,6 +171,9 @@
                                         </span>
                                     </p>
                                 </div>
+                                <a class="btn btn-outline-primary btn-block mb-2" href="/stdn/update?id=${stdn.id}" type="button">
+                                    정보 수정
+                                </a>
                                 <a class="btn btn-primary btn-block mb-2" href="/stdn/all" type="button">
                                     목록으로 돌아가기
                                 </a>

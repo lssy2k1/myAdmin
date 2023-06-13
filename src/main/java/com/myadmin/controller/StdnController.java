@@ -230,8 +230,16 @@ public class StdnController {
         }
         return "index";
     }
+
+    @RequestMapping("/update")
+    public String update(Model model, String id, HttpSession session) throws Exception {
+        Stdn stdn = stdnService.get(id);
+        model.addAttribute("stdn", stdn);
+        model.addAttribute("center", dir+"update");
+        return "index";
+    }
     @RequestMapping("/updateimpl")
-    public String updateimpl(Model model, @Validated Stdn std, Errors errors) throws Exception {
+    public String updateimpl(Model model, @Validated Stdn stdn, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -243,12 +251,12 @@ public class StdnController {
             throw new Exception(msg);
         }
         try {
-            std.setPwd(encoder.encode(std.getPwd()));
-            stdnService.modify(std);
+            stdn.setPwd(encoder.encode(stdn.getPwd()));
+            stdnService.modify(stdn);
         } catch (Exception e) {
             throw new Exception("Student update error");
         }
-        return "redirect:/stdn/detail?id="+std.getId();
+        return "redirect:/stdn/detail?id="+stdn.getId();
     }
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model, String id) throws Exception {

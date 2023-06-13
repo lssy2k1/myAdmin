@@ -11,7 +11,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title mb-lg-3 ml-2">전체 수강생 목록</div>
+                        <div class="card-title text-primary mb-lg-3 ml-2">전체 수강생 목록</div>
                         <form action="/stdn/search" method="get">
                             <div class="form-group"
                                  style="display: flex; align-items: center; float: right; margin: 0 0 0.7em 0; width: 50%">
@@ -54,8 +54,6 @@
                                 </thead>
                                 <tbody>
                                 <c:forEach var="s" items="${cpage.getList()}">
-                                    <c:choose>
-                                        <c:when test="${s.attdDate == null || (s.attdDate).equals('') || (s.attdDate).equals(currentDate)}">
                                             <tr>
                                                 <td>
                                                     <a href="#" data-toggle="modal" data-target="#target${s.id}">
@@ -78,17 +76,24 @@
                                                 <td>
                                                     <div>
                                                         <c:choose>
-                                                            <c:when test="${s.isAttend == '1'}">
-                                                                <span class="badge badge-outline-success px-2 py-1"
-                                                                      style="font-size: 1em">출석</span>
-                                                            </c:when>
-                                                            <c:when test="${s.isAttend == '2'}">
-                                                                <span class="badge badge-outline-warning px-2 py-1"
-                                                                      style="font-size: 1em">지각</span>
-                                                            </c:when>
-                                                            <c:otherwise>
+                                                            <c:when test="${s.attdDate == null || (s.attdDate).equals('') || !(s.attdDate).equals(currentDate)}">
                                                                 <span class="badge badge-outline-danger px-2 py-1" style="font-size: 1em">결석</span>
-                                                            </c:otherwise>
+                                                            </c:when>
+                                                            <c:when test="${(s.attdDate).equals(currentDate)}">
+                                                                <c:choose>
+                                                                    <c:when test="${s.isAttend == '1'}">
+                                                                        <span class="badge badge-outline-success px-2 py-1"
+                                                                              style="font-size: 1em">출석</span>
+                                                                    </c:when>
+                                                                    <c:when test="${s.isAttend == '2'}">
+                                                                        <span class="badge badge-outline-warning px-2 py-1"
+                                                                              style="font-size: 1em">지각</span>
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <span class="badge badge-outline-danger px-2 py-1" style="font-size: 1em">결석</span>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+                                                            </c:when>
                                                         </c:choose>
                                                     </div>
                                                 </td>
@@ -121,8 +126,6 @@
 
                                                 </div>
                                             </div>
-                                        </c:when>
-                                    </c:choose>
                                 </c:forEach>
                                 </tbody>
                             </table>
