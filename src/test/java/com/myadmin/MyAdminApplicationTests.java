@@ -8,6 +8,7 @@ class MyAdminApplicationTests {
 
     @Test
     void contextLoads() {
+
     }
 
 }

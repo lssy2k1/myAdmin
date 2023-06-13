@@ -15,10 +15,12 @@
         FROM anc
         ORDER BY id DESC
     </select>
-    <insert id="insert" parameterType="Anc">
-        INSERT INTO anc (id, title, writer, contents, img, rdate)
-        VALUES (anc_seq.NEXTVAL,#{title},#{writer},#{contents},#{img},SYSDATE)
+
+    <insert id="insert" parameterType="anc">
+        INSERT INTO anc (id, writer, title, contents, img, rdate)
+        VALUES (anc_seq.NEXTVAL,#{writer},#{title},#{contents},#{img},TO_CHAR(SYSDATE,'yyyy-MM-dd'))
     </insert>
+
     <update id="update" parameterType="Anc">
         UPDATE anc
         SET title=#{title}, contents=#{contents}, rdate=SYSDATE, img=#{img}

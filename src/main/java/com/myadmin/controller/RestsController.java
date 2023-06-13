@@ -1,14 +1,12 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.LecCategory;
-import com.myadmin.dto.Mrk;
-import com.myadmin.dto.SbjDetail;
+import com.google.api.services.calendar.model.Event;
+import com.myadmin.dto.*;
 import com.myadmin.service.LecCategoryService;
 import com.myadmin.service.MrkService;
 import com.myadmin.service.SbjDetailService;
-import com.myadmin.util.GetDateUtil;
-import com.myadmin.util.GptUtil;
-import com.myadmin.util.WeatherUtil;
+import com.myadmin.util.*;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@Slf4j
 @RestController
 public class RestsController {
 
@@ -107,4 +107,14 @@ public class RestsController {
             throw new RuntimeException(e);
         }
     }
+
+    @RequestMapping("/calevent")
+    public Event calevent(CalEvent calEvent) throws Exception {
+        GoogleCalendar googleCalendar = new GoogleCalendar();
+        log.info(calEvent.toString()+"==================================================");
+        Event event = googleCalendar.makeEvent(calEvent);
+        Event addEvent = GoogleCalendar.addEvent(event);
+        return addEvent;
+    };
+
 }

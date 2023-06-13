@@ -173,6 +173,29 @@
             <artifactId>chatgpt-spring-boot-starter</artifactId>
             <version>1.0.4</version>
         </dependency>
+<!--        채팅창 팝업-->
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>3.0.8</version> <!-- 사용하고자 하는 버전 -->
+        </dependency>
+
+<!--        구글캘린더-->
+        <dependency>
+            <groupId>com.google.api-client</groupId>
+            <artifactId>google-api-client</artifactId>
+            <version>1.23.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.oauth-client</groupId>
+            <artifactId>google-oauth-client-jetty</artifactId>
+            <version>1.23.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-calendar</artifactId>
+            <version>v3-rev305-1.23.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,5 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<style>
+  #scroll-btn {
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background-color: cornflowerblue;
+    position: fixed;
+    bottom: 12%;
+    right: 5%;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font: 2px monospace;
+    transition: opacity 2s, transform 2s;
+  }
+
+  #scroll-btn.show {
+    opacity: 1;
+    transition: opacity 5s, transform 5s;
+  }
+  #scroll-btn2 {
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background-color: cornflowerblue;
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font: bold 10px monospace;
+    transition: opacity 2s, transform 2s;
+  }
+
+  #scroll-btn2.show {
+    opacity: 1;
+    transition: opacity 5s, transform 5s;
+  }
+
+  #scroll-btn3 {
+    opacity: 0;
+    width: 50px;
+    height: 50px;
+    color: #fff;
+    background-color: cornflowerblue;
+    position: fixed;
+    bottom: 19%;
+    right: 5%;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    font: bold 10px monospace;
+    transition: opacity 2s, transform 2s;
+  }
+  #scroll-btn3.show {
+    opacity: 1;
+    transition: opacity 5s, transform 5s;
+  }
+</style>
+
+
+
 <html lang="en">
 
 
@@ -34,8 +97,51 @@
   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d005c7797282324dfcb26cf31188fc01"></script>
   <script src="/webjars/sockjs-client/sockjs.min.js"></script>
   <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+  <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+  <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+
+  <script>
+    let chatbtn = {
+      init:function(){
+        const chatbotbox = $('#chatbot_box');
+        const oneononebox = $('#oneonone_box');
+        const toallbox = $('#toall_box');
+
+        const scrollBtn = document.createElement("button");
+        scrollBtn.innerHTML = "chatbot";
+        scrollBtn.setAttribute("id", "scroll-btn");
+        document.body.appendChild(scrollBtn);
+        scrollBtn.classList.add("show");
+        scrollBtn.addEventListener("click", function(){
+          chatbotbox.toggle();
+        });
+        const scrollBtn2 = document.createElement("button");
+        scrollBtn2.innerHTML = "1:1";
+        scrollBtn2.setAttribute("id", "scroll-btn2");
+        document.body.appendChild(scrollBtn2);
+        scrollBtn2.classList.add("show");
+        scrollBtn2.addEventListener("click", function(){
+          oneononebox.toggle();
+        });
+
+        const scrollBtn3 = document.createElement("button");
+        scrollBtn3.innerHTML = "공지";
+        scrollBtn3.setAttribute("id", "scroll-btn3");
+        document.body.appendChild(scrollBtn3);
+        scrollBtn3.classList.add("show");
+        scrollBtn3.addEventListener("click", function(){
+          toallbox.toggle();
+        });
+      }
+    };
+
+    $(function(){
+      chatbtn.init();
+    });
+  </script>
 </head>
 <body>
+
   <div class="container-scroller">
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -207,6 +313,10 @@
           </c:otherwise>
         </c:choose>
 
+        <jsp:include page="oneonone.jsp"/>
+        <jsp:include page="chatbot.jsp"/>
+        <jsp:include page="toall.jsp"/>
+
 
         <!-- partial:partials/_footer.html -->
         <footer class="footer">
@@ -220,12 +330,13 @@
         </footer> 
         <!-- partial -->
       </div>
+
       <!-- main-panel ends -->
     </div>   
     <!-- page-body-wrapper ends -->
+
   </div>
   <!-- container-scroller -->
-
 
   <!-- plugins:js -->
   <script src="/vendors/js/vendor.bundle.base.js"></script>

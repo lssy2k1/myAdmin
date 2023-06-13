@@ -3,7 +3,15 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
+    #chatbot_box{
+        width: 400px;
+        height : 500px;
+        position : fixed;
+        bottom: 13%;
+        right: 5%;
+        display : none;
 
+    }
     #me {
         width: 300px;
         height: 200px;
@@ -82,13 +90,10 @@
     })
 
 </script>
-<!-- Begin Page Content -->
-<div class="container-fluid">
 
-    <!-- Page Heading -->
 
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" id = "chatbot_box">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">ChatBot</h6>
         </div>
@@ -106,5 +111,3 @@
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
-</div>
