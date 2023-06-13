@@ -33,12 +33,21 @@ public class Stdn {
     private String isAttend;
     private String attdDate;
 
-    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
+//    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
+//        this.id = id;
+//        this.pwd = pwd;
+//        this.name = name;
+//        this.isSubsc = isSubsc;
+//        this.isExit = isExit;
+//        this.isJoin = isJoin;
+//    }
+
+    public Stdn(String id, String pwd, String name, String email, String contact, String isJoin) {
         this.id = id;
         this.pwd = pwd;
         this.name = name;
-        this.isSubsc = isSubsc;
-        this.isExit = isExit;
+        this.email = email;
+        this.contact = contact;
         this.isJoin = isJoin;
     }
 }

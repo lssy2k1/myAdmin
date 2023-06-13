@@ -6,15 +6,22 @@
 <mapper namespace="com.myadmin.mapper.StdnMapper">
 
     <select id="getpage" resultType="Stdn">
-        SELECT s.img, s.id, s.name, a.is_attend as isAttend, s.email, s.contact, a.rdate as attdDate
-        FROM stdn s
-        LEFT OUTER JOIN attd a on s.id = a.stdn_id
-        WHERE (a.rdate IS NULL OR a.rdate = TO_CHAR(CURRENT_DATE, 'YYYY.MM.DD'))
+        SELECT l.img, l.id, l.name, l.is_attend AS isAttend, l.email, l.contact, l.rdate AS attdDate, l.is_join AS isJoin
+        FROM (
+            SELECT s.img, s.id, s.name, a.is_attend, s.email, s.contact, a.rdate, s.is_join, ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY (TO_DATE(a.rdate, 'YYYY.MM.DD')) DESC) AS rn
+            FROM stdn s
+            LEFT OUTER JOIN attd a ON s.id = a.stdn_id
+        ) l
+        WHERE l.is_join = 1 AND l.rn = 1
     </select>
     <select id="searchpage" resultType="Stdn" parameterType="StdnSearch">
-        SELECT *
-        FROM stdn
-        WHERE 1=1
+        SELECT l.img, l.id, l.name, l.is_attend AS isAttend, l.email, l.contact, l.rdate AS attdDate, l.is_join AS isJoin
+        FROM (
+        SELECT s.img, s.id, s.name, a.is_attend, s.email, s.contact, a.rdate, s.is_join, ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY (TO_DATE(a.rdate, 'YYYY.MM.DD')) DESC) AS rn
+        FROM stdn s
+        LEFT OUTER JOIN attd a ON s.id = a.stdn_id
+        ) l
+        WHERE l.is_join = 1 AND l.rn = 1
         <if test="search1 != ''">
             AND id LIKE '%' ||  #{search1} || '%'
         </if>
@@ -22,6 +29,17 @@
             AND name LIKE '%' ||  #{search2} || '%'
         </if>
     </select>
+<!--    <select id="searchpage" resultType="Stdn" parameterType="StdnSearch">-->
+<!--        SELECT *-->
+<!--        FROM stdn-->
+<!--        WHERE 1=1-->
+<!--        <if test="search1 != ''">-->
+<!--            AND id LIKE '%' ||  #{search1} || '%'-->
+<!--        </if>-->
+<!--        <if test="search2 != ''">-->
+<!--            AND name LIKE '%' ||  #{search2} || '%'-->
+<!--        </if>-->
+<!--    </select>-->
     <select id="select" parameterType="String" resultType="Stdn">
         SELECT *
         FROM stdn
@@ -32,8 +50,8 @@
         FROM stdn
     </select>
     <insert id="insert" parameterType="Stdn">
-        INSERT INTO stdn (id, pwd, name, email, contact)
-        VALUES (#{id}, #{pwd}, #{name}, #{email}, #{contact})
+        INSERT INTO stdn (id, pwd, name, email, contact, is_join)
+        VALUES (#{id}, #{pwd}, #{name}, #{email}, #{contact}, '1')
     </insert>
     <update id="update" parameterType="Stdn">
         UPDATE stdn
