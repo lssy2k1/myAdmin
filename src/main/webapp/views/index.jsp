@@ -113,7 +113,7 @@
             <c:when test="${loginadm == null}">
               <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                  <img src="/images/adm.png" alt="profile"/>
+                  <img src="/images/adm.png" alt="profile" style="width: 2em; height: 2em"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                   <a class="dropdown-item" href="/register">
@@ -129,7 +129,7 @@
             <c:otherwise>
               <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                  <img src="/images/loginprofile.png" alt="profile"/>
+                  <img src="/images/loginprofile.png" alt="profile" style="width: 2em; height: 2em"/>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                   <a class="dropdown-item" href="/adm/detail?id=${loginadm.id}">

@@ -30,6 +30,8 @@ public class Stdn {
     private String sbj2;
     private String sbj3;
     private String loginError;
+    private String isAttend;
+    private String attdDate;
 
     public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
         this.id = id;

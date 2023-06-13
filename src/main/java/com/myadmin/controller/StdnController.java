@@ -1,5 +1,6 @@
 package com.myadmin.controller;
 
+import com.github.pagehelper.PageInfo;
 import com.myadmin.dto.*;
 import com.myadmin.service.*;
 import com.myadmin.util.GetTimeUtil;
@@ -11,8 +12,10 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -36,21 +39,50 @@ public class StdnController {
 
     String dir = "stdn/";
 
+//    @RequestMapping("/all")
+//    public String all(Model model) throws Exception {
+//        List<Stdn> list = stdnService.get();
+//        model.addAttribute("std", list);
+//        model.addAttribute("center", dir+"all");
+//        return "index";
+//    }
+
     @RequestMapping("/all")
-    public String all(Model model) throws Exception {
+    public String all(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception{
         List<Stdn> list = stdnService.get();
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+        PageInfo<Stdn> p;
+        try {
+            p = new PageInfo<>(stdnService.getPage(pageNo), 3);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0001");
+        }
+        model.addAttribute("target","stdn");
+        model.addAttribute("currentDate", currentDate);
+        model.addAttribute("cpage", p);
         model.addAttribute("std", list);
-        model.addAttribute("center", dir+"all");
+        model.addAttribute("center",dir+"all");
         return "index";
     }
 
+    @RequestMapping("/search")
+    public String search(Model model, StdnSearch search, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
+        PageInfo<Stdn> p = new PageInfo<>(stdnService.searchpage(pageNo, search), 3);
+        model.addAttribute("value1",search.getSearch1());
+        model.addAttribute("value2",search.getSearch2());
+        model.addAttribute("target","stdn");
+        model.addAttribute("cpage",p);
+        model.addAttribute("center",dir+"all");
+        model.addAttribute("search", search);
+        return "index";
+    }
+
+
+
     @RequestMapping("/add")
     public String add(Model model, String id, HttpSession session){
-//        Adm adm = null;
-//        adm = (Adm) session.getAttribute("loginadm");
-//        System.out.println("--------------------------------");
-//        System.out.println(adm.getId());
-//        System.out.println("--------------------------------");
         model.addAttribute("center", dir+"add");
         return "index";
     }

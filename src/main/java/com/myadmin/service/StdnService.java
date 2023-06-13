@@ -1,6 +1,9 @@
 package com.myadmin.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.myadmin.dto.Stdn;
+import com.myadmin.dto.StdnSearch;
 import com.myadmin.frame.MyAdminService;
 import com.myadmin.mapper.StdnMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -39,5 +42,14 @@ public class StdnService implements MyAdminService<String, Stdn> {
     @Override
     public List<Stdn> get() throws Exception {
         return mapper.selectall();
+    }
+
+    public Page<Stdn> getPage(int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 5);
+        return mapper.getpage();
+    }
+    public Page<Stdn> searchpage(int pageNo, StdnSearch stdnSearch) throws Exception {
+        PageHelper.startPage(pageNo, 5);
+        return mapper.searchpage(stdnSearch);
     }
 }

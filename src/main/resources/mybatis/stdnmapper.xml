@@ -5,6 +5,23 @@
 
 <mapper namespace="com.myadmin.mapper.StdnMapper">
 
+    <select id="getpage" resultType="Stdn">
+        SELECT s.img, s.id, s.name, a.is_attend as isAttend, s.email, s.contact, a.rdate as attdDate
+        FROM stdn s
+        LEFT OUTER JOIN attd a on s.id = a.stdn_id
+        WHERE (a.rdate IS NULL OR a.rdate = TO_CHAR(CURRENT_DATE, 'YYYY.MM.DD'))
+    </select>
+    <select id="searchpage" resultType="Stdn" parameterType="StdnSearch">
+        SELECT *
+        FROM stdn
+        WHERE 1=1
+        <if test="search1 != ''">
+            AND id LIKE '%' ||  #{search1} || '%'
+        </if>
+        <if test="search2 != ''">
+            AND name LIKE '%' ||  #{search2} || '%'
+        </if>
+    </select>
     <select id="select" parameterType="String" resultType="Stdn">
         SELECT *
         FROM stdn

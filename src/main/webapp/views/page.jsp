@@ -4,16 +4,17 @@
 
 <!-- pagination start -->
 <div class="col text-center">
-    <ul class="pagination flex-wrap">
+    <ul class="pagination d-flex flex-wrap justify-content-center pagination-primary mt-lg-3">
+
         <c:choose>
             <c:when test="${cpage.getPrePage() != 0}">
-                <li class="page-item"><i class="ti-angle-left">
-                    <a href="/${target}/all?pageNo=${cpage.getPrePage()}">Previous</a>
-                </i></li>
+                <li class="page-item">
+                    <a class="page-link" href="/${target}/all?pageNo=${cpage.getPrePage()}"><</a>
+                </li>
             </c:when>
             <c:otherwise>
-                <li class="disabled">
-                    <a href="#">Previous</a>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><</a>
                 </li>
             </c:otherwise>
         </c:choose>
@@ -22,12 +23,12 @@
             <c:choose>
                 <c:when test="${cpage.getPageNum() == page}">
                     <li class="page-item active">
-                        <a href="/${target}/all?pageNo=${page}">${page}</a>
+                        <a class="page-link" href="/${target}/all?pageNo=${page}">${page}</a>
                     </li>
                 </c:when>
                 <c:otherwise>
-                    <li>
-                        <a href="/${target}/all?pageNo=${page}">${page}</a>
+                    <li class="page-item">
+                        <a class="page-link" href="/${target}/all?pageNo=${page}">${page}</a>
                     </li>
                 </c:otherwise>
             </c:choose>
@@ -36,12 +37,11 @@
         <c:choose>
             <c:when test="${cpage.getNextPage() != 0}">
                 <li class="page-item">
-                    <a href="/${target}/all?pageNo=${cpage.getNextPage()}">Next</a><i class="ti-angle-right">
-                </i></li>
+                    <a class="page-link" href="/${target}/all?pageNo=${cpage.getNextPage()}">></a></li>
             </c:when>
             <c:otherwise>
-                <li class="disabled">
-                    <a href="#">Next</a>
+                <li class="page-item disabled">
+                    <a class="page-link"href="#">></a>
                 </li>
             </c:otherwise>
         </c:choose>

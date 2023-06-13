@@ -128,10 +128,10 @@
                                         <span class="float-right text-muted">
                                             <c:choose>
                                                 <c:when test="${attd.isAttend == '1'}">
-                                                    <span class="badge badge-outline-success" style="padding:1px">출석</span>
+                                                    <span class="badge badge-outline-success" style="padding:4px 6px">출석</span>
                                                 </c:when>
                                                 <c:when test="${attd.isAttend == '2'}">
-                                                    <span class="badge badge-outline-warning">지각</span>
+                                                    <span class="badge badge-outline-warning" style="padding:4px 6px">지각</span>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <span class="badge badge-outline-danger"
