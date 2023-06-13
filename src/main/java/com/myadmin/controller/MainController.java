@@ -91,4 +91,5 @@ public class MainController {
         model.addAttribute("center", "trypage");
         return "index";
     }
+
 }

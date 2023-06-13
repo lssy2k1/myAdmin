@@ -75,11 +75,32 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="/anc/all">
+                <a class="nav-link" data-toggle="collapse" href="#ancs" aria-expanded="false" aria-controls="ancs">
                     <i class="icon-microphone menu-icon"></i>
                     <span class="menu-title">공지사항</span>
+                    <i class="menu-arrow"></i>
                 </a>
+                <div class="collapse" id="ancs">
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="/anc/all">공지사항</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/anc/cal">일정관리</a></li>
+
+                    </ul>
+                </div>
             </li>
+<%--            anc 하단 메뉴 추가--%>
+<%--            <li class="nav-item">--%>
+<%--                <a class="nav-link" data-toggle="collapse" href="/anc/all" aria-expanded="false" aria-controls="ancs">--%>
+<%--                    <i class="icon-microphone menu-icon"></i>--%>
+<%--                    <span class="menu-title">공지사항</span>--%>
+<%--                </a>--%>
+<%--                <div class="collapse" id="ancs">--%>
+<%--                    <ul class="nav flex-column sub-menu">--%>
+<%--                        <li class="nav-item"> <a class="nav-link" href="/anc/cal">일정관리</a></li>--%>
+<%--                    </ul>--%>
+<%--                </div>--%>
+<%--            </li>--%>
+
             <c:if test="${loginadm.lev>=3}">
             <li class="nav-item">
                 <a class="nav-link" href="/adm/all" aria-expanded="false" aria-controls="admin">

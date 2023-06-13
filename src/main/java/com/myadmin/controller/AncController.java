@@ -35,6 +35,9 @@ public class AncController {
     @Value("${uploadimgdir}")
     String imgdir;
 
+    @Value("${google.cal-key}")
+    String googleCalKey;
+
     @Autowired
     AncService ancService;
     @Autowired
@@ -166,5 +169,10 @@ public class AncController {
         }
         return "redirect:/anc/all";
     }
-
+    @RequestMapping("/cal")
+    public String cal(Model model){
+        model.addAttribute("center",dir+"cal");
+        model.addAttribute("googleCalKey", googleCalKey);
+        return "index";
+    }
 }

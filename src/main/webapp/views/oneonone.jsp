@@ -3,11 +3,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <style>
+    #oneonone_box{
+        width: 400px;
+        height : 500px;
+        position : fixed;
+        bottom: 13%;
+        right: 5%;
+        display : none;
+
+    }
     #to {
         width: 300px;
         height: 200px;
         overflow: auto;
         border: 2px solid green;
+
     }
 </style>
 
@@ -40,6 +50,7 @@
                 oneonone.setConnected(true);//단순히 connected, disconnected 적히게 하는 함수.
                 console.log('Connected: ' + frame);
 
+
                 this.subscribe('/send/to/'+sid, function(msg) {
                     $("#to").append(
                         "<h4>" + JSON.parse(msg.body).sendid +":"+
@@ -70,6 +81,12 @@
                 'content1' : $('#totext').val()
             });
             this.stompClient.send('/receiveto', {}, msg);
+
+            this.stompClient.send("/receiveme", {}, msg);
+            $('#to').append(
+                '<h4>'+this.id+':'+ $('#totext').val()+'</h4>'
+            );
+            $('#totext').val('');
         }
 
     };
@@ -78,13 +95,10 @@
     })
 
 </script>
-<!-- Begin Page Content -->
-<div class="container-fluid">
 
-    <!-- Page Heading -->
 
     <!-- DataTales Example -->
-    <div class="card shadow mb-4">
+    <div class="card shadow mb-4" id = "oneonone_box">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">1:1 Chat</h6>
         </div>
@@ -103,5 +117,3 @@
             </div>
         </div>
     </div>
-    <!-- /.container-fluid -->
-</div>
