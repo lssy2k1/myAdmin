@@ -75,10 +75,10 @@ public class StdnController {
         model.addAttribute("target","stdn");
         model.addAttribute("cpage",p);
         model.addAttribute("center",dir+"all");
+        model.addAttribute("pagination", "searchpage");
         model.addAttribute("search", search);
         return "index";
     }
-
 
 
     @RequestMapping("/add")
