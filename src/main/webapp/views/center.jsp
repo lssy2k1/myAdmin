@@ -56,12 +56,15 @@
     getWeather.init();
     getDate.init();
     makeKakaoMap3.init();
+    if(${loginadm==null}) {
+      $('#onlylogin').css("display", "none");
+    }
   })
 </script>
 
 <!-- partial -->
 
-  <div class="content-wrapper">
+  <div class="content-wrapper" >
     <div class="row">
       <div class="col-md-12 grid-margin">
         <div class="row">
@@ -80,31 +83,9 @@
         </div>
       </div>
     </div>
-<%--    <c:if test="${loginadm == null}">--%>
-<%--        &lt;%&ndash;----------------------------------날씨창 수정---------------------------------------&ndash;%&gt;--%>
-<%--      <div class="col-md-12 grid-margin stretch-card">--%>
-<%--        <div class="card tale-bg">--%>
-<%--          <div class="card-people mt-auto">--%>
-<%--            <img id = "rain" src="/images/dashboard/people.svg" alt="people">--%>
-<%--            <div class="weather-info">--%>
-<%--              <div class="d-flex">--%>
-<%--                <div style="margin-right: 7px">--%>
-<%--                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>--%>
-<%--                </div>--%>
-<%--                <div style="margin-right: 7px">--%>
-<%--                  <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>--%>
-<%--                </div>--%>
-<%--                <div class="ml-2">--%>
-<%--                  <h4 class="location font-weight-normal">Seongsu</h4>--%>
-<%--                  <h6 class="font-weight-normal">Seoul</h6>--%>
-<%--                </div>--%>
-<%--              </div>--%>
-<%--            </div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--      </div>--%>
-<%--    </c:if>--%>
-  <c:if test="${loginadm != null}">
+
+<%--  <c:if test="${loginadm != null}">--%>
+    <div id="onlylogin">
     <div class="row">
 <%------------------------------------날씨창 수정-----------------------------------------%>
       <div class="col-md-6 grid-margin stretch-card">
@@ -382,60 +363,28 @@
       <div class="col-md-7 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <p class="card-title mb-0">Top Products</p>
+            <p class="card-title mb-0">인기 강의 순</p>
             <div class="table-responsive">
               <table class="table table-striped table-borderless">
                 <thead>
                 <tr>
-                  <th>Product</th>
-                  <th>Price</th>
-                  <th>Date</th>
-                  <th>Status</th>
+                  <th>강의명</th>
+                  <th>분류</th>
+                  <th>강사</th>
+                  <th>가격</th>
                 </tr>
                 </thead>
                 <tbody>
+
                 <tr>
                   <td>Search Engine Marketing</td>
                   <td class="font-weight-bold">$362</td>
                   <td>21 Sep 2018</td>
                   <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
                 </tr>
-                <tr>
-                  <td>Search Engine Optimization</td>
-                  <td class="font-weight-bold">$116</td>
-                  <td>13 Jun 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                </tr>
-                <tr>
-                  <td>Display Advertising</td>
-                  <td class="font-weight-bold">$551</td>
-                  <td>28 Sep 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                </tr>
-                <tr>
-                  <td>Pay Per Click Advertising</td>
-                  <td class="font-weight-bold">$523</td>
-                  <td>30 Jun 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                </tr>
-                <tr>
-                  <td>E-Mail Marketing</td>
-                  <td class="font-weight-bold">$781</td>
-                  <td>01 Nov 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-danger">Cancelled</div></td>
-                </tr>
-                <tr>
-                  <td>Referral Marketing</td>
-                  <td class="font-weight-bold">$283</td>
-                  <td>20 Mar 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                </tr>
-                <tr>
-                  <td>Social media marketing</td>
-                  <td class="font-weight-bold">$897</td>
-                  <td>26 Oct 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                </tr>
+
+
+
                 </tbody>
               </table>
             </div>
@@ -714,6 +663,7 @@
 
       </div>
     </div>
-  </c:if>
+<%--  </c:if>--%>
+    </div>
   </div>
   <!-- content-wrapper ends -->
