@@ -23,7 +23,7 @@
                                 <label style="margin: 0 0.7em 0 2em">NAME</label>
                                 <input class="form-control" style="width: 39%" type="text" name="search2"
                                        <c:if test="${value2 != ''}">value="${value2}"</c:if>>
-                                <button type="submit" class="btn btn-inverse-primary btn-sm ml-4 mr-1"
+                                <button type="submit" id="stdnSearchBtn" class="btn btn-inverse-primary btn-sm ml-3 mr-1"
                                         style="width: 2rem; white-space: nowrap; width: 11%">검색
                                 </button>
                             </div>
@@ -129,7 +129,14 @@
                                 </c:forEach>
                                 </tbody>
                             </table>
-                            <jsp:include page="../page.jsp"/>
+                            <c:choose>
+                                <c:when test="${pagination==null}">
+                                    <jsp:include page ="../page.jsp"/>
+                                </c:when>
+                                <c:otherwise>
+                                    <jsp:include page = "../${pagination}.jsp"/>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <a type="button" href="/stdn/add" class="btn btn-outline-primary btn-icon-text mt-lg-2 mr-1"
                            style="float:right; display:flex; align-items: center">
