@@ -36,7 +36,6 @@
                         <li class="nav-item"> <a class="nav-link" href="/stdn/all">수강생 목록</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/stdn/attd">출석</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/stdn/stdy">스터디</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/stdn/test">테스트</a></li>
                     </ul>
                 </div>
             </li>

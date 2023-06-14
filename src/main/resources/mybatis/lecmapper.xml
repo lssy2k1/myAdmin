@@ -8,7 +8,7 @@
     <select id="select" parameterType="Integer" resultType="Lec">
         SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
                 , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
-                , SUM(lr.rating)/COUNT(lr.id) as rating
+                , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
                 , l.price, l.img, l.disc_rate as discRate
                 , l.is_delete as isDelete, l.del_date as delDate, l.hit
         FROM lec l
@@ -22,7 +22,7 @@
     <select id="selectall" resultType="Lec">
         SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
         , l.title, l.teacher, l.topic, l.target, SUBSTR(l.rdate, 0, 10) as rdate, l.length
-        , SUM(lr.rating)/COUNT(lr.id) as rating
+        , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
         , l.price, l.img, l.disc_rate as discRate
         , l.is_delete as isDelete, l.del_date as delDate, l.hit
         FROM lec l
@@ -58,7 +58,7 @@
     <select id="search" parameterType="LecSearch" resultType="Lec">
         SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
                 , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
-                , SUM(lr.rating)/COUNT(lr.id) as rating
+                , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
                 , l.price, l.img, l.disc_rate as discRate
                 , l.is_delete as isDelete, l.del_date as delDate, l.hit
         FROM lec l

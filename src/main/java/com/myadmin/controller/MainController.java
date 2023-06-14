@@ -1,8 +1,10 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
+import com.myadmin.dto.Stdn;
 import com.myadmin.service.AdmService;
 import com.myadmin.service.MrkService;
+import com.myadmin.service.StdnService;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +14,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class MainController {
@@ -21,6 +26,8 @@ public class MainController {
     @Autowired
     AdmService admService;
     @Autowired
+    StdnService stdnService;
+    @Autowired
     BCryptPasswordEncoder encoder;
 
     @Value("${adminserver}")
@@ -28,6 +35,20 @@ public class MainController {
 
     @RequestMapping("/")
     public String main(Model model) throws Exception {
+        List<Stdn> stdnList = new ArrayList<>();
+        List<Stdn> totalList = stdnService.get();
+        for (Stdn s:totalList) {
+            if (s.getIsJoin().equals("0")) {
+                stdnList.add(s);
+            }
+        }
+        int cnt = stdnList.size();
+        int total = totalList.size();
+        double percent = (double)cnt/total*100;
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedPercentage = decimalFormat.format(percent);
+        model.addAttribute("stdnCnt", cnt);
+        model.addAttribute("percent", formattedPercentage);
         return "index";
     }
     @RequestMapping("/logins")
@@ -40,6 +61,18 @@ public class MainController {
     public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
         Adm adm = null;
         String nextPage = "loginFail";
+        List<Stdn> stdnList = new ArrayList<>();
+        List<Stdn> totalList = stdnService.get();
+        for (Stdn s:totalList) {
+            if (s.getIsJoin().equals("0")) {
+                stdnList.add(s);
+            }
+        }
+        int cnt = stdnList.size();
+        int total = totalList.size();
+        double percent = (double)cnt/total*100;
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedPercentage = decimalFormat.format(percent);
         try {
             adm = admService.get(id);
             if(adm != null && encoder.matches(pwd, adm.getPwd())){
@@ -48,10 +81,13 @@ public class MainController {
             session.setMaxInactiveInterval(60000);
             session.setAttribute("loginadm", adm);
 
+
         } catch (Exception e) {
             throw new Exception("adm login error");
         }
         model.addAttribute("center", nextPage);
+        model.addAttribute("stdnCnt", cnt);
+        model.addAttribute("percent", formattedPercentage);
         return "index";
     }
 

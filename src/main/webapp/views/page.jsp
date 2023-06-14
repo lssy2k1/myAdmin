@@ -9,7 +9,7 @@
         <c:choose>
             <c:when test="${cpage.getPrePage() != 0}">
                 <li class="page-item">
-                    <a class="page-link" href="/${target}/all?pageNo=${cpage.getPrePage()}"><</a>
+                    <a class="page-link" href="/${target}/${function}?pageNo=${cpage.getPrePage()}"><</a>
                 </li>
             </c:when>
             <c:otherwise>
@@ -23,12 +23,12 @@
             <c:choose>
                 <c:when test="${cpage.getPageNum() == page}">
                     <li class="page-item active">
-                        <a class="page-link" href="/${target}/all?pageNo=${page}">${page}</a>
+                        <a class="page-link" href="/${target}/${function}?pageNo=${page}">${page}</a>
                     </li>
                 </c:when>
                 <c:otherwise>
                     <li class="page-item">
-                        <a class="page-link" href="/${target}/all?pageNo=${page}">${page}</a>
+                        <a class="page-link" href="/${target}/${function}?pageNo=${page}">${page}</a>
                     </li>
                 </c:otherwise>
             </c:choose>
@@ -37,7 +37,7 @@
         <c:choose>
             <c:when test="${cpage.getNextPage() != 0}">
                 <li class="page-item">
-                    <a class="page-link" href="/${target}/all?pageNo=${cpage.getNextPage()}">></a></li>
+                    <a class="page-link" href="/${target}/${function}?pageNo=${cpage.getNextPage()}">></a></li>
             </c:when>
             <c:otherwise>
                 <li class="page-item disabled">

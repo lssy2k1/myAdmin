@@ -52,4 +52,18 @@ public class StdnService implements MyAdminService<String, Stdn> {
         PageHelper.startPage(pageNo, 5);
         return mapper.searchpage(stdnSearch);
     }
+
+    public Page<Stdn> approve(String isJoin, int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 5);
+        return mapper.approve(isJoin);
+    }
+
+    public Page<Stdn> approvesearch(String isJoin, int pageNo, StdnSearch stdnSearch) throws Exception {
+        PageHelper.startPage(pageNo, 5);
+        return mapper.approvesearch(isJoin, stdnSearch);
+    }
+
+    public void joinupdate(String id) throws Exception {
+        mapper.joinupdate(id);
+    }
 }
