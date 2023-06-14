@@ -18,7 +18,7 @@ class UpdateTest {
     @Test
     void contextLoads() {
         Adm adm = new Adm("adm2", "pwd2", 2, "adm@daum.net", null
-                , "01000000000", "성수동", "0", null);
+                , "01000000000", "성수동", "0", null, "name");
         try {
             admService.modify(adm);
             log.info(admService.get().toString());

@@ -66,7 +66,6 @@
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="/ord/all">주문 관리(학생별)</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/orddetail/all">주문상세 관리(과목별)</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/test/maketest">테스트 만들기</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/curri/all">커리큘럼 관리</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/mrk/all">마커 리스트</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/mrk/add">마커 추가</a></li>

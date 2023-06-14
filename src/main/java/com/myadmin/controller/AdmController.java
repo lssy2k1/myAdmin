@@ -129,10 +129,12 @@ public class AdmController {
             adm.setPwd(encoder.encode(adm.getPwd()));
             admService.modify(adm);
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("adm update error");
         }
         return "redirect:/adm/detail?id="+adm.getId();
     }
+
     @RequestMapping("/deleteimpl")
     public String deleteimpl(Model model, String id) throws Exception {
         try {

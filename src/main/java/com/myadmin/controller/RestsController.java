@@ -2,6 +2,7 @@ package com.myadmin.controller;
 
 import com.google.api.services.calendar.model.Event;
 import com.myadmin.dto.*;
+import com.myadmin.service.AdmService;
 import com.myadmin.service.LecCategoryService;
 import com.myadmin.service.MrkService;
 import com.myadmin.service.SbjDetailService;
@@ -25,6 +26,9 @@ public class RestsController {
 
     @Autowired
     MrkService mrkService;
+
+    @Autowired
+    AdmService admService;
 
     @Autowired
     LecCategoryService lecCategoryService;
@@ -116,5 +120,16 @@ public class RestsController {
         Event addEvent = GoogleCalendar.addEvent(event);
         return addEvent;
     };
+
+    @RequestMapping("/checkid")
+    public Object checkid(String id) throws Exception {
+        int result = 0;//중복 아니면 0 보낸다고 가정
+        Adm adm = null;
+        adm = admService.get(id);
+        if(adm != null){
+            result = 1;
+        }
+        return result;
+    }
 
 }

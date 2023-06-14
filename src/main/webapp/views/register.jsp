@@ -4,9 +4,42 @@
 <script>
     let adm_register = {
         init:()=>{
+
+            $('#adm_register_btn').addClass('disabled');
+
             $('#adm_register_btn').click(() =>{
                 adm_register.send();
             });
+
+            $('#email').keyup(function(){
+                var id = $('#id').val();
+                var pwd = $('#pwd').val();
+                var name = $('#name').val();
+                var email = $('#email').val();
+                if(id != ''&& pwd != '' & name != '' & email != ''){
+                    $('#adm_register_btn').removeClass('disabled');
+                }
+            });
+            $('#id').keyup(() => {
+                var txt_id = $('#id').val();
+                if(txt_id.length <= 3){
+                    return;
+                }
+                $.ajax({
+                    url : '/checkid',
+                    data : {id:txt_id},
+                    success:function(result){
+                        if(result == 0){
+                            $('#check_id').text('사용가능합니다.')
+                            // $('#pwd').focus();
+                        } else{
+                            $('#check_id').text('사용불가능합니다.')
+                        }
+                    }
+                })
+            });
+
+
             $('#adm_can_btn').click(()=>{
                 location.href = '/';
             })
@@ -15,6 +48,41 @@
             })
         },
         send:()=>{
+
+            var id = $('#id').val();
+            var pwd = $('#pwd').val();
+            var name = $('#name').val();
+            var email = $('#email').val();
+            if(id.length <= 3){
+                $('#check_id').text('id는 4자리 이상이어야 합니다.');
+                $('#id').focus();
+                return;
+            } else{
+                $('#check_id').text('');
+            }
+            if(pwd.length <= 3){
+                $('#check_pwd').text('pwd는 4자리 이상이어야 합니다.');
+                $('#pwd').focus();
+                return;
+            } else{
+                $('#check_pwd').text('');
+            }
+            if(name.length==''){
+                $('#check_name').text('이름을 입력하세요.');
+                $('#name').focus();
+                return;
+            } else{
+                $('#check_name').text('');
+            }
+            if(email.length==''){
+                $('#check_email').text('이메일을 입력하세요.');
+                $('#email').focus();
+                return;
+            } else{
+                $('#check_email').text('');
+            }
+
+
             $('#adm_register_form').attr({
                 action:'/adm/addimpl',
                 method:'post',
@@ -55,26 +123,43 @@
                                 <button class="btn btn-sm btn-primary" type="button" id="recommend_id">아이디 추천</button>
                             </div>
                         </div>
+                        <div>
+                            <span id = "check_id"></span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="pwd">비밀번호</label>
                         <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="비밀번호를 입력하세요...">
+                        <div>
+                            <span id = "check_pwd"></span>
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="lev">권한 타입</label>
-                        <select class="form-control" id="lev" name = "lev" >
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                        </select>
+                        <label for="name">이름</label>
+                        <input type="text" class="form-control" name = "name" id="name" placeholder="이름을 입력하세요...">
+                        <div>
+                            <span id = "check_name"></span>
+                        </div>
                     </div>
+
+<%--                    디폴트로 레벨 1 부여--%>
+<%--                    <div class="form-group">--%>
+<%--                        <label for="lev">권한 타입</label>--%>
+<%--                        <select class="form-control" id="lev" name = "lev" >--%>
+<%--                            <option>1</option>--%>
+<%--                            <option>2</option>--%>
+<%--                            <option>3</option>--%>
+<%--                        </select>--%>
+<%--                    </div>--%>
+
                     <div class="form-group">
                         <label for="email">이메일</label>
                         <input type="email" class="form-control" name = "email" id="email" placeholder="이메일을 입력하세요...">
                     </div>
 
                     <div class="mt-3">
-                        <button id="adm_register_btn" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">등록</button>
+                        <button type="button" id="adm_register_btn" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">등록</button>
                     </div>
                     <div class="mt-3">
                         <button id = "adm_can_btn" class="btn btn-block btn-outline-primary btn-lg font-weight-medium auth-form-btn">취소</button>

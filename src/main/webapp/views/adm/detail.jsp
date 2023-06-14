@@ -42,6 +42,10 @@
                                     <td>${adm.id}</td>
                                 </tr>
                                 <tr>
+                                    <td>이름</td>
+                                    <td>${adm.name}</td>
+                                </tr>
+                                <tr>
                                     <td>권한 타입</td>
                                     <td>${adm.lev}</td>
                                 </tr>
