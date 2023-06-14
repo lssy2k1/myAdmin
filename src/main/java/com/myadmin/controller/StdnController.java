@@ -39,40 +39,32 @@ public class StdnController {
 
     String dir = "stdn/";
 
-//    @RequestMapping("/all")
-//    public String all(Model model) throws Exception {
-//        List<Stdn> list = stdnService.get();
-//        model.addAttribute("std", list);
-//        model.addAttribute("center", dir+"all");
-//        return "index";
-//    }
-
     @RequestMapping("/all")
     public String all(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception{
-        List<Stdn> list = stdnService.get();
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);
         PageInfo<Stdn> p;
         try {
-            p = new PageInfo<>(stdnService.getPage(pageNo), 3);
+            p = new PageInfo<>(stdnService.getPage(pageNo), 5);
         } catch (Exception e) {
             throw new Exception("시스템 장애: ER0001");
         }
         model.addAttribute("target","stdn");
+        model.addAttribute("function", "all");
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("cpage", p);
-        model.addAttribute("std", list);
         model.addAttribute("center",dir+"all");
         return "index";
     }
 
     @RequestMapping("/search")
     public String search(Model model, StdnSearch search, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
-        PageInfo<Stdn> p = new PageInfo<>(stdnService.searchpage(pageNo, search), 3);
+        PageInfo<Stdn> p = new PageInfo<>(stdnService.searchpage(pageNo, search), 5);
         model.addAttribute("value1",search.getSearch1());
         model.addAttribute("value2",search.getSearch2());
         model.addAttribute("target","stdn");
+        model.addAttribute("function","search");
         model.addAttribute("cpage",p);
         model.addAttribute("center",dir+"all");
         model.addAttribute("pagination", "searchpage");
@@ -80,6 +72,52 @@ public class StdnController {
         return "index";
     }
 
+    @RequestMapping("/approve")
+    public String approve(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception{
+        PageInfo<Stdn> p;
+        try {
+            p = new PageInfo<>(stdnService.approve("0", pageNo), 5);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0001");
+        }
+        model.addAttribute("target","stdn");
+        model.addAttribute("function","approve");
+        model.addAttribute("cpage", p);
+        model.addAttribute("center",dir+"approve");
+        return "index";
+    }
+
+    @RequestMapping("/approvesearch")
+    public String approvesearch(Model model, StdnSearch search, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
+        PageInfo<Stdn> p = new PageInfo<>(stdnService.approvesearch("0", pageNo, search), 5);
+        model.addAttribute("value1", search.getSearch1());
+        model.addAttribute("value2", search.getSearch2());
+        model.addAttribute("target","stdn");
+        model.addAttribute("function","approvesearch");
+        model.addAttribute("cpage",p);
+        model.addAttribute("center",dir+"approve");
+        model.addAttribute("pagination", "searchpage");
+        model.addAttribute("search", search);
+        return "index";
+    }
+
+    @RequestMapping("/approveimpl")
+    public String approveimpl(Model model, String id) throws Exception {
+        Stdn stdn = stdnService.get(id);
+        stdnService.joinupdate(id);
+        return "redirect:/stdn/approve";
+    }
+
+    @RequestMapping("/approveallimpl")
+    public String approveallimpl(Model model) throws Exception {
+        List<Stdn> totalList = stdnService.get();
+        for (Stdn s:totalList) {
+            if (s.getIsJoin().equals("0")) {
+                stdnService.joinupdate(s.getId());
+            }
+        }
+        return "redirect:/stdn/approve";
+    }
 
     @RequestMapping("/add")
     public String add(Model model, String id, HttpSession session){
@@ -88,7 +126,7 @@ public class StdnController {
     }
 
     @RequestMapping("/addimpl")
-    public String addimpl(Model model, @Validated Stdn std, Errors errors) throws Exception {
+    public String addimpl(Model model, @Validated Stdn stdn, Errors errors) throws Exception {
         if(errors.hasErrors()){
             List<ObjectError> es = errors.getAllErrors();
             String msg = "";
@@ -99,8 +137,8 @@ public class StdnController {
             }
             throw new Exception(msg);
         }
-        std.setPwd(encoder.encode(std.getPwd()));
-        stdnService.register(std);
+        stdn.setPwd(encoder.encode(stdn.getPwd()));
+        stdnService.register(stdn);
         return "redirect:/stdn/all";
     }
 

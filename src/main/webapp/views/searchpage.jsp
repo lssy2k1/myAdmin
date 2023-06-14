@@ -8,7 +8,7 @@
     <c:choose>
       <c:when test="${cpage.getPrePage() != 0}">
         <li class="page-item">
-          <a class="page-link" href="/${target}/search?pageNo=${cpage.getPrePage()}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}"><</a>
+          <a class="page-link" href="/${target}/${function}?pageNo=${cpage.getPrePage()}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}"><</a>
         </li>
       </c:when>
       <c:otherwise>
@@ -22,12 +22,12 @@
       <c:choose>
         <c:when test="${cpage.getPageNum() == page}">
           <li class="page-item active">
-            <a class="page-link" href="/${target}/search?pageNo=${page}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}">${page}</a>
+            <a class="page-link" href="/${target}/${function}?pageNo=${page}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}">${page}</a>
           </li>
         </c:when>
         <c:otherwise>
           <li class="page-item">
-            <a class="page-link" href="/${target}/search?pageNo=${page}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}">${page}</a>
+            <a class="page-link" href="/${target}/${function}?pageNo=${page}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}">${page}</a>
           </li>
         </c:otherwise>
       </c:choose>
@@ -36,7 +36,7 @@
     <c:choose>
       <c:when test="${cpage.getNextPage() != 0}">
         <li class="page-item">
-          <a class="page-link" href="/${target}/search?pageNo=${cpage.getNextPage()}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}">></a>
+          <a class="page-link" href="/${target}/${function}?pageNo=${cpage.getNextPage()}&keyword1=id&search1=${search.search1}&&keyword2=name&search2=${search.search2}">></a>
         </li>
       </c:when>
       <c:otherwise>

@@ -29,24 +29,35 @@
             AND name LIKE '%' ||  #{search2} || '%'
         </if>
     </select>
-<!--    <select id="searchpage" resultType="Stdn" parameterType="StdnSearch">-->
-<!--        SELECT *-->
-<!--        FROM stdn-->
-<!--        WHERE 1=1-->
-<!--        <if test="search1 != ''">-->
-<!--            AND id LIKE '%' ||  #{search1} || '%'-->
-<!--        </if>-->
-<!--        <if test="search2 != ''">-->
-<!--            AND name LIKE '%' ||  #{search2} || '%'-->
-<!--        </if>-->
-<!--    </select>-->
-    <select id="select" parameterType="String" resultType="Stdn">
+    <select id="approve" parameterType="String" resultType="Stdn">
         SELECT *
+        FROM stdn
+        WHERE is_join = '0'
+    </select>
+    <select id="approvesearch" parameterType="String" resultType="Stdn">
+        SELECT *
+        FROM stdn
+        WHERE is_join = '0'
+        <if test="search1 != ''">
+            AND id LIKE '%' ||  #{search1} || '%'
+        </if>
+        <if test="search2 != ''">
+            AND name LIKE '%' ||  #{search2} || '%'
+        </if>
+    </select>
+    <update id="joinupdate" parameterType="String">
+        UPDATE stdn
+        SET is_join='1'
+        WHERE id=#{id}
+    </update>
+
+    <select id="select" parameterType="String" resultType="Stdn">
+        SELECT id, pwd, name, email, contact, img, birthday, is_subsc as isSubsc, cpn, is_exit as isExit, exit_date as exitDate, last_visit as lastVisit, is_join as isJoin, sbj1, sbj2, sbj3, login_error as loginError
         FROM stdn
         WHERE id=#{id}
     </select>
     <select id="selectall" resultType="Stdn">
-        SELECT *
+        SELECT id, pwd, name, email, contact, img, birthday, is_subsc as isSubsc, cpn, is_exit as isExit, exit_date as exitDate, last_visit as lastVisit, is_join as isJoin, sbj1, sbj2, sbj3, login_error as loginError
         FROM stdn
     </select>
     <insert id="insert" parameterType="Stdn">
