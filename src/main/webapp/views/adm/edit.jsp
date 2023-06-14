@@ -85,8 +85,10 @@
         }
     };
     $(function(){
-        $('#adm_isdelete_select').css("display", "none");
-        $('#adm_lev_select').css("display", "none");
+        if(${loginadm.lev < '3'}) {
+            $('#adm_isdelete_select').css("display", "none");
+            $('#adm_lev_select').css("display", "none");
+        }
 
         adm_edit.init();
     });
