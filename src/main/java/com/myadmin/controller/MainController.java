@@ -74,9 +74,6 @@ public class MainController {
         model.addAttribute("attdCnt", attdCnt);
         model.addAttribute("approvepercent", formattedApprovePer);
         model.addAttribute("attdpercent", formattedAttdPer);
-        String formattedPercentage = decimalFormat.format(percent);
-        model.addAttribute("stdnCnt", cnt);
-        model.addAttribute("percent", formattedPercentage);
         model.addAttribute("hotlec", hotlec);
         return "index";
     }
