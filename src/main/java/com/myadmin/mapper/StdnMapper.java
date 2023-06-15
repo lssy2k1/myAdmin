@@ -18,5 +18,7 @@ public interface StdnMapper extends MyAdminMapper<String, Stdn> {
     Page<Stdn> approve(String isJoin) throws Exception;
     Page<Stdn> approvesearch(String isJoin, StdnSearch stdnSearch) throws Exception;
     void joinupdate(String id) throws Exception;
+    List<Stdn> totalattd() throws Exception;
+    Page<Stdn> absent() throws Exception;
 
 }

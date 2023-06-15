@@ -21,16 +21,21 @@ public class Stdn {
     private String img;
     private String birthday;
     private String isSubsc;
+//    0 : 미구독, 1 : 구독
     private String cpn;
     private String isExit;
+//    0 미탈퇴, 1 탈퇴
     private String exitDate;
     private String lastVisit;
     private String isJoin;
+//    0 미승인, 1 승인, 2 오류초과, 3 차단
     private String sbj1;
     private String sbj2;
     private String sbj3;
     private String loginError;
+//    5회 차단
     private String isAttend;
+//    0 결석, 1 출석, 2 지각
     private String attdDate;
 
 //    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
