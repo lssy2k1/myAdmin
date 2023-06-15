@@ -10,7 +10,116 @@
 </style>
 
 <script>
-
+  let lectabledefault ={
+    init:()=>{
+      $.ajax({
+        url:'/getcurritable',
+        method:'get',
+        dataType:'json',
+        success: function(lecs) {
+          console.log(lecs);
+          var html = '';
+          lecs.forEach(function(lec) {
+            html += `
+                <tr>
+                    <td>\${lec.title}</td>
+                    <td>\${lec.topic}</td>
+                    <td>\${lec.teacher}</td>
+                    <td>\${lec.rating}</td>
+                    <td>\${lec.hit}</td>
+                    <td>\${lec.curriSum}</td>
+                </tr>
+            `;
+            // Lec 객체의 속성에 따라 변경해야 합니다.
+          });
+          $('#hottable').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
+        },
+        error: function(request, status, error) {
+          console.error("데이터를 불러오는데 실패했습니다 : ", error);
+        }
+      })
+    }
+  }
+  let lectable = {
+    init: ()=>{
+      //인기강의 관련 화면에서 버튼 누르면 데이터 변경되도록
+      $('#table_curri').click(() => {
+        $.ajax({
+          url:'/getcurritable',
+          method:'get',
+          dataType:'json',
+          success: function(lecs) {
+            console.log(lecs);
+            var html = '';
+            lecs.forEach(function(lec) {
+              html += '<tr>' +
+                      '<td>' + lec.title + '</td>' +
+                      '<td>' + lec.topic + '</td>' +
+                      '<td>' + lec.teacher + '</td>' +
+                      '<td>' + lec.rating + '</td>' +
+                      '<td>' + lec.hit + '</td>' +
+                      '<td>' + lec.curriSum + '</td>' +
+                      '</tr>';
+              // Lec 객체의 속성에 따라 변경해야 합니다.
+            });
+            $('#hottable').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
+          },
+          error: function(request, status, error) {
+            console.error("데이터를 불러오는데 실패했습니다 : ", error);
+          }
+        })
+      })
+      $('#table_hit').click(() => {
+        $.ajax({
+          url:'/gethittable',
+          method:'get',
+          dataType:'json',
+          success: function(lecs) {
+            console.log(lecs);
+            var html = '';
+            lecs.forEach(function(lec) {
+              html += '<tr>' +
+                      '<td>' + lec.title + '</td>' +
+                      '<td>' + lec.topic + '</td>' +
+                      '<td>' + lec.teacher + '</td>' +
+                      '<td>' + lec.rating + '</td>' +
+                      '<td>' + lec.hit + '</td>' +
+                      '<td>' + lec.curriSum + '</td>' +
+                      '</tr>';// Lec 객체의 속성에 따라 변경해야 합니다.
+            });
+            $('#hottable').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
+          },
+          error: function(request, status, error) {
+            console.error("데이터를 불러오는데 실패했습니다 : ", error);
+          }
+        })
+      })
+      $('#table_rating').click(() => {
+        $.ajax({
+          url:'/getratingtable',
+          method:'get',
+          dataType:'json',
+          success: function(lecs) {
+            var html = '';
+            lecs.forEach(function(lec) {
+              html += '<tr>' +
+                      '<td>' + lec.title + '</td>' +
+                      '<td>' + lec.topic + '</td>' +
+                      '<td>' + lec.teacher + '</td>' +
+                      '<td>' + lec.rating + '</td>' +
+                      '<td>' + lec.hit + '</td>' +
+                      '<td>' + lec.curriSum + '</td>' +
+                      '</tr>';// Lec 객체의 속성에 따라 변경해야 합니다.
+            });
+            $('#hottable').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
+          },
+          error: function(request, status, error) {
+            console.error("데이터를 불러오는데 실패했습니다 : ", error);
+          }
+        })
+      })
+    }
+  }
   let getDate = {
     init: ()=>{
       getDate.getdate();
@@ -53,12 +162,21 @@
     },
   }
   $(()=>{
+    lectable.init();
+    lectabledefault.init();
     getWeather.init();
     getDate.init();
     makeKakaoMap3.init();
+    // 로그인 안했을 경우 dashboard화면 안보이도록
+
     if(${loginadm==null}) {
       $('#onlylogin').css("display", "none");
     }
+    //실행시 커리순으로 차트 만들어지도록.
+
+
+
+
   })
 </script>
 
@@ -359,11 +477,16 @@
         </div>
       </div>
     </div>
+
+<%--      인기강의 뿌립니다---------------------------------------------------------------------------------%>
     <div class="row">
-      <div class="col-md-7 grid-margin stretch-card">
+      <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <p class="card-title mb-0">인기 강의 순</p>
+            <span class="card-title mb-0">인기 강의 순 | </span>
+            <button type="button" id="table_curri" class="badge badge-info">찜하기</button>
+            <button type="button" id="table_hit" class="badge badge-info">수강생</button>
+            <button type="button" id="table_rating" class="badge badge-info">별점</button>
             <div class="table-responsive">
               <table class="table table-striped table-borderless">
                 <thead>
@@ -371,19 +494,23 @@
                   <th>강의명</th>
                   <th>분류</th>
                   <th>강사</th>
-                  <th>가격</th>
+                  <th>별점</th>
+                  <th>수강생</th>
+                  <th>찜</th>
                 </tr>
                 </thead>
-                <tbody>
+                <tbody id="hottable">
 
-                <tr>
-                  <td>Search Engine Marketing</td>
-                  <td class="font-weight-bold">$362</td>
-                  <td>21 Sep 2018</td>
-                  <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                </tr>
-
-
+                <c:forEach var="h" items="${hotlec}">
+                  <tr>
+                    <td>${h.title}</td>
+                    <td>${h.topic}</td>
+                    <td>${h.teacher}</td>
+                    <td>${h.rating}</td>
+                    <td>${h.hit}</td>
+                    <td>${h.curriSum}</td>
+                  </tr>
+                </c:forEach>
 
                 </tbody>
               </table>
@@ -391,66 +518,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-5 grid-margin stretch-card">
-        <div class="card">
-          <div class="card-body">
-            <h4 class="card-title">To Do Lists</h4>
-            <div class="list-wrapper pt-2">
-              <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-                <li>
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox">
-                      Meeting with Urban Team
-                    </label>
-                  </div>
-                  <i class="remove ti-close"></i>
-                </li>
-                <li class="completed">
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" checked>
-                      Duplicate a project for new customer
-                    </label>
-                  </div>
-                  <i class="remove ti-close"></i>
-                </li>
-                <li>
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox">
-                      Project meeting with CEO
-                    </label>
-                  </div>
-                  <i class="remove ti-close"></i>
-                </li>
-                <li class="completed">
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox" checked>
-                      Follow up of team zilla
-                    </label>
-                  </div>
-                  <i class="remove ti-close"></i>
-                </li>
-                <li>
-                  <div class="form-check form-check-flat">
-                    <label class="form-check-label">
-                      <input class="checkbox" type="checkbox">
-                      Level up for Antony
-                    </label>
-                  </div>
-                  <i class="remove ti-close"></i>
-                </li>
-              </ul>
-            </div>
-            <div class="add-items d-flex mb-0 mt-2">
-              <input type="text" class="form-control todo-list-input"  placeholder="Add new task">
-              <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
     <div class="row">
       <div class="col-md-4 stretch-card grid-margin">

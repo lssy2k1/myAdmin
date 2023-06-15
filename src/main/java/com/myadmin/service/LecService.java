@@ -49,4 +49,13 @@ public class LecService implements MyAdminService<Integer, Lec> {
     public List<Lec> search(LecSearch ls){
         return mapper.search(ls);
     }
+    public List<Lec> hotlec(){
+        return mapper.hotlec();
+    }
+    public List<Lec> hotlechit(){
+        return mapper.hotlechit();
+    }
+    public List<Lec> hotlecrating(){
+        return mapper.hotlecrating();
+    }
 }

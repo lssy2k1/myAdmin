@@ -14,4 +14,7 @@ import java.util.List;
 public interface LecMapper extends MyAdminMapper<Integer, Lec> {
 
     public List<Lec> search(LecSearch ls);
+    public List<Lec> hotlec();
+    public List<Lec> hotlechit();
+    public List<Lec> hotlecrating();
 }

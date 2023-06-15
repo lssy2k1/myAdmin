@@ -2,10 +2,7 @@ package com.myadmin.controller;
 
 import com.google.api.services.calendar.model.Event;
 import com.myadmin.dto.*;
-import com.myadmin.service.AdmService;
-import com.myadmin.service.LecCategoryService;
-import com.myadmin.service.MrkService;
-import com.myadmin.service.SbjDetailService;
+import com.myadmin.service.*;
 import com.myadmin.util.*;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
@@ -23,6 +20,9 @@ import java.util.Map;
 @Slf4j
 @RestController
 public class RestsController {
+
+    @Autowired
+    LecService lecService;
 
     @Autowired
     MrkService mrkService;
@@ -131,5 +131,22 @@ public class RestsController {
         }
         return result;
     }
+    @RequestMapping("/getcurritable")
+    public List<Lec> getcurritable() throws Exception {
+        List<Lec> hotlec = lecService.hotlec();
+        return hotlec;
+    };
+
+    @RequestMapping("/gethittable")
+    public List<Lec> gethittable() throws Exception {
+        List<Lec> hotlec = lecService.hotlechit();
+        return hotlec;
+    };
+
+    @RequestMapping("/getratingtable")
+    public List<Lec> getratingtable() throws Exception {
+        List<Lec> hotlec = lecService.hotlecrating();
+        return hotlec;
+    };
 
 }

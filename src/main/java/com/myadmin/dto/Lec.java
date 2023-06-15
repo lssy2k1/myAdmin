@@ -44,6 +44,7 @@ public class Lec {
     }
 
     private double rating;
-
+    private String lecId;
+    private String curriSum;
     private MultipartFile imgfile;
 }

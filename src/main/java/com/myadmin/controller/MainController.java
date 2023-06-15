@@ -1,8 +1,10 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
+import com.myadmin.dto.Lec;
 import com.myadmin.dto.Stdn;
 import com.myadmin.service.AdmService;
+import com.myadmin.service.LecService;
 import com.myadmin.service.MrkService;
 import com.myadmin.service.StdnService;
 import org.json.simple.parser.ParseException;
@@ -22,6 +24,8 @@ import java.util.List;
 public class MainController {
 
     @Autowired
+    LecService lecService;
+    @Autowired
     MrkService mrkService;
     @Autowired
     AdmService admService;
@@ -37,6 +41,7 @@ public class MainController {
     public String main(Model model) throws Exception {
         List<Stdn> stdnList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
+        List<Lec> hotlec = lecService.hotlec();
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 stdnList.add(s);
@@ -49,6 +54,7 @@ public class MainController {
         String formattedPercentage = decimalFormat.format(percent);
         model.addAttribute("stdnCnt", cnt);
         model.addAttribute("percent", formattedPercentage);
+        model.addAttribute("hotlec", hotlec);
         return "index";
     }
     @RequestMapping("/logins")
@@ -117,7 +123,7 @@ public class MainController {
         return "index";
     }
     @RequestMapping("/chatbot")
-    public String chatbot(Model model){
+            public String chatbot(Model model){
         model.addAttribute("adminserver", adminserver);
         model.addAttribute("center", "chatbot");
         return "index";

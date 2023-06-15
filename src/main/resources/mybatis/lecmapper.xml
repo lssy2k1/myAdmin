@@ -5,6 +5,54 @@
 
 <mapper namespace="com.myadmin.mapper.LecMapper">
 
+    <select id="hotlec" resultType="Lec">
+        SELECT title, topic, teacher, rating, hit, curriSum
+        FROM ( SELECT l.title, l.topic, l.teacher
+                , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
+                , l.hit, cu.lec_id AS lecId, COUNT(cu.lec_id) AS curriSum
+                FROM lec l
+                LEFT JOIN lec_review lr ON l.id = lr.lec_id
+                LEFT JOIN curri cu ON l.id = cu.lec_id
+                WHERE l.is_delete = '0'
+                GROUP BY l.id
+                , l.title, l.teacher, l.topic
+                , l.hit, cu.lec_id
+                ORDER BY curriSum DESC, l.hit DESC)
+        WHERE ROWNUM &lt;= 5
+    </select>
+    <select id="hotlechit" resultType="Lec">
+        SELECT title, topic, teacher, rating, hit, curriSum
+        FROM ( SELECT l.title, l.topic, l.teacher
+                    , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
+                    , l.hit, cu.lec_id AS lecId, COUNT(cu.lec_id) AS curriSum
+               FROM lec l
+                        LEFT JOIN lec_review lr ON l.id = lr.lec_id
+                        LEFT JOIN curri cu ON l.id = cu.lec_id
+               WHERE l.is_delete = '0'
+               GROUP BY l.id
+                      , l.title, l.teacher, l.topic
+                      , l.hit, cu.lec_id
+               ORDER BY l.hit DESC, curriSum DESC)
+        WHERE ROWNUM &lt;= 5
+    </select>
+    <select id="hotlecrating" resultType="Lec">
+        SELECT title, topic, teacher, rating, hit, curriSum
+        FROM ( SELECT l.title, l.topic, l.teacher
+                    , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
+                    , l.hit, cu.lec_id AS lecId, COUNT(cu.lec_id) AS curriSum
+               FROM lec l
+                        LEFT JOIN lec_review lr ON l.id = lr.lec_id
+                        LEFT JOIN curri cu ON l.id = cu.lec_id
+               WHERE l.is_delete = '0'
+               AND rating is not null
+               GROUP BY l.id
+                      , l.title, l.teacher, l.topic
+                      , l.hit, cu.lec_id
+               ORDER BY rating DESC, curriSum DESC)
+        WHERE ROWNUM &lt;= 5
+    </select>
+
+
     <select id="select" parameterType="Integer" resultType="Lec">
         SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
                 , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
