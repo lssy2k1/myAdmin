@@ -49,7 +49,9 @@
           method:'get',
           dataType:'json',
           success: function(lecs) {
-            console.log(lecs);
+            $('#table_curri').removeClass("btn-outline-primary").addClass("btn-primary");
+            $('#table_hit').removeClass("btn-primary").addClass("btn-outline-primary");
+            $('#table_rating').removeClass("btn-primary").addClass("btn-outline-primary");
             var html = '';
             lecs.forEach(function(lec) {
               html += '<tr>' +
@@ -75,7 +77,9 @@
           method:'get',
           dataType:'json',
           success: function(lecs) {
-            console.log(lecs);
+            $('#table_curri').removeClass("btn-primary").addClass("btn-outline-primary");
+            $('#table_hit').removeClass("btn-outline-primary").addClass("btn-primary");
+            $('#table_rating').removeClass("btn-primary").addClass("btn-outline-primary");
             var html = '';
             lecs.forEach(function(lec) {
               html += '<tr>' +
@@ -100,6 +104,9 @@
           method:'get',
           dataType:'json',
           success: function(lecs) {
+            $('#table_curri').removeClass("btn-primary").addClass("btn-outline-primary");
+            $('#table_hit').removeClass("btn-primary").addClass("btn-outline-primary");
+            $('#table_rating').removeClass("btn-outline-primary").addClass("btn-primary");
             var html = '';
             lecs.forEach(function(lec) {
               html += '<tr>' +
@@ -483,10 +490,12 @@
       <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <span class="card-title mb-0">인기 강의 순 | </span>
-            <button type="button" id="table_curri" class="badge badge-info">찜하기</button>
-            <button type="button" id="table_hit" class="badge badge-info">수강생</button>
-            <button type="button" id="table_rating" class="badge badge-info">별점</button>
+            <div class="d-flex align-items-center ml-1 mb-2">
+              <span class="card-title mb-0 ml-1 mr-3">인기강의 순위</span>
+              <button type="button" id="table_curri" class="btn btn-primary btn-sm mr-1">찜하기</button>
+              <button type="button" id="table_hit" class="btn btn-outline-primary btn-sm mr-1">수강생</button>
+              <button type="button" id="table_rating" class="btn btn-outline-primary btn-sm mr-1">별점</button>
+            </div>
             <div class="table-responsive">
               <table class="table table-striped table-borderless">
                 <thead>
