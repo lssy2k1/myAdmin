@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -39,18 +41,39 @@ public class MainController {
 
     @RequestMapping("/")
     public String main(Model model) throws Exception {
-        List<Stdn> stdnList = new ArrayList<>();
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+        List<Stdn> approveList = new ArrayList<>();
+        List<Stdn> attdList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
+        List<Stdn> attdTotalList =stdnService.totalattd();
         List<Lec> hotlec = lecService.hotlec();
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
-                stdnList.add(s);
+                approveList.add(s);
             }
         }
-        int cnt = stdnList.size();
+        for (Stdn a:attdTotalList) {
+            if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
+                attdList.add(a);
+            } else {
+                continue;
+            }
+        }
+        int approveCnt = approveList.size();
+        int attdCnt = attdList.size();
         int total = totalList.size();
-        double percent = (double)cnt/total*100;
+        double approvePer = (double)approveCnt/total*100;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedApprovePer = decimalFormat.format(approvePer);
+        double attdPer = (double)attdCnt/total*100;
+        String formattedAttdPer = decimalFormat.format(attdPer);
+        model.addAttribute("total", total);
+        model.addAttribute("approveCnt", approveCnt);
+        model.addAttribute("attdCnt", attdCnt);
+        model.addAttribute("approvepercent", formattedApprovePer);
+        model.addAttribute("attdpercent", formattedAttdPer);
         String formattedPercentage = decimalFormat.format(percent);
         model.addAttribute("stdnCnt", cnt);
         model.addAttribute("percent", formattedPercentage);
@@ -67,18 +90,34 @@ public class MainController {
     public String loginimpl(Model model, String id, String pwd, HttpSession session) throws Exception {
         Adm adm = null;
         String nextPage = "loginFail";
-        List<Stdn> stdnList = new ArrayList<>();
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+        List<Stdn> approveList = new ArrayList<>();
+        List<Stdn> attdList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
+        List<Stdn> attdTotalList =stdnService.totalattd();
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
-                stdnList.add(s);
+                approveList.add(s);
             }
         }
-        int cnt = stdnList.size();
+        for (Stdn a:attdTotalList) {
+            if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
+                attdList.add(a);
+            } else {
+                continue;
+            }
+        }
+
+        int approveCnt = approveList.size();
+        int attdCnt = attdList.size();
         int total = totalList.size();
-        double percent = (double)cnt/total*100;
+        double approvePer = (double)approveCnt/total*100;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
-        String formattedPercentage = decimalFormat.format(percent);
+        String formattedApprovePer = decimalFormat.format(approvePer);
+        double attdPer = (double)attdCnt/total*100;
+        String formattedAttdPer = decimalFormat.format(attdPer);
         try {
             adm = admService.get(id);
             if(adm != null && encoder.matches(pwd, adm.getPwd())){
@@ -92,8 +131,11 @@ public class MainController {
             throw new Exception("adm login error");
         }
         model.addAttribute("center", nextPage);
-        model.addAttribute("stdnCnt", cnt);
-        model.addAttribute("percent", formattedPercentage);
+        model.addAttribute("total", total);
+        model.addAttribute("approveCnt", approveCnt);
+        model.addAttribute("attdCnt", attdCnt);
+        model.addAttribute("approvepercent", formattedApprovePer);
+        model.addAttribute("attdpercent", formattedAttdPer);
         return "index";
     }
 

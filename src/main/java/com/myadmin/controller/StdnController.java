@@ -119,6 +119,25 @@ public class StdnController {
         return "redirect:/stdn/approve";
     }
 
+    @RequestMapping("/absent")
+    public String absent(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception{
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+        PageInfo<Stdn> p;
+        try {
+            p = new PageInfo<>(stdnService.absent(pageNo), 5);
+        } catch (Exception e) {
+            throw new Exception("시스템 장애: ER0001");
+        }
+        model.addAttribute("target","stdn");
+        model.addAttribute("function", "absent");
+        model.addAttribute("currentDate", currentDate);
+        model.addAttribute("cpage", p);
+        model.addAttribute("center",dir+"absent");
+        return "index";
+    }
+
     @RequestMapping("/add")
     public String add(Model model, String id, HttpSession session){
         model.addAttribute("center", dir+"add");

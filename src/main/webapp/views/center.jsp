@@ -233,19 +233,19 @@
             <div class="card card-tale">
               <div class="card-body d-flex flex-column justify-content-between">
                 <p class="mb-4">승인 대기 수강생 수</p>
-                <a href="/stdn/approve" class="fs-30 mb-2 text-decoration-none text-white">${stdnCnt}명 >></a>
+                <a href="/stdn/approve" class="fs-30 mb-2 text-decoration-none text-white">${approveCnt}명 >></a>
                 <div class="d-inline-flex justify-content-between align-bottom">
-                  <p class="mb-0">${percent}%</p>
+                  <p class="mb-0">${approvepercent}%</p>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-md-6 mb-4 stretch-card transparent">
             <div class="card card-dark-blue">
-              <div class="card-body">
+              <div class="card-body d-flex flex-column justify-content-between">
                 <p class="mb-4">출결 현황</p>
-                <p class="fs-30 mb-2">61344</p>
-                <p>22.00% (30 days)</p>
+                <a href="/stdn/absent" class="fs-30 mb-2 text-decoration-none text-white">미출석 ${total-attdCnt}명 >></a>
+                <p class="mb-0">출석률 ${attdpercent}%</p>
               </div>
             </div>
           </div>

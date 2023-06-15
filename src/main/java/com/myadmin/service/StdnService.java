@@ -66,4 +66,13 @@ public class StdnService implements MyAdminService<String, Stdn> {
     public void joinupdate(String id) throws Exception {
         mapper.joinupdate(id);
     }
+
+    public List<Stdn> totalattd() throws Exception {
+        return mapper.totalattd();
+    }
+
+    public List<Stdn> absent(int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 5);
+        return mapper.absent();
+    }
 }
