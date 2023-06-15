@@ -14,4 +14,5 @@ public class Attd {
     private String startTime;
     private String endTime;
     private String isAttend;
+//    0 결석, 1 출석, 2 지각
 }
