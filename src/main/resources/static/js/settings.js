@@ -13,12 +13,12 @@
     });
 
 
-    //background constants
+    // background constants
     var navbar_classes = "navbar-danger navbar-success navbar-warning navbar-dark navbar-light navbar-primary navbar-info navbar-pink";
     var sidebar_classes = "sidebar-light sidebar-dark";
     var $body = $("body");
 
-    //sidebar backgrounds
+    // sidebar backgrounds
     $("#sidebar-light-theme").on("click" , function(){
       $body.removeClass(sidebar_classes);
       $body.addClass("sidebar-light");

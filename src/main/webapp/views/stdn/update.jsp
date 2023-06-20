@@ -41,7 +41,7 @@
                         </div>
                         <div class="form-group">
                             <label for="pwd">PWD</label>
-                            <input type="password" class="form-control" name = "pwd" id="pwd" value="${stdn.pwd}" readonly>
+                            <input type="password" class="form-control" name = "pwd" id="pwd" value="${stdn.pwd}">
                         </div>
                         <div class="form-group">
                             <label for="name">NAME</label>

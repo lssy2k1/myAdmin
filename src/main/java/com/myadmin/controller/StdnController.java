@@ -232,24 +232,27 @@ public class StdnController {
             for (StdyTrckr s:stdyList) {
                 String startTime = s.getStartTime();
                 String endTime = s.getEndTime();
+                if ((s.getStartTime() != null) && (s.getEndTime() != null)) {
+                    String timeDiff = GetTimeUtil.getTime(startTime, endTime);
+                    int parsedTimeDiff = Integer.parseInt(timeDiff.substring(0, timeDiff.length() - 1));
+                    s.setTime(timeDiff);
+                    totalTime += parsedTimeDiff;
 
-                String timeDiff = GetTimeUtil.getTime(startTime, endTime);
-                int parsedTimeDiff = Integer.parseInt(timeDiff.substring(0, timeDiff.length() - 1));
-                s.setTime(timeDiff);
-                totalTime += parsedTimeDiff;
-
-                if (s.getMonth().equals("02")) {
-                    stdy2.add(s);
-                } if (s.getMonth().equals("03")) {
-                    stdy3.add(s);
-                } if (s.getMonth().equals("04")) {
-                    stdy4.add(s);
-                } if (s.getMonth().equals("05")) {
-                    stdy5.add(s);
-                } if (s.getMonth().equals("06")) {
-                    stdy6.add(s);
-                } if (s.getMonth().equals("07")) {
-                    stdy7.add(s);
+                    if (s.getMonth().equals("02")) {
+                        stdy2.add(s);
+                    } if (s.getMonth().equals("03")) {
+                        stdy3.add(s);
+                    } if (s.getMonth().equals("04")) {
+                        stdy4.add(s);
+                    } if (s.getMonth().equals("05")) {
+                        stdy5.add(s);
+                    } if (s.getMonth().equals("06")) {
+                        stdy6.add(s);
+                    } if (s.getMonth().equals("07")) {
+                        stdy7.add(s);
+                    }
+                } else {
+                    continue;
                 }
             }
             int totalH = totalTime / 60;

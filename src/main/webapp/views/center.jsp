@@ -215,22 +215,22 @@
 <%------------------------------------날씨창 수정-----------------------------------------%>
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card tale-bg">
-          <div class="card-people mt-auto">
-            <img id = "rain" src="/images/dashboard/people.svg" alt="people">
-            <div class="weather-info">
-              <div class="d-flex">
-                <div style="margin-right: 7px">
-                  <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>
-                </div>
-                <div style="margin-right: 7px">
-                  <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>
-                </div>
-                <div class="ml-2">
-                  <h4 class="location font-weight-normal">Seongsu</h4>
-                  <h6 class="font-weight-normal">Seoul</h6>
-                </div>
+          <div class="weather-info" style="z-index: 100">
+            <div class="d-flex">
+              <div class="mr-2">
+                <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>
+              </div>
+              <div class="mr-2">
+                <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>
+              </div>
+              <div class="ml-2">
+                <h4 class="location font-weight-normal">Seongsu</h4>
+                <h6 class="font-weight-normal">Seoul</h6>
               </div>
             </div>
+        </div>
+          <div class="card-people mt-auto">
+            <img id = "rain" src="/images/dashboard/people.svg" alt="people">
           </div>
         </div>
       </div>
@@ -260,19 +260,19 @@
         <div class="row">
           <div class="col-md-6 mb-4 mb-lg-0 stretch-card transparent">
             <div class="card card-light-blue">
-              <div class="card-body">
-                <p class="mb-4">Number of Meetings</p>
-                <p class="fs-30 mb-2">34040</p>
-                <p>2.00% (30 days)</p>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <p class="mb-4">스터디 진행 수강생 수</p>
+                <a href="#" class="fs-30 mb-2 text-decoration-none text-white">5명 >></a>
+                <p class="mb-0">20.00%</p>
               </div>
             </div>
           </div>
           <div class="col-md-6 stretch-card transparent">
             <div class="card card-light-danger">
-              <div class="card-body">
-                <p class="mb-4">Number of Clients</p>
-                <p class="fs-30 mb-2">47033</p>
-                <p>0.22% (30 days)</p>
+              <div class="card-body d-flex flex-column justify-content-between">
+                <p class="mb-4">오늘의 일정</p>
+                <a href="/anc/cal" class="fs-30 mb-2 text-decoration-none text-white">1건 >></a>
+                <p class="mb-0">다가오는 일정 5건</p>
               </div>
             </div>
           </div>
