@@ -112,7 +112,7 @@
                                 </div>
                                 <div class="border-bottom py-4">
                                     <div class="d-flex mb-3" style="display:inline-flex; justify-content: space-between; align-items: center">
-                                        <p class="mr-1 my-0" style="width: 3rem">출결</p>
+                                        <p class="mr-1 my-0" style="width: 3rem">스터디</p>
                                         <div class="progress progress-md flex-grow">
                                             <div class="progress-bar bg-primary" role="progressbar" style="width: ${totalTime.get(2)/1920*100}%" aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>

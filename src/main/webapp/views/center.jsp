@@ -215,7 +215,7 @@
 <%------------------------------------날씨창 수정-----------------------------------------%>
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card tale-bg">
-          <div class="weather-info" style="z-index: 100">
+          <div class="weather-info" style="z-index: 10">
             <div class="d-flex">
               <div class="mr-2">
                 <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>

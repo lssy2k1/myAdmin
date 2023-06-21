@@ -24,7 +24,7 @@
                                 <input class="form-control" style="width: 39%" type="text" name="search2"
                                        <c:if test="${value2 != ''}">value="${value2}"</c:if>>
                                 <button type="submit" id="stdnSearchBtn" class="btn btn-inverse-primary btn-sm ml-3 mr-1"
-                                        style="width: 2rem; white-space: nowrap; width: 11%">검색
+                                        style="white-space: nowrap">검색
                                 </button>
                             </div>
                         </form>
