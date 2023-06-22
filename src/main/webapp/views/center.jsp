@@ -223,8 +223,8 @@
         <div class="row">
           <div class="col-12 mb-4 mb-xl-0" style="display: flex; justify-content: space-between">
             <h1 class="font-weight-bold" >Welcome ${loginadm.id}!</h1>
-            <div class="btn btn-sm btn-light bg-white" style="height: 40px">
-              <i class="mdi mdi-calendar" style="margin-right: 10px"></i><span id="getdate" style="font-size: 17px"></span>
+            <div class="btn btn-sm btn-light bg-white" style="height: 2.1rem">
+              <a id="getdate" class="text-dark" style="font-size: medium; text-decoration: none" href="/anc/cal"></a>
             </div>
           </div>
 

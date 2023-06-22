@@ -83,7 +83,7 @@
                         </table>
                     </div>
 
-                    <div style = "float:right;">
+                    <div class="float-right mt-3">
                         <a href = "/adm/edit?id=${adm.id}" type="button" class="btn btn-outline-primary mr-2">수정</a>
                         <button id="adm_delete_btn" type="button" class="btn btn-outline-primary mr-2">삭제</button>
                     </div>
