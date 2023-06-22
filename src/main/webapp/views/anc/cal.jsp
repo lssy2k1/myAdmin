@@ -1,13 +1,92 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
-  .fc-day-sun a {
-    color: red;
+  .card .card-body {
+    padding: 1.25rem 1.5rem 2rem 1.5rem;
   }
 
-  .fc-day-sat a {
-    color: blue;
+  .fc .fc-header-toolbar {
+    margin-top: 1rem;
   }
+
+  .fc-scrollgrid .fc-scrollgrid-liquid {
+    margin-bottom: 2rem;
+  }
+
+  .fc .fc-button {
+    padding: 0.4em;
+    border-radius: 50%;
+  }
+
+  .fc .fc-button-primary {
+    background-color: #ffffff;
+    border: 1px solid #739be1;
+    color: #739be1;
+  }
+
+  .fc .fc-button-primary:disabled {
+    background-color: #ffffff;
+    border: 1px solid #739be1;
+    color: #739be1;
+  }
+
+  .fc button:not(:disabled):not(.disabled) {
+    background-color: #739be1;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+  }
+
+  /*title 옆에 동그란 점*/
+  .fc-daygrid-event-dot {
+    border: calc(var(--fc-daygrid-event-dot-width,8px)/ 2) solid var(--fc-event-border-color,#739be1)
+  }
+
+  .fc .fc-daygrid-event {
+    padding: 0.2rem;
+  }
+
+  .fc-event-time {
+    font-size: 0.2rem;
+  }
+
+  #calendar {
+    max-width: 1400px;
+    min-height: 500px;
+    margin: 0 auto;
+  }
+
+  /*요일*/
+  .fc-col-header-cell-cushion {
+    color: #000;
+    font-size: 0.9rem;
+  }
+  .fc-col-header-cell-cushion:hover {
+    text-decoration: none;
+    color:#000;
+  }
+  /*일자*/
+  .fc-daygrid-day-number{
+    color: #000;
+    font-size:0.9rem;
+  }
+
+  /*종일제목 = 여러날인 경우 스케줄 타이틀*/
+  .fc-event-title {
+    font-size: 0.2rem;
+  }
+  /*일정시간*/
+  .fc-daygrid-event > .fc-event-time{
+    color:#000;
+  }
+  /*시간제목*/
+  .fc-daygrid-dot-event > .fc-event-title {
+    color:#000 !important;
+  }
+
+  .fc-h-event {
+    background-color: var(--fc-event-bg-color, #5a78a8);
+  }
+
 </style>
 
 <script>
@@ -108,7 +187,7 @@
       ],
       locale:'ko',
       timeZone: 'Asia/Seoul',
-      height: '600px', // calendar 높이 설정
+      height: '79vh', // calendar 높이 설정
       //expandColumns: true,
 
       expandRows: true, // 화면에 맞게 높이 재설정
@@ -188,27 +267,27 @@
 <div class="content-wrapper">
   <div class="row">
 
-    <div class="col-lg-12 grid-margin stretch-card">
+    <div class="col-lg-12 grid-margin-sm-0 stretch-card">
       <div class="card">
         <div class="card-body">
 
-          <div class="col-sm-8  text-left ">
-            <div class="container">
+          <div class="col-sm-12 text-left px-0">
+            <div class="container px-0">
               <div class="row content">
-                <div class="col-sm-3  text-left ">
-                  <div class="container" style = "margin-top:50px;">
+                <div class="col-sm-2 pr-0 text-left">
+                  <div class="container mt-lg-5 px-0">
                     <form>
                       <h6>시작일자: <span id="start"></span></h6>
                       <h6>종료일자: <span id="end"></span></h6>
-                      일정 : <input type="text" name="title" id = "title">
-                      내용 : <input type="text" name="contents" id = "contents">
+                      일정 : <input type="text" name="title" id = "title" style="width: 100%">
+                      내용 : <input type="text" name="contents" id = "contents" style="width: 100%">
                       <h6 id="next_btn"><a type="button" class="btn btn-sm btn-primary ml-lg-4">예약</a></h6>
                     </form>
                   </div>
                 </div>
-                <div class="col-sm-6  text-left ">
+                <div class="col-sm-10 pl-4 text-left ">
                   <div id='calendar-container'>
-                    <div class="well"> <div id='calendar' style = "height : 700px; width : 800px"></div></div>
+                    <div class="well"> <div id="calendar"></div></div>
                   </div>
                 </div>
               </div>

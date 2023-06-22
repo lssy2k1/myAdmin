@@ -41,7 +41,7 @@
                     </div>
                     <div class="form-group">
                         <label for="pwd">PWD</label>
-                        <input type="password" class="form-control form-control-lg" name="pwd" id="pwd" placeholder="Input Password">
+                        <input type="password" class="form-control form-control-lg" name="pwd" id="pwd" placeholder="Input Password" onkeypress="if( event.keyCode == 13 ){adm_login.send();}">
                     </div>
                     <div class="mt-3">
                         <button id="adm_login_btn" type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
