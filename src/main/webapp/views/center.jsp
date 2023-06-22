@@ -640,10 +640,10 @@
 
     </div>
     <div class="row">
-      <div class="col-md-4 stretch-card grid-margin">
-        <div class="card">
+      <div class="col-12 stretch-card grid-margin">
+        <div class="card" style="width: 100%; height: 85vh">
           <div class="card-body">
-            <iframe src="https://calendar.google.com/calendar/embed?src=digicamjava%40gmail.com&ctz=Asia%2FSeoul" style="border: 0" width="1200" height="800" frameborder="0" scrolling="no"></iframe>
+            <iframe src="https://calendar.google.com/calendar/embed?src=digicamjava%40gmail.com&ctz=Asia%2FSeoul" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
 <%--            <p class="card-title mb-0">Projects</p>--%>
 <%--            <div class="table-responsive">--%>
 <%--              <table class="table table-borderless">--%>
