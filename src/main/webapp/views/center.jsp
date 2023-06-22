@@ -7,8 +7,6 @@
     height: 400px;
     border: transparent 1px solid;
   }
-
-
 </style>
 
 <script>
@@ -130,32 +128,6 @@
       })
     }
   }
-  let getrecentlec = {
-    init : ()=>{
-      $.ajax({
-        url: "/getrecentlec",
-        method:'get',
-        dataType:'json',
-        success:(lecs)=>{
-          var html = '';
-          lecs.forEach(function(lec) {
-            html += '<tr>' +
-                    '<td>' + lec.odId + '</td>' +
-                    '<td>' + lec.title + '</td>' +
-                    '<td>' + lec.topic + '</td>' +
-                    '<td>' + lec.teacher + '</td>' +
-                    '<td>' + lec.name + '</td>' +
-                    '<td>' + lec.hit + '</td>' +
-                    '<td>' + lec.curriSum + '</td>' +
-                    '<td>' + lec.odate + '</td>' +
-                    '</tr>';// Lec 객체의 속성에 따라 변경해야 합니다.
-          });
-          $('#recent_buy_lec').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
-        }
-      })
-    }
-  }
-
   let getDate = {
     init: ()=>{
       getDate.getdate();
@@ -204,7 +176,6 @@
     getDate.init();
     makeKakaoMap3.init();
     // 로그인 안했을 경우 dashboard화면 안보이도록
-    setInterval(getrecentlec.init, 2000);
 
     if(${loginadm==null}) {
       $('#onlylogin').css("display", "none");
@@ -313,7 +284,7 @@
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <p class="card-title">성수동 맛집</p>
+            <p class="card-title">Seongsu Markers</p>
 <%-------------------------------맵 뿌리는 위치-----------------------------------------------------------------------------%>
             <div id="map"></div>
             <p id="result"></p>
@@ -323,9 +294,13 @@
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-
-
-
+<%--            <div class="d-flex justify-content-between">--%>
+<%--              <p class="card-title">Sales Report</p>--%>
+<%--              <a href="#" class="text-info">View all</a>--%>
+<%--            </div>--%>
+<%--            <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>--%>
+<%--            <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>--%>
+<%--            <canvas id="sales-chart"></canvas>--%>
           </div>
         </div>
       </div>
@@ -416,8 +391,8 @@
                           </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                          <h2 class="card-title">지난 달 우수 학생</h2>
-                          <h4 class="card-title">박선미</h4>
+                          <h2>지난 달 우수 학생</h2>
+                          <h4>박선미</h4>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="north-america-chart"></canvas>--%>
 <%--                          <div id="north-america-legend"></div>--%>
@@ -503,8 +478,8 @@
                           </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                          <h2 class="card-title">지난 달 우수 학생</h2>
-                          <h4 class="card-title">박선미</h4>
+                          <h2>지난 달 우수 학생</h2>
+                          <h4>박선미</h4>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="south-america-chart"></canvas>--%>
 <%--                          <div id="south-america-legend"></div>--%>
@@ -591,8 +566,8 @@
                           </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                          <h2 class="card-title">지난 달 우수 학생</h2>
-                          <h4 class="card-title">박선미</h4>
+                          <h2>지난 달 우수 학생</h2>
+                          <h4>박선미</h4>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="east-america-chart"></canvas>--%>
 <%--                          <div id="east-america-legend"></div>--%>
@@ -664,7 +639,187 @@
       </div>
 
     </div>
-
+    <div class="row">
+      <div class="col-12 stretch-card grid-margin">
+        <div class="card" style="width: 100%; height: 85vh">
+          <div class="card-body">
+            <iframe src="https://calendar.google.com/calendar/embed?src=digicamjava%40gmail.com&ctz=Asia%2FSeoul" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+<%--            <p class="card-title mb-0">Projects</p>--%>
+<%--            <div class="table-responsive">--%>
+<%--              <table class="table table-borderless">--%>
+<%--                <thead>--%>
+<%--                <tr>--%>
+<%--                  <th class="pl-0  pb-2 border-bottom">Places</th>--%>
+<%--                  <th class="border-bottom pb-2">Orders</th>--%>
+<%--                  <th class="border-bottom pb-2">Users</th>--%>
+<%--                </tr>--%>
+<%--                </thead>--%>
+<%--                <tbody>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0">Kentucky</td>--%>
+<%--                  <td><p class="mb-0"><span class="font-weight-bold mr-2">65</span>(2.15%)</p></td>--%>
+<%--                  <td class="text-muted">65</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0">Ohio</td>--%>
+<%--                  <td><p class="mb-0"><span class="font-weight-bold mr-2">54</span>(3.25%)</p></td>--%>
+<%--                  <td class="text-muted">51</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0">Nevada</td>--%>
+<%--                  <td><p class="mb-0"><span class="font-weight-bold mr-2">22</span>(2.22%)</p></td>--%>
+<%--                  <td class="text-muted">32</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0">North Carolina</td>--%>
+<%--                  <td><p class="mb-0"><span class="font-weight-bold mr-2">46</span>(3.27%)</p></td>--%>
+<%--                  <td class="text-muted">15</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0">Montana</td>--%>
+<%--                  <td><p class="mb-0"><span class="font-weight-bold mr-2">17</span>(1.25%)</p></td>--%>
+<%--                  <td class="text-muted">25</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0">Nevada</td>--%>
+<%--                  <td><p class="mb-0"><span class="font-weight-bold mr-2">52</span>(3.11%)</p></td>--%>
+<%--                  <td class="text-muted">71</td>--%>
+<%--                </tr>--%>
+<%--                <tr>--%>
+<%--                  <td class="pl-0 pb-0">Louisiana</td>--%>
+<%--                  <td class="pb-0"><p class="mb-0"><span class="font-weight-bold mr-2">25</span>(1.32%)</p></td>--%>
+<%--                  <td class="pb-0">14</td>--%>
+<%--                </tr>--%>
+<%--                </tbody>--%>
+<%--              </table>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="col-md-4 stretch-card grid-margin">--%>
+<%--        <div class="row">--%>
+<%--          <div class="col-md-12 grid-margin stretch-card">--%>
+<%--            <div class="card">--%>
+<%--              <div class="card-body">--%>
+<%--                <p class="card-title">Charts</p>--%>
+<%--                <div class="charts-data">--%>
+<%--                  <div class="mt-3">--%>
+<%--                    <p class="mb-0">Data 1</p>--%>
+<%--                    <div class="d-flex justify-content-between align-items-center">--%>
+<%--                      <div class="progress progress-md flex-grow-1 mr-4">--%>
+<%--                        <div class="progress-bar bg-inf0" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>--%>
+<%--                      </div>--%>
+<%--                      <p class="mb-0">5k</p>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                  <div class="mt-3">--%>
+<%--                    <p class="mb-0">Data 2</p>--%>
+<%--                    <div class="d-flex justify-content-between align-items-center">--%>
+<%--                      <div class="progress progress-md flex-grow-1 mr-4">--%>
+<%--                        <div class="progress-bar bg-info" role="progressbar" style="width: 35%" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>--%>
+<%--                      </div>--%>
+<%--                      <p class="mb-0">1k</p>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                  <div class="mt-3">--%>
+<%--                    <p class="mb-0">Data 3</p>--%>
+<%--                    <div class="d-flex justify-content-between align-items-center">--%>
+<%--                      <div class="progress progress-md flex-grow-1 mr-4">--%>
+<%--                        <div class="progress-bar bg-info" role="progressbar" style="width: 48%" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>--%>
+<%--                      </div>--%>
+<%--                      <p class="mb-0">992</p>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                  <div class="mt-3">--%>
+<%--                    <p class="mb-0">Data 4</p>--%>
+<%--                    <div class="d-flex justify-content-between align-items-center">--%>
+<%--                      <div class="progress progress-md flex-grow-1 mr-4">--%>
+<%--                        <div class="progress-bar bg-info" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>--%>
+<%--                      </div>--%>
+<%--                      <p class="mb-0">687</p>--%>
+<%--                    </div>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--          <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">--%>
+<%--            <div class="card data-icon-card-primary">--%>
+<%--              <div class="card-body">--%>
+<%--                <p class="card-title text-white">Number of Meetings</p>--%>
+<%--                <div class="row">--%>
+<%--                  <div class="col-8 text-white">--%>
+<%--                    <h3>34040</h3>--%>
+<%--                    <p class="text-white font-weight-500 mb-0">The total number of sessions within the date range.It is calculated as the sum . </p>--%>
+<%--                  </div>--%>
+<%--                  <div class="col-4 background-icon">--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </div>--%>
+<%--            </div>--%>
+<%--          </div>--%>
+<%--        </div>--%>
+<%--      </div>--%>
+<%--      <div class="col-md-4 stretch-card grid-margin">--%>
+<%--        <div class="card">--%>
+<%--          <div class="card-body">--%>
+<%--            <p class="card-title">Notifications</p>--%>
+<%--            <ul class="icon-data-list">--%>
+<%--              <li>--%>
+<%--                <div class="d-flex">--%>
+<%--                  <img src="/images/faces/face1.jpg" alt="user">--%>
+<%--                  <div>--%>
+<%--                    <p class="text-info mb-1">Isabella Becker</p>--%>
+<%--                    <p class="mb-0">Sales dashboard have been created</p>--%>
+<%--                    <small>9:30 am</small>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </li>--%>
+<%--              <li>--%>
+<%--                <div class="d-flex">--%>
+<%--                  <img src="/images/faces/face2.jpg" alt="user">--%>
+<%--                  <div>--%>
+<%--                    <p class="text-info mb-1">Adam Warren</p>--%>
+<%--                    <p class="mb-0">You have done a great job #TW111</p>--%>
+<%--                    <small>10:30 am</small>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </li>--%>
+<%--              <li>--%>
+<%--                <div class="d-flex">--%>
+<%--                  <img src="/images/faces/face3.jpg" alt="user">--%>
+<%--                  <div>--%>
+<%--                    <p class="text-info mb-1">Leonard Thornton</p>--%>
+<%--                    <p class="mb-0">Sales dashboard have been created</p>--%>
+<%--                    <small>11:30 am</small>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </li>--%>
+<%--              <li>--%>
+<%--                <div class="d-flex">--%>
+<%--                  <img src="/images/faces/face4.jpg" alt="user">--%>
+<%--                  <div>--%>
+<%--                    <p class="text-info mb-1">George Morrison</p>--%>
+<%--                    <p class="mb-0">Sales dashboard have been created</p>--%>
+<%--                    <small>8:50 am</small>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </li>--%>
+<%--              <li>--%>
+<%--                <div class="d-flex">--%>
+<%--                  <img src="/images/faces/face5.jpg" alt="user">--%>
+<%--                  <div>--%>
+<%--                    <p class="text-info mb-1">Ryan Cortez</p>--%>
+<%--                    <p class="mb-0">Herbs are fun and easy to grow.</p>--%>
+<%--                    <small>9:00 am</small>--%>
+<%--                  </div>--%>
+<%--                </div>--%>
+<%--              </li>--%>
+<%--            </ul>--%>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="row">
       <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -673,7 +828,7 @@
             <div class="row">
               <div class="col-12">
                 <div class="table-responsive">
-                  <table class="display expandable-table" style="width:100%">
+                  <table id="recent_buy_lec" class="display expandable-table" style="width:100%">
                     <thead>
                     <tr>
                       <th>주문번호</th>
@@ -687,19 +842,19 @@
                       <th></th>
                     </tr>
                     </thead>
-                    <tbody id="recent_buy_lec">
-<%--                      <c:forEach var="obj" items="${recentlec}">--%>
-<%--                        <tr>--%>
-<%--                          <td>${obj.odId}</td>--%>
-<%--                          <td>${obj.title}</td>--%>
-<%--                          <td>${obj.topic}</td>--%>
-<%--                          <td>${obj.teacher}</td>--%>
-<%--                          <td>${obj.name}</td>--%>
-<%--                          <td>${obj.hit}</td>--%>
-<%--                          <td>${obj.curriSum}</td>--%>
-<%--                          <td>${obj.odate}</td>--%>
-<%--                        </tr>--%>
-<%--                      </c:forEach>--%>
+                    <tbody>
+                      <c:forEach var="obj" items="${recentlec}">
+                        <tr>
+                          <td>${obj.odId}</td>
+                          <td>${obj.title}</td>
+                          <td>${obj.topic}</td>
+                          <td>${obj.teacher}</td>
+                          <td>${obj.name}</td>
+                          <td>${obj.hit}</td>
+                          <td>${obj.curriSum}</td>
+                          <td>${obj.odate}</td>
+                        </tr>
+                      </c:forEach>
                     </tbody>
                   </table>
                 </div>
@@ -711,18 +866,6 @@
 
       </div>
     </div>
-
-
-      <div class="row">
-        <div class="col-md-4 stretch-card grid-margin">
-          <div class="card">
-            <div class="card-body">
-              <iframe src="https://calendar.google.com/calendar/embed?src=digicamjava%40gmail.com&ctz=Asia%2FSeoul" style="border: 0" width="1200" height="800" frameborder="0" scrolling="no"></iframe>
-            </div>
-          </div>
-        </div>
-      </div>
-
 <%--  </c:if>--%>
     </div>
   </div>
