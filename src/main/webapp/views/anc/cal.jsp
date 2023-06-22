@@ -87,6 +87,12 @@
     background-color: var(--fc-event-bg-color, #5a78a8);
   }
 
+  #next_btn > a {
+    margin-left: 0 !important;
+    margin-top: 0.5rem;
+    background-color: #739be1;
+    border-color: #739be1;
+  }
 </style>
 
 <script>
