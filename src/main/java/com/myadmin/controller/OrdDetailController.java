@@ -39,6 +39,7 @@ public class OrdDetailController {
             model.addAttribute("cpage",p);
             model.addAttribute("center",dir+"all");
             model.addAttribute("target","orddetail");
+            model.addAttribute("function", "all");
         } catch (Exception e) {
             throw new Exception("orddetail all error");
         }
