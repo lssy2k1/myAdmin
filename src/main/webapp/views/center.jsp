@@ -7,6 +7,8 @@
     height: 400px;
     border: transparent 1px solid;
   }
+
+
 </style>
 
 <script>
@@ -311,7 +313,7 @@
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <p class="card-title">Seongsu Markers</p>
+            <p class="card-title">성수동 맛집</p>
 <%-------------------------------맵 뿌리는 위치-----------------------------------------------------------------------------%>
             <div id="map"></div>
             <p id="result"></p>
@@ -321,13 +323,9 @@
       <div class="col-md-6 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-<%--            <div class="d-flex justify-content-between">--%>
-<%--              <p class="card-title">Sales Report</p>--%>
-<%--              <a href="#" class="text-info">View all</a>--%>
-<%--            </div>--%>
-<%--            <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>--%>
-<%--            <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>--%>
-<%--            <canvas id="sales-chart"></canvas>--%>
+
+
+
           </div>
         </div>
       </div>
@@ -418,8 +416,8 @@
                           </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                          <h2>지난 달 우수 학생</h2>
-                          <h4>박선미</h4>
+                          <h2 class="card-title">지난 달 우수 학생</h2>
+                          <h4 class="card-title">박선미</h4>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="north-america-chart"></canvas>--%>
 <%--                          <div id="north-america-legend"></div>--%>
@@ -505,8 +503,8 @@
                           </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                          <h2>지난 달 우수 학생</h2>
-                          <h4>박선미</h4>
+                          <h2 class="card-title">지난 달 우수 학생</h2>
+                          <h4 class="card-title">박선미</h4>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="south-america-chart"></canvas>--%>
 <%--                          <div id="south-america-legend"></div>--%>
@@ -593,8 +591,8 @@
                           </div>
                         </div>
                         <div class="col-md-6 mt-3">
-                          <h2>지난 달 우수 학생</h2>
-                          <h4>박선미</h4>
+                          <h2 class="card-title">지난 달 우수 학생</h2>
+                          <h4 class="card-title">박선미</h4>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="east-america-chart"></canvas>--%>
 <%--                          <div id="east-america-legend"></div>--%>

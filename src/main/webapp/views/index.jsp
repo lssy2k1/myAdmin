@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html lang="en">
 
 <head>
@@ -36,6 +36,7 @@
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
+    <script src="/livechart.js"></script>
     <script>
         let highlight = {
             init: function(){
@@ -54,6 +55,7 @@
         })
     </script>
 <style>
+
     #setting-panel {
         height: 6.2vh;
     }
