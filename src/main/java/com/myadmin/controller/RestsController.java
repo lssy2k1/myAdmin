@@ -36,6 +36,12 @@ public class RestsController {
     @Autowired
     SbjDetailService sbjDetailService;
 
+    @RequestMapping("/getrecentlec")
+    public List<Lec> getrecentlec(Model model){
+        List<Lec> recentlec = lecService.recentlec();
+        return recentlec;
+    }
+
     @RequestMapping("/giveid")
     public String giveid(Model model){
         String result = "";

@@ -12,8 +12,7 @@
                 FROM lec l
                     LEFT JOIN ord_detail od ON l.id = od.lec_id
                     LEFT JOIN ord o ON o.id = od.ord_id
-                    LEFT JOIN lec_review lr ON l.id = lr.lec_id
-                    LEFT JOIN stdn s ON s.id = lr.stdn_id
+                    LEFT JOIN stdn s ON s.id = o.stdn_id
                     LEFT JOIN curri cu ON l.id = cu.lec_id
                 WHERE l.is_delete = '0'
                     AND od.id is not null

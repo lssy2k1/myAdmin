@@ -53,8 +53,8 @@ public class MainController {
         Stdn topstdn = stdnService.topstdn();
         Stdn topfront = stdnService.topfront();
         Stdn topback = stdnService.topback();
-        List<Lec> recentlec = lecService.recentlec();
-        log.info("recentlec111111={}", recentlec);
+//        List<Lec> recentlec = lecService.recentlec();
+//        log.info("recentlec111111={}", recentlec);
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 approveList.add(s);
@@ -84,7 +84,7 @@ public class MainController {
         model.addAttribute("topstdn",topstdn);
         model.addAttribute("topfront",topfront);
         model.addAttribute("topback",topback);
-        model.addAttribute("recentlec",recentlec);
+//        model.addAttribute("recentlec",recentlec);
 
         return "index";
     }
