@@ -7,6 +7,7 @@ import com.myadmin.service.AdmService;
 import com.myadmin.service.LecService;
 import com.myadmin.service.MrkService;
 import com.myadmin.service.StdnService;
+import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,7 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@Slf4j
 @Controller
 public class MainController {
 
@@ -49,6 +50,11 @@ public class MainController {
         List<Stdn> totalList = stdnService.get();
         List<Stdn> attdTotalList =stdnService.totalattd();
         List<Lec> hotlec = lecService.hotlec();
+        Stdn topstdn = stdnService.topstdn();
+        Stdn topfront = stdnService.topfront();
+        Stdn topback = stdnService.topback();
+        List<Lec> recentlec = lecService.recentlec();
+        log.info("recentlec111111={}", recentlec);
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 approveList.add(s);
@@ -75,6 +81,11 @@ public class MainController {
         model.addAttribute("approvepercent", formattedApprovePer);
         model.addAttribute("attdpercent", formattedAttdPer);
         model.addAttribute("hotlec", hotlec);
+        model.addAttribute("topstdn",topstdn);
+        model.addAttribute("topfront",topfront);
+        model.addAttribute("topback",topback);
+        model.addAttribute("recentlec",recentlec);
+
         return "index";
     }
     @RequestMapping("/logins")

@@ -17,4 +17,5 @@ public interface LecMapper extends MyAdminMapper<Integer, Lec> {
     public List<Lec> hotlec();
     public List<Lec> hotlechit();
     public List<Lec> hotlecrating();
+    public List<Lec> recentlec();
 }

@@ -58,4 +58,7 @@ public class LecService implements MyAdminService<Integer, Lec> {
     public List<Lec> hotlecrating(){
         return mapper.hotlecrating();
     }
+    public List<Lec> recentlec(){
+        return mapper.recentlec();
+    }
 }

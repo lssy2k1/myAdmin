@@ -75,4 +75,14 @@ public class StdnService implements MyAdminService<String, Stdn> {
         PageHelper.startPage(pageNo, 5);
         return mapper.absent();
     }
+
+    public Stdn topstdn() throws Exception{
+        return mapper.topstdn();
+    }
+    public Stdn topfront() throws Exception{
+        return mapper.topfront();
+    }
+    public Stdn topback() throws Exception{
+        return mapper.topback();
+    }
 }

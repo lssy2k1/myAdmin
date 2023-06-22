@@ -78,6 +78,7 @@
         SELECT id, pwd, name, email, contact, img, birthday, is_subsc as isSubsc, cpn, is_exit as isExit, exit_date as exitDate, last_visit as lastVisit, is_join as isJoin, sbj1, sbj2, sbj3, login_error as loginError
         FROM stdn
     </select>
+
     <insert id="insert" parameterType="Stdn">
         INSERT INTO stdn (id, pwd, name, email, contact, is_join)
         VALUES (#{id}, #{pwd}, #{name}, #{email}, #{contact}, '1')
@@ -92,4 +93,69 @@
         FROM stdn
         WHERE id=#{id}
     </delete>
+
+    <select id = "topstdn" resultType="Stdn">
+        SELECT s.name, s.id, s.img, SUM(t.score) AS topScore, COUNT(st.id) AS topStdy, COUNT(at.id) AS topAttd, COUNT(l.id) As topLec
+        FROM stdn s
+                 LEFT JOIN curri c ON s.id = c.stdn_id
+                 LEFT JOIN test t ON s.id = t.stdn_id
+                 LEFT JOIN stdy st ON s.id = st.writer
+                 LEFT JOIN attd at ON s.id = at.stdn_id
+                 LEFT JOIN lec_review l ON s.id = l.stdn_id
+        WHERE s.id = (
+            SELECT stdn_id
+            FROM (
+                    SELECT s.id AS stdn_id, ROW_NUMBER() OVER (ORDER BY SUM(t.score) DESC) AS row_num
+                    FROM stdn s
+                    LEFT JOIN test t ON s.id = t.stdn_id
+                    GROUP BY s.id
+                    )
+            WHERE row_num = 1
+            )
+        GROUP BY s.id, s.name, s.img
+    </select>
+
+    <select id = "topfront" resultType="Stdn">
+        SELECT s.name, s.id, s.img, SUM(t.score) AS topScore, COUNT(st.id) AS topStdy, COUNT(at.id) AS topAttd, COUNT(l.id) As topLec
+        FROM stdn s
+                 LEFT JOIN curri c ON s.id = c.stdn_id
+                 LEFT JOIN test t ON s.id = t.stdn_id
+                 LEFT JOIN stdy st ON s.id = st.writer
+                 LEFT JOIN attd at ON s.id = at.stdn_id
+            LEFT JOIN lec_review l ON s.id = l.stdn_id
+        WHERE s.id = (
+            SELECT stdn_id
+            FROM (
+            SELECT s.id AS stdn_id, ROW_NUMBER() OVER (ORDER BY SUM(t.id) DESC) AS row_num
+            FROM stdn s
+            LEFT JOIN test t ON s.id = t.stdn_id
+            WHERE t.sbj = 'frontend'
+            GROUP BY s.id
+            )
+            WHERE row_num = 1
+            )
+        GROUP BY s.id, s.name, s.img
+    </select>
+
+    <select id = "topback" resultType="Stdn">
+        SELECT s.name, s.id, s.img, SUM(t.score) AS topScore, COUNT(st.id) AS topStdy, COUNT(at.id) AS topAttd, COUNT(l.id) As topLec
+        FROM stdn s
+                 LEFT JOIN curri c ON s.id = c.stdn_id
+                 LEFT JOIN test t ON s.id = t.stdn_id
+                 LEFT JOIN stdy st ON s.id = st.writer
+                 LEFT JOIN attd at ON s.id = at.stdn_id
+            LEFT JOIN lec_review l ON s.id = l.stdn_id
+        WHERE s.id = (
+            SELECT stdn_id
+            FROM (
+            SELECT s.id AS stdn_id, ROW_NUMBER() OVER (ORDER BY SUM(t.id) DESC) AS row_num
+            FROM stdn s
+            LEFT JOIN test t ON s.id = t.stdn_id
+            WHERE t.sbj = 'backend'
+            GROUP BY s.id
+            )
+            WHERE row_num = 1
+            )
+        GROUP BY s.id, s.name, s.img
+    </select>
 </mapper>

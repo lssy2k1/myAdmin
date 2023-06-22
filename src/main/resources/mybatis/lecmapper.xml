@@ -5,6 +5,25 @@
 
 <mapper namespace="com.myadmin.mapper.LecMapper">
 
+    <select id="recentlec" resultType = "Lec">
+        SELECT odId, title, topic, teacher, name, hit, curriSum, odate
+        FROM ( SELECT od.id AS odId, l.title, l.topic, l.teacher, s.name
+                , l.hit, cu.lec_id AS lecId, COUNT(cu.lec_id) AS curriSum, o.rdate AS odate
+                FROM lec l
+                    LEFT JOIN ord_detail od ON l.id = od.lec_id
+                    LEFT JOIN ord o ON o.id = od.ord_id
+                    LEFT JOIN lec_review lr ON l.id = lr.lec_id
+                    LEFT JOIN stdn s ON s.id = lr.stdn_id
+                    LEFT JOIN curri cu ON l.id = cu.lec_id
+                WHERE l.is_delete = '0'
+                    AND od.id is not null
+                GROUP BY od.id, l.id
+                    , l.title, l.teacher, s.name, l.topic
+                    , l.hit, cu.lec_id, o.rdate
+                ORDER BY od.id DESC)
+        WHERE ROWNUM &lt;= 10
+    </select>
+
     <select id="hotlec" resultType="Lec">
         SELECT title, topic, teacher, rating, hit, curriSum
         FROM ( SELECT l.title, l.topic, l.teacher

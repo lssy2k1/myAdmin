@@ -24,6 +24,13 @@ public class Lec {
     private String isDelete;
     private String delDate;
     private Integer hit;
+    private double rating;
+    private String lecId;
+    private String curriSum;
+    private MultipartFile imgfile;
+    private int odId;
+    private String odate;
+    private String name;
 
     public Lec(Integer id, String admId, Integer lecCode, String title, String teacher, String topic, String target, String rdate, String length, Integer price, String img, Integer discRate, String isDelete, String delDate, Integer hit) {
         this.id = id;
@@ -43,8 +50,5 @@ public class Lec {
         this.hit = hit;
     }
 
-    private double rating;
-    private String lecId;
-    private String curriSum;
-    private MultipartFile imgfile;
+
 }

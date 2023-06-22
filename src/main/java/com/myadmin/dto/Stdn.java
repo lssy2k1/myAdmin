@@ -55,4 +55,10 @@ public class Stdn {
         this.contact = contact;
         this.isJoin = isJoin;
     }
+
+    private String topScore;
+    private String topStdy;
+    private String topAttd;
+    private String topLec;
+
 }

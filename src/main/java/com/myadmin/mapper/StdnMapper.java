@@ -20,5 +20,8 @@ public interface StdnMapper extends MyAdminMapper<String, Stdn> {
     void joinupdate(String id) throws Exception;
     List<Stdn> totalattd() throws Exception;
     Page<Stdn> absent() throws Exception;
+    Stdn topstdn() throws Exception;
+    Stdn topfront() throws Exception;
+    Stdn topback() throws Exception;
 
 }
