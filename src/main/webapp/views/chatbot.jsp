@@ -12,8 +12,31 @@
     }
     #me {
         width: 100%;
-        height: 84.5%;
-        overflow: auto;
+        height: 36.8rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    #me::-webkit-scrollbar {
+        width: 14px;
+        height: 14px;
+    }
+
+    #me::-webkit-scrollbar-thumb {
+        outline: none;
+        border-radius: 10px;
+        border: 4px solid transparent;
+        box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.15);
+    }
+
+    #me::-webkit-scrollbar-thumb:hover {
+        border: 4px solid transparent;
+        box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.3);
+    }
+
+    #me::-webkit-scrollbar-track {
+        box-shadow: none;
+        background-color: transparent;
     }
 
 </style>
@@ -57,7 +80,8 @@
 
                 this.subscribe('/chsend/'+sid, function(msg) {
                     $("#me").append(
-                        '<p class="w-75 p-2 rounded-sm text-dark float-left" style="background-color: #f5f6f7; margin-left:0.75rem"><b>' + 'chatbot' +' : '+'</b>'+ JSON.parse(msg.body).content1+ '</p>');
+                        '<p class="w-75 p-2 rounded-sm text-dark float-left" style="background-color:#e9ecef; margin-left:0.75rem"><b>' + 'chatbot' +' : '+'</b>'+ JSON.parse(msg.body).content1+ '</p>');
+                    $('#me').animate({ scrollTop: $('#me')[0].scrollHeight }, 1000);
                 });
 
             });
@@ -86,6 +110,7 @@
             $('#me').append(
                 '<p class="w-75 p-2 ml-lg-5 mr-2 rounded-sm bg-inverse-info text-dark float-right"><b>'+this.id+' : '+'</b>'+ $('#metext').val()+'</p>'
             );
+            $('#me').animate({ scrollTop: $('#me')[0].scrollHeight }, 1000);
             $('#metext').val('');
         }
     };
@@ -117,10 +142,10 @@
                     <span class="ml-3">연결상태 : </span><span id="status"></span>
 
 
-                    <div id="me" class="mt-3 mb-2"></div>
+                    <div id="me" class="mt-3"></div>
                     <div class="card-footer text-muted d-flex justify-content-start align-items-center p-2">
                         <input type="text" class="form-control form-control-lg px-3" id="metext"
-                               placeholder="메세지를 입력하세요">
+                               placeholder="메세지를 입력하세요" onkeypress="if( event.keyCode == 13 ){chatbot.sendMe();}">
                         <button id="sendme" style="border: none; background: none; height: 3rem; font-size: larger"><i class="mdi mdi-send ml-2"></i></button>
                     </div>
                 </div>
