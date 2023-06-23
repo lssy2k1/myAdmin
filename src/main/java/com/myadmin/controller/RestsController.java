@@ -36,10 +36,29 @@ public class RestsController {
     @Autowired
     SbjDetailService sbjDetailService;
 
+    @Autowired
+    OrdService ordService;
+
     @RequestMapping("/getrecentlec")
     public List<Lec> getrecentlec(Model model){
         List<Lec> recentlec = lecService.recentlec();
         return recentlec;
+    }
+
+    @RequestMapping("/getordchart")
+    public JSONObject getordchart(Model model) throws Exception {
+        JSONObject jo = new JSONObject();
+        try {
+            Ord mostlec = ordService.mostlec();
+            Ord moststdn = ordService.moststdn();
+            Ord gettoday = ordService.gettoday();
+            jo.put("mostlec", mostlec);
+            jo.put("moststdn", moststdn);
+            jo.put("gettoday", gettoday);
+        } catch (Exception e) {
+            throw new Exception("getordchart Error");
+        }
+        return jo;
     }
 
     @RequestMapping("/giveid")

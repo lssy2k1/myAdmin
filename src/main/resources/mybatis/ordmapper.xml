@@ -12,6 +12,43 @@
 <!--        WHERE stdn_id=#{stdnId}-->
 <!--    </select>-->
 
+    <select id = "mostlec" resultType ="Ord">
+        SELECT title, countLec
+        FROM (
+                 SELECT l.title, COUNT(*) AS countLec
+                 FROM ord o
+                          LEFT JOIN ord_detail od ON od.ord_id = o.id
+                          LEFT JOIN lec l ON od.lec_id = l.id
+                 WHERE TO_CHAR(TO_DATE(REPLACE(SUBSTR(o.rdate,1,10), '.', '-'), 'YYYY-MM-DD'), 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM')
+                 GROUP BY l.title
+                 ORDER BY countLec DESC
+             )
+        WHERE ROWNUM = 1
+    </select>
+
+    <select id = "moststdn" resultType ="Ord">
+        SELECT name, countName
+        FROM (
+                 SELECT s.name, COUNT(NVL(s.name, 0)) AS countName
+                 FROM ord o
+                          LEFT JOIN ord_detail od ON od.ord_id = o.id
+                          LEFT JOIN stdn s ON o.stdn_id = s.id
+                 WHERE TO_CHAR(TO_DATE(REPLACE(SUBSTR(o.rdate,1,10), '.', '-'), 'YYYY-MM-DD'), 'YYYY-MM') = TO_CHAR(SYSDATE, 'YYYY-MM')
+                 GROUP BY s.name
+                 ORDER BY countName DESC
+             )
+        WHERE ROWNUM = 1
+    </select>
+
+    <select id = "gettoday" resultType ="Ord">
+        SELECT SUBSTR(rdate,1,10) AS today, NVL(COUNT(*),0) AS todayOrd, NVL(SUM(NVL(od.price,0)),0) AS todayPrice
+        FROM ord o
+                 LEFT JOIN ord_detail od ON od.ord_id = o.id
+        WHERE TO_DATE(REPLACE(SUBSTR(rdate,1,10), '.', '-'), 'YYYY-MM-DD') = TRUNC(SYSDATE)
+        GROUP BY SUBSTR(rdate,1,10)
+    </select>
+
+
     <select id="getpage" resultType="Ord">
         SELECT id, stdn_id AS stdnId, rdate, is_done AS isDone
              , ord_price AS ordPrice, pay_method AS payMethod

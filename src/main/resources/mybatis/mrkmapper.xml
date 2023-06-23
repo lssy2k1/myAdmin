@@ -31,6 +31,7 @@
     <select id="selectall" resultType="Mrk">
         SELECT *
         FROM mrk
+        ORDER BY id DESC
     </select>
     <insert id="insert" parameterType="Mrk">
         INSERT INTO mrk VALUES (mrk_seq.NEXTVAL,#{title},#{lat},#{lng},#{img},#{rating},#{detail},#{writer},#{keyword})

@@ -30,8 +30,15 @@
                         <input type="text" class="form-control mb-2 mr-sm-2" id="title" name="title" placeholder="Input Title" value="${ms.title}">
                         <label for="writer" style="margin: 0 10px">Writer</label>
                         <input type="text" class="form-control mb-2 mr-sm-2" id="writer" name="writer" placeholder="Input Writer" value="${ms.writer}">
-                        <label for="title" style="margin: 0 10px">Keyword</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="keyword" name="keyword" placeholder="Input Keyword" value="${ms.keyword}">
+
+                        <label for="keyword" style="margin: 0 10px">Keyword</label>
+                        <select id="keyword" name="keyword" value="${ms.keyword}" class="form-control mb-2 mr-2">
+                            <option value="">전체</option>
+                            <option value="R" <c:if test="${ms.keyword=='R'}">selected</c:if>>식당</option>
+                            <option value="C" <c:if test="${ms.keyword=='C'}">selected</c:if>>카페</option>
+                            <option value="S" <c:if test="${ms.keyword=='S'}">selected</c:if>>스터디카페</option>
+                        </select>
+
                         <label for="rating" style="margin: 0 10px">Rating</label>
                         <select id="rating" name="rating" value="${ms.rating}" class="form-control mb-2 mr-2">
                             <option value="">전체</option>
@@ -62,7 +69,7 @@
                                 <th>Lat</th>
                                 <th>Lng</th>
                                 <th>Rating</th>
-                                <th>Detail</th>
+<%--                                <th>Detail</th>--%>
                                 <th>Writer</th>
                                 <th>Keyword</th>
                             </tr>
@@ -76,7 +83,7 @@
                                     <td>${obj.lat}</td>
                                     <td>${obj.lng}</td>
                                     <td>${obj.rating}</td>
-                                    <td>${obj.detail}</td>
+<%--                                    <td>${obj.detail}</td>--%>
                                     <td>${obj.writer}</td>
                                     <td>${obj.keyword}</td>
                                 </tr>
