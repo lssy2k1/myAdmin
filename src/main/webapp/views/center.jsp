@@ -8,10 +8,77 @@
     border: transparent 1px solid;
   }
 
-
+  .chart-container {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 </style>
 
+
+
 <script>
+
+  let makepiechart = {
+    init: ()=>{
+      $.ajax({
+        url:'/piechartdata',
+        success:(data)=>{
+
+          var doughnutPieData = {
+            datasets: [{
+              data: data.sbjcount,
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)'
+              ],
+              borderColor: [
+                'rgba(255,99,132,1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+              ],
+            }],
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: data.sbjname
+          };
+
+          var doughnutPieOptions = {
+            responsive: false,//true로 하면 커짐.
+            animation: {
+              animateScale: true,
+              animateRotate: true
+            },
+            plugins: {
+              legend: {
+                position: 'bottom' // 라벨을 차트 아래에 표시
+              }
+            }
+
+          }
+
+          if ($("#pieChart1").length) {
+            var pieChartCanvas1 = $("#pieChart1").get(0).getContext("2d");
+            var pieChart1 = new Chart(pieChartCanvas1, {
+              type: 'pie',
+              data: doughnutPieData,
+              options: doughnutPieOptions
+            });
+          }
+
+        }
+      })
+
+    }
+  };
+
   let lectabledefault ={
     init:()=>{
       $.ajax({
@@ -19,7 +86,7 @@
         method:'get',
         dataType:'json',
         success: function(lecs) {
-          console.log(lecs);
+          // console.log(lecs);
           var html = '';
           lecs.forEach(function(lec) {
             html += `
@@ -206,8 +273,8 @@
     getDate.init();
     makeKakaoMap3.init();
     setInterval(getrecentlec.init, 2000);
-
-
+    makepiechart.init();
+    setInterval(makepiechart.init, 10000);
     // 로그인 안했을 경우 dashboard화면 안보이도록
 
     if(${loginadm==null}) {
@@ -328,7 +395,10 @@
         <div class="card">
           <div class="card-body">
 
-
+            <h4 class="card-title">관심 과목 차트</h4>
+            <div class="chart-container">
+              <canvas id="pieChart1" style="height:40vh; width:40vw; margin-top:30px;"></canvas>
+            </div>
 
           </div>
         </div>

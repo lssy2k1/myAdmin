@@ -85,4 +85,9 @@ public class StdnService implements MyAdminService<String, Stdn> {
     public Stdn topback() throws Exception{
         return mapper.topback();
     }
+
+    public List<Stdn> topsbj() throws Exception{
+        return mapper.topsbj();
+    }
+
 }

@@ -37,6 +37,8 @@ public class Stdn {
     private String isAttend;
 //    0 결석, 1 출석, 2 지각
     private String attdDate;
+    private String sbj;
+    private Integer count;
 
 //    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
 //        this.id = id;
