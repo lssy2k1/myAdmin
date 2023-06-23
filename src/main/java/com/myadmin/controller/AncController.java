@@ -73,6 +73,7 @@ public class AncController {
             model.addAttribute("cpage",p);
             model.addAttribute("center",dir+"all");
             model.addAttribute("target","anc");
+            model.addAttribute("function","all");
         } catch (Exception e) {
             throw new Exception("anc all error");
         }

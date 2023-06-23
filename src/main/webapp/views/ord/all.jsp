@@ -7,13 +7,22 @@
             $.ajax({
                 url:'/getordchart',
                 success:(data)=>{
+                    if(data.gettoday != null){
 
-                    document.getElementById('todayOrd').textContent = data.gettoday.todayOrd;
-                    document.getElementById('todayOrd1').textContent = data.gettoday.today;
+                        document.getElementById('todayOrd').textContent = data.gettoday.todayOrd;
+                        document.getElementById('todayOrd1').textContent = data.gettoday.today;
 
-                    // 금일 결제 금액
-                    document.getElementById('todayPrice').textContent = data.gettoday.todayPrice;
-                    document.getElementById('todayPrice1').textContent = data.gettoday.today;
+
+                        // 금일 결제 금액
+                        document.getElementById('todayPrice').textContent = data.gettoday.todayPrice;
+                        document.getElementById('todayPrice1').textContent = data.gettoday.today;
+
+                    }
+
+                    document.getElementById('todayOrd').textContent = 0;
+                    document.getElementById('todayPrice').textContent = 0;
+
+
 
                     // Monthly 최다 주문 과목
                     document.getElementById('mostlec').textContent = data.mostlec.countLec;
