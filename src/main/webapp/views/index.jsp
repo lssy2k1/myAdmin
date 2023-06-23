@@ -36,7 +36,7 @@
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
-    <script src="/livechart.js"></script>
+
     <script>
         let highlight = {
             init: function(){

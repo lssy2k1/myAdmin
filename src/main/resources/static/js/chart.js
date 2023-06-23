@@ -78,9 +78,11 @@ $(function() {
     }
 
   };
+
+
   var doughnutPieData = {
     datasets: [{
-      data: [30, 40, 30],
+      data: [],
       backgroundColor: [
         'rgba(255, 99, 132, 0.5)',
         'rgba(54, 162, 235, 0.5)',
@@ -98,14 +100,10 @@ $(function() {
         'rgba(255, 159, 64, 1)'
       ],
     }],
-
     // These labels appear in the legend and in the tooltips when hovering different arcs
-    labels: [
-      'Pink',
-      'Blue',
-      'Yellow',
-    ]
+    labels: []
   };
+
   var doughnutPieOptions = {
     responsive: true,
     animation: {

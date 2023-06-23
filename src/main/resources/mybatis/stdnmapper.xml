@@ -5,6 +5,25 @@
 
 <mapper namespace="com.myadmin.mapper.StdnMapper">
 
+    <select id="topsbj" resultType="Stdn">
+        SELECT sbj, count
+        FROM
+            (
+            SELECT sbj, COUNT(*) AS count
+            FROM
+                (
+                SELECT sbj1 AS sbj FROM stdn
+                UNION ALL
+                SELECT sbj2 AS sbj FROM stdn
+                UNION ALL
+                SELECT sbj3 AS sbj FROM stdn
+                )
+            GROUP BY sbj
+            ORDER BY count DESC
+            )
+        WHERE ROWNUM &lt;=5
+    </select>
+
     <select id="getpage" resultType="Stdn">
         SELECT l.img, l.id, l.name, l.is_attend AS isAttend, l.email, l.contact, l.rdate AS attdDate, l.is_join AS isJoin
         FROM (

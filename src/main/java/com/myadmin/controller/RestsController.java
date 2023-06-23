@@ -1,5 +1,6 @@
 package com.myadmin.controller;
 
+import com.google.api.client.json.Json;
 import com.google.api.services.calendar.model.Event;
 import com.myadmin.dto.*;
 import com.myadmin.service.*;
@@ -38,6 +39,29 @@ public class RestsController {
 
     @Autowired
     OrdService ordService;
+
+    @Autowired
+    StdnService stdnService;
+
+    @RequestMapping("/piechartdata")
+    public JSONObject piechartdata(Model model) throws Exception {
+        JSONObject jo = new JSONObject();
+        JSONArray sbjname = new JSONArray();
+        JSONArray sbjcount = new JSONArray();
+        try {
+            List<Stdn> topsbj = stdnService.topsbj();
+            for (Stdn obj : topsbj){
+                sbjcount.add(obj.getCount());
+                sbjname.add(obj.getSbj());
+            }
+        } catch (Exception e) {
+            throw new Exception("piechartdata error");
+        }
+        jo.put("sbjname", sbjname);
+        jo.put("sbjcount",sbjcount);
+        log.info(jo.toString()+"============================================================");
+        return jo;
+    }
 
     @RequestMapping("/getrecentlec")
     public List<Lec> getrecentlec(Model model){
