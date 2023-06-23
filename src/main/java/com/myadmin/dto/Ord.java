@@ -16,6 +16,14 @@ public class Ord {
     private String payMethod;
     private String updDate;
     private Integer useCpn;
+    private Integer odId;
+    private String name;
+    private Integer countName;
+    private Integer countLec;
+    private String title;
+    private Integer todayOrd;
+    private Integer todayPrice;
+    private String today;
 
     public Ord(Integer id, String stdnId, String rdate, String isDone, Integer ordPrice, String payMethod, Integer useCpn) {
         this.id = id;
@@ -27,6 +35,5 @@ public class Ord {
         this.useCpn = useCpn;
     }
 
-    public Integer odId;
 
 }

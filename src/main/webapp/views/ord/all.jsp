@@ -2,15 +2,39 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <script>
-    // $(function(){
-    //     function fn_downfile(document_nm){
-    //         location.href="/anc/document/fileDownload.do?document_nm="+ encodeURIComponent(document_nm);
-    //     }
-    //     $('.anc_download_btn').click(function(){
-    //         var document_nm = $(this).data('document_nm');  // 수정된 부분
-    //         fn_downfile(document_nm);
-    //     });
-    // });
+    let ordchart={
+        init:()=>{
+            $.ajax({
+                url:'/getordchart',
+                success:(data)=>{
+
+                    document.getElementById('todayOrd').textContent = data.gettoday.todayOrd;
+                    document.getElementById('todayOrd1').textContent = data.gettoday.today;
+
+                    // 금일 결제 금액
+                    document.getElementById('todayPrice').textContent = data.gettoday.todayPrice;
+                    document.getElementById('todayPrice1').textContent = data.gettoday.today;
+
+                    // Monthly 최다 주문 과목
+                    document.getElementById('mostlec').textContent = data.mostlec.countLec;
+                    document.getElementById('mostlec1').textContent = data.mostlec.title;
+
+                    // Monthly 최다 주문 학생
+                    document.getElementById('moststdn').textContent = data.moststdn.countName;
+                    document.getElementById('moststdn1').textContent = data.moststdn.name;
+
+                }
+            })
+        }
+    }
+    $(()=>{
+        $('#ord_lec').click(() =>{
+            window.location.href = '/orddetail/all';
+        })
+        ordchart.init();
+        setInterval(ordchart.init, 5000);
+    })
+
 </script>
 
 <!-- partial -->
@@ -21,8 +45,58 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">주문 조회</h4>
+                    <p class="card-title">주문 통계</p>
+                    <div class="row">
 
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-tale">
+                                    <div class="card-body">
+                                        <p class="mb-4">금일 주문 건수</p>
+                                        <p class="fs-30 mb-2" id="todayOrd"></p>
+                                        <p id="todayOrd1"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-dark-blue">
+                                    <div class="card-body">
+                                        <p class="mb-4">금일 결제 금액</p>
+                                        <p class="fs-30 mb-2" id = "todayPrice"></p>
+                                        <p id = "todayPrice1"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-light-blue">
+                                    <div class="card-body">
+                                        <p class="mb-4">Monthly 최다 주문 과목</p>
+                                        <p class="fs-30 mb-2" id="mostlec"></p>
+                                        <p id="mostlec1"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-3 mb-4 stretch-card transparent">
+                                <div class="card card-light-danger">
+                                    <div class="card-body">
+                                        <p class="mb-4">Monthly 최다 주문 학생</p>
+                                        <p class="fs-30 mb-2" id="moststdn"></p>
+                                        <p id="moststdn1"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">주문 조회</h4>
+                    <button type="button" id="ord_stdn" class="btn btn-primary btn-sm mr-1">학생별 주문</button>
+                    <button type="button" id="ord_lec" class="btn btn-outline-primary btn-sm mr-1">과목별 주문</button>
+                    <p></p>
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>

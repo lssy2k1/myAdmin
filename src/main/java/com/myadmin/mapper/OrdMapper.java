@@ -15,5 +15,7 @@ import java.util.List;
 public interface OrdMapper extends MyAdminMapper<Integer, Ord> {
     public Page<Ord> getpage() throws Exception;
     public List<Ord> searchorddetail(Integer orddetailid);
-
+    public Ord mostlec() throws Exception;
+    public Ord moststdn() throws Exception;
+    public Ord gettoday() throws Exception;
 }

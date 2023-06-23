@@ -57,4 +57,16 @@ public class OrdService implements MyAdminService<Integer, Ord> {
     public List<Ord> searchOrdDetail(Integer orddetailid) throws Exception{
         return mapper.searchorddetail(orddetailid);
     }
+
+    public Ord mostlec() throws Exception{
+        return mapper.mostlec();
+    }
+
+    public Ord moststdn() throws Exception{
+        return mapper.moststdn();
+    }
+
+    public Ord gettoday() throws Exception{
+        return mapper.gettoday();
+    }
 }
