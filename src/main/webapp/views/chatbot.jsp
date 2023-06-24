@@ -43,8 +43,8 @@
 
 <script>
     let chatbot = {
-        id:null,
-        stompClient:null,
+        id              : null,
+        stompClient     : null,
         init:function(){
             this.id = $('#adm_id').val();//adm_id에서 적힌 글씨를 id로 뿌려줄 예정이다.
             $("#connect").click(function() {

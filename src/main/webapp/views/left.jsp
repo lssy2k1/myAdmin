@@ -109,11 +109,11 @@
             </li>
             </c:if>
         </c:if>
-        <li class="nav-item">
-            <a class="nav-link" href="/trypage" aria-expanded="false" aria-controls="trypage">
-                <i class="icon-star menu-icon"></i>
-                <span class="menu-title">Tryyyyyy</span>
-            </a>
-        </li>
+<%--        <li class="nav-item">--%>
+<%--            <a class="nav-link" href="/trypage" aria-expanded="false" aria-controls="trypage">--%>
+<%--                <i class="icon-star menu-icon"></i>--%>
+<%--                <span class="menu-title">Tryyyyyy</span>--%>
+<%--            </a>--%>
+<%--        </li>--%>
     </ul>
 </nav>

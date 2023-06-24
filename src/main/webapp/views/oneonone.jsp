@@ -95,6 +95,18 @@
                     $("#to").append(
                         '<p class="w-75 p-2 rounded-sm text-dark float-left" style="background-color:#e9ecef; margin-left:0.75rem"><b>' + JSON.parse(msg.body).sendid + ' : ' + '</b>' + JSON.parse(msg.body).content1 + '</p>');
                     $('#to').animate({scrollTop: $('#to')[0].scrollHeight}, 1000);
+                    var notificationBell = document.getElementById("notification_bell");
+
+                    notificationBell.classList.add("count");
+                    notificationBell.classList.add("blinking");
+                    var notificationContents = document.getElementById("notification_contents");
+
+                    // preview-thumbnail 요소 내부에 메시지를 추가
+                    var previewThumbnail = document.createElement("div");
+                    previewThumbnail.classList.add("preview-thumbnail", "mdi", "mdi-email");
+                    previewThumbnail.innerText = `${JSON.parse(msg.body).sendid}님의 메시지가 도착했습니다.`;
+                    notificationContents.appendChild(previewThumbnail);
+
                 });
             });
         },
