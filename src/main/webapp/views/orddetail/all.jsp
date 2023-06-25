@@ -9,7 +9,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">주문 상세조회</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">주문 상세조회</h4>
 
                     <div class="table-responsive">
                         <table class="table table-bordered">

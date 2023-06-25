@@ -36,7 +36,7 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">강의 정보 수정</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">강의 정보 수정</h4>
                     <p class="card-description">
                         강의 정보 수정
                     </p>

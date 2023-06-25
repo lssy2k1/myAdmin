@@ -8,7 +8,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title text-primary mb-lg-3 ml-2">전체 수강생 목록</div>
+                        <div class="card-title pl-1 mt-1 mb-5 text-primary">전체 수강생 목록</div>
                         <form action="/stdn/approvesearch" method="get">
                             <div class="form-group"
                                  style="display: flex; align-items: center; float: right; margin: 0 0 0.7em 0; width: 50%">

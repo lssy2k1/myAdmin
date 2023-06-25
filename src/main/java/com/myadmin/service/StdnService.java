@@ -71,7 +71,7 @@ public class StdnService implements MyAdminService<String, Stdn> {
         return mapper.totalattd();
     }
 
-    public List<Stdn> absent(int pageNo) throws Exception {
+    public Page<Stdn> absent(int pageNo) throws Exception {
         PageHelper.startPage(pageNo, 5);
         return mapper.absent();
     }

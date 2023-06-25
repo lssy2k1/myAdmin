@@ -35,6 +35,10 @@ public class StdnController {
     @Autowired
     StdyTrckrService stdyTrckrService;
     @Autowired
+    AttdAllService attdAllService;
+    @Autowired
+    CpnService cpnService;
+    @Autowired
     BCryptPasswordEncoder encoder;
 
     String dir = "stdn/";
@@ -105,6 +109,8 @@ public class StdnController {
     public String approveimpl(Model model, String id) throws Exception {
         Stdn stdn = stdnService.get(id);
         stdnService.joinupdate(id);
+        Cpn cpn = new Cpn(1020, id, "2023.12.31");
+        cpnService.register(cpn);
         return "redirect:/stdn/approve";
     }
 
@@ -114,6 +120,8 @@ public class StdnController {
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 stdnService.joinupdate(s.getId());
+                Cpn cpn = new Cpn(1020, s.getId(), "2023.12.31");
+                cpnService.register(cpn);
             }
         }
         return "redirect:/stdn/approve";
@@ -135,6 +143,22 @@ public class StdnController {
         model.addAttribute("currentDate", currentDate);
         model.addAttribute("cpage", p);
         model.addAttribute("center",dir+"absent");
+        return "index";
+    }
+
+    @RequestMapping("/attd")
+    public String attdall(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception{
+        PageInfo<AttdAll> p;
+        try {
+            p = new PageInfo<>(attdAllService.attdall(pageNo), 10);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("시스템 장애: ER0001");
+        }
+        model.addAttribute("target","stdn");
+        model.addAttribute("function", "attd");
+        model.addAttribute("cpage", p);
+        model.addAttribute("center",dir+"attd");
         return "index";
     }
 
