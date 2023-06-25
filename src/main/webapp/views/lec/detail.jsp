@@ -25,7 +25,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">강의 세부사항</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">강의 세부사항</h4>
                     <div class="table-responsive">
                         <div style = "display: flex; align-items: flex-start;">
                             <img src="/uimg/${lec.img}" style = "width:300px; height:300px">

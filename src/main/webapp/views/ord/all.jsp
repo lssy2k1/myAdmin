@@ -54,7 +54,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <p class="card-title">주문 통계</p>
+                    <p class="card-title pl-1 mt-1 mb-5 text-primary">주문 통계</p>
                     <div class="row">
 
                             <div class="col-md-3 mb-4 stretch-card transparent">
@@ -102,7 +102,7 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">주문 조회</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">주문 조회</h4>
                     <button type="button" id="ord_stdn" class="btn btn-primary btn-sm mr-1">학생별 주문</button>
                     <button type="button" id="ord_lec" class="btn btn-outline-primary btn-sm mr-1">과목별 주문</button>
                     <p></p>

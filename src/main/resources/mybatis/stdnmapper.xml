@@ -32,6 +32,7 @@
             LEFT OUTER JOIN attd a ON s.id = a.stdn_id
         ) l
         WHERE l.is_join = 1 AND l.rn = 1
+        ORDER BY name
     </select>
     <select id="searchpage" resultType="Stdn" parameterType="StdnSearch">
         SELECT l.img, l.id, l.name, l.is_attend AS isAttend, l.email, l.contact, l.rdate AS attdDate, l.is_join AS isJoin
@@ -47,11 +48,13 @@
         <if test="search2 != ''">
             AND name LIKE '%' ||  #{search2} || '%'
         </if>
+        ORDER BY name
     </select>
     <select id="approve" parameterType="String" resultType="Stdn">
         SELECT *
         FROM stdn
         WHERE is_join = '0'
+        ORDER BY name
     </select>
     <select id="approvesearch" parameterType="String" resultType="Stdn">
         SELECT *
@@ -63,6 +66,7 @@
         <if test="search2 != ''">
             AND name LIKE '%' ||  #{search2} || '%'
         </if>
+        ORDER BY name
     </select>
     <update id="joinupdate" parameterType="String">
         UPDATE stdn
@@ -86,6 +90,7 @@
                           LEFT OUTER JOIN attd a ON s.id = a.stdn_id
              ) l
         WHERE l.is_join = 1 AND l.rn = 1 AND (l.is_attend IS NULL OR l.is_attend = '0')
+        ORDER BY l.name
     </select>
 
     <select id="select" parameterType="String" resultType="Stdn">
@@ -96,6 +101,7 @@
     <select id="selectall" resultType="Stdn">
         SELECT id, pwd, name, email, contact, img, birthday, is_subsc as isSubsc, cpn, is_exit as isExit, exit_date as exitDate, last_visit as lastVisit, is_join as isJoin, sbj1, sbj2, sbj3, login_error as loginError
         FROM stdn
+        ORDER BY name
     </select>
 
     <insert id="insert" parameterType="Stdn">

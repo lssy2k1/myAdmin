@@ -24,23 +24,22 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Search</h4>
                     <form id="search_form" class="form-inline">
-                        <label for="title" style="margin-right: 10px">Title</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="title" name="title" placeholder="Input Title" value="${ms.title}">
-                        <label for="writer" style="margin: 0 10px">Writer</label>
-                        <input type="text" class="form-control mb-2 mr-sm-2" id="writer" name="writer" placeholder="Input Writer" value="${ms.writer}">
+                        <label for="title" style="margin-right: 10px">제목</label>
+                        <input type="text" class="form-control mr-sm-2" id="title" name="title" placeholder="Input Title" value="${ms.title}">
+                        <label for="writer" style="margin: 0 10px">작성자</label>
+                        <input type="text" class="form-control mr-sm-2" id="writer" name="writer" placeholder="Input Writer" value="${ms.writer}">
 
-                        <label for="keyword" style="margin: 0 10px">Keyword</label>
-                        <select id="keyword" name="keyword" value="${ms.keyword}" class="form-control mb-2 mr-2">
+                        <label for="keyword" style="margin: 0 10px">키워드</label>
+                        <select id="keyword" name="keyword" value="${ms.keyword}" class="form-control mr-2">
                             <option value="">전체</option>
                             <option value="R" <c:if test="${ms.keyword=='R'}">selected</c:if>>식당</option>
                             <option value="C" <c:if test="${ms.keyword=='C'}">selected</c:if>>카페</option>
                             <option value="S" <c:if test="${ms.keyword=='S'}">selected</c:if>>스터디카페</option>
                         </select>
 
-                        <label for="rating" style="margin: 0 10px">Rating</label>
-                        <select id="rating" name="rating" value="${ms.rating}" class="form-control mb-2 mr-2">
+                        <label for="rating" style="margin: 0 10px">별점</label>
+                        <select id="rating" name="rating" value="${ms.rating}" class="form-control mr-2">
                             <option value="">전체</option>
                             <option value="1" <c:if test="${ms.rating==1}">selected</c:if> >1</option>
                             <option value="2" <c:if test="${ms.rating==2}">selected</c:if>>2</option>
@@ -57,21 +56,21 @@
         <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Marker List</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">마커 목록</h4>
 
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
                             <tr>
-                                <th>IMG</th>
+                                <th>이미지</th>
                                 <th>ID</th>
-                                <th>Title</th>
-                                <th>Lat</th>
-                                <th>Lng</th>
-                                <th>Rating</th>
-<%--                                <th>Detail</th>--%>
-                                <th>Writer</th>
-                                <th>Keyword</th>
+                                <th>제목</th>
+                                <th>위도</th>
+                                <th>경도</th>
+                                <th>별점</th>
+<%--                                <th>상세</th>--%>
+                                <th>작성자</th>
+                                <th>키워드</th>
                             </tr>
                             </thead>
                             <tbody>

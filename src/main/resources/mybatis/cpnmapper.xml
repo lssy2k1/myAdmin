@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myadmin.mapper.CpnMapper">
+    <insert id="insert" parameterType="Cpn">
+        INSERT INTO cpn (id, spec_id, stdn_id, give_date, valid_date, is_used)
+        VALUES (cpn_seq.NEXTVAL,#{specId},#{stdnId},TO_CHAR(SYSDATE,'yyyy.MM.dd'),#{validDate},'0')
+    </insert>
+</mapper>

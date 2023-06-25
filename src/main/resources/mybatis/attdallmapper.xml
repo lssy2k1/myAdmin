@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myadmin.mapper.AttdAllMapper">
+    <select id="attdall" resultType="AttdAll">
+        SELECT stdn.id AS stdnId,
+            stdn.name,
+            COUNT(CASE WHEN attd.is_attend = 0 THEN 1 END) AS cnt0,
+            COUNT(CASE WHEN attd.is_attend = 1 THEN 1 END) AS cnt1,
+            COUNT(CASE WHEN attd.is_attend = 2 THEN 1 END) AS cnt2
+        FROM attd
+        RIGHT OUTER JOIN stdn ON attd.stdn_id = stdn.id
+        GROUP BY stdn.id, stdn.name
+        ORDER BY stdn.name
+    </select>
+</mapper>

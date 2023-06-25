@@ -20,7 +20,7 @@
 <div class="content-wrapper">
     <div class="row">
 
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <form id="lec_search_form" class="form-inline" style="margin: 0; display: flex; justify-content: space-between; align-items: center">
@@ -46,10 +46,10 @@
             </div>
         </div>
 
-        <div class="col-lg-12 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">강의 목록</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">강의 목록</h4>
                     <div class="table-responsive">
                         <table class="table table-striped" style="table-layout: fixed; text-align: center">
                             <thead>

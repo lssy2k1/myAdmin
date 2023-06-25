@@ -134,17 +134,16 @@ public class MainController {
             }
             session.setMaxInactiveInterval(60000);
             session.setAttribute("loginadm", adm);
-
-
+            model.addAttribute("total", total);
+            model.addAttribute("approveCnt", approveCnt);
+            model.addAttribute("attdCnt", attdCnt);
+            model.addAttribute("approvepercent", formattedApprovePer);
+            model.addAttribute("attdpercent", formattedAttdPer);
         } catch (Exception e) {
             throw new Exception("adm login error");
         }
         model.addAttribute("center", nextPage);
-        model.addAttribute("total", total);
-        model.addAttribute("approveCnt", approveCnt);
-        model.addAttribute("attdCnt", attdCnt);
-        model.addAttribute("approvepercent", formattedApprovePer);
-        model.addAttribute("attdpercent", formattedAttdPer);
+
         return "index";
     }
 
