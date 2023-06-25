@@ -9,7 +9,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -43,6 +46,22 @@ public class RestsController {
     @Autowired
     StdnService stdnService;
 
+    //redis 서버에 notification alarm 저장할 것
+    @Autowired
+    private RedisTemplate<String, String> redisTemplate;
+
+    @RequestMapping("/saveNotification")
+    public void saveNotification(@RequestBody Map<String, String> requestBody){
+        //fetch로 온 JSON.stringify 데이터를 Map으로 받아서 꺼낸다.
+        String sessionId = requestBody.get("sessionId");
+        String notification = requestBody.get("notification");
+//        log.info("=================================================="+sessionId+notification);
+        // Redis에 알림 메시지 저장
+        redisTemplate.opsForValue().set(sessionId, notification);
+        log.info("redistTemplate.opsForValue().get(sessiongId)) : {}",redisTemplate.opsForValue().get(sessionId));
+    }
+
+
     @RequestMapping("/piechartdata")
     public JSONObject piechartdata(Model model) throws Exception {
         JSONObject jo = new JSONObject();
@@ -59,7 +78,7 @@ public class RestsController {
         }
         jo.put("sbjname", sbjname);
         jo.put("sbjcount",sbjcount);
-        log.info(jo.toString()+"============================================================");
+//        log.info(jo.toString()+"============================================================");
         return jo;
     }
 

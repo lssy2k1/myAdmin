@@ -115,7 +115,7 @@
                     </a>
                     <div id = "notification_contents" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
                         <div class="preview-thumbnail mdi mdi-email">
-                            알림 지우기
+                            도착한 알림
                         </div>
 <%--                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>--%>
 <%--                        <a class="dropdown-item preview-item">--%>

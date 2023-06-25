@@ -54,9 +54,11 @@
 </style>
 
 <script>
+
     let oneonone = {
         id: null,
         stompClient: null,
+
         init: function () {
             this.id = $('#adm_id_oneonone').val();//adm_id에서 적힌 글씨를 id로 뿌려줄 예정이다.
             $("#connect_oneonone").click(function () {
@@ -73,10 +75,68 @@
                 $("#disconnect_oneonone").removeClass("text-info");
                 $("#disconnect_oneonone").addClass("text-light bg-info");
             });
+            $("#delete_oneonone").click(function(){
+                localStorage.removeItem('messages');
+                $('#to').empty(); // 대화 내용을 비움
+                // 반영된 데이터를 즉시 보여주기 위해 페이지 상단으로 스크롤
+                $(window).scrollTop(0);
+            })
             $("#sendto").click(function () {
                 oneonone.sendTo();
             });
+
+            // 알림 bell notification 설정해주기. 기본값 false, true시 블링크(true는 subscribe시 변동)
+            const isNotificationSeen = localStorage.getItem('isNotificationSeen') || 'false';
+            if (isNotificationSeen === 'true') {
+                $('#notification_bell').addClass('count blinking');
+            }
+
+            // 저장된 알림 메시지 불러오기
+            const notificationMessage = localStorage.getItem('notificationMessage') || '';
+            if (notificationMessage) {
+                const previewThumbnail = document.createElement('div');
+                previewThumbnail.classList.add('preview-thumbnail', 'mdi', 'mdi-email');
+                previewThumbnail.innerText = notificationMessage;
+                $('#notification_contents').append(previewThumbnail);
+            }
+
+            // 저장된 메시지 불러오기
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.sort((a, b) => a.timestamp - b.timestamp);
+
+            for (const message of messages) {
+                if (message.sendid === this.id) {
+                    $('#to').append(
+                        '<p class="w-75 p-2 ml-lg-5 mr-2 rounded-sm bg-inverse-info text-dark float-right"><b>'
+                        + message.sendid + ' : ' + '</b>' + message.content1 + '</p>'
+                    );
+                } else if (message.receiveid === this.id){
+                    $('#to').append(
+                        '<p class="w-75 p-2 rounded-sm text-dark float-left" style="background-color:#e9ecef; margin-left:0.75rem">' +
+                        '<b>' + message.sendid + ' : ' + '</b>' + message.content1 + '</p>'
+                    );
+                }
+            }
+
+            $('#to').animate({ scrollTop: $('#to')[0].scrollHeight }, 1000);
+
+            // 알림 클릭 시 알림 처리
+            $('#notification_bell').click(function () {
+                // 알림 확인 시 깜빡임 제거
+                if ($('#notification_bell').hasClass('count blinking')) {
+                    $('#notification_bell').removeClass('count blinking');
+
+                    localStorage.setItem('isNotificationSeen', 'false');
+                    localStorage.removeItem('notificationMessage');
+
+                }
+
+                <%--// 알림 확인 시 알림 메시지 유지--%>
+                <%--$('#notification_contents').html(`<div class="preview-thumbnail mdi mdi-email">${sid}님의 메시지가 도착했습니다.</div>`);--%>
+            });
         },
+
+
         connect: function () {
             var sid = this.id;
             var socket = new SockJS('${adminserver}/ws');
@@ -90,23 +150,36 @@
                 oneonone.setConnected(true);//단순히 connected, disconnected 적히게 하는 함수.
                 console.log('Connected: ' + frame);
 
-
                 this.subscribe('/send/to/' + sid, function (msg) {
                     $("#to").append(
-                        '<p class="w-75 p-2 rounded-sm text-dark float-left" style="background-color:#e9ecef; margin-left:0.75rem"><b>' + JSON.parse(msg.body).sendid + ' : ' + '</b>' + JSON.parse(msg.body).content1 + '</p>');
+                        '<p class="w-75 p-2 rounded-sm text-dark float-left" style="background-color:#e9ecef; margin-left:0.75rem">' +
+                        '<b>' + JSON.parse(msg.body).sendid + ' : ' + '</b>' + JSON.parse(msg.body).content1 + '</p>');
                     $('#to').animate({scrollTop: $('#to')[0].scrollHeight}, 1000);
-                    var notificationBell = document.getElementById("notification_bell");
 
+
+                    // 저장 완료 시 화면에 알림 메시지 추가
+                    // 알람 울리기위한 css 수정
+                    var notificationBell = document.getElementById("notification_bell");
                     notificationBell.classList.add("count");
                     notificationBell.classList.add("blinking");
-                    var notificationContents = document.getElementById("notification_contents");
 
-                    // preview-thumbnail 요소 내부에 메시지를 추가
+                    // 알림 보내기 위한 html 추가
+                    var notificationContents = document.getElementById("notification_contents");
                     var previewThumbnail = document.createElement("div");
                     previewThumbnail.classList.add("preview-thumbnail", "mdi", "mdi-email");
-                    previewThumbnail.innerText = `${JSON.parse(msg.body).sendid}님의 메시지가 도착했습니다.`;
+                    previewThumbnail.innerText = `\${JSON.parse(msg.body).sendid}님의 메시지가 도착했습니다.`;
                     notificationContents.appendChild(previewThumbnail);
 
+                    // 받은 메시지 저장 및 local storage에 저장
+                    const messages = JSON.parse(localStorage.getItem('messages')) || [];
+                    messages.push(JSON.parse(msg.body));
+                    localStorage.setItem('messages', JSON.stringify(messages));
+
+                    //벨 울리도록 true로 저장
+                    localStorage.setItem('isNotificationSeen', 'true');
+
+                    //도착한 내용 저장
+                    localStorage.setItem('notificationMessage', previewThumbnail.innerText);
                 });
             });
         },
@@ -131,17 +204,29 @@
                 'receiveid': $('#target').val(),
                 'content1': $('#totext').val()
             });
-            this.stompClient.send('/receiveto', {}, msg);
 
+
+            this.stompClient.send('/receiveto', {}, msg);
             this.stompClient.send("/receiveme", {}, msg);
             $('#to').append(
-                '<p class="w-75 p-2 ml-lg-5 mr-2 rounded-sm bg-inverse-info text-dark float-right"><b>' + this.id + ' : ' + '</b>' + $('#totext').val() + '</p>'
+                '<p class="w-75 p-2 ml-lg-5 mr-2 rounded-sm bg-inverse-info text-dark float-right"><b>'
+                + this.id + ' : ' + '</b>' + $('#totext').val() + '</p>'
             );
             $('#to').animate({scrollTop: $('#to')[0].scrollHeight}, 1000);
             $('#totext').val('');
+
+            // 보낸 메시지 저장 및 local storage에 저장
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.push(JSON.parse(msg));
+            localStorage.setItem('messages', JSON.stringify(messages));
+
+
         }
 
     };
+
+
+
     $(function () {
         oneonone.init();
     })
@@ -155,6 +240,8 @@
         <input type="hidden" id="adm_id_oneonone" value="${loginadm.id}"/>
         <a id="connect_oneonone" class="ml-2 px-1 text-info">연결</a>
         <a id="disconnect_oneonone" class="px-1 text-info">연결해제</a>
+        <a id="delete_oneonone" class="px-1 text-info">비우기</a>
+
     </p>
     <div class="card pt-2" id="oneonone_box">
 

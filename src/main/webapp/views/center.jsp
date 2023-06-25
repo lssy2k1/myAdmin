@@ -274,7 +274,7 @@
     makeKakaoMap3.init();
     setInterval(getrecentlec.init, 2000);
     makepiechart.init();
-    setInterval(makepiechart.init, 10000);
+    // setInterval(makepiechart.init, 10000);
     // 로그인 안했을 경우 dashboard화면 안보이도록
 
     if(${loginadm==null}) {
