@@ -9,7 +9,7 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">수강생 출결 현황</h4>
+                    <h4 class="card-title pl-1 mt-2 mb-5 text-primary">수강생 출결 현황</h4>
                     <div class="table-responsive">
                         <table class="table table-hover mb-4" style="table-layout: fixed; text-align: center">
                             <thead>

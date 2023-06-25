@@ -4,7 +4,7 @@
 
 <!-- pagination start -->
 <div class="col text-center">
-    <ul class="pagination d-flex flex-wrap justify-content-center pagination-primary mt-lg-3">
+    <ul class="pagination d-flex flex-wrap justify-content-center pagination-primary mt-lg-4 mb-2">
 
         <c:choose>
             <c:when test="${cpage.getPrePage() != 0}">
