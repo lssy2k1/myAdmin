@@ -48,7 +48,7 @@ public class AncService implements MyAdminService<Integer, Anc> {
     }
 
     public Page<Anc> getPage(int pageNo) throws Exception{
-        PageHelper.startPage(pageNo, 7);
+        PageHelper.startPage(pageNo, 10);
         return mapper.getpage();
     }
 }

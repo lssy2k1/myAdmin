@@ -69,7 +69,7 @@ public class AncController {
     public String all(@RequestParam(required = false, defaultValue= "1") int pageNo, Model model) throws Exception {
         PageInfo<Anc> p;
         try {
-            p=new PageInfo<>(ancService.getPage(pageNo), 5);
+            p=new PageInfo<>(ancService.getPage(pageNo), 10);
             model.addAttribute("cpage",p);
             model.addAttribute("center",dir+"all");
             model.addAttribute("target","anc");

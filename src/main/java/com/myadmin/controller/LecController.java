@@ -1,6 +1,7 @@
 package com.myadmin.controller;
 
 
+import com.github.pagehelper.PageInfo;
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.LecSearch;
 import com.myadmin.dto.SbjDetail;
@@ -15,6 +16,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -34,14 +36,17 @@ public class LecController {
     SbjDetailService sbjDetailService;
 
     @RequestMapping("/all")
-    public String all(Model model) throws Exception {
+    public String all(Model model, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
+        PageInfo<Lec> list;
         try {
-            List<Lec> list = lecService.get();
-            model.addAttribute("lec", list);
-            model.addAttribute("center", dir+"all");
+            list = new PageInfo<>(lecService.getPage(pageNo), 10);
         } catch (Exception e) {
             throw new Exception("lecture controller all error");
         }
+        model.addAttribute("target","lec");
+        model.addAttribute("function", "all");
+        model.addAttribute("cpage", list);
+        model.addAttribute("center",dir+"all");
         return "index";
     }
     @RequestMapping("/add")
@@ -144,11 +149,14 @@ public class LecController {
     }
 
     @RequestMapping("/search")
-    public String search(Model model, LecSearch ls) throws Exception {
-        List<Lec> lec = lecService.search(ls);
+    public String search(Model model, LecSearch ls, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
+        PageInfo<Lec> lec = new PageInfo<>(lecService.search(pageNo, ls),10);
+        model.addAttribute("target", "lec");
+        model.addAttribute("function", "search");
         model.addAttribute("ls", ls);
-        model.addAttribute("lec", lec);
+        model.addAttribute("cpage", lec);
         model.addAttribute("center", dir+"all");
+        model.addAttribute("pagination", "searchpage");
         return "index";
     }
     @RequestMapping("/sbj/add")

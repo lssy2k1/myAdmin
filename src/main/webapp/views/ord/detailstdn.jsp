@@ -21,9 +21,9 @@
 <!-- partial -->
 
 <div class="content-wrapper">
-    <div class="row">
+    <div class="row px-1">
 
-        <div class="col-lg-12 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title pl-1 mt-1 mb-5 text-primary">주문별 상세보기</h4>
@@ -31,7 +31,7 @@
                     <div class="table-responsive">
 
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="text-center">
                             <tr>
 
                                 <th>주문번호</th>
@@ -45,7 +45,7 @@
                             </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody class="text-center">
                             <c:forEach var="obj" items="${ordDetail}">
                                 <tr>
 
@@ -53,8 +53,8 @@
                                     <td>${obj.id}</td>
                                     <td>${obj.lecId}</td>
                                     <td><a href="/lec/detail?id=${obj.lecId}">${obj.lecTitle}</a></td>
-                                    <td>${obj.price}</td>
-                                    <td>${obj.discRate}</td>
+                                    <td>${obj.price}원</td>
+                                    <td>${obj.discRate}%</td>
                                     <td><a href="/stdn/detail?id=${obj.stdnId}">${obj.stdnId}</a></td>
 
                                 </tr>

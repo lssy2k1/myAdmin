@@ -20,24 +20,24 @@
 <!-- partial -->
 
 <div class="content-wrapper">
-    <div class="row">
+    <div class="row px-1">
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
                     <form id="search_form" class="form-inline mb-0 d-flex justify-content-between">
                         <div class="d-inline-flex">
                             <div class="form-group ml-1 mr-5">
-                                <label for="title" style="margin-right: 10px">제목</label>
+                                <label for="title" class="mr-2 mb-0">제목</label>
                                 <input type="text" class="form-control mr-sm-2" id="title" name="title"
-                                       placeholder="Input Title" value="${ms.title}">
+                                       placeholder="제목을 입력하세요" value="${ms.title}">
                             </div>
                             <div class="form-group mr-5">
-                                <label for="writer" style="margin: 0 10px">작성자</label>
+                                <label for="writer" class="mr-2 mb-0">작성자</label>
                                 <input type="text" class="form-control mr-sm-2" id="writer" name="writer"
-                                       placeholder="Input Writer" value="${ms.writer}">
+                                       placeholder="작성자를 입력하세요" value="${ms.writer}">
                             </div>
                             <div class="form-group mr-5">
-                                <label for="keyword" style="margin: 0 10px">키워드</label>
+                                <label for="keyword" class="mr-2 mb-0">키워드</label>
                                 <select id="keyword" name="keyword" value="${ms.keyword}" class="form-control mr-2">
                                     <option value="">전체</option>
                                     <option value="R" <c:if test="${ms.keyword=='R'}">selected</c:if>>식당</option>
@@ -46,21 +46,21 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="rating" style="margin: 0 10px">별점</label>
+                                <label for="rating" class="mr-2 mb-0">별점</label>
                                 <select id="rating" name="rating" value="${ms.rating}" class="form-control mr-2">
                                     <option value="">전체</option>
                                     <option value="1"
                                             <c:if test="${ms.rating==1}">selected</c:if> >1
                                     </option>
-                                    <option value="2" <c:if test="${ms.rating==2}">selected</c:if>>2</option>
-                                    <option value="3" <c:if test="${ms.rating==3}">selected</c:if>>3</option>
-                                    <option value="4" <c:if test="${ms.rating==4}">selected</c:if>>4</option>
-                                    <option value="5" <c:if test="${ms.rating==5}">selected</c:if>>5</option>
+                                    <option value="2" <c:if test="${ms.rating==2}">selected</c:if>>2점</option>
+                                    <option value="3" <c:if test="${ms.rating==3}">selected</c:if>>3점</option>
+                                    <option value="4" <c:if test="${ms.rating==4}">selected</c:if>>4점</option>
+                                    <option value="5" <c:if test="${ms.rating==5}">selected</c:if>>5점</option>
                                 </select>
                             </div>
                         </div>
                         <button type="button" id="search_btn" class="btn btn-primary" style="margin-left: 20px">
-                            Search
+                            검색
                         </button>
                     </form>
                 </div>
@@ -70,21 +70,21 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">마커 목록</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-4 text-primary">마커 목록</h4>
 
                     <div class="table-responsive">
                         <table class="table table-striped text-center">
                             <thead>
                             <tr>
-                                <th>이미지</th>
-                                <th>ID</th>
-                                <th>제목</th>
-                                <th>위도</th>
-                                <th>경도</th>
-                                <th>별점</th>
+                                <th style="width: 10%">이미지</th>
+                                <th style="width: 8%">ID</th>
+                                <th style="width: 22%">제목</th>
+                                <th style="width: 13%">위도</th>
+                                <th style="width: 13%">경도</th>
+                                <th style="width: 7%">별점</th>
                                 <%--                                <th>상세</th>--%>
-                                <th>작성자</th>
-                                <th>키워드</th>
+                                <th style="width: 11%">작성자</th>
+                                <th style="width: 11%">키워드</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -98,7 +98,17 @@
                                     <td>${obj.rating}</td>
                                         <%--                                    <td>${obj.detail}</td>--%>
                                     <td>${obj.writer}</td>
-                                    <td>${obj.keyword}</td>
+                                    <c:choose>
+                                        <c:when test="${obj.keyword=='R'}">
+                                            <td>식당</td>
+                                        </c:when>
+                                        <c:when test="${obj.keyword=='C'}">
+                                            <td>카페</td>
+                                        </c:when>
+                                        <c:when test="${obj.keyword=='S'}">
+                                            <td>스터디카페</td>
+                                        </c:when>
+                                    </c:choose>
                                 </tr>
                             </c:forEach>
 
