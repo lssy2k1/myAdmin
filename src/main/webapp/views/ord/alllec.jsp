@@ -35,7 +35,7 @@
     }
     $(() => {
         $('#ord_stdn').click(() => {
-            window.location.href = '/ord/allstdn';
+            window.location.href = '/ord/all';
         })
         ordchart.init();
         setInterval(ordchart.init, 5000);

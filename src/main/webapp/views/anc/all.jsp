@@ -35,7 +35,7 @@
                             </tr>
                             </thead>
 
-                            <tbody>
+                            <tbody class="py-1">
                             <c:forEach var="obj" items="${cpage.getList()}">
                                 <tr>
                                     <td class="text-center">${obj.id}</td>

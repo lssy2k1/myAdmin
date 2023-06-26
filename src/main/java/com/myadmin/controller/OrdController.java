@@ -31,15 +31,15 @@ public class OrdController {
 
     String dir = "ord/";
 
-    @RequestMapping("/allstdn")
-    public String allstdn(@RequestParam(required = false, defaultValue= "1") int pageNo, Model model) throws Exception {
+    @RequestMapping("/all")
+    public String all(@RequestParam(required = false, defaultValue= "1") int pageNo, Model model) throws Exception {
         PageInfo<Ord> p;
         try {
             p=new PageInfo<>(ordService.getPage(pageNo), 5);
             model.addAttribute("cpage",p);
-            model.addAttribute("center",dir+"allstdn");
+            model.addAttribute("center",dir+"all");
             model.addAttribute("target","ord");
-            model.addAttribute("function","allstdn");
+            model.addAttribute("function","all");
         } catch (Exception e) {
             throw new Exception("ord all error");
         }
