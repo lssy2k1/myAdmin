@@ -134,7 +134,7 @@ public class MainController {
             }
             session.setMaxInactiveInterval(60000);
             session.setAttribute("loginadm", adm);
-
+            session.setAttribute("isLoggedIn", true);
 
         } catch (Exception e) {
             throw new Exception("adm login error");
