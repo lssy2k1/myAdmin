@@ -11,7 +11,7 @@
             <div class="col-lg-12 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title text-primary mb-lg-3 ml-2">전체 수강생 목록</div>
+                        <div class="card-title pl-1 mt-1 mb-5 text-primary">미출석 수강생 목록</div>
                         <div class="table-responsive pt-3">
                             <table class="table table-bordered text-center">
                                 <thead>
@@ -19,11 +19,11 @@
                                     <th style="width: 15%">
                                         이미지
                                     </th>
-                                    <th style="width: 18%">
-                                        아이디
-                                    </th>
                                     <th style="width: 12%">
                                         이름
+                                    </th>
+                                    <th style="width: 18%">
+                                        아이디
                                     </th>
                                     <th style="width: 10%">
                                         출결
@@ -55,8 +55,8 @@
                                                         </c:choose>
                                                     </a>
                                                 </td>
-                                                <td><a href="/${target}/detail?id=${s.id}">${s.id}</a></td>
                                                 <td>${s.name}</td>
+                                                <td><a href="/${target}/detail?id=${s.id}">${s.id}</a></td>
                                                 <td>
                                                     <div>
                                                         <c:choose>

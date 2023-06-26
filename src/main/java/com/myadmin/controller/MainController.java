@@ -136,15 +136,16 @@ public class MainController {
             session.setAttribute("loginadm", adm);
             session.setAttribute("isLoggedIn", true);
 
+            model.addAttribute("total", total);
+            model.addAttribute("approveCnt", approveCnt);
+            model.addAttribute("attdCnt", attdCnt);
+            model.addAttribute("approvepercent", formattedApprovePer);
+            model.addAttribute("attdpercent", formattedAttdPer);
         } catch (Exception e) {
             throw new Exception("adm login error");
         }
         model.addAttribute("center", nextPage);
-        model.addAttribute("total", total);
-        model.addAttribute("approveCnt", approveCnt);
-        model.addAttribute("attdCnt", attdCnt);
-        model.addAttribute("approvepercent", formattedApprovePer);
-        model.addAttribute("attdpercent", formattedAttdPer);
+
         return "index";
     }
 

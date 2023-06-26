@@ -32,7 +32,7 @@
         <div class="col-6 grid-margin">
             <div class="card">
                 <div class="card-body">
-                    <div class="card-title text-primary mb-lg-5">수강생 추가</div>
+                    <div class="card-title pl-1 mt-1 mb-5 text-primary">수강생 추가</div>
 
                     <form id = "std_add_form" class="forms-sample">
                         <div class="form-group">
