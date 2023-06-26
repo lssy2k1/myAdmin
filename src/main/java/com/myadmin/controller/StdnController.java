@@ -44,7 +44,7 @@ public class StdnController {
     String dir = "stdn/";
 
     @RequestMapping("/all")
-    public String all(@RequestParam(required = false, defaultValue = "1") int pageNo, Model model) throws Exception{
+    public String all(Model model, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception{
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);

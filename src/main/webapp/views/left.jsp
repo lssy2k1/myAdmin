@@ -35,7 +35,6 @@
                     <ul class="nav flex-column sub-menu">
                         <li class="nav-item"> <a class="nav-link" href="/stdn/all">수강생 목록</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/stdn/attd">출석</a></li>
-                        <li class="nav-item"> <a class="nav-link" href="/stdn/stdy">스터디</a></li>
                     </ul>
                 </div>
             </li>
@@ -63,7 +62,7 @@
                 </a>
                 <div class="collapse" id="charts">
                     <ul class="nav flex-column sub-menu">
-                        <li class="nav-item"> <a class="nav-link" href="/ord/all">주문 내역 관리</a></li>
+                        <li class="nav-item"> <a class="nav-link" href="/ord/allstdn">주문 내역 관리</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/curri/all">커리큘럼 관리</a></li>
                         <li class="nav-item"> <a class="nav-link" href="/mrk/all">마커 리스트</a></li>
                     <%--                        <li class="nav-item"> <a class="nav-link" href="/orddetail/all">주문상세 관리(과목별)</a></li>--%>

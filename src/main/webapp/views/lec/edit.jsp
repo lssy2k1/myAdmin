@@ -31,14 +31,14 @@
 <!-- partial -->
 
 <div class="content-wrapper">
-    <div class="row">
+    <div class="row justify-content-center px-1">
 
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-md-9 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">강의 정보 수정</h4>
-                    <p class="card-description">
-                        강의 정보 수정
+                    <h4 class="card-title pl-1 mt-1 text-primary">강의 정보 수정</h4>
+                    <p class="card-description pl-1 mb-5">
+                        변경하고자 하는 강의 정보를 입력하세요
                     </p>
 
                     <form id = "lec_update_form" class="forms-sample">
@@ -84,11 +84,11 @@
                         </div>
                         <div class="form-group">
                             <label for="price">가격</label>
-                            <input type="text" class="form-control" name = "price" id="price"  value = "${lec.price}">
+                            <input type="text" class="form-control" name = "price" id="price"  value = "${lec.price}원">
                         </div>
                         <div class="form-group">
                             <label for="discRate">할인률</label>
-                            <input type="text" class="form-control" name = "discRate" id="discRate"  value = "${lec.discRate}">
+                            <input type="text" class="form-control" name = "discRate" id="discRate"  value = "${lec.discRate}%">
                         </div>
                         <div class="form-group">
                             <label for="isDelete">공개여부</label>
@@ -98,12 +98,21 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label>IMG upload</label><br/>
-                            <input type="file" id = "imgfile" name="imgfile" class="btn btn-primary">
+                            <label>이미지 업로드</label><br/>
+                            <input type="file" name="filename" class="file-upload-default">
+                            <div class="input-group col-xs-12" id="fileForm">
+                                <input id="fileName" type="text" class="form-control file-upload-info" disabled
+                                       placeholder="이미지를 업로드해주세요">
+                                <label for="chooseFile" class="input-group-prepend" style="height: 46px">
+                                    <div class="file-upload-browse btn btn-outline-primary">파일첨부</div>
+                                </label>
+                                <input type="file" name="imgfile" id="chooseFile" hidden onchange="loadFile(this)">
+                            </div>
                         </div>
-
-                        <button id = "lec_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                        <button id = "lec_delete_btn" type="button" class="btn btn-light">Delete</button>
+                        <div class="float-right mt-4">
+                            <button id = "lec_update_btn" type="button" class="btn btn-primary mr-2">수정</button>
+                            <button id = "lec_delete_btn" type="button" class="btn btn-light">삭제</button>
+                        </div>
                     </form>
                 </div>
             </div>

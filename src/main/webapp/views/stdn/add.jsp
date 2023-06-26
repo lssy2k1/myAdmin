@@ -30,30 +30,30 @@
     <div class="row justify-content-center">
 
         <div class="col-6 grid-margin">
-            <div class="card">
+            <div class="card px-1">
                 <div class="card-body">
                     <div class="card-title pl-1 mt-1 mb-5 text-primary">수강생 추가</div>
 
                     <form id = "std_add_form" class="forms-sample">
                         <div class="form-group">
                             <label for="id">아이디</label>
-                            <input type="text" class="form-control" name = "id" id="id" placeholder="Input ID">
+                            <input type="text" class="form-control" name = "id" id="id" placeholder="아이디를 입력하세요">
                         </div>
                         <div class="form-group">
                             <label for="pwd">비밀번호</label>
-                            <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="Input Password">
+                            <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="초기 비밀번호를 입력하세요">
                         </div>
                         <div class="form-group">
                             <label for="name">이름</label>
-                            <input type="text" class="form-control" id="name" name = "name" placeholder="Input Name">
+                            <input type="text" class="form-control" id="name" name = "name" placeholder="이름을 입력하세요">
                         </div>
                         <div class="form-group">
                             <label for="email">이메일</label>
-                            <input type="text" class="form-control" id="email" name = "email" placeholder="Input Email">
+                            <input type="text" class="form-control" id="email" name = "email" placeholder="이메일을 입력하세요">
                         </div>
                         <div class="form-group">
                             <label for="contact">연락처</label>
-                            <input type="text" class="form-control" id="contact" name = "contact" placeholder="Input Mobile Phone Number">
+                            <input type="text" class="form-control" id="contact" name = "contact" placeholder="휴대폰 번호를 입력하세요">
                         </div>
 
                         <button id = "std_can_btn" type="button" class="btn btn-outline-primary mt-3" style="float: right">취소</button>

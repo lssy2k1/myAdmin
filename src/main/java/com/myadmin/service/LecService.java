@@ -1,5 +1,7 @@
 package com.myadmin.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.LecSearch;
 import com.myadmin.frame.MyAdminService;
@@ -46,7 +48,13 @@ public class LecService implements MyAdminService<Integer, Lec> {
         return mapper.selectall();
     }
 
-    public List<Lec> search(LecSearch ls){
+    public Page<Lec> getPage(int pageNo) throws Exception {
+        PageHelper.startPage(pageNo, 10);
+        return mapper.getpage();
+    }
+
+    public Page<Lec> search(int pageNo, LecSearch ls){
+        PageHelper.startPage(pageNo, 10);
         return mapper.search(ls);
     }
     public List<Lec> hotlec(){
