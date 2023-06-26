@@ -7,7 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Skydash Admin</title>
+    <title>당케!</title>
     <!-- plugins:css -->
     <link rel="stylesheet" href="/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="/vendors/feather/feather.css">
@@ -138,23 +138,18 @@
                                     <%--                                      카운트가 추가되면 알림이 있다는 걸로 바뀌는 js가 있는듯--%>
                             </a>
                             <div id = "notification_contents" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                                <div class="preview-thumbnail mdi mdi-email">
-                                    도착한 알림
-                                </div>
-                                    <%--                        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>--%>
-                                    <%--                        <a class="dropdown-item preview-item">--%>
-                                    <%--                            <div class="preview-thumbnail">--%>
-                                    <%--                                <div class="preview-icon bg-success">--%>
-                                    <%--                                    <i class="ti-info-alt mx-0"></i>--%>
-                                    <%--                                </div>--%>
-                                    <%--                            </div>--%>
-                                    <%--                            <div class="preview-item-content">--%>
-                                    <%--                                <h6 class="preview-subject font-weight-normal">Application Error</h6>--%>
-                                    <%--                                <p class="font-weight-light small-text mb-0 text-muted">--%>
-                                    <%--                                    Just now--%>
-                                    <%--                                </p>--%>
-                                    <%--                            </div>--%>
-                                    <%--                        </a>--%>
+
+                                                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                                                            <a class="dropdown-item preview-item">
+                                                                <div class="preview-thumbnail">
+                                                                    <button class="btn btn-inverse-danger btn-icon">
+                                                                        <i class="ti-email mx-0"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="preview-item-content">
+                                                                    <h6 class="preview-subject font-weight-normal mb-0 pr-1">도착한 알림</h6>
+                                                                </div>
+                                                            </a>
                                     <%--                        <a class="dropdown-item preview-item">--%>
                                     <%--                            <div class="preview-thumbnail">--%>
                                     <%--                                <div class="preview-icon bg-warning">--%>
@@ -191,11 +186,11 @@
                                  aria-labelledby="profileDropdown">
                                 <a class="dropdown-item" href="/adm/detail?id=${loginadm.id}">
                                     <i class="ti-face-smile text-primary"></i>
-                                    Profile
+                                    프로필
                                 </a>
                                 <a class="dropdown-item" href="/logouts">
                                     <i class="ti-power-off text-primary"></i>
-                                    Logout
+                                    로그아웃
                                 </a>
                             </div>
                         <li class="nav-item nav-settings d-none d-lg-flex">
