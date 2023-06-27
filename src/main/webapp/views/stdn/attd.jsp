@@ -27,9 +27,9 @@
                                 <tr>
                                     <td>${obj.name}</td>
                                     <td><a href="/stdn/detail?id=${obj.stdnId}" style="text-overflow: ellipsis">${obj.stdnId}</a></td>
-                                    <td>${obj.cnt0}</td>
                                     <td>${obj.cnt1}</td>
                                     <td>${obj.cnt2}</td>
+                                    <td>${obj.cnt0}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

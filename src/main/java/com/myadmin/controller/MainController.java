@@ -1,12 +1,10 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
+import com.myadmin.dto.Attd;
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.Stdn;
-import com.myadmin.service.AdmService;
-import com.myadmin.service.LecService;
-import com.myadmin.service.MrkService;
-import com.myadmin.service.StdnService;
+import com.myadmin.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +33,8 @@ public class MainController {
     @Autowired
     StdnService stdnService;
     @Autowired
+    AttdService attdService;
+    @Autowired
     BCryptPasswordEncoder encoder;
 
     @Value("${adminserver}")
@@ -55,6 +55,8 @@ public class MainController {
         Stdn topback = stdnService.topback();
 //        List<Lec> recentlec = lecService.recentlec();
 //        log.info("recentlec111111={}", recentlec);
+        List<Attd> aList;
+        Attd attd;
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 approveList.add(s);
@@ -62,9 +64,12 @@ public class MainController {
         }
         for (Stdn a:attdTotalList) {
             if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
-                attdList.add(a);
-            } else {
-                continue;
+                //일단 rdate가 비어있지 않고 등록일자가 오늘인 수강생 데이터 불러옴(지각 포함)
+                //여기서 starttime이 비어있지 않은 학생만 출석한 것으로 봐야됨
+                attd = attdService.selectall(a.getId());
+                if(attd.getRdate().equals(currentDate) && ((attd.getStartTime() != null || !attd.getStartTime().equals("")))){
+                    attdList.add(a);
+                }
             }
         }
         int approveCnt = approveList.size();
@@ -106,6 +111,12 @@ public class MainController {
         List<Stdn> attdList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
         List<Stdn> attdTotalList =stdnService.totalattd();
+        List<Lec> hotlec = lecService.hotlec();
+        Stdn topstdn = stdnService.topstdn();
+        Stdn topfront = stdnService.topfront();
+        Stdn topback = stdnService.topback();
+        List<Attd> aList;
+        Attd attd;
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 approveList.add(s);
@@ -113,9 +124,12 @@ public class MainController {
         }
         for (Stdn a:attdTotalList) {
             if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
-                attdList.add(a);
-            } else {
-                continue;
+                //일단 rdate가 비어있지 않고 등록일자가 오늘인 수강생 데이터 불러옴(지각 포함)
+                //여기서 starttime이 비어있지 않은 학생만 출석한 것으로 봐야됨
+                attd = attdService.selectall(a.getId());
+                if(attd.getRdate().equals(currentDate) && ((attd.getStartTime() != null || !attd.getStartTime().equals("")))){
+                    attdList.add(a);
+                }
             }
         }
 
@@ -141,6 +155,10 @@ public class MainController {
             model.addAttribute("attdCnt", attdCnt);
             model.addAttribute("approvepercent", formattedApprovePer);
             model.addAttribute("attdpercent", formattedAttdPer);
+            model.addAttribute("hotlec", hotlec);
+            model.addAttribute("topstdn",topstdn);
+            model.addAttribute("topfront",topfront);
+            model.addAttribute("topback",topback);
         } catch (Exception e) {
             throw new Exception("adm login error");
         }

@@ -13,11 +13,8 @@ import com.google.api.client.util.DateTime;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
-import com.google.api.services.calendar.model.Event;
+import com.google.api.services.calendar.model.*;
 import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.services.calendar.model.EventAttendee;
-import com.google.api.services.calendar.model.EventDateTime;
-import com.google.api.services.calendar.model.EventReminder;
 import com.myadmin.dto.CalEvent;
 import lombok.extern.slf4j.Slf4j;
 
@@ -171,6 +168,39 @@ public class GoogleCalendar {
         return event;
 
     }
+
+//    private String getEvent() throws IOException {
+//
+//        DateTime now = new DateTime(System.currentTimeMillis());
+//
+//        String calendarID = getCalendarID("CalendarTitle");
+//        if ( calendarID == null ){
+//
+//            return "캘린더를 먼저 생성하세요.";
+//        }
+//
+//        Events events = mService.events().list(calendarID)//"primary")
+//                .setMaxResults(10)
+//                //.setTimeMin(now)
+//                .setOrderBy("startTime")
+//                .setSingleEvents(true)
+//                .execute();
+//        List<Event> items = events.getItems();
+//
+//        for (Event event : items) {
+//
+//            DateTime start = event.getStart().getDateTime();
+//            if (start == null) {
+//
+//                // 모든 이벤트가 시작 시간을 갖고 있지는 않다. 그런 경우 시작 날짜만 사용
+//                start = event.getStart().getDate();
+//            }
+//
+//            eventStrings.add(String.format("%s \n (%s)", event.getSummary(), start));
+//        }
+//
+//        return eventStrings.size() + "개의 데이터를 가져왔습니다.";
+//    }
 
 
 }
