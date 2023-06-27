@@ -11,4 +11,5 @@ import java.util.List;
 @Repository
 @Mapper
 public interface AttdMapper extends MyAdminMapper<String, Attd> {
+    Attd selectall(String id) throws Exception;
 }

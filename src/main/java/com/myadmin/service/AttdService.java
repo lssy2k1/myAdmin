@@ -42,4 +42,8 @@ public class AttdService implements MyAdminService<String, Attd> {
     public List<Attd> get() throws Exception {
         return null;
     }
+
+    public Attd selectall(String s) throws Exception {
+        return mapper.selectall(s);
+    }
 }

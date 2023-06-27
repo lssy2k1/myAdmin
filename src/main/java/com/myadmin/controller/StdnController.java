@@ -187,10 +187,16 @@ public class StdnController {
 
     @RequestMapping("/detail")
     public String detail(Model model, String id) throws Exception {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
         try {
             Stdn stdn = stdnService.get(id);
             MyPage myPage = myPageService.get(id);
-            Attd attd = attdService.get(id);
+            Attd attd = attdService.selectall(id);
+            if(!attd.getRdate().equals(currentDate)) {
+                attd = null;
+            }
 
             ArrayList<AttdTrckr> data2 = new ArrayList<>();
             ArrayList<AttdTrckr> data3 = new ArrayList<>();
