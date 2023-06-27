@@ -10,6 +10,16 @@
         FROM attd
         WHERE stdn_id = #{stdnId} AND rdate = TO_CHAR(CURRENT_DATE, 'YYYY.MM.DD')
     </select>
+    <select id="selectall" parameterType="String" resultType="Attd">
+        SELECT id, stdn_id AS stdnId, rdate, start_time AS startTime, end_time AS endTime, is_attend AS isAttend
+        FROM (
+                 SELECT id, stdn_id, rdate, start_time, end_time, is_attend,
+                        ROW_NUMBER() OVER (PARTITION BY stdn_id ORDER BY TO_DATE(rdate, 'YYYY.MM.DD') DESC) AS rn
+                 FROM attd
+                 WHERE stdn_id = #{stdnId}
+             ) subquery
+        WHERE rn = 1
+    </select>
 <!--    <select id="attdtrckr" parameterType="String" resultType="AttdTrckr">-->
 <!--        <![CDATA[-->
 <!--        SELECT stdn_id as stdnId, TO_CHAR(rdate, 'MM') as month, TO_CHAR(rdate, 'dd') as day, is_attend as isAttend-->
@@ -17,4 +27,13 @@
 <!--        WHERE stdn_id = #{stdnId}-->
 <!--        ]]>-->
 <!--    </select>-->
+    <insert id="insert" parameterType="Attd">
+        INSERT INTO attd (id, stdn_id, rdate, is_attend)
+        VALUES (attd_seq.NEXTVAL, #{stdnId},TO_CHAR(SYSDATE,'yyyy.MM.dd'), #{isAttend})
+    </insert>
+    <update id="update" parameterType="Attd">
+        UPDATE attd
+        SET is_attend=#{isAttend})
+        WHERE stdn_id=#{stdnId}
+    </update>
 </mapper>

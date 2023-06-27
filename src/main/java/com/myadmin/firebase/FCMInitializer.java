@@ -18,7 +18,8 @@ public class FCMInitializer {
     private static final String FIREBASE_CONFIG_PATH = "firebase_admin.json";
 
     @PostConstruct
-    public void initialize() {
+    public void initialize() throws IOException {
+
         try {
             FirebaseOptions options = new FirebaseOptions.Builder()
                     .setCredentials(GoogleCredentials.fromStream(new ClassPathResource(FIREBASE_CONFIG_PATH).getInputStream())).build();

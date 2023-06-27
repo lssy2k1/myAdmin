@@ -52,7 +52,7 @@
     <div class="row justify-content-center">
 
         <div class="col-6 grid-margin">
-            <div class="card">
+            <div class="card px-1">
                 <div class="card-body">
                     <h4 class="card-title pl-1 mt-1 mb-5 text-primary">정보 수정</h4>
                     <form id="std_upd_form" class="forms-sample">

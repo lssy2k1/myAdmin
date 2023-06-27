@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
+@Slf4j
 @Controller
 @RequestMapping("/ord")
 public class OrdController {
@@ -45,14 +45,42 @@ public class OrdController {
         }
         return "index";
     }
-    @RequestMapping("/detail")
-    public String detail(Model model, Integer id) throws Exception {
+    @RequestMapping("/detailstdn")
+    public String detailstdn(Model model, Integer id) throws Exception {
         try {
             List<OrdDetail> ordDetail = ordDetailService.searchOrd(id);
             model.addAttribute("ordDetail", ordDetail);
-            model.addAttribute("center", dir+"detail");
+            model.addAttribute("center", dir+"detailstdn");
         } catch (Exception e) {
             throw new Exception("ord detail error");
+        }
+        return "index";
+    }
+
+    @RequestMapping("/alllec")
+    public String alllec(@RequestParam(required = false, defaultValue= "1") int pageNo, Model model) throws Exception {
+        PageInfo<OrdDetail> p;
+        try {
+            p=new PageInfo<>(ordDetailService.getPage(pageNo), 5);
+            model.addAttribute("cpage",p);
+            model.addAttribute("center",dir+"alllec");
+            model.addAttribute("target","ord");
+            model.addAttribute("function", "alllec");
+        } catch (Exception e) {
+            throw new Exception("orddetail all error");
+        }
+        return "index";
+    }
+    @RequestMapping("/detaillec")
+    public String detaillec(Model model, Integer ordDetailId) throws Exception {
+        try {
+            List<Ord> ord = ordService.searchOrdDetail(ordDetailId);
+            log.info("=============================="+ ord);
+            model.addAttribute("ord", ord);
+            model.addAttribute("center", dir+"detaillec");
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new Exception("orddetail detail error");
         }
         return "index";
     }

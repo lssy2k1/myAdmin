@@ -20,58 +20,58 @@
 <!-- partial -->
 
 <div class="content-wrapper">
-    <div class="row">
+    <div class="row justify-content-center">
 
-        <div class="col-lg-12 grid-margin stretch-card">
+        <div class="col-md-7 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">관리자 상세조회</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-4 text-primary">관리자 상세조회</h4>
 
                     <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>항목</th>
-                                    <th>내용</th>
+                            <thead class="text-center font-weight-bold">
+                                <tr class="font-weight-bold">
+                                    <th style="width: 35%"></th>
+                                    <th style="width: 65%"></th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-center">
 
                                 <tr>
-                                    <td>아이디</td>
-                                    <td>${adm.id}</td>
+                                    <td class="font-weight-bold">아이디</td>
+                                    <td class="text-left">${adm.id}</td>
                                 </tr>
                                 <tr>
-                                    <td>이름</td>
-                                    <td>${adm.name}</td>
+                                    <td class="font-weight-bold">이름</td>
+                                    <td class="text-left">${adm.name}</td>
                                 </tr>
                                 <tr>
-                                    <td>권한 타입</td>
-                                    <td>${adm.lev}</td>
+                                    <td class="font-weight-bold">권한 타입</td>
+                                    <td class="text-left">${adm.lev}</td>
                                 </tr>
                                 <tr>
-                                    <td>이메일</td>
-                                    <td>${adm.email}</td>
+                                    <td class="font-weight-bold">이메일</td>
+                                    <td class="text-left">${adm.email}</td>
                                 </tr>
                                 <tr>
-                                    <td>연락처</td>
-                                    <td>${adm.contact}</td>
+                                    <td class="font-weight-bold">연락처</td>
+                                    <td class="text-left">${adm.contact}</td>
                                 </tr>
                                 <tr>
-                                    <td>주소</td>
-                                    <td>${adm.addr}</td>
+                                    <td class="font-weight-bold">주소</td>
+                                    <td class="text-left">${adm.addr}</td>
                                 </tr>
                                 <tr>
-                                    <td>등록일자</td>
-                                    <td>${adm.rdate}</td>
+                                    <td class="font-weight-bold">등록일자</td>
+                                    <td class="text-left">${adm.rdate}</td>
                                 </tr>
                                 <tr>
-                                    <td>삭제여부</td>
-                                    <td>${adm.isDelete}</td>
+                                    <td class="font-weight-bold">삭제여부</td>
+                                    <td class="text-left">${adm.isDelete}</td>
                                 </tr>
                                 <tr>
-                                    <td>삭제날짜</td>
-                                    <td>
+                                    <td class="font-weight-bold">삭제날짜</td>
+                                    <td class="text-left">
                                         <c:if test="${adm.isDelete=='1'}">
                                             ${adm.delDate}
                                         </c:if>
@@ -83,7 +83,7 @@
                         </table>
                     </div>
 
-                    <div class="float-right mt-3">
+                    <div class="float-right mt-4">
                         <a href = "/adm/edit?id=${adm.id}" type="button" class="btn btn-outline-primary mr-2">수정</a>
                         <button id="adm_delete_btn" type="button" class="btn btn-outline-primary mr-2">삭제</button>
                     </div>

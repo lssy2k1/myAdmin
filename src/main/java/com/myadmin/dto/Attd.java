@@ -15,4 +15,9 @@ public class Attd {
     private String endTime;
     private String isAttend;
 //    0 결석, 1 출석, 2 지각
+
+    public Attd(String stdnId, String isAttend) {
+        this.stdnId = stdnId;
+        this.isAttend = isAttend;
+    }
 }

@@ -69,6 +69,19 @@
                ORDER BY rating DESC, curriSum DESC)
         WHERE ROWNUM &lt;= 5
     </select>
+    <select id="getpage" resultType="Lec">
+        SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
+             , l.title, l.teacher, l.topic, l.target, SUBSTR(l.rdate, 0, 10) as rdate, l.length
+             , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
+             , l.price, l.img, l.disc_rate as discRate
+             , l.is_delete as isDelete, l.del_date as delDate, l.hit
+        FROM lec l
+                 LEFT JOIN lec_review lr ON l.id = lr.lec_id
+        GROUP BY l.id,
+                 l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
+                ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
+        ORDER BY l.is_delete, l.id DESC
+    </select>
 
 
     <select id="select" parameterType="Integer" resultType="Lec">
@@ -123,7 +136,7 @@
 별점, 가격, 할인률, 수강생수, 등록일자-->
     <select id="search" parameterType="LecSearch" resultType="Lec">
         SELECT l.id, l.adm_id as admId, l.lec_code as lecCode
-                , l.title, l.teacher, l.topic, l.target, l.rdate, l.length
+                , l.title, l.teacher, l.topic, l.target, SUBSTR(l.rdate, 0, 10) as rdate, l.length
                 , ROUND((SUM(lr.rating)/COUNT(lr.id)),1) as rating
                 , l.price, l.img, l.disc_rate as discRate
                 , l.is_delete as isDelete, l.del_date as delDate, l.hit

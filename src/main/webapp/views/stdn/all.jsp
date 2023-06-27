@@ -8,7 +8,7 @@
 <div class="content-wrapper">
     <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
-                <div class="card">
+                <div class="card px-1">
                     <div class="card-body">
                         <div class="card-title pl-1 mt-1 mb-4 text-primary">전체 수강생 목록</div>
                         <form action="/stdn/search" method="get">

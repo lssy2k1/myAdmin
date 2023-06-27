@@ -20,7 +20,7 @@ public class AttdService implements MyAdminService<String, Attd> {
 
     @Override
     public void register(Attd attd) throws Exception {
-
+        mapper.insert(attd);
     }
 
     @Override
@@ -41,5 +41,9 @@ public class AttdService implements MyAdminService<String, Attd> {
     @Override
     public List<Attd> get() throws Exception {
         return null;
+    }
+
+    public Attd selectall(String s) throws Exception {
+        return mapper.selectall(s);
     }
 }

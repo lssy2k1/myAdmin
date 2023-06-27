@@ -7,7 +7,7 @@
 <div class="content-wrapper">
     <div class="row">
         <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="card px-1">
                 <div class="card-body">
                     <h4 class="card-title pl-1 mt-2 mb-5 text-primary">수강생 출결 현황</h4>
                     <div class="table-responsive">
@@ -27,9 +27,9 @@
                                 <tr>
                                     <td>${obj.name}</td>
                                     <td><a href="/stdn/detail?id=${obj.stdnId}" style="text-overflow: ellipsis">${obj.stdnId}</a></td>
-                                    <td>${obj.cnt0}</td>
                                     <td>${obj.cnt1}</td>
                                     <td>${obj.cnt2}</td>
+                                    <td>${obj.cnt0}</td>
                                 </tr>
                             </c:forEach>
                             </tbody>

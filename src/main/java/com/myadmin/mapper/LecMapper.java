@@ -1,6 +1,7 @@
 package com.myadmin.mapper;
 
 
+import com.github.pagehelper.Page;
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.LecSearch;
 import com.myadmin.frame.MyAdminMapper;
@@ -13,7 +14,8 @@ import java.util.List;
 @Mapper
 public interface LecMapper extends MyAdminMapper<Integer, Lec> {
 
-    public List<Lec> search(LecSearch ls);
+    public Page<Lec> getpage();
+    public Page<Lec> search(LecSearch ls);
     public List<Lec> hotlec();
     public List<Lec> hotlechit();
     public List<Lec> hotlecrating();

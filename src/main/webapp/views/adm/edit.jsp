@@ -7,7 +7,7 @@
     //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
-            oncomplete: function(data) {
+            oncomplete: function (data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
@@ -17,15 +17,15 @@
 
                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                     extraRoadAddr += data.bname;
                 }
                 // 건물명이 있고, 공동주택일 경우 추가한다.
-                if(data.buildingName !== '' && data.apartment === 'Y'){
+                if (data.buildingName !== '' && data.apartment === 'Y') {
                     extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
                 // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                if(extraRoadAddr !== ''){
+                if (extraRoadAddr !== '') {
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
 
@@ -34,10 +34,10 @@
                 // document.getElementById("sample4_roadAddress").value = roadAddr;
                 // document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
                 document.getElementById("addr").value =
-                    "("+ data.zonecode +") " + roadAddr + " ("+ data.jibunAddress +")"
+                    "(" + data.zonecode + ") " + roadAddr + " (" + data.jibunAddress + ")"
 
                 // 참고항목 문자열이 있을 경우 해당 필드에 넣는다.
-                if(roadAddr !== ''){
+                if (roadAddr !== '') {
                     // document.getElementById("sample4_extraAddress").value = extraRoadAddr;
                     document.getElementById("addr").value += extraRoadAddr;
                 } else {
@@ -65,27 +65,27 @@
 </script>
 <script>
     let adm_edit = {
-        init:()=>{
-            $('#adm_update_btn').click(() =>{
+        init: () => {
+            $('#adm_update_btn').click(() => {
                 adm_edit.send();
             });
-            $('#adm_delete_btn').click(()=>{
+            $('#adm_delete_btn').click(() => {
                 let b = confirm("삭제하시겠습니까?");
-                if(b){
+                if (b) {
                     location.href = '/adm/deleteimpl?id=${adm.id}';
                 }
             });
         },
-        send:()=>{
+        send: () => {
             $('#adm_edit_form').attr({
-                action:'/adm/updateimpl',
-                method:'post',
+                action: '/adm/updateimpl',
+                method: 'post',
             });
             $('#adm_edit_form').submit();
         }
     };
-    $(function(){
-        if(${loginadm.lev < '3'}) {
+    $(function () {
+        if (${loginadm.lev < '3'}) {
             $('#adm_isdelete_select').css("display", "none");
             $('#adm_lev_select').css("display", "none");
         }
@@ -97,70 +97,73 @@
 <!-- partial -->
 
 <div class="content-wrapper">
-    <div class="row">
+    <div class="row justify-content-center px-1">
 
-        <div class="col-12 grid-margin stretch-card">
+        <div class="col-md-7 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">관리자 정보 수정</h4>
-                    <p class="card-description">
+                    <h4 class="card-title pl-1 mt-1 text-primary">관리자 정보 수정</h4>
+                    <p class="card-description pl-1 mb-5">
                         추가 정보를 입력하세요.
                     </p>
 
-                    <form id = "adm_edit_form" class="forms-sample">
+                    <form id="adm_edit_form" class="forms-sample">
                         <div class="form-group">
                             <label for="id">아이디</label>
-                            <input type="text" class="form-control" name = "id" id="id" value = "${adm.id}" readonly>
+                            <input type="text" class="form-control" name="id" id="id" value="${adm.id}" readonly>
                         </div>
                         <div class="form-group">
                             <label for="pwd">비밀번호</label>
-                            <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="비밀번호를 새로 입력하세요...">
+                            <input type="password" class="form-control" name="pwd" id="pwd"
+                                   value="${adm.pwd}" placeholder="비밀번호를 새로 입력하세요...">
                         </div>
                         <div class="form-group">
                             <label for="name">이름</label>
-                            <input type="text" class="form-control" name = "name" id="name" value = "${adm.name}">
+                            <input type="text" class="form-control" name="name" id="name" value="${adm.name}">
                         </div>
 
-<%--                        <c:if test="${loginadm.lev==3}">--%>
+                        <%--                        <c:if test="${loginadm.lev==3}">--%>
 
-                            <div class="form-group" id="adm_lev_select">
-                                <label for="lev">권한 타입</label>
-                                <select class="form-control" id="lev" name = "lev" >
-                                    <option value = '1' <c:if test="${adm.lev=='1'}">selected</c:if>>1</option>
-                                    <option value = '2' <c:if test="${adm.lev=='2'}">selected</c:if>>2</option>
-                                    <option value = '3' <c:if test="${adm.lev=='3'}">selected</c:if>>3</option>
-                                </select>
-                            </div>
-<%--                        </c:if>--%>
+                        <div class="form-group" id="adm_lev_select">
+                            <label for="lev">권한 타입</label>
+                            <select class="form-control" id="lev" name="lev">
+                                <option value='1' <c:if test="${adm.lev=='1'}">selected</c:if>>1</option>
+                                <option value='2' <c:if test="${adm.lev=='2'}">selected</c:if>>2</option>
+                                <option value='3' <c:if test="${adm.lev=='3'}">selected</c:if>>3</option>
+                            </select>
+                        </div>
+                        <%--                        </c:if>--%>
 
                         <div class="form-group">
                             <label for="email">이메일</label>
-                            <input type="email" class="form-control" name = "email" id="email" value="${adm.email}">
+                            <input type="email" class="form-control" name="email" id="email" value="${adm.email}">
                         </div>
                         <div class="form-group">
                             <label for="contact">연락처</label>
-                            <input type="text" class="form-control" name = "contact" id="contact" value="${adm.contact}">
+                            <input type="text" class="form-control" name="contact" id="contact" value="${adm.contact}">
                         </div>
                         <div class="form-group">
                             <label for="addr">주소</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name = "addr" id="addr" value="${adm.addr}">
+                                <input type="text" class="form-control" name="addr" id="addr" value="${adm.addr}">
                                 <div class="input-group-prepend">
-                                    <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+                                    <input class="btn btn-sm btn-primary" type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-group" id="adm_isdelete_select">
                             <label for="isDelete">공개여부</label>
-                            <select class="form-control" id="isDelete" name = "isDelete" >
+                            <select class="form-control" id="isDelete" name="isDelete">
                                 <option value="0" <c:if test="${adm.isDelete=='0'}">selected</c:if>>활성화</option>
                                 <option value="1" <c:if test="${adm.isDelete=='1'}">selected</c:if>>삭제</option>
                             </select>
                         </div>
+                        <div class="float-right mt-3">
+                            <button id="adm_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
+                            <button id="adm_delete_btn" type="button" class="btn btn-light">Delete</button>
+                        </div>
 
-                        <button id = "adm_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                        <button id = "adm_delete_btn" type="button" class="btn btn-light">Delete</button>
                     </form>
                 </div>
             </div>

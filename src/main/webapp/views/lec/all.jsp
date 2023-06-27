@@ -21,7 +21,7 @@
     <div class="row">
 
         <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="card px-1">
                 <div class="card-body">
                     <form id="lec_search_form" class="form-inline" style="margin: 0; display: flex; justify-content: space-between; align-items: center">
 
@@ -47,27 +47,27 @@
         </div>
 
         <div class="col-md-12 grid-margin stretch-card">
-            <div class="card">
+            <div class="card px-1">
                 <div class="card-body">
-                    <h4 class="card-title pl-1 mt-1 mb-5 text-primary">강의 목록</h4>
+                    <h4 class="card-title pl-1 mt-1 mb-4 text-primary">강의 목록</h4>
                     <div class="table-responsive">
                         <table class="table table-striped" style="table-layout: fixed; text-align: center">
                             <thead>
                             <tr>
 <%----------------------------전체 리스트에서 보여질 내역--------------------------%>
-                                <th style="width:26%">강의명</th>
-                                <th style="width:11%">강사</th>
-                                <th style="width:14%">분야</th>
+                                <th style="width:32%; text-overflow: ellipsis ">강의명</th>
+                                <th style="width:12%">강사</th>
+                                <th style="width:12%">분야</th>
                                 <th style="width:6%">별점</th>
-                                <th style="width:11%">가격</th>
+                                <th style="width:9%">가격</th>
                                 <th style="width:7%">할인률</th>
-                                <th style="width:7%">인원</th>
+                                <th style="width:6%">인원</th>
                                 <th style="width:10%">등록일</th>
-                                <th style="width:8%">공개</th>
+                                <th style="width:6%">공개</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach var="obj" items="${lec}">
+                            <c:forEach var="obj" items="${cpage.getList()}">
                                 <tr>
                                     <td><a href="/lec/detail?id=${obj.id}" style="text-overflow: ellipsis">${obj.title}</a></td>
                                     <td>${obj.teacher}</td>
@@ -83,8 +83,16 @@
 
                             </tbody>
                         </table>
+                        <c:choose>
+                            <c:when test="${pagination==null}">
+                                <jsp:include page ="../page.jsp"/>
+                            </c:when>
+                            <c:otherwise>
+                                <jsp:include page = "../${pagination}.jsp"/>
+                            </c:otherwise>
+                        </c:choose>
                         <div style="display: flex; justify-content: end; margin-top: 20px">
-                            <a href ="/lec/add" type="button" class="btn btn-primary mb-2" style="margin-right: 20px">강의 등록</a>
+                            <a href ="/lec/add" type="button" class="btn btn-primary mr-1">강의 등록</a>
                         </div>
                     </div>
                 </div>
