@@ -36,9 +36,9 @@
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
     <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.9.2/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-messaging.js"></script>
     <script src="/notification.js"></script>
     <script>
         let highlight = {
@@ -139,43 +139,17 @@
                             </a>
                             <div id = "notification_contents" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
 
-                                                            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                                                            <a class="dropdown-item preview-item">
-                                                                <div class="preview-thumbnail">
-                                                                    <button class="btn btn-inverse-danger btn-icon">
-                                                                        <i class="ti-email mx-0"></i>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="preview-item-content">
-                                                                    <h6 class="preview-subject font-weight-normal mb-0 pr-1">도착한 알림</h6>
-                                                                </div>
-                                                            </a>
-                                    <%--                        <a class="dropdown-item preview-item">--%>
-                                    <%--                            <div class="preview-thumbnail">--%>
-                                    <%--                                <div class="preview-icon bg-warning">--%>
-                                    <%--                                    <i class="ti-settings mx-0"></i>--%>
-                                    <%--                                </div>--%>
-                                    <%--                            </div>--%>
-                                    <%--                            <div class="preview-item-content">--%>
-                                    <%--                                <h6 class="preview-subject font-weight-normal">Settings</h6>--%>
-                                    <%--                                <p class="font-weight-light small-text mb-0 text-muted">--%>
-                                    <%--                                    Private message--%>
-                                    <%--                                </p>--%>
-                                    <%--                            </div>--%>
-                                    <%--                        </a>--%>
-                                    <%--                        <a class="dropdown-item preview-item">--%>
-                                    <%--                            <div class="preview-thumbnail">--%>
-                                    <%--                                <div class="preview-icon bg-info">--%>
-                                    <%--                                    <i class="ti-user mx-0"></i>--%>
-                                    <%--                                </div>--%>
-                                    <%--                            </div>--%>
-                                    <%--                            <div class="preview-item-content">--%>
-                                    <%--                                <h6 class="preview-subject font-weight-normal">New user registration</h6>--%>
-                                    <%--                                <p class="font-weight-light small-text mb-0 text-muted">--%>
-                                    <%--                                    2 days ago--%>
-                                    <%--                                </p>--%>
-                                    <%--                            </div>--%>
-                                    <%--                        </a>--%>
+                                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                                <a class="dropdown-item preview-item">
+                                    <div class="preview-thumbnail">
+                                        <button class="btn btn-inverse-danger btn-icon">
+                                            <i class="ti-email mx-0"></i>
+                                        </button>
+                                    </div>
+                                    <div class="preview-item-content">
+                                        <h6 class="preview-subject font-weight-normal mb-0 pr-1">도착한 알림</h6>
+                                    </div>
+                                </a>
                             </div>
                         </li>
                         <li class="nav-item nav-profile dropdown">

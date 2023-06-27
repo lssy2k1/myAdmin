@@ -14,6 +14,7 @@ const firebaseModule = (function () {
                             appId: "1:91308184669:web:caeba5aa9dc362c7ace9b4"
                         };
                         // Initialize Firebase
+                        console.log("==========================================initialize firebase");
                         firebase.initializeApp(firebaseConfig);
 
 
