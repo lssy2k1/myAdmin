@@ -1,22 +1,53 @@
 package com.myadmin.controller;
 
+import com.myadmin.dto.Attd;
+import com.myadmin.dto.Stdn;
+import com.myadmin.service.AttdService;
+import com.myadmin.service.StdnService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.simp.SimpMessageSendingOperations;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 @Slf4j
 @Component
 public class ScheduleController {
+//    @Autowired
+//    private SimpMessageSendingOperations messagingTemplate;
     @Autowired
-    private SimpMessageSendingOperations messagingTemplate;
+    StdnService stdnService;
+    @Autowired
+    AttdService attdService;
 
-    @Scheduled(cron = "*/55 * * * * *")
-    public void cronJobDailyUpdate() {
-
+    @Scheduled(cron = "1 0 9 * * *")
+    public void cronJobLateUpdate() throws Exception {
+        // 아침 9시
+        // attd 테이블 상의 rdate가 sysdate랑 일치하는 수강생 데이터를 가져옴
+        // startTime이 안 찍힌 수강생 or rdate가 일치하는 데이터가 없는 수강생 선별
+        // stdn.isAttend를 2(지각)으로 업데이트
+        List<Stdn> latestdn = stdnService.latestdn();
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+        Attd attd;
+        for(Stdn s:latestdn) {
+            if(s.getAttdDate() == null || (s.getAttdDate()).equals("") || !(s.getAttdDate()).equals(currentDate)){
+                attd = new Attd(s.getId(), "2");
+                attdService.register(attd);
+            }
+//            else {
+//                attd = attdService.get(s.getId());
+//                attd.setIsAttend("1");
+//                attdService.modify(attd);
+//            }
+        }
+        System.out.println("---------------지각 업데이트 완료---------------");
 //        log.info("----------- Scheduler ------------");
 //        Random r = new Random();
 //        int content1 = r.nextInt(100) + 1;
@@ -32,6 +63,28 @@ public class ScheduleController {
 //        messagingTemplate.convertAndSend("/sendadm",msg);
 //        messagingTemplate.convertAndSend("/send", msg);
     }
+
+    @Scheduled(cron = "1 0 18 * * *")
+    public void cronJobAbsentUpdate() throws Exception {
+        // 오후 6시
+        // 위의 프로세스 반복
+        // stdn.isAttend를 0(결석)으로 업데이트
+        List<Stdn> latestdn = stdnService.latestdn();
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
+        Attd attd;
+        for (Stdn s : latestdn) {
+            attd = attdService.get(s.getId());
+            if (attd.getIsAttend().equals("2")) {
+                    attd.setIsAttend("0");
+                    attdService.modify(attd);
+                }
+            }
+            System.out.println("---------------결석 업데이트 완료---------------");
+        }
+
+
 
     @Scheduled(cron = "*/5 * * * * *")
     public void cronJobWeeklyUpdate() throws Exception {

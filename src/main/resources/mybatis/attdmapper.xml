@@ -17,4 +17,13 @@
 <!--        WHERE stdn_id = #{stdnId}-->
 <!--        ]]>-->
 <!--    </select>-->
+    <insert id="insert" parameterType="Attd">
+        INSERT INTO attd (id, stdn_id, rdate, is_attend)
+        VALUES (attd_seq.NEXTVAL, #{stdnId},TO_CHAR(SYSDATE,'yyyy.MM.dd'), #{isAttend})
+    </insert>
+    <update id="update" parameterType="Attd">
+        UPDATE attd
+        SET is_attend=#{isAttend})
+        WHERE stdn_id=#{stdnId}
+    </update>
 </mapper>
