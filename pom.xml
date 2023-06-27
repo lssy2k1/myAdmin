@@ -111,20 +111,25 @@
             <artifactId>bootstrap</artifactId>
             <version>3.3.7</version>
         </dependency>
-            <!-- 기타 종속성 -->
-            <dependency>
-                <groupId>com.auth0</groupId>
-                <artifactId>java-jwt</artifactId>
-                <version>3.18.2</version>
-            </dependency>
-            <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.5.13</version>
-            </dependency>
+        <!-- 기타 종속성 -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.18.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.13</version>
+        </dependency>
         <!-- 기타 종속성 -->
 
-<!--        네이버 메일-->
+        <!--        네이버 메일-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -151,48 +156,40 @@
             <artifactId>spring-context-support</artifactId>
             <version>5.3.27</version>
         </dependency>
-
-<!--SpringBoot   properity  암호화-->
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>1.4.6</version>
+        </dependency>
+        <!--SpringBoot   properity  암호화-->
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>3.0.3</version>
         </dependency>
-<!--        gpt-->
+        <!--        gpt-->
         <dependency>
             <groupId>io.github.flashvayne</groupId>
             <artifactId>chatgpt-spring-boot-starter</artifactId>
             <version>1.0.4</version>
         </dependency>
-<!--        채팅창 팝업-->
+        <!--        채팅창 팝업-->
         <dependency>
             <groupId>org.apache.tiles</groupId>
             <artifactId>tiles-jsp</artifactId>
             <version>3.0.8</version> <!-- 사용하고자 하는 버전 -->
         </dependency>
 
-<!--        구글캘린더-->
+        <!--        구글캘린더-->
         <dependency>
             <groupId>com.google.api-client</groupId>
             <artifactId>google-api-client</artifactId>
-            <version>1.32.1</version>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.google.guava</groupId>-->
-<!--                    <artifactId>guava</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+            <version>1.23.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.oauth-client</groupId>
             <artifactId>google-oauth-client-jetty</artifactId>
-            <version>1.32.1</version>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.google.guava</groupId>-->
-<!--                    <artifactId>guava</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+            <version>1.23.0</version>
         </dependency>
         <dependency>
             <groupId>com.google.apis</groupId>
@@ -207,33 +204,33 @@
             <version>1.4.6</version>
         </dependency>
 
-<!--        Firebase Lib-->
-<!--        <dependency>-->
-<!--            <groupId>com.google.firebase</groupId>-->
-<!--            <artifactId>firebase-admin</artifactId>-->
-<!--            <version>9.2.0</version>-->
-<!--        </dependency>-->
-
-<!--        FCM 충돌해결 버전(해결안됨) -->
+        <!--        Firebase Lib-->
         <dependency>
             <groupId>com.google.firebase</groupId>
             <artifactId>firebase-admin</artifactId>
-            <version>9.2.0</version>
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>com.google.guava</groupId>-->
-<!--                    <artifactId>guava</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
+            <version>6.8.1</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.google.guava</groupId>-->
-<!--            <artifactId>guava</artifactId>-->
-<!--            <version>30.1-jre</version>-->
-<!--        </dependency>-->
+
+        <!--        FCM 충돌해결 버전(해결안됨) -->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.firebase</groupId>-->
+        <!--            <artifactId>firebase-admin</artifactId>-->
+        <!--            <version>8.1.0</version>-->
+        <!--            <exclusions>-->
+        <!--                <exclusion>-->
+        <!--                    <groupId>com.google.guava</groupId>-->
+        <!--                    <artifactId>guava</artifactId>-->
+        <!--                </exclusion>-->
+        <!--            </exclusions>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.google.guava</groupId>-->
+        <!--            <artifactId>guava</artifactId>-->
+        <!--            <version>30.1.1-android</version>-->
+        <!--        </dependency>-->
 
 
-<!--redis-->
+        <!--redis-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
@@ -243,7 +240,7 @@
             <artifactId>spring-session-data-redis</artifactId>
         </dependency>
 
-<!-- Lettuce Core -->
+        <!-- Lettuce Core -->
         <dependency>
             <groupId>io.lettuce</groupId>
             <artifactId>lettuce-core</artifactId>
@@ -257,7 +254,6 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
