@@ -1,9 +1,6 @@
 package com.myadmin.controller;
 
-import com.myadmin.dto.Adm;
-import com.myadmin.dto.Attd;
-import com.myadmin.dto.Lec;
-import com.myadmin.dto.Stdn;
+import com.myadmin.dto.*;
 import com.myadmin.service.*;
 import lombok.extern.slf4j.Slf4j;
 import org.json.simple.parser.ParseException;
@@ -35,6 +32,8 @@ public class MainController {
     @Autowired
     AttdService attdService;
     @Autowired
+    StdyService stdyService;
+    @Autowired
     BCryptPasswordEncoder encoder;
 
     @Value("${adminserver}")
@@ -46,46 +45,38 @@ public class MainController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);
         List<Stdn> approveList = new ArrayList<>();
-        List<Stdn> attdList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
-        List<Stdn> attdTotalList =stdnService.totalattd();
-        // totalattd 모든 학생들의 가장 최근의 attd 데이터를 불러옴(Rownum 활용)
+        List<Stdn> lateList =stdnService.latestdn();
+        List<Stdy> stdyingList = stdyService.stdying();
         List<Lec> hotlec = lecService.hotlec();
         Stdn topstdn = stdnService.topstdn();
         Stdn topfront = stdnService.topfront();
         Stdn topback = stdnService.topback();
 //        List<Lec> recentlec = lecService.recentlec();
 //        log.info("recentlec111111={}", recentlec);
-        List<Attd> aList;
-        Attd attd;
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 approveList.add(s);
             }
         }
-        for (Stdn a:attdTotalList) {
-            if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
-                //전체 학생 attd 데이터에서 rdate가 비어있지 않고 등록일자가 오늘인 수강생 데이터 불러옴(지각 포함)
-                //여기서 starttime이 비어있지 않은 학생만 출석한 것으로 봐야됨
-                attd = attdService.selectall(a.getId());
-                if(attd.getRdate().equals(currentDate) && ((attd.getStartTime() != null || !attd.getStartTime().equals("")))){
-                    attdList.add(a);
-                }
-            }
-        }
         int approveCnt = approveList.size();
-        int attdCnt = attdList.size();
+        int attdCnt = lateList.size();
         int total = totalList.size();
+        int stdyingCnt = stdyingList.size();
         double approvePer = (double)approveCnt/total*100;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         String formattedApprovePer = decimalFormat.format(approvePer);
-        double attdPer = (double)attdCnt/total*100;
+        double attdPer = (double)(total - attdCnt)/total*100;
         String formattedAttdPer = decimalFormat.format(attdPer);
+        double stdyingPer = (double)stdyingCnt/total*100;
+        String formattedStdyingPer = decimalFormat.format(stdyingPer);
         model.addAttribute("total", total);
         model.addAttribute("approveCnt", approveCnt);
         model.addAttribute("attdCnt", attdCnt);
+        model.addAttribute("stdyingCnt", stdyingCnt);
         model.addAttribute("approvepercent", formattedApprovePer);
         model.addAttribute("attdpercent", formattedAttdPer);
+        model.addAttribute("stdyingpercent", formattedStdyingPer);
         model.addAttribute("hotlec", hotlec);
         model.addAttribute("topstdn",topstdn);
         model.addAttribute("topfront",topfront);
@@ -109,39 +100,31 @@ public class MainController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);
         List<Stdn> approveList = new ArrayList<>();
-        List<Stdn> attdList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
-        List<Stdn> attdTotalList =stdnService.totalattd();
+        List<Stdn> lateList =stdnService.latestdn();
         List<Lec> hotlec = lecService.hotlec();
         Stdn topstdn = stdnService.topstdn();
         Stdn topfront = stdnService.topfront();
         Stdn topback = stdnService.topback();
-        List<Attd> aList;
-        Attd attd;
+        List<Stdy> stdyingList = stdyService.stdying();
+
         for (Stdn s:totalList) {
             if (s.getIsJoin().equals("0")) {
                 approveList.add(s);
             }
         }
-        for (Stdn a:attdTotalList) {
-            if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
-                //일단 rdate가 비어있지 않고 등록일자가 오늘인 수강생 데이터 불러옴(지각 포함)
-                //여기서 starttime이 비어있지 않은 학생만 출석한 것으로 봐야됨
-                attd = attdService.selectall(a.getId());
-                if(attd.getRdate().equals(currentDate) && ((attd.getStartTime() != null || !attd.getStartTime().equals("")))){
-                    attdList.add(a);
-                }
-            }
-        }
 
         int approveCnt = approveList.size();
-        int attdCnt = attdList.size();
+        int attdCnt = lateList.size();
         int total = totalList.size();
+        int stdyingCnt = stdyingList.size();
         double approvePer = (double)approveCnt/total*100;
         DecimalFormat decimalFormat = new DecimalFormat("#0.00");
         String formattedApprovePer = decimalFormat.format(approvePer);
-        double attdPer = (double)attdCnt/total*100;
+        double attdPer = (double)(total - attdCnt)/total*100;
         String formattedAttdPer = decimalFormat.format(attdPer);
+        double stdyingPer = (double)stdyingCnt/total*100;
+        String formattedStdyingPer = decimalFormat.format(stdyingPer);
         try {
             adm = admService.get(id);
             if(adm != null && encoder.matches(pwd, adm.getPwd())){
@@ -154,8 +137,10 @@ public class MainController {
             model.addAttribute("total", total);
             model.addAttribute("approveCnt", approveCnt);
             model.addAttribute("attdCnt", attdCnt);
+            model.addAttribute("stdyingCnt", stdyingCnt);
             model.addAttribute("approvepercent", formattedApprovePer);
             model.addAttribute("attdpercent", formattedAttdPer);
+            model.addAttribute("stdyingpercent", formattedStdyingPer);
             model.addAttribute("hotlec", hotlec);
             model.addAttribute("topstdn",topstdn);
             model.addAttribute("topfront",topfront);

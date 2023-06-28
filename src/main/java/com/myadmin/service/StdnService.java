@@ -90,7 +90,7 @@ public class StdnService implements MyAdminService<String, Stdn> {
         return mapper.topsbj();
     }
 
-//    public List<Stdn> latestdn() throws Exception{
-//        return mapper.latestdn();
-//    }
+    public List<Stdn> latestdn() throws Exception{
+        return mapper.latestdn();
+    }
 }

@@ -194,12 +194,15 @@ public class StdnController {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);
+        Attd attd = new Attd();
         try {
             Stdn stdn = stdnService.get(id);
             MyPage myPage = myPageService.get(id);
-            Attd attd = attdService.selectall(id);
-            if(!attd.getRdate().equals(currentDate)) {
-                attd = null;
+            List<Attd> aList = attdService.selectall(id);
+            for(Attd a:aList) {
+                if(a.getRdate().equals(currentDate)) {
+                    attd = a;
+                }
             }
 
             ArrayList<AttdTrckr> data2 = new ArrayList<>();
@@ -320,6 +323,7 @@ public class StdnController {
             model.addAttribute("totalTime", timeList);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("Student detail error");
         }
         return "index";

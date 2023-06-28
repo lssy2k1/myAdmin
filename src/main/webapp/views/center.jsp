@@ -352,7 +352,7 @@
             <div class="card card-dark-blue">
               <div class="card-body d-flex flex-column justify-content-between">
                 <p class="mb-4">출결 현황</p>
-                <a href="/stdn/absent" class="fs-30 mb-2 text-decoration-none text-white">미출석 ${total-attdCnt}명 >></a>
+                <a href="/stdn/absent" class="fs-30 mb-2 text-decoration-none text-white">미출석 ${attdCnt}명 >></a>
                 <p class="mb-0">출석률 ${attdpercent}%</p>
               </div>
             </div>
@@ -363,8 +363,8 @@
             <div class="card card-light-blue">
               <div class="card-body d-flex flex-column justify-content-between">
                 <p class="mb-4">스터디 진행 수강생 수</p>
-                <a href="#" class="fs-30 mb-2 text-decoration-none text-white">5명 >></a>
-                <p class="mb-0">20.00%</p>
+                <a href="/stdy/ing" class="fs-30 mb-2 text-decoration-none text-white">${stdyingCnt}명 >></a>
+                <p class="mb-0">참여율 ${stdyingpercent}%</p>
               </div>
             </div>
           </div>
