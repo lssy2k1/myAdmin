@@ -49,6 +49,7 @@ public class MainController {
         List<Stdn> attdList = new ArrayList<>();
         List<Stdn> totalList = stdnService.get();
         List<Stdn> attdTotalList =stdnService.totalattd();
+        // totalattd 모든 학생들의 가장 최근의 attd 데이터를 불러옴(Rownum 활용)
         List<Lec> hotlec = lecService.hotlec();
         Stdn topstdn = stdnService.topstdn();
         Stdn topfront = stdnService.topfront();
@@ -64,7 +65,7 @@ public class MainController {
         }
         for (Stdn a:attdTotalList) {
             if (a.getAttdDate() != null && a.getAttdDate().equals(currentDate)) {
-                //일단 rdate가 비어있지 않고 등록일자가 오늘인 수강생 데이터 불러옴(지각 포함)
+                //전체 학생 attd 데이터에서 rdate가 비어있지 않고 등록일자가 오늘인 수강생 데이터 불러옴(지각 포함)
                 //여기서 starttime이 비어있지 않은 학생만 출석한 것으로 봐야됨
                 attd = attdService.selectall(a.getId());
                 if(attd.getRdate().equals(currentDate) && ((attd.getStartTime() != null || !attd.getStartTime().equals("")))){

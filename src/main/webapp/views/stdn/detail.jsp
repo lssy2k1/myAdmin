@@ -98,7 +98,7 @@
                                         </div>
                                         <div class="nav-link">
                                             <i class="ti-calendar"></i>
-                                            입과일 : ${mypage.digidate}
+                                            입과일 : ${mypage.digidate.substring(0, 4)}-${mypage.digidate.substring(4, 6)}-${mypage.digidate.substring(6)}
                                         </div>
                                     </div>
                                 </div>

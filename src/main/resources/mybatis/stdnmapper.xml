@@ -85,22 +85,22 @@
     <select id="absent" resultType="Stdn">
         SELECT l.img, l.id, l.name, l.is_attend AS isAttend, l.email, l.contact, l.rdate AS attdDate, l.is_join AS isJoin
         FROM (
-                 SELECT s.img, s.id, s.name, a.is_attend, a.start_time, s.email, s.contact, SUBSTR(a.rdate, 1, 10) AS rdate, s.is_join, ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY (TO_DATE(a.rdate, 'YYYY.MM.DD')) DESC) AS rn
+                 SELECT s.img, s.id, s.name, a.is_attend, a.start_time, s.email, s.contact, a.rdate, s.is_join, ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY (TO_DATE(a.rdate, 'YYYY.MM.DD')) DESC) AS rn
                  FROM stdn s
                           LEFT OUTER JOIN attd a ON s.id = a.stdn_id
              ) l
         WHERE l.is_join = 1 AND l.rn = 1 AND (l.start_time IS NULL OR l.start_time = '')
         ORDER BY l.name
     </select>
-    <select id="latestdn" resultType="Stdn">
-        SELECT l.id, l.rdate AS attdDate, l.is_join AS isJoin
-        FROM (
-                 SELECT s.id, SUBSTR(a.rdate, 1, 10) AS rdate, s.is_join, ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY (TO_DATE(a.rdate, 'YYYY.MM.DD')) DESC) AS rn
-                 FROM stdn s
-                          LEFT OUTER JOIN attd a ON s.id = a.stdn_id
-             ) l
-        WHERE l.is_join != 0 AND l.rn = 1
-    </select>
+<!--    <select id="latestdn" resultType="Stdn">-->
+<!--        SELECT l.id, l.rdate AS attdDate, l.is_join AS isJoin-->
+<!--        FROM (-->
+<!--                 SELECT s.id, a.rdate, s.is_join, ROW_NUMBER() OVER (PARTITION BY s.id ORDER BY (TO_DATE(a.rdate, 'YYYY.MM.DD')) DESC) AS rn-->
+<!--                 FROM stdn s-->
+<!--                          LEFT OUTER JOIN attd a ON s.id = a.stdn_id-->
+<!--             ) l-->
+<!--        WHERE l.is_join != 0 AND l.rn = 1-->
+<!--    </select>-->
 
     <select id="select" parameterType="String" resultType="Stdn">
         SELECT id, pwd, name, email, contact, img, birthday, is_subsc as isSubsc, cpn, is_exit as isExit, exit_date as exitDate, last_visit as lastVisit, is_join as isJoin, sbj1, sbj2, sbj3, login_error as loginError

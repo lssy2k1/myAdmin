@@ -94,10 +94,29 @@
             // 저장된 알림 메시지 불러오기
             const notificationMessage = localStorage.getItem('notificationMessage') || '';
             if (notificationMessage) {
+                const notificationBox = document.createElement('div');
+                notificationBox.classList.add('dropdown-item', 'preview-item');
                 const previewThumbnail = document.createElement('div');
-                previewThumbnail.classList.add('preview-thumbnail', 'mdi', 'mdi-email');
-                previewThumbnail.innerText = notificationMessage;
-                $('#notification_contents').append(previewThumbnail);
+                previewThumbnail.classList.add('preview-thumbnail');
+
+                const thumbnailBtn = document.createElement('button');
+                thumbnailBtn.classList.add('btn', 'btn-inverse-danger', 'btn-icon');
+                const thumbnailIcon = document.createElement('i');
+                thumbnailIcon.classList.add('ti-email', 'mx-0');
+                thumbnailBtn.append(thumbnailIcon);
+                previewThumbnail.append(thumbnailBtn);
+
+                const thumbnailMsg = document.createElement('div');
+                thumbnailMsg.classList.add('preview-item-content');
+                const thumbnailMsgTxt = document.createElement('h6');
+                thumbnailMsgTxt.classList.add('preview-subject', 'font-weight-normal', 'mb-0', 'pr-1');
+                thumbnailMsg.append(thumbnailMsgTxt);
+
+                thumbnailMsgTxt.textContent = notificationMessage;
+
+                notificationBox.append(previewThumbnail);
+                notificationBox.append(thumbnailMsg);
+                $('#notification_contents').append(notificationBox);
             }
 
             // 저장된 메시지 불러오기
@@ -121,7 +140,7 @@
             $('#to').animate({ scrollTop: $('#to')[0].scrollHeight }, 1000);
 
             // 알림 클릭 시 알림 처리
-            $('#notification_bell').click(function () {
+            $('#notification_bell_btn').click(function () {
                 // 알림 확인 시 깜빡임 제거
                 if ($('#notification_bell').hasClass('count blinking')) {
                     $('#notification_bell').removeClass('count blinking');
@@ -160,15 +179,35 @@
                     // 저장 완료 시 화면에 알림 메시지 추가
                     // 알람 울리기위한 css 수정
                     var notificationBell = document.getElementById("notification_bell");
+                    var notificationBellBtn = document.getElementById("notification_bell_btn");
                     notificationBell.classList.add("count");
                     notificationBell.classList.add("blinking");
 
                     // 알림 보내기 위한 html 추가
                     var notificationContents = document.getElementById("notification_contents");
+
+                    const notificationBox = document.createElement('div');
+                    notificationBox.classList.add('dropdown-item', 'preview-item');
                     var previewThumbnail = document.createElement("div");
-                    previewThumbnail.classList.add("preview-thumbnail", "mdi", "mdi-email");
-                    previewThumbnail.innerText = `\${JSON.parse(msg.body).sendid}님의 메시지가 도착했습니다.`;
-                    notificationContents.appendChild(previewThumbnail);
+                    previewThumbnail.classList.add("preview-thumbnail");
+
+                    var thumbnailBtn = document.createElement("button");
+                    thumbnailBtn.classList.add("btn", "btn-inverse-danger", "btn-icon");
+                    var thumbnailIcon = document.createElement("i");
+                    thumbnailIcon.classList.add("ti-email", "mx-0");
+                    thumbnailBtn.appendChild(thumbnailIcon);
+                    previewThumbnail.appendChild(thumbnailBtn);
+
+                    var thumbnailMsg= document.createElement("div");
+                    thumbnailMsg.classList.add("preview-item-content");
+                    var thumbnailMsgTxt = document.createElement("h6");
+                    thumbnailMsgTxt.classList.add("preview-subject", "font-weight-normal", "mb-0", "pr-1");
+                    thumbnailMsg.appendChild(thumbnailMsgTxt);
+
+                    thumbnailMsgTxt.textContent = JSON.parse(msg.body).sendid + "님의 메시지가 도착했습니다.";
+                    notificationBox.appendChild(previewThumbnail);
+                    notificationBox.appendChild(thumbnailMsg);
+                    notificationContents.appendChild(notificationBox)
 
                     // 받은 메시지 저장 및 local storage에 저장
                     const messages = JSON.parse(localStorage.getItem('messages')) || [];
@@ -179,7 +218,7 @@
                     localStorage.setItem('isNotificationSeen', 'true');
 
                     //도착한 내용 저장
-                    localStorage.setItem('notificationMessage', previewThumbnail.innerText);
+                    localStorage.setItem('notificationMessage', thumbnailMsgTxt.textContent);
                 });
             });
         },

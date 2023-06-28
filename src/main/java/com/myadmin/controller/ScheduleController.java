@@ -28,15 +28,12 @@ public class ScheduleController {
     @Scheduled(cron = "1 0 9 * * *")
     public void cronJobLateUpdate() throws Exception {
         // 아침 9시
-        // attd 테이블 상의 rdate가 sysdate랑 일치하는 수강생 데이터를 가져옴
-        // startTime이 안 찍힌 수강생 or rdate가 일치하는 데이터가 없는 수강생 선별
-        // stdn.isAttend를 2(지각)으로 업데이트
-        List<Stdn> latestdn = stdnService.latestdn();
+        List<Stdn> totalattd = stdnService.totalattd();
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);
         Attd attd;
-        for(Stdn s:latestdn) {
+        for(Stdn s:totalattd) {
             if(s.getAttdDate() == null || (s.getAttdDate()).equals("") || !(s.getAttdDate()).equals(currentDate)){
                 attd = new Attd(s.getId(), "2");
                 attdService.register(attd);
@@ -69,14 +66,11 @@ public class ScheduleController {
         // 오후 6시
         // 위의 프로세스 반복
         // stdn.isAttend를 0(결석)으로 업데이트
-        List<Stdn> latestdn = stdnService.latestdn();
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
-        String currentDate = dateFormat.format(date);
+        List<Stdn> totalattd = stdnService.totalattd();
         Attd attd;
-        for (Stdn s : latestdn) {
+        for (Stdn s : totalattd) {
             attd = attdService.get(s.getId());
-            if (attd.getIsAttend().equals("2")) {
+            if (attd.getIsAttend().equals("2") && (attd.getStartTime() == null || attd.getStartTime().equals(""))) {
                     attd.setIsAttend("0");
                     attdService.modify(attd);
                 }

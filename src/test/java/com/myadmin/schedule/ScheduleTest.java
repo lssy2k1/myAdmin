@@ -13,10 +13,12 @@ public class ScheduleTest {
 
     @Autowired
     StdnService stdnService;
+    @Autowired
+    AttdService attdService;
     @Test
     void contextLoads() {
         try {
-            System.out.println(stdnService.latestdn());
+            System.out.println(attdService.selectall("12345"));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
