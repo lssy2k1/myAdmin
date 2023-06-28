@@ -19,23 +19,23 @@ public class RedisConfig {
     @Value("${spring.redis.port}")
     private int redisPort;
 
-//    @Value("${spring.redis.password}")
-//    private String redisPwd;
-
-    @Bean
-    public RedisConnectionFactory redisConnectionFactory() {
-        return new LettuceConnectionFactory(redisHost, redisPort); // Redis 연결을 위한 LettuceConnectionFactory 생성
-    }
+    @Value("${spring.redis.password}")
+    private String redisPwd;
 
 //    @Bean
 //    public RedisConnectionFactory redisConnectionFactory() {
-//        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
-//        redisStandaloneConfiguration.setHostName(redisHost);
-//        redisStandaloneConfiguration.setPort(redisPort);
-////        redisStandaloneConfiguration.setPassword(redisPwd);
-//        LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(redisStandaloneConfiguration);
-//        return lettuceConnectionFactory;
+//        return new LettuceConnectionFactory(redisHost, redisPort); // Redis 연결을 위한 LettuceConnectionFactory 생성
 //    }
+
+    @Bean
+    public RedisConnectionFactory redisConnectionFactory() {
+        RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
+        redisStandaloneConfiguration.setHostName(redisHost);
+        redisStandaloneConfiguration.setPort(redisPort);
+        redisStandaloneConfiguration.setPassword(redisPwd);
+        LettuceConnectionFactory lettuceConnectionFactory = new LettuceConnectionFactory(redisStandaloneConfiguration);
+        return lettuceConnectionFactory;
+    }
 
 
     @Bean
