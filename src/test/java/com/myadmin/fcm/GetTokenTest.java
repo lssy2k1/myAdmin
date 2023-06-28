@@ -40,7 +40,7 @@ public class GetTokenTest {
 
     @Test
     void send() throws ExecutionException, InterruptedException {
-        fcmService.send(new NotificationRequest("제목", "착석하세요", notificationService.getToken("ㅂㅈㄷㄱ")));
+        fcmService.send(new NotificationRequest("제목", "착석하세요", notificationService.getToken("qwer")));
     }
 
     @Test
