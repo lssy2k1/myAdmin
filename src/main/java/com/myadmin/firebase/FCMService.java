@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
@@ -30,48 +31,51 @@ public class FCMService {
         logger.info("Sent message: " + response);
     }
 
-    public void sendAll(List<String> tokens, String title, String pushMessage) throws FirebaseMessagingException, ExecutionException, InterruptedException {
-        MulticastMessage message = MulticastMessage.builder()
-                .putData("title", title)
-                .putData("message", pushMessage)
-                .addAllTokens(tokens)
-                .build();
-        log.info("message = {}", message);
-        BatchResponse response = FirebaseMessaging.getInstance().sendMulticastAsync(message).get();
-        log.info("response = {}", response);
-        if (response.getFailureCount() > 0) {
-            List<SendResponse> responses = response.getResponses();
-            List<String> failedTokens = new ArrayList<>();
-            for (int i = 0; i < responses.size(); i++) {
-                if (!responses.get(i).isSuccessful()) {
-                    // The order of responses corresponds to the order of the registration tokens.
-                    failedTokens.add(tokens.get(i));
-                }
-            }
+    public void sendAll(List<String> tokens, String title, String body){
 
-            System.out.println("List of tokens that caused failures: " + failedTokens);
+        List<String> registrationTokens = tokens;
+
+        Notification notification = Notification.builder()
+                .setTitle(title)
+                .setBody(body)
+                .build();
+
+        MulticastMessage message = MulticastMessage.builder()
+                .setNotification(notification)
+                .addAllTokens(registrationTokens)
+                .build();
+
+        try {
+            FirebaseMessaging.getInstance().sendMulticast(message);
+            log.info("성공적으로 메시지를 보냈습니다.");
+        } catch (FirebaseMessagingException e) {
+            log.info("메시지 보내기를 실패했습니다: " + e.getMessage());
         }
     }
 
 
-    //안돼서 메뉴얼 보고 함.
-//    public void sendall(List<NotificationRequest> requests) {
-//        MulticastMessage.Builder messageBuilder = MulticastMessage.builder();
-//        for (NotificationRequest request : requests) {
-//            messageBuilder.addToken(request.getToken());
-//            messageBuilder.putData("title", request.getTitle());
-//            messageBuilder.putData("message", request.getMessage());
-//        }
-//        MulticastMessage message = messageBuilder.build();
-//        log.info("message = {}",message);
-//        try {
-//            BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
-//            log.info("response = [{} {} {}]", response.getResponses(), response.getSuccessCount(), response.getFailureCount());
-//            System.out.println(response.getSuccessCount() + " messages were sent successfully");
-//        } catch (FirebaseMessagingException e) {
-//            e.printStackTrace();
+
+//    public void sendAll(List<String> tokens, String title, String pushMessage) throws FirebaseMessagingException, ExecutionException, InterruptedException {
+//        MulticastMessage message = MulticastMessage.builder()
+//                .putData("title", title)
+//                .putData("message", pushMessage)
+//                .addAllTokens(tokens)
+//                .build();
+//        log.info("message = {}", message);
+//        BatchResponse response = FirebaseMessaging.getInstance().sendMulticastAsync(message).get();
+//        log.info("response = {}", response);
+//        if (response.getFailureCount() > 0) {
+//            List<SendResponse> responses = response.getResponses();
+//            List<String> failedTokens = new ArrayList<>();
+//            for (int i = 0; i < responses.size(); i++) {
+//                if (!responses.get(i).isSuccessful()) {
+//                    // The order of responses corresponds to the order of the registration tokens.
+//                    failedTokens.add(tokens.get(i));
+//                }
+//            }
+//
+//            System.out.println("List of tokens that caused failures: " + failedTokens);
 //        }
 //    }
-
 
 }
