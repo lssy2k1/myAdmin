@@ -21,7 +21,10 @@ import lombok.extern.slf4j.Slf4j;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.security.GeneralSecurityException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -169,38 +172,32 @@ public class GoogleCalendar {
 
     }
 
-//    private String getEvent() throws IOException {
-//
-//        DateTime now = new DateTime(System.currentTimeMillis());
-//
-//        String calendarID = getCalendarID("CalendarTitle");
-//        if ( calendarID == null ){
-//
-//            return "캘린더를 먼저 생성하세요.";
-//        }
-//
-//        Events events = mService.events().list(calendarID)//"primary")
-//                .setMaxResults(10)
-//                //.setTimeMin(now)
-//                .setOrderBy("startTime")
-//                .setSingleEvents(true)
-//                .execute();
-//        List<Event> items = events.getItems();
-//
-//        for (Event event : items) {
-//
-//            DateTime start = event.getStart().getDateTime();
-//            if (start == null) {
-//
-//                // 모든 이벤트가 시작 시간을 갖고 있지는 않다. 그런 경우 시작 날짜만 사용
-//                start = event.getStart().getDate();
-//            }
-//
-//            eventStrings.add(String.format("%s \n (%s)", event.getSummary(), start));
-//        }
-//
-//        return eventStrings.size() + "개의 데이터를 가져왔습니다.";
-//    }
 
+    public int getUpcomingEventsCount() throws IOException, GeneralSecurityException {
+        final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+
+        Calendar service = new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                .setApplicationName(APPLICATION_NAME)
+                .build();
+
+        // 현재 날짜를 기준으로 한 달 후의 날짜를 계산합니다.
+        LocalDate now = LocalDate.now();
+        LocalDate oneMonthLater = now.plusMonths(1);
+
+        DateTime startDateTime = new DateTime(now.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+        DateTime endDateTime = new DateTime(oneMonthLater.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant().toEpochMilli());
+
+        Events events = service.events().list(CALENDAR_ID)
+                .setTimeMin(startDateTime)
+                .setTimeMax(endDateTime)
+                .execute();
+
+        List<Event> items = events.getItems();
+        if (items != null) {
+            return items.size();
+        } else {
+            return 0;
+        }
+    }
 
 }

@@ -4,6 +4,7 @@ import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.myadmin.dto.CalEvent;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.Date;
 
+@Slf4j
 @SpringBootTest
 public class GoogleCalendarTest {
 
@@ -39,5 +41,17 @@ public class GoogleCalendarTest {
         CalEvent calEvent = new CalEvent("title", "contents", "2023-06-03T12:30:00", "2023-06-04T12:30:00");
         Event event = googleCalendar.makeEvent(calEvent);
         GoogleCalendar.addEvent(event);
+    }
+
+    @Test
+    void getCredential(){
+        GoogleCalendar googleCalendar = new GoogleCalendar();
+    }
+
+    @Test
+    void getMonthlyEvent() throws GeneralSecurityException, IOException {
+        GoogleCalendar googleCalendar = new GoogleCalendar();
+        int upcomingEventsCount = googleCalendar.getUpcomingEventsCount();
+        log.info(upcomingEventsCount+"");
     }
 }
