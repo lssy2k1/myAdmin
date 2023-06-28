@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.myadmin.mapper.StdyMapper">
+    <select id="stdying" resultType="Stdy">
+        SELECT writer, SUBSTR(start_time, 1, 10) AS startTime, SUBSTR(end_time, 1, 10) AS endTime, rdate
+        FROM stdy
+        WHERE SUBSTR(start_time, 1, 10) = TO_CHAR(sysdate, 'YYYY.MM.DD')
+            AND rdate = TO_CHAR(sysdate, 'YYYY.MM.DD')
+            AND SUBSTR(end_time, 1, 10) = NULL
+    </select>
+    <select id="stdypage" resultType="Stdy">
+        SELECT s.name AS writer, st.WRITER AS stdnId, st.start_time as startTime
+        FROM stdy st
+        JOIN stdn s ON s.id = st.writer
+        WHERE SUBSTR(start_time, 1, 10) = TO_CHAR(sysdate, 'YYYY.MM.DD')
+          AND rdate = TO_CHAR(sysdate, 'YYYY.MM.DD')
+          AND SUBSTR(end_time, 1, 10) = NULL
+        ORDER BY s.name
+    </select>
+</mapper>

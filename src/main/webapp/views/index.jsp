@@ -23,7 +23,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="/css/vertical-layout-light/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="/images/favicon.png" />
+    <link rel="shortcut icon" href="/images/favicon.png"/>
     <script
             src="https://code.jquery.com/jquery-3.7.0.js"
             integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM="
@@ -31,10 +31,11 @@
     <script src="/js/makeKakaoMap.js"></script>
     <script src="/js/makeKakaoMap2.js"></script>
     <script src="/js/makeKakaoMap3.js"></script>
-    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d005c7797282324dfcb26cf31188fc01"></script>
+    <script type="text/javascript"
+            src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d005c7797282324dfcb26cf31188fc01"></script>
     <script src="/webjars/sockjs-client/sockjs.min.js"></script>
     <script src="/webjars/stomp-websocket/stomp.min.js"></script>
-    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet' />
+    <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.css' rel='stylesheet'/>
     <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.8.0/main.min.js'></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.2.0/firebase-app.js"></script>
@@ -42,48 +43,75 @@
     <script src="/notification.js"></script>
     <script>
         let highlight = {
-            init: function(){
-                $('#todo-tab').click(function(){
+            init: function () {
+                $('#todo-tab').click(function () {
                     $('#todo-title').addClass('highlight');
                     $('#chats-title').removeClass('highlight');
                 });
-                $('#chats-tab').click(function(){
+                $('#chats-tab').click(function () {
                     $('#todo-title').removeClass('highlight');
                     $('#chats-title').addClass('highlight');
                 });
             }
         };
-        $(function(){
+        $(function () {
             highlight.init();
         })
     </script>
-<style>
-<%--    notification bell 깜빡이기 시작--%>
-    @keyframes blink {
-        0% {
-            opacity: 1;
+    <style>
+        <%--    notification bell 깜빡이기 시작--%>
+        @keyframes blink {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
         }
-        50% {
-            opacity: 0;
+
+        .blinking {
+            animation: blink 1.0s linear infinite;
         }
-        100% {
-            opacity: 1;
+
+        <%--    notification bell 깜빡이기 끝--%>
+
+
+        #setting-panel {
+            height: 6.2vh;
         }
-    }
 
-    .blinking {
-        animation: blink 1.0s linear infinite;
-    }
-<%--    notification bell 깜빡이기 끝--%>
+        .highlight {
+            background: rgb(125, 160, 250, 0.2);
+        }
 
+        #notification_contents {
+            box-sizing: border-box;
+        }
+        #notification_contents::-webkit-scrollbar {
+            width: 14px;
+            height: 14px;
+        }
 
-    #setting-panel {
-        height: 6.2vh;
-    }
-    .highlight {
-        background: rgb(125, 160, 250, 0.2);
-    }
-</style>
+        #notification_contents::-webkit-scrollbar-thumb {
+            outline: none;
+            border-radius: 10px;
+            border: 4px solid transparent;
+            box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.15);
+        }
+
+        #notification_contents::-webkit-scrollbar-thumb:hover {
+            border: 4px solid transparent;
+            box-shadow: inset 6px 6px 0 rgba(34, 34, 34, 0.3);
+        }
+
+        #notification_contents::-webkit-scrollbar-track {
+            box-shadow: none;
+            background-color: transparent;
+        }
+    </style>
 </head>
 <body>
 <div class="container-scroller">
@@ -132,24 +160,16 @@
                     </c:when>
                     <c:otherwise>
                         <li class="nav-item dropdown">
-                            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                                <i class="icon-bell mx-0"></i>
+                            <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#"
+                               data-toggle="dropdown">
+                                <i id="notification_bell_btn" class="icon-bell mx-0"></i>
                                 <span id="notification_bell"></span>
                                     <%--                                      카운트가 추가되면 알림이 있다는 걸로 바뀌는 js가 있는듯--%>
                             </a>
-                            <div id = "notification_contents" class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-
+                            <div id="notification_contents"
+                                 class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list"
+                                 aria-labelledby="notificationDropdown" style="overflow-y: overlay; max-height: 40vh">
                                 <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                                <a class="dropdown-item preview-item">
-                                    <div class="preview-thumbnail">
-                                        <button class="btn btn-inverse-danger btn-icon">
-                                            <i class="ti-email mx-0"></i>
-                                        </button>
-                                    </div>
-                                    <div class="preview-item-content">
-                                        <h6 class="preview-subject font-weight-normal mb-0 pr-1">도착한 알림</h6>
-                                    </div>
-                                </a>
                             </div>
                         </li>
                         <li class="nav-item nav-profile dropdown">
@@ -175,7 +195,8 @@
                     </c:otherwise>
                 </c:choose>
             </ul>
-            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+                    data-toggle="offcanvas">
                 <span class="icon-menu"></span>
             </button>
         </div>
@@ -184,31 +205,33 @@
 
     <div class="container-fluid page-body-wrapper">
         <!-- partial:partials/_settings-panel.html -->
-        <jsp:include page ="chatbot.jsp"/>
+        <jsp:include page="chatbot.jsp"/>
         <!-- partial -->
         <div id="right-sidebar" class="settings-panel">
             <i class="settings-close ti-close"></i>
             <ul class="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active mr-3" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true"><span id="todo-title">전체</span></a>
+                    <a class="nav-link active mr-3" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab"
+                       aria-controls="todo-section" aria-expanded="true"><span id="todo-title">전체</span></a>
                 </li>
                 <li class="nav-item ml-3">
-                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section"><span id="chats-title">1:1</span></a>
+                    <a class="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab"
+                       aria-controls="chats-section"><span id="chats-title">1:1</span></a>
                 </li>
             </ul>
             <div class="tab-content pt-0" id="setting-content">
-            <jsp:include page ="toall.jsp"/>
-            <jsp:include page ="oneonone.jsp"/>
+                <jsp:include page="toall.jsp"/>
+                <jsp:include page="oneonone.jsp"/>
             </div>
         </div>
         <!-- partial -->
         <!-- partial:partials/_sidebar.html -->
         <c:choose>
             <c:when test="${left==null}">
-                <jsp:include page ="left.jsp"/>
+                <jsp:include page="left.jsp"/>
             </c:when>
             <c:otherwise>
-                <jsp:include page = "${left}.jsp"/>
+                <jsp:include page="${left}.jsp"/>
             </c:otherwise>
         </c:choose>
         <!-- partial -->
@@ -216,21 +239,24 @@
         <div class="main-panel">
             <c:choose>
                 <c:when test="${center==null}">
-                    <jsp:include page ="center.jsp"/>
+                    <jsp:include page="center.jsp"/>
                 </c:when>
                 <c:otherwise>
-                    <jsp:include page = "${center}.jsp"/>
+                    <jsp:include page="${center}.jsp"/>
                 </c:otherwise>
             </c:choose>
 
             <!-- partial:partials/_footer.html -->
             <footer class="footer">
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i class="ti-heart text-danger ml-1"></i></span>
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
+                            href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
+                    <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
+                            class="ti-heart text-danger ml-1"></i></span>
                 </div>
                 <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a href="https://www.themewagon.com/" target="_blank">Themewagon</a></span>
+                    <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Distributed by <a
+                            href="https://www.themewagon.com/" target="_blank">Themewagon</a></span>
                 </div>
             </footer>
             <!-- partial -->

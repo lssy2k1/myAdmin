@@ -43,7 +43,7 @@ public class AttdService implements MyAdminService<String, Attd> {
         return null;
     }
 
-    public Attd selectall(String s) throws Exception {
+    public List<Attd> selectall(String s) throws Exception {
         return mapper.selectall(s);
     }
 }

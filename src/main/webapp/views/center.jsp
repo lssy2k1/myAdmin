@@ -352,7 +352,7 @@
             <div class="card card-dark-blue">
               <div class="card-body d-flex flex-column justify-content-between">
                 <p class="mb-4">출결 현황</p>
-                <a href="/stdn/absent" class="fs-30 mb-2 text-decoration-none text-white">미출석 ${total-attdCnt}명 >></a>
+                <a href="/stdn/absent" class="fs-30 mb-2 text-decoration-none text-white">미출석 ${attdCnt}명 >></a>
                 <p class="mb-0">출석률 ${attdpercent}%</p>
               </div>
             </div>
@@ -363,8 +363,8 @@
             <div class="card card-light-blue">
               <div class="card-body d-flex flex-column justify-content-between">
                 <p class="mb-4">스터디 진행 수강생 수</p>
-                <a href="#" class="fs-30 mb-2 text-decoration-none text-white">5명 >></a>
-                <p class="mb-0">20.00%</p>
+                <a href="/stdy/ing" class="fs-30 mb-2 text-decoration-none text-white">${stdyingCnt}명 >></a>
+                <p class="mb-0">참여율 ${stdyingpercent}%</p>
               </div>
             </div>
           </div>
@@ -412,7 +412,7 @@
       <div class="col-md-12 grid-margin stretch-card">
         <div class="card position-relative">
           <div class="card-body">
-            <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
+            <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-1" data-ride="carousel">
               <div class="carousel-inner">
                 <div class="carousel-item active">
 
@@ -420,8 +420,7 @@
                     <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                       <div class="ml-xl-4 mt-3">
                         <p class="card-title">DIGICAM 우수 학생</p>
-                        <h1 class="text-primary">${topstdn.name}</h1>
-                        <h3 class="font-weight-500 mb-xl-4 text-primary">${tostdn.id}</h3>
+                        <h2 class="text-primary">${topstdn.name}</h2>
                         <p class="mb-2 mb-xl-0">
                           <img src="/uimg/${topstdn.img}" style = "width: 150px; height: 150px">
                         </p>
@@ -489,9 +488,9 @@
                             </table>
                           </div>
                         </div>
-                        <div class="col-md-6 mt-3">
-                          <h2 class="card-title">지난 달 우수 학생</h2>
-                          <h4 class="card-title">박선미</h4>
+                        <div class="col-md-6 mt-3 pl-sm-5">
+                          <p class="card-title">지난 달 우수 학생</p>
+                          <h2 class="text-dark">박선미</h2>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="north-america-chart"></canvas>--%>
 <%--                          <div id="north-america-legend"></div>--%>
@@ -576,9 +575,9 @@
                             </table>
                           </div>
                         </div>
-                        <div class="col-md-6 mt-3">
-                          <h2 class="card-title">지난 달 우수 학생</h2>
-                          <h4 class="card-title">박선미</h4>
+                        <div class="col-md-6 mt-3 pl-sm-5">
+                          <p class="card-title">지난 달 우수 학생</p>
+                          <h2 class="text-dark">박선미</h2>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="south-america-chart"></canvas>--%>
 <%--                          <div id="south-america-legend"></div>--%>
@@ -664,9 +663,9 @@
                             </table>
                           </div>
                         </div>
-                        <div class="col-md-6 mt-3">
-                          <h2 class="card-title">지난 달 우수 학생</h2>
-                          <h4 class="card-title">박선미</h4>
+                        <div class="col-md-6 mt-3 pl-sm-5">
+                          <p class="card-title">지난 달 우수 학생</p>
+                          <h2 class="text-dark">박선미</h2>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
 <%--                          <canvas id="east-america-chart"></canvas>--%>
 <%--                          <div id="east-america-legend"></div>--%>

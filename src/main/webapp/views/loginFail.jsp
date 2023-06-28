@@ -15,7 +15,7 @@
                                 <span class="text-danger">입력하신 아이디, 비밀번호를 다시 확인해주세요</span>
                             </h4>
                             <div class="col-12 pt-5">
-                                <a class="btn btn-primary" href="../../index.html"><i class="ti-home me-2"></i> 홈으로 돌아가기</a>
+                                <a class="btn btn-primary" href="/"><i class="ti-home me-2"></i> 홈으로 돌아가기</a>
                             </div>
                         </div>
                     </div>

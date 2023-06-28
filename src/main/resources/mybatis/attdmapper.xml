@@ -18,7 +18,6 @@
                  FROM attd
                  WHERE stdn_id = #{stdnId}
              ) subquery
-        WHERE rn = 1
     </select>
 <!--    <select id="attdtrckr" parameterType="String" resultType="AttdTrckr">-->
 <!--        <![CDATA[-->

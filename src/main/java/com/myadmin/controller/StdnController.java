@@ -64,12 +64,16 @@ public class StdnController {
 
     @RequestMapping("/search")
     public String search(Model model, StdnSearch search, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
+        String currentDate = dateFormat.format(date);
         PageInfo<Stdn> p = new PageInfo<>(stdnService.searchpage(pageNo, search), 5);
         model.addAttribute("value1",search.getSearch1());
         model.addAttribute("value2",search.getSearch2());
         model.addAttribute("target","stdn");
         model.addAttribute("function","search");
         model.addAttribute("cpage",p);
+        model.addAttribute("currentDate", currentDate);
         model.addAttribute("center",dir+"all");
         model.addAttribute("pagination", "searchpage");
         model.addAttribute("search", search);
@@ -190,12 +194,15 @@ public class StdnController {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd");
         String currentDate = dateFormat.format(date);
+        Attd attd = new Attd();
         try {
             Stdn stdn = stdnService.get(id);
             MyPage myPage = myPageService.get(id);
-            Attd attd = attdService.selectall(id);
-            if(!attd.getRdate().equals(currentDate)) {
-                attd = null;
+            List<Attd> aList = attdService.selectall(id);
+            for(Attd a:aList) {
+                if(a.getRdate().equals(currentDate)) {
+                    attd = a;
+                }
             }
 
             ArrayList<AttdTrckr> data2 = new ArrayList<>();
@@ -316,6 +323,7 @@ public class StdnController {
             model.addAttribute("totalTime", timeList);
             model.addAttribute("center", dir+"detail");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("Student detail error");
         }
         return "index";
