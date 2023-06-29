@@ -4,8 +4,12 @@ import com.github.pagehelper.PageInfo;
 import com.myadmin.dto.Adm;
 import com.myadmin.dto.Anc;
 import com.myadmin.dto.Lec;
+import com.myadmin.dto.Stdn;
+import com.myadmin.firebase.FCMService;
+import com.myadmin.firebase.NotificationService;
 import com.myadmin.service.AdmService;
 import com.myadmin.service.AncService;
+import com.myadmin.service.StdnService;
 import com.myadmin.util.FileDownloadUtil;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -42,7 +48,12 @@ public class AncController {
     AncService ancService;
     @Autowired
     BCryptPasswordEncoder encoder;
-
+    @Autowired
+    StdnService stdnService;
+    @Autowired
+    FCMService fcmService;
+    @Autowired
+    NotificationService notificationService;
 
     @RequestMapping(value = "/document/fileDownload.do")
     public void fileDownload(
@@ -100,8 +111,19 @@ public class AncController {
         } catch (Exception e) {
             throw new Exception("anc add error");
         }
-
         model.addAttribute("imgname", img);
+
+        List<String> tokens = new ArrayList<>(Arrays.asList());
+        List<Stdn> stdns = stdnService.get();
+        for(Stdn stdn : stdns){
+            String token = notificationService.getToken("stdn_"+stdn.getId());
+            if(token == null){
+                continue;
+            }
+            tokens.add(token);
+        }
+        fcmService.sendAll(tokens, "공지사항이 등록되었습니다.", "게시판에서 확인 부탁드립니다.");
+
 //        model.addAttribute("center", dir + "all");
 //        model all로 던지면 foreach 오류가 발생. list를 model로 또 던져줘야함
         return "redirect:/anc/all";

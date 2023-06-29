@@ -2,6 +2,9 @@ package com.myadmin.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.myadmin.dto.*;
+import com.myadmin.firebase.FCMService;
+import com.myadmin.firebase.NotificationRequest;
+import com.myadmin.firebase.NotificationService;
 import com.myadmin.service.*;
 import com.myadmin.util.GetTimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,11 @@ import java.util.*;
 @RequestMapping("/stdn")
 public class StdnController {
 
+
+    @Autowired
+    FCMService fcmService;
+    @Autowired
+    NotificationService notificationService;
     @Autowired
     StdnService stdnService;
     @Autowired
@@ -115,6 +123,9 @@ public class StdnController {
         stdnService.joinupdate(id);
         Cpn cpn = new Cpn(1020, id, "2023.12.31");
         cpnService.register(cpn);
+        fcmService.send(new NotificationRequest(
+                id + "님. 가입이 승인되었습니다", "지금부터 로그인이 가능합니다. 즐거운 하루 되세요.", notificationService.getToken("stdn_"+id)));
+
         return "redirect:/stdn/approve";
     }
 

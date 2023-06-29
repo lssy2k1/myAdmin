@@ -34,7 +34,7 @@ public class NotificationApiController {
         UserSession userSession = new UserSession();
         Adm adm = (Adm) httpSession.getAttribute("loginadm");
         userSession.setUserId(adm.getId());
-        notificationService.register(userSession.getUserId(), token);
+        notificationService.register("adm_"+userSession.getUserId(), token);
         log.info("++++++++++++++++++++++++++++++" + userSession.getUserId());
         log.info("++++++++++++++++++++++++++++++" + token);
 
