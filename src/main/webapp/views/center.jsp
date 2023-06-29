@@ -82,7 +82,7 @@
   let lectabledefault ={
     init:()=>{
       $.ajax({
-        url:'/getcurritable',
+        url:'/gethittable',
         method:'get',
         dataType:'json',
         success: function(lecs) {
@@ -91,12 +91,11 @@
           lecs.forEach(function(lec) {
             html += `
                 <tr>
-                    <td>\${lec.title}</td>
-                    <td>\${lec.topic}</td>
-                    <td>\${lec.teacher}</td>
-                    <td>\${lec.rating}</td>
-                    <td>\${lec.hit}</td>
-                    <td>\${lec.curriSum}</td>
+                    <td class="pl-xl-5">\${lec.title}</td>
+                    <td class="text-center">\${lec.topic}</td>
+                    <td class="text-center">\${lec.teacher}</td>
+                    <td class="text-center">\${lec.rating}</td>
+                    <td class="text-center">\${lec.hit}</td>
                 </tr>
             `;
             // Lec 객체의 속성에 따라 변경해야 합니다.
@@ -125,12 +124,11 @@
             var html = '';
             lecs.forEach(function(lec) {
               html += '<tr>' +
-                      '<td>' + lec.title + '</td>' +
-                      '<td>' + lec.topic + '</td>' +
-                      '<td>' + lec.teacher + '</td>' +
-                      '<td>' + lec.rating + '</td>' +
-                      '<td>' + lec.hit + '</td>' +
-                      '<td>' + lec.curriSum + '</td>' +
+                      '<td class="pl-xl-5">' + lec.title + '</td>' +
+                      '<td class="text-center">' + lec.topic + '</td>' +
+                      '<td class="text-center">' + lec.teacher + '</td>' +
+                      '<td class="text-center">' + lec.rating + '</td>' +
+                      '<td class="text-center">' + lec.hit + '</td>' +
                       '</tr>';
               // Lec 객체의 속성에 따라 변경해야 합니다.
             });
@@ -153,12 +151,11 @@
             var html = '';
             lecs.forEach(function(lec) {
               html += '<tr>' +
-                      '<td>' + lec.title + '</td>' +
-                      '<td>' + lec.topic + '</td>' +
-                      '<td>' + lec.teacher + '</td>' +
-                      '<td>' + lec.rating + '</td>' +
-                      '<td>' + lec.hit + '</td>' +
-                      '<td>' + lec.curriSum + '</td>' +
+                      '<td class="pl-xl-5">' + lec.title + '</td>' +
+                      '<td class="text-center">' + lec.topic + '</td>' +
+                      '<td class="text-center">' + lec.teacher + '</td>' +
+                      '<td class="text-center">' + lec.rating + '</td>' +
+                      '<td class="text-center">' + lec.hit + '</td>' +
                       '</tr>';// Lec 객체의 속성에 따라 변경해야 합니다.
             });
             $('#hottable').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
@@ -180,12 +177,11 @@
             var html = '';
             lecs.forEach(function(lec) {
               html += '<tr>' +
-                      '<td>' + lec.title + '</td>' +
-                      '<td>' + lec.topic + '</td>' +
-                      '<td>' + lec.teacher + '</td>' +
-                      '<td>' + lec.rating + '</td>' +
-                      '<td>' + lec.hit + '</td>' +
-                      '<td>' + lec.curriSum + '</td>' +
+                      '<td class="pl-xl-5">' + lec.title + '</td>' +
+                      '<td class="text-center">' + lec.topic + '</td>' +
+                      '<td class="text-center">' + lec.teacher + '</td>' +
+                      '<td class="text-center">' + lec.rating + '</td>' +
+                      '<td class="text-center">' + lec.hit + '</td>' +
                       '</tr>';// Lec 객체의 속성에 따라 변경해야 합니다.
             });
             $('#hottable').html(html); // 변경하려는 테이블 body 요소의 ID. 실제 ID로 바꿔야 함
@@ -214,7 +210,6 @@
                     '<td>' + lec.teacher + '</td>' +
                     '<td>' + lec.name + '</td>' +
                     '<td>' + lec.hit + '</td>' +
-                    '<td>' + lec.curriSum + '</td>' +
                     '<td>' + lec.odate + '</td>' +
                     '</tr>';// Lec 객체의 속성에 따라 변경해야 합니다.
           });
@@ -256,11 +251,14 @@
           let rain = result.rain;
           if(rain == 1 || rain == 2 || rain ==5){
             $('#rain').attr('src', '/images/rain.png');
-            $('#temperimg').attr('class', 'mdi mdi-weather-rainy');
+            $('#temperimg').attr('class', 'mdi mdi-weather-rainy mr-1');
+            $('#weatherimg_box').attr('class', 'card');
           }
           if(rain == 3 || rain == 6 || rain==7){
             $('#rain').attr('src', '/images/snow.png');
-            $('#temperimg').attr('class', 'mdi mdi-weather-snowy');
+            $('#temperimg').attr('class', 'mdi mdi-weather-snowy-heavy mr-1');
+            $('#weatherimg_box').attr('class', 'card');
+            $('#weatherimg_box').attr('style', 'background-color:#EDF6FB');
           }
         }
       })
@@ -315,18 +313,26 @@
     <div class="row">
 <%------------------------------------날씨창 수정-----------------------------------------%>
       <div class="col-md-6 grid-margin stretch-card">
-        <div class="card tale-bg">
+        <div id="weatherimg_box" class="card tale-bg">
           <div class="weather-info" style="z-index: 10">
             <div class="d-flex">
               <div class="mr-2">
-                <h2 class="mb-0 font-weight-normal"><i id = "temperimg" class="icon-sun mr-2"></i><span id = "temperature"></span><sup>°C</sup></h2>
+                <h2 class="mb-0 font-weight-normal d-flex align-items-center">
+                  <i id = "temperimg" class="mdi mdi-weather-sunny mr-1"></i>
+                  <span id = "temperature"></span>
+                  <sup>°C</sup>
+                </h2>
               </div>
               <div class="mr-2">
-                <h2 class="mb-0 font-weight-normal"><i class="icon-drop mr-2"></i><span id = "humidity"></span><sup>%</sup></h2>
+                <h2 class="mb-0 font-weight-normal d-flex align-items-center">
+                  <i class="mdi mdi-water-outline mr-1"></i>
+                  <span id = "humidity"></span>
+                  <sup>%</sup>
+                </h2>
               </div>
-              <div class="ml-2">
+              <div class="mx-2">
                 <h4 class="location font-weight-normal">Seongsu</h4>
-                <h6 class="font-weight-normal">Seoul</h6>
+                <h6 class="font-weight-normal mb-0">Seoul</h6>
               </div>
             </div>
         </div>
@@ -700,32 +706,30 @@
           <div class="card-body">
             <div class="d-flex align-items-center ml-1 mb-2">
               <span class="card-title mb-0 ml-1 mr-3">인기강의 순위</span>
-              <button type="button" id="table_curri" class="btn btn-primary btn-sm mr-1">찜하기</button>
-              <button type="button" id="table_hit" class="btn btn-outline-primary btn-sm mr-1">수강생</button>
+              <button type="button" id="table_hit" class="btn btn-primary btn-sm mr-1">수강생</button>
               <button type="button" id="table_rating" class="btn btn-outline-primary btn-sm mr-1">별점</button>
+              <button type="button" id="table_curri" class="btn btn-outline-primary btn-sm mr-1">찜하기</button>
             </div>
             <div class="table-responsive">
               <table class="table table-striped table-borderless">
-                <thead>
+                <thead class="text-center">
                 <tr>
-                  <th>강의명</th>
-                  <th>분류</th>
-                  <th>강사</th>
-                  <th>별점</th>
-                  <th>수강생</th>
-                  <th>찜</th>
+                  <th style="width: 39%">강의명</th>
+                  <th style="width: 19%">분류</th>
+                  <th style="width: 19%">강사</th>
+                  <th style="width: 11%">별점</th>
+                  <th style="width: 12%">수강생</th>
                 </tr>
                 </thead>
                 <tbody id="hottable">
 
                 <c:forEach var="h" items="${hotlec}">
                   <tr>
-                    <td>${h.title}</td>
-                    <td>${h.topic}</td>
-                    <td>${h.teacher}</td>
-                    <td>${h.rating}</td>
-                    <td>${h.hit}</td>
-                    <td>${h.curriSum}</td>
+                    <td class="pl-xl-5">${h.title}</td>
+                    <td class="text-center">${h.topic}</td>
+                    <td class="text-center">${h.teacher}</td>
+                    <td class="text-center">${h.rating}</td>
+                    <td class="text-center">${h.hit}</td>
                   </tr>
                 </c:forEach>
 
@@ -747,20 +751,18 @@
               <div class="col-12">
                 <div class="table-responsive">
                   <table class="display expandable-table" style="width:100%">
-                    <thead>
+                    <thead class="text-center">
                     <tr>
-                      <th>주문번호</th>
-                      <th>강의명</th>
-                      <th>분류</th>
-                      <th>강사명</th>
-                      <th>구매자</th>
-                      <th>수강생 수</th>
-                      <th>커리큘럼 수</th>
-                      <th>구입일시</th>
-                      <th></th>
+                      <th style="width: 7%">주문번호</th>
+                      <th style="width: 31%">강의명</th>
+                      <th style="width: 12%">분류</th>
+                      <th style="width: 15%">강사명</th>
+                      <th style="width: 9%">구매자</th>
+                      <th style="width: 8%">수강인원</th>
+                      <th style="width: 18%">구입일시</th>
                     </tr>
                     </thead>
-                    <tbody id="recent_buy_lec">
+                    <tbody id="recent_buy_lec" class="text-center">
 <%--                      <c:forEach var="obj" items="${recentlec}">--%>
 <%--                        <tr>--%>
 <%--                          <td>${obj.odId}</td>--%>
@@ -791,7 +793,7 @@
         <div class="col-12 stretch-card grid-margin">
           <div class="card" style="width: 100%; height: 85vh">
             <div class="card-body">
-              <iframe src="https://calendar.google.com/calendar/embed?src=digicamjava%40gmail.com&ctz=Asia%2FSeoul" style="border: 0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
+              <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Asia%2FSeoul&showTz=0&showPrint=0&src=ZGlnaWNhbWphdmFAZ21haWwuY29t&src=ZGUzMGE3YjJkNTkxYzM1MTk4Mzg1YzUxOTI5NTA1NjY5NmU5MTE2NmM2ZTVhMDlmODU0YjhlM2ExNDk4YzBhNUBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=NmFlZDU2MGRkYjk2OTAyZmMzYTU0NTk0Yzc4MzUzNWM2Yjk1MjM2ODg4YTQwNGM2ZjJiNTU4ZDU3ZGFiNGIyNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t&src=a28uc291dGhfa29yZWEub2ZmaWNpYWwjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%234285F4&color=%23E4C441&color=%23009688&color=%23E67C73" style="border-width:0" width="100%" height="100%" frameborder="0" scrolling="no"></iframe>
 
             </div>
           </div>

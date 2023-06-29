@@ -18,28 +18,28 @@
     border-radius: 50%;
   }
 
-  .fc .fc-button-primary {
-    background-color: #ffffff;
-    border: 1px solid #739be1;
-    color: #739be1;
-  }
+  /*.fc .fc-button-primary {*/
+  /*  background-color: #ffffff;*/
+  /*  border: 1px solid lightgray;*/
+  /*  color: #739be1;*/
+  /*}*/
 
   .fc .fc-button-primary:disabled {
     background-color: #ffffff;
-    border: 1px solid #739be1;
-    color: #739be1;
+    border: 1px solid gray;
+    color: #666666;
   }
 
   .fc button:not(:disabled):not(.disabled) {
-    background-color: #739be1;
+    background-color: #A9A9A9;
     color: #ffffff;
-    border: 1px solid #ffffff;
+    border: 1px solid #A9A9A9;
   }
 
   /*title 옆에 동그란 점*/
-  .fc-daygrid-event-dot {
-    border: calc(var(--fc-daygrid-event-dot-width,8px)/ 2) solid var(--fc-event-border-color,#739be1)
-  }
+  /*.fc-daygrid-event-dot {*/
+  /*  border: calc(var(--fc-daygrid-event-dot-width,8px)/ 2) solid var(--fc-event-border-color,#739be1)*/
+  /*}*/
 
   .fc .fc-daygrid-event {
     padding: 0.2rem;
@@ -75,23 +75,23 @@
     font-size: 0.2rem;
   }
   /*일정시간*/
-  .fc-daygrid-event > .fc-event-time{
-    color:#000;
-  }
-  /*시간제목*/
-  .fc-daygrid-dot-event > .fc-event-title {
-    color:#000 !important;
-  }
+  /*.fc-daygrid-event > .fc-event-time{*/
+  /*  color:#000;*/
+  /*}*/
+  /*!*시간제목*!*/
+  /*!*.fc-daygrid-dot-event > .fc-event-title {*!*/
+  /*!*  color:#000 !important;*!*/
+  /*!*}*!*/
 
-  .fc-h-event {
-    background-color: var(--fc-event-bg-color, #5a78a8);
-  }
+  /*.fc-h-event {*/
+  /*  background-color: var(--fc-event-bg-color, #5a78a8);*/
+  /*}*/
 
   #next_btn > a {
     margin-left: 0 !important;
     margin-top: 0.5rem;
-    background-color: #739be1;
-    border-color: #739be1;
+    background-color: lightgray;
+    border-color: #000;
   }
 </style>
 
@@ -182,13 +182,25 @@
     var calendar = new FullCalendar.Calendar($('#calendar')[0], {
       googleCalendarApiKey : "${googleCalKey}",
       eventSources :[
-        {
+        { //DIGI CAMPUS
           googleCalendarId : 'digicamjava@gmail.com'
+          , color: '#A9D0F5'
+          , textColor: 'black'
         },
         {
           googleCalendarId : 'ko.south_korea.official#holiday@group.v.calendar.google.com'
-          , color: 'white'   // an option!
+          , color: '#FBEFEF'   // an option!
           , textColor: 'red' // an option!
+        },
+        { //PROJECT
+          googleCalendarId: '6aed560ddb96902fc3a54594c783535c6b95236888a404c6f2b558d57dab4b26@group.calendar.google.com'
+          , color: '#D5EABF'   // an option!
+          , textColor: 'black' // an option!
+        },
+        { //KB
+          googleCalendarId: 'de30a7b2d591c35198385c519295056696e91166c6e5a09f854b8e3a1498c0a5@group.calendar.google.com'
+          , color: '#FFF6B7'
+          , textColor: 'black'
         }
       ],
       locale:'ko',
