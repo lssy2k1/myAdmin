@@ -1,8 +1,10 @@
 package com.myadmin.controller;
 
 import com.myadmin.dto.*;
+import com.myadmin.firebase.NotificationService;
 import com.myadmin.service.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -21,6 +23,9 @@ import java.util.List;
 @Controller
 public class MainController {
 
+
+    @Autowired
+    NotificationService notificationService;
     @Autowired
     LecService lecService;
     @Autowired
@@ -50,8 +55,29 @@ public class MainController {
         List<Stdy> stdyingList = stdyService.stdying();
         List<Lec> hotlec = lecService.hotlec();
         Stdn topstdn = stdnService.topstdn();
-        Stdn topfront = stdnService.topfront();
-        Stdn topback = stdnService.topback();
+        List<Stdn> topfront = stdnService.topfront();
+        Stdn highestFrontSumStdn = null;
+        int highestFrontSum = 0;
+        for (Stdn stdn : topfront) {
+            int currentFrontSum = stdn.getFrontTestSum();
+            if (currentFrontSum > highestFrontSum) {
+                highestFrontSum = currentFrontSum;
+                highestFrontSumStdn = stdn;
+            }
+        }
+//        log.info("highestFrontSumStdn ={}", highestFrontSumStdn);
+
+        List<Stdn> topback = stdnService.topback();
+        Stdn highestBackSumStdn = null;
+        int highestBackSum = 0;
+        for (Stdn stdn : topback) {
+            int currentBackSum = stdn.getBackTestSum();
+            if (currentBackSum > highestBackSum) {
+                highestBackSum = currentBackSum;
+                highestBackSumStdn = stdn;
+            }
+        }
+//        log.info("highestBackSumStdn ={}", highestBackSumStdn);
 //        List<Lec> recentlec = lecService.recentlec();
 //        log.info("recentlec111111={}", recentlec);
         for (Stdn s:totalList) {
@@ -79,8 +105,8 @@ public class MainController {
         model.addAttribute("stdyingpercent", formattedStdyingPer);
         model.addAttribute("hotlec", hotlec);
         model.addAttribute("topstdn",topstdn);
-        model.addAttribute("topfront",topfront);
-        model.addAttribute("topback",topback);
+        model.addAttribute("topfront",highestFrontSumStdn);
+        model.addAttribute("topback",highestBackSumStdn);
 //        model.addAttribute("recentlec",recentlec);
 
         return "index";
@@ -104,8 +130,30 @@ public class MainController {
         List<Stdn> lateList =stdnService.latestdn();
         List<Lec> hotlec = lecService.hotlec();
         Stdn topstdn = stdnService.topstdn();
-        Stdn topfront = stdnService.topfront();
-        Stdn topback = stdnService.topback();
+        List<Stdn> topfront = stdnService.topfront();
+        Stdn highestFrontSumStdn = null;
+        int highestFrontSum = 0;
+        for (Stdn stdn : topfront) {
+            int currentFrontSum = stdn.getFrontTestSum();
+            if (currentFrontSum > highestFrontSum) {
+                highestFrontSum = currentFrontSum;
+                highestFrontSumStdn = stdn;
+            }
+        }
+//        log.info("highestFrontSumStdn ={}", highestFrontSumStdn);
+
+        List<Stdn> topback = stdnService.topback();
+        Stdn highestBackSumStdn = null;
+        int highestBackSum = 0;
+        for (Stdn stdn : topback) {
+            int currentBackSum = stdn.getBackTestSum();
+            if (currentBackSum > highestBackSum) {
+                highestBackSum = currentBackSum;
+                highestBackSumStdn = stdn;
+            }
+        }
+//        log.info("highestBackSumStdn ={}", highestBackSumStdn);
+
         List<Stdy> stdyingList = stdyService.stdying();
 
         for (Stdn s:totalList) {
@@ -143,8 +191,8 @@ public class MainController {
             model.addAttribute("stdyingpercent", formattedStdyingPer);
             model.addAttribute("hotlec", hotlec);
             model.addAttribute("topstdn",topstdn);
-            model.addAttribute("topfront",topfront);
-            model.addAttribute("topback",topback);
+            model.addAttribute("topfront",highestFrontSumStdn);
+            model.addAttribute("topback",highestBackSumStdn);
         } catch (Exception e) {
             throw new Exception("adm login error");
         }
@@ -154,8 +202,10 @@ public class MainController {
     }
 
     @RequestMapping("logouts")
-    public String logouts(Model model, HttpSession session){
+    public String logouts(Model model, HttpSession session, UserSession userSession){
         if (session != null){
+            Adm adm = (Adm) session.getAttribute("loginadm");
+            notificationService.deleteToken(adm.getId());
             session.invalidate();
         }
         return "redirect:/";

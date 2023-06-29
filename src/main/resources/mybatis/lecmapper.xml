@@ -176,7 +176,7 @@
                 GROUP BY l.id,
                 l.adm_id, l.lec_code, l.title, l.teacher, l.topic, l.target, l.rdate
                 ,l.length, l.price, l.img, l.disc_rate, l.is_delete, l.del_date, l.hit
-                ORDER BY isDelete, rating
+                ORDER BY isDelete, rating DESC NULLS LAST
             </when>
             <otherwise>
                 GROUP BY l.id,

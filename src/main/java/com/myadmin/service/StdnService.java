@@ -79,10 +79,10 @@ public class StdnService implements MyAdminService<String, Stdn> {
     public Stdn topstdn() throws Exception{
         return mapper.topstdn();
     }
-    public Stdn topfront() throws Exception{
+    public List<Stdn> topfront() throws Exception{
         return mapper.topfront();
     }
-    public Stdn topback() throws Exception{
+    public List<Stdn> topback() throws Exception{
         return mapper.topback();
     }
 

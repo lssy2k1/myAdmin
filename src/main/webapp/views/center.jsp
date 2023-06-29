@@ -435,56 +435,50 @@
                                 <td class="text-muted">스터디 횟수</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${topstdn.topStdy/50*100}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topstdn.topStdy}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topstdn.topStdy}/50회</h5></td>
                               </tr>
                               <tr>
-                                <td class="text-muted">테스트 점수</td>
+                                <td class="text-muted">출석</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${topstdn.topAttd*100/150}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topstdn.topScore}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topstdn.topAttd}/150일</h5></td>
                               </tr>
+
                               <tr>
                                 <td class="text-muted">수강 강의 수</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topstdn.topLec}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topstdn.topLec != null ? topstdn.topLec : 0}강</h5></td>
                               </tr>
+
                               <tr>
-                                <td class="text-muted">출석률</td>
+                                <td class="text-muted">프론트엔드 테스트</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${Math.round(topstdn.frontTestSum/topstdn.frontTestCount)}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topstdn.topAttd}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${Math.round(topstdn.frontTestSum/topstdn.frontTestCount)}점</h5></td>
                               </tr>
                               <tr>
-                                <td class="text-muted">커리큘럼</td>
+                                <td class="text-muted">백엔드 테스트</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${Math.round(topstdn.backTestSum/topstdn.backTestCount)}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-<%--                                <td><h5 class="font-weight-bold mb-0">${topstdn.curri}</h5></td>--%>
+                                <td><h5 class="font-weight-bold mb-0">${Math.round(topstdn.backTestSum/topstdn.backTestCount)}점</h5></td>
                               </tr>
-<%--                              <tr>--%>
-<%--                                <td class="text-muted">Alaska</td>--%>
-<%--                                <td class="w-100 px-0">--%>
-<%--                                  <div class="progress progress-md mx-4">--%>
-<%--                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>--%>
-<%--                                  </div>--%>
-<%--                                </td>--%>
-<%--                                <td><h5 class="font-weight-bold mb-0">793</h5></td>--%>
-<%--                              </tr>--%>
+
                             </table>
                           </div>
                         </div>
@@ -506,8 +500,7 @@
                     <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                       <div class="ml-xl-4 mt-3">
                         <p class="card-title">Frontend 우수 학생</p>
-                        <h1 class="text-primary">${topfront.name}</h1>
-                        <h3 class="font-weight-500 mb-xl-4 text-primary">${topfront.id}</h3>
+                        <h2 class="text-primary">${topfront.name}</h2>
                         <p class="mb-2 mb-xl-0">
                           <img src="/uimg/${topfront.img}" style = "width: 150px; height: 150px">
                         </p>
@@ -522,70 +515,63 @@
                                 <td class="text-muted">스터디 횟수</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${topfront.topStdy/50*100}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topfront.topStdy}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topfront.topStdy}/50회</h5></td>
                               </tr>
                               <tr>
-                                <td class="text-muted">테스트 점수</td>
+                                <td class="text-muted">출석</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${topfront.topAttd*100/150}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topfront.topScore}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topfront.topAttd}/150일</h5></td>
                               </tr>
+
                               <tr>
                                 <td class="text-muted">수강 강의 수</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topfront.topLec}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topfront.topLec != null ? topfront.topLec : 0}강</h5></td>
                               </tr>
+
                               <tr>
-                                <td class="text-muted">출석률</td>
+                                <td class="text-muted">프론트엔드 테스트</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${Math.round(topfront.frontTestSum/topfront.frontTestCount)}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topfront.topAttd}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${Math.round(topfront.frontTestSum/topfront.frontTestCount)}점</h5></td>
                               </tr>
                               <tr>
-                                <td class="text-muted">커리큘럼</td>
+                                <td class="text-muted">백엔드 테스트</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${Math.round(topfront.backTestSum/topfront.backTestCount)}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <%--                                <td><h5 class="font-weight-bold mb-0">${topfront.curri}</h5></td>--%>
+                                <td><h5 class="font-weight-bold mb-0">${Math.round(topfront.backTestSum/topfront.backTestCount)}점</h5></td>
                               </tr>
-                              <%--                              <tr>--%>
-                              <%--                                <td class="text-muted">Alaska</td>--%>
-                              <%--                                <td class="w-100 px-0">--%>
-                              <%--                                  <div class="progress progress-md mx-4">--%>
-                              <%--                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>--%>
-                              <%--                                  </div>--%>
-                              <%--                                </td>--%>
-                              <%--                                <td><h5 class="font-weight-bold mb-0">793</h5></td>--%>
-                              <%--                              </tr>--%>
+
                             </table>
                           </div>
                         </div>
                         <div class="col-md-6 mt-3 pl-sm-5">
-                          <p class="card-title">지난 달 우수 학생</p>
+                          <p class="card-title">지난 달 Frontend 우수 학생</p>
                           <h2 class="text-dark">박선미</h2>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
-<%--                          <canvas id="south-america-chart"></canvas>--%>
-<%--                          <div id="south-america-legend"></div>--%>
+                          <%--                          <canvas id="north-america-chart"></canvas>--%>
+                          <%--                          <div id="north-america-legend"></div>--%>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
 
                 <div class="carousel-item">
@@ -594,8 +580,7 @@
                     <div class="col-md-12 col-xl-3 d-flex flex-column justify-content-start">
                       <div class="ml-xl-4 mt-3">
                         <p class="card-title">Backend 우수 학생</p>
-                        <h1 class="text-primary">${topback.name}</h1>
-                        <h3 class="font-weight-500 mb-xl-4 text-primary">${topback.id}</h3>
+                        <h2 class="text-primary">${topback.name}</h2>
                         <p class="mb-2 mb-xl-0">
                           <img src="/uimg/${topback.img}" style = "width: 150px; height: 150px">
                         </p>
@@ -610,70 +595,63 @@
                                 <td class="text-muted">스터디 횟수</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${topback.topStdy/50*100}%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topback.topStdy}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topback.topStdy}/50회</h5></td>
                               </tr>
                               <tr>
-                                <td class="text-muted">테스트 점수</td>
+                                <td class="text-muted">출석</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-info" role="progressbar" style="width: ${topback.topAttd*100/150}%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topback.topScore}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topback.topAttd}/150일</h5></td>
                               </tr>
+
                               <tr>
                                 <td class="text-muted">수강 강의 수</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topback.topLec}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${topback.topLec != null ? topback.topLec : 0}강</h5></td>
                               </tr>
+
                               <tr>
-                                <td class="text-muted">출석률</td>
+                                <td class="text-muted">프론트엔드 테스트</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${Math.round(topback.frontTestSum/topback.frontTestCount)}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <td><h5 class="font-weight-bold mb-0">${topback.topAttd}</h5></td>
+                                <td><h5 class="font-weight-bold mb-0">${Math.round(topback.frontTestSum/topback.frontTestCount)}점</h5></td>
                               </tr>
                               <tr>
-                                <td class="text-muted">커리큘럼</td>
+                                <td class="text-muted">백엔드 테스트</td>
                                 <td class="w-100 px-0">
                                   <div class="progress progress-md mx-4">
-                                    <div class="progress-bar bg-primary" role="progressbar" style="width: 40%" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-primary" role="progressbar" style="width: ${Math.round(topback.backTestSum/topback.backTestCount)}%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
                                   </div>
                                 </td>
-                                <%--                                <td><h5 class="font-weight-bold mb-0">${topback.curri}</h5></td>--%>
+                                <td><h5 class="font-weight-bold mb-0">${Math.round(topback.backTestSum/topback.backTestCount)}점</h5></td>
                               </tr>
-                              <%--                              <tr>--%>
-                              <%--                                <td class="text-muted">Alaska</td>--%>
-                              <%--                                <td class="w-100 px-0">--%>
-                              <%--                                  <div class="progress progress-md mx-4">--%>
-                              <%--                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>--%>
-                              <%--                                  </div>--%>
-                              <%--                                </td>--%>
-                              <%--                                <td><h5 class="font-weight-bold mb-0">793</h5></td>--%>
-                              <%--                              </tr>--%>
+
                             </table>
                           </div>
                         </div>
                         <div class="col-md-6 mt-3 pl-sm-5">
-                          <p class="card-title">지난 달 우수 학생</p>
+                          <p class="card-title">지난 달 Backend 우수 학생</p>
                           <h2 class="text-dark">박선미</h2>
                           <img src="/images/psm.jpg" style = "width: 150px; height: 150px">
-<%--                          <canvas id="east-america-chart"></canvas>--%>
-<%--                          <div id="east-america-legend"></div>--%>
+                          <%--                          <canvas id="north-america-chart"></canvas>--%>
+                          <%--                          <div id="north-america-legend"></div>--%>
                         </div>
                       </div>
                     </div>
                   </div>
-
                 </div>
 
 

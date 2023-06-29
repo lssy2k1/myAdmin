@@ -2,6 +2,8 @@ package com.myadmin.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
@@ -39,6 +41,12 @@ public class Stdn {
     private String attdDate;
     private String sbj;
     private Integer count;
+    private Integer frontTestSum;
+    private Integer backTestSum;
+    private Integer countScore;
+    private Integer frontTestCount;
+    private Integer backTestCount;
+
 
 //    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
 //        this.id = id;

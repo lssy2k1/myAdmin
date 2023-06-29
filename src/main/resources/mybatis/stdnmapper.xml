@@ -130,67 +130,150 @@
     </delete>
 
     <select id = "topstdn" resultType="Stdn">
-        SELECT s.name, s.id, s.img, SUM(t.score) AS topScore, COUNT(st.id) AS topStdy, COUNT(at.id) AS topAttd, COUNT(l.id) As topLec
+        SELECT s.name, s.id, s.img, subquery.topScore, subquery.topStdy, subquery.topAttd, subquery.topLec, subquery.countScore,
+               COALESCE(ft.FrontTestSum, 0) AS FrontTestSum,
+               COALESCE(bt.BackTestSum, 0) AS BackTestSum,
+               COALESCE(ft.FrontTestCount, 0) AS FrontTestCount,
+               COALESCE(bt.BackTestCount, 0) AS BackTestCount
         FROM stdn s
-                 LEFT JOIN curri c ON s.id = c.stdn_id
-                 LEFT JOIN test t ON s.id = t.stdn_id
-                 LEFT JOIN stdy st ON s.id = st.writer
-                 LEFT JOIN attd at ON s.id = at.stdn_id
-                 LEFT JOIN lec_review l ON s.id = l.stdn_id
-        WHERE s.id = (
-            SELECT stdn_id
-            FROM (
-                    SELECT s.id AS stdn_id, ROW_NUMBER() OVER (ORDER BY SUM(t.score) DESC) AS row_num
-                    FROM stdn s
-                    LEFT JOIN test t ON s.id = t.stdn_id
-                    GROUP BY s.id
-                    )
-            WHERE row_num = 1
-            )
-        GROUP BY s.id, s.name, s.img
+                 JOIN (
+            SELECT s.id AS stdn_id, t.totalScore AS topScore, st.totalStdy AS topStdy, at.totalAttd AS topAttd, l.totalLec AS topLec, t.countScore
+            FROM stdn s
+                     LEFT JOIN (
+                SELECT stdn_id, SUM(score) AS totalScore, COUNT(score) AS countScore
+                FROM test
+                GROUP BY stdn_id
+            ) t ON s.id = t.stdn_id
+                     LEFT JOIN (
+                SELECT writer, COUNT(*) AS totalStdy
+                FROM stdy
+                GROUP BY writer
+            ) st ON s.id = st.writer
+                     LEFT JOIN (
+                SELECT stdn_id, COUNT(*) AS totalAttd
+                FROM attd
+                GROUP BY stdn_id
+            ) at ON s.id = at.stdn_id
+                LEFT JOIN (
+                SELECT stdn_id, COUNT(*) AS totalLec
+                FROM lec_review
+                GROUP BY stdn_id
+                ) l ON s.id = l.stdn_id
+            ORDER BY topScore DESC NULLS LAST
+        ) subquery ON s.id = subquery.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id,
+                   SUM(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery') THEN score ELSE 0 END) AS FrontTestSum,
+                   COUNT(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery')  THEN 1 END) AS FrontTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) ft ON s.id = ft.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id,
+                   SUM(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot') THEN score ELSE 0 END) AS BackTestSum,
+                   COUNT(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot')  THEN 1 END) AS BackTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) bt ON s.id = bt.stdn_id
+
+        WHERE ROWNUM = 1
     </select>
 
     <select id = "topfront" resultType="Stdn">
-        SELECT s.name, s.id, s.img, SUM(t.score) AS topScore, COUNT(st.id) AS topStdy, COUNT(at.id) AS topAttd, COUNT(l.id) As topLec
+        SELECT s.name, s.id, s.img, subquery.topScore, subquery.topStdy, subquery.topAttd, subquery.topLec, subquery.countScore,
+               COALESCE(ft.FrontTestSum, 0) AS FrontTestSum,
+               COALESCE(bt.BackTestSum, 0) AS BackTestSum,
+               COALESCE(ft.FrontTestCount, 0) AS FrontTestCount,
+               COALESCE(bt.BackTestCount, 0) AS BackTestCount
         FROM stdn s
-                 LEFT JOIN curri c ON s.id = c.stdn_id
-                 LEFT JOIN test t ON s.id = t.stdn_id
-                 LEFT JOIN stdy st ON s.id = st.writer
-                 LEFT JOIN attd at ON s.id = at.stdn_id
-            LEFT JOIN lec_review l ON s.id = l.stdn_id
-        WHERE s.id = (
-            SELECT stdn_id
-            FROM (
-            SELECT s.id AS stdn_id, ROW_NUMBER() OVER (ORDER BY SUM(t.id) DESC) AS row_num
+                 JOIN (
+            SELECT s.id AS stdn_id, t.totalScore AS topScore, st.totalStdy AS topStdy, at.totalAttd AS topAttd, l.totalLec AS topLec, t.countScore
             FROM stdn s
-            LEFT JOIN test t ON s.id = t.stdn_id
-            WHERE t.sbj = 'frontend'
-            GROUP BY s.id
-            )
-            WHERE row_num = 1
-            )
-        GROUP BY s.id, s.name, s.img
+                     LEFT JOIN (
+                SELECT stdn_id, SUM(score) AS totalScore, COUNT(score) AS countScore
+                FROM test
+                GROUP BY stdn_id
+            ) t ON s.id = t.stdn_id
+                     LEFT JOIN (
+                SELECT writer, COUNT(*) AS totalStdy
+                FROM stdy
+                GROUP BY writer
+            ) st ON s.id = st.writer
+                     LEFT JOIN (
+                SELECT stdn_id, COUNT(*) AS totalAttd
+                FROM attd
+                GROUP BY stdn_id
+            ) at ON s.id = at.stdn_id
+                LEFT JOIN (
+                SELECT stdn_id, COUNT(*) AS totalLec
+                FROM lec_review
+                GROUP BY stdn_id
+                ) l ON s.id = l.stdn_id
+            ORDER BY topScore DESC NULLS LAST
+        ) subquery ON s.id = subquery.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id,
+                   SUM(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery') THEN score ELSE 0 END) AS FrontTestSum,
+                   COUNT(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery')  THEN 1 END) AS FrontTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) ft ON s.id = ft.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id,
+                   SUM(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot') THEN score ELSE 0 END) AS BackTestSum,
+                   COUNT(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot')  THEN 1 END) AS BackTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) bt ON s.id = bt.stdn_id
+
     </select>
 
     <select id = "topback" resultType="Stdn">
-        SELECT s.name, s.id, s.img, SUM(t.score) AS topScore, COUNT(st.id) AS topStdy, COUNT(at.id) AS topAttd, COUNT(l.id) As topLec
+        SELECT s.name, s.id, s.img, subquery.topScore, subquery.topStdy, subquery.topAttd, subquery.topLec, subquery.countScore,
+               COALESCE(ft.FrontTestSum, 0) AS FrontTestSum,
+               COALESCE(bt.BackTestSum, 0) AS BackTestSum,
+               COALESCE(ft.FrontTestCount, 0) AS FrontTestCount,
+               COALESCE(bt.BackTestCount, 0) AS BackTestCount
         FROM stdn s
-                 LEFT JOIN curri c ON s.id = c.stdn_id
-                 LEFT JOIN test t ON s.id = t.stdn_id
-                 LEFT JOIN stdy st ON s.id = st.writer
-                 LEFT JOIN attd at ON s.id = at.stdn_id
-            LEFT JOIN lec_review l ON s.id = l.stdn_id
-        WHERE s.id = (
-            SELECT stdn_id
-            FROM (
-            SELECT s.id AS stdn_id, ROW_NUMBER() OVER (ORDER BY SUM(t.id) DESC) AS row_num
+                 JOIN (
+            SELECT s.id AS stdn_id, t.totalScore AS topScore, st.totalStdy AS topStdy, at.totalAttd AS topAttd, l.totalLec AS topLec, t.countScore
             FROM stdn s
-            LEFT JOIN test t ON s.id = t.stdn_id
-            WHERE t.sbj = 'backend'
-            GROUP BY s.id
-            )
-            WHERE row_num = 1
-            )
-        GROUP BY s.id, s.name, s.img
+                     LEFT JOIN (
+                SELECT stdn_id, SUM(score) AS totalScore, COUNT(score) AS countScore
+                FROM test
+                GROUP BY stdn_id
+            ) t ON s.id = t.stdn_id
+                     LEFT JOIN (
+                SELECT writer, COUNT(*) AS totalStdy
+                FROM stdy
+                GROUP BY writer
+            ) st ON s.id = st.writer
+                     LEFT JOIN (
+                SELECT stdn_id, COUNT(*) AS totalAttd
+                FROM attd
+                GROUP BY stdn_id
+            ) at ON s.id = at.stdn_id
+                LEFT JOIN (
+                SELECT stdn_id, COUNT(*) AS totalLec
+                FROM lec_review
+                GROUP BY stdn_id
+                ) l ON s.id = l.stdn_id
+            ORDER BY topScore DESC NULLS LAST
+        ) subquery ON s.id = subquery.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id,
+                   SUM(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery') THEN score ELSE 0 END) AS FrontTestSum,
+                   COUNT(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery')  THEN 1 END) AS FrontTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) ft ON s.id = ft.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id,
+                   SUM(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot') THEN score ELSE 0 END) AS BackTestSum,
+                   COUNT(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot')  THEN 1 END) AS BackTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) bt ON s.id = bt.stdn_id
+
     </select>
 </mapper>
