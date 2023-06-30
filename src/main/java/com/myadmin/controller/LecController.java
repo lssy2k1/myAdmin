@@ -5,8 +5,12 @@ import com.github.pagehelper.PageInfo;
 import com.myadmin.dto.Lec;
 import com.myadmin.dto.LecSearch;
 import com.myadmin.dto.SbjDetail;
+import com.myadmin.dto.Stdn;
+import com.myadmin.firebase.FCMService;
+import com.myadmin.firebase.NotificationService;
 import com.myadmin.service.LecService;
 import com.myadmin.service.SbjDetailService;
+import com.myadmin.service.StdnService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -34,6 +40,12 @@ public class LecController {
     LecService lecService;
     @Autowired
     SbjDetailService sbjDetailService;
+    @Autowired
+    NotificationService notificationService;
+    @Autowired
+    FCMService fcmService;
+    @Autowired
+    StdnService stdnService;
 
     @RequestMapping("/all")
     public String all(Model model, @RequestParam(required = false, defaultValue = "1") int pageNo) throws Exception {
@@ -83,6 +95,16 @@ public class LecController {
         } catch (Exception e) {
             throw new Exception("lecture addimpl error");
         }
+        List<String> tokens = new ArrayList<>(Arrays.asList());
+        List<Stdn> stdns = stdnService.get();
+        for(Stdn stdn : stdns){
+            String token = notificationService.getToken("stdn_"+stdn.getId());
+            if(token == null){
+                continue;
+            }
+            tokens.add(token);
+        }
+        fcmService.sendAll(tokens, "강의가 추가되었습니다.", "새로운 강의를 확인해보세요.");
         return "redirect:/lec/all";
     }
     @RequestMapping("/detail")

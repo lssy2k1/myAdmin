@@ -122,6 +122,10 @@
             );
             $('#all').animate({scrollTop: $('#all')[0].scrollHeight}, 1000);
             $('#alltext').val('');
+            $.ajax({
+                url:'/alertanc',
+                method:'get'
+            })
         }
     };
     $(function () {

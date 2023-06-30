@@ -1,6 +1,7 @@
 package com.myadmin.firebase;
 
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,18 +15,14 @@ import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class NotificationService {
 
     private static final Logger logger = LoggerFactory.getLogger(NotificationService.class);
 
     private final FCMService fcmService;
 
-    @Autowired
-    private RedisTemplate<String, Object> redisTemplate;
-
-    public NotificationService(final FCMService fcmService) {
-        this.fcmService = fcmService;
-    }
+    private final RedisTemplate<String, String> redisTemplate;
 
     public void register(final String userId, final String token) {
         redisTemplate.opsForValue().set(userId, token);

@@ -2,6 +2,8 @@ package com.myadmin.controller;
 
 import com.myadmin.dto.Adm;
 import com.myadmin.dto.Lec;
+import com.myadmin.firebase.FCMService;
+import com.myadmin.firebase.NotificationService;
 import com.myadmin.service.AdmService;
 import com.myadmin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ public class AdmController {
     AdmService admService;
     @Autowired
     BCryptPasswordEncoder encoder;
+
 
     @RequestMapping("/all")
     public String all(Model model) throws Exception {

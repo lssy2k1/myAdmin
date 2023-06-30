@@ -2,7 +2,10 @@ package com.myadmin.controller;
 
 import com.google.api.client.json.Json;
 import com.google.api.services.calendar.model.Event;
+import com.google.api.services.storage.model.Notifications;
 import com.myadmin.dto.*;
+import com.myadmin.firebase.FCMService;
+import com.myadmin.firebase.NotificationService;
 import com.myadmin.service.*;
 import com.myadmin.util.*;
 import lombok.extern.slf4j.Slf4j;
@@ -16,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 @RestController
@@ -46,7 +46,24 @@ public class RestsController {
     @Autowired
     StdnService stdnService;
 
+    @Autowired
+    FCMService fcmService;
+    @Autowired
+    NotificationService notificationService;
 
+    @RequestMapping("/alertanc")
+    public void alertanc(Model model) throws Exception {
+        List<String> tokens = new ArrayList<>(Arrays.asList());
+        List<Stdn> stdns = stdnService.get();
+        for(Stdn stdn : stdns){
+            String token = notificationService.getToken("stdn_"+stdn.getId());
+            if(token == null){
+                continue;
+            }
+            tokens.add(token);
+        }
+        fcmService.sendAll(tokens, "공지메세지가 발송되었습니다.", "공지사항 채팅 확인 부탁드립니다.");
+    }
 
     @RequestMapping("/piechartdata")
     public JSONObject piechartdata(Model model) throws Exception {
