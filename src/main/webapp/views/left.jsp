@@ -12,7 +12,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="http://172.16.21.53:8099/">
+            <a class="nav-link" href="https://101.101.217.220:8443/">
                 <i class="icon-tag menu-icon"></i>
                 <span class="menu-title">수강생 페이지 접속</span>
             </a>
