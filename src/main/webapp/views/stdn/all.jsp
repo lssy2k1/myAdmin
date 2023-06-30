@@ -63,7 +63,7 @@
                                                                      style="width:7em; height:7em"/>
                                                             </c:when>
                                                             <c:when test="${s.img!=null || !(s.img).equals('')}">
-                                                                <img id="item_img" src="/images/${s.img}"
+                                                                <img id="item_img" src="/uimg/${s.img}"
                                                                      alt="${s.img}"
                                                                      style="width:7em; height:7em"/>
                                                             </c:when>
