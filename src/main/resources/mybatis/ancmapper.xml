@@ -23,7 +23,7 @@
 
     <update id="update" parameterType="Anc">
         UPDATE anc
-        SET title=#{title}, contents=#{contents}, rdate=SYSDATE, img=#{img}
+        SET title=#{title}, contents=#{contents}, rdate=TO_CHAR(SYSDATE,'yyyy-MM-dd'), img=#{img}
         WHERE id=#{id}
     </update>
     <delete id="delete" parameterType="Integer">
