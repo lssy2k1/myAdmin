@@ -18,11 +18,11 @@
     border-radius: 50%;
   }
 
-  /*.fc .fc-button-primary {*/
-  /*  background-color: #ffffff;*/
-  /*  border: 1px solid lightgray;*/
-  /*  color: #739be1;*/
-  /*}*/
+  .fc .fc-button-primary {
+    background-color: #A9A9A9;
+    border: 1px solid #A9A9A9;
+    color: #FFFFFF;
+  }
 
   .fc .fc-button-primary:disabled {
     background-color: #ffffff;
@@ -89,9 +89,9 @@
 
   #next_btn > a {
     margin-left: 0 !important;
-    margin-top: 0.5rem;
-    background-color: lightgray;
-    border-color: #000;
+    margin-top: 0.7rem;
+    background-color: #A9A9A9;
+    border-color: #A9A9A9;
   }
 </style>
 
@@ -189,7 +189,7 @@
         },
         {
           googleCalendarId : 'ko.south_korea.official#holiday@group.v.calendar.google.com'
-          , color: '#FBEFEF'   // an option!
+          , color: 'white'   // an option!
           , textColor: 'red' // an option!
         },
         { //PROJECT
