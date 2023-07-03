@@ -79,7 +79,7 @@
                                                                                                        class="img-lg rounded-circle mb-3"/>
                                         </c:when>
                                         <c:when test="${stdn.img!=null || !(stdn.img).equals('')}"><img id="stdn_img"
-                                                                                                        src="/images/${stdn.img}"
+                                                                                                        src="/uimg/${stdn.img}"
                                                                                                         alt="profile img"
                                                                                                         class="img-lg rounded-circle mb-3"/>
                                         </c:when>

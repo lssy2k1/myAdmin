@@ -34,13 +34,13 @@ public class GetTokenTest {
 
     @Test
     void token() {
-        String qwer = notificationService.getToken("qwer");
+        String qwer = notificationService.getToken("adm_guava");
         System.out.println(qwer);
     }
 
     @Test
     void send() throws ExecutionException, InterruptedException {
-        fcmService.send(new NotificationRequest("제목", "착석하세요", notificationService.getToken("guava")));
+        fcmService.send(new NotificationRequest("안녕하세요", "DIGICAMPUS입니다.", notificationService.getToken("adm_guava")));
     }
 
     @Test
