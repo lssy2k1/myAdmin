@@ -12,7 +12,7 @@
     }
     #me {
         width: 100%;
-        height: 36.8rem;
+        height: 38.6rem;
         overflow-y: scroll;
         overflow-x: hidden;
     }
