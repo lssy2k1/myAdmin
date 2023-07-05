@@ -14,10 +14,7 @@ import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -50,6 +47,29 @@ public class RestsController {
     FCMService fcmService;
     @Autowired
     NotificationService notificationService;
+
+
+    @RequestMapping("/chartmaker")
+    public JSONObject chartmaker(Model model,
+                                 @RequestParam("id") String id) throws Exception{
+        Stdn myscore = stdnService.myscore(id);
+        JSONObject jo = new JSONObject();
+        JSONArray avg = new JSONArray();
+        JSONArray my = new JSONArray();
+
+        avg.add(myscore.getOverallAvg());
+        avg.add(myscore.getFrontTestAvgAll());
+        avg.add(myscore.getBackTestAvgAll());
+
+        my.add(myscore.getOverallAvgMe());
+        my.add(myscore.getFrontTestAvgMe());
+        my.add(myscore.getBackTestAvgMe());
+
+        jo.put("avg", avg);
+        jo.put("my", my);
+//        log.info(jo.toString()+"============================================");
+        return jo;
+    }
 
     @RequestMapping("/alertanc")
     public void alertanc(Model model) throws Exception {

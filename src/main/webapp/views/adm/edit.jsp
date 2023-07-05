@@ -160,8 +160,8 @@
                             </select>
                         </div>
                         <div class="float-right mt-3">
-                            <button id="adm_update_btn" type="button" class="btn btn-primary mr-2">Update</button>
-                            <button id="adm_delete_btn" type="button" class="btn btn-light">Delete</button>
+                            <button id="adm_update_btn" type="button" class="btn btn-primary mr-2">수정</button>
+                            <button id="adm_delete_btn" type="button" class="btn btn-light">삭제</button>
                         </div>
 
                     </form>

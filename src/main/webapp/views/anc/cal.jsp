@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
+  .fc .fc-event {
+    color : black;
+  }
   .card .card-body {
     padding: 1.25rem 1.5rem 2rem 1.5rem;
   }

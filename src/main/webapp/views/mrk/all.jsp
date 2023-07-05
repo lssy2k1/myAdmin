@@ -50,7 +50,7 @@
                                 <select id="rating" name="rating" value="${ms.rating}" class="form-control mr-2">
                                     <option value="">전체</option>
                                     <option value="1"
-                                            <c:if test="${ms.rating==1}">selected</c:if> >1
+                                            <c:if test="${ms.rating==1}">selected</c:if> >1점
                                     </option>
                                     <option value="2" <c:if test="${ms.rating==2}">selected</c:if>>2점</option>
                                     <option value="3" <c:if test="${ms.rating==3}">selected</c:if>>3점</option>

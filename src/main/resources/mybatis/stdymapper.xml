@@ -9,15 +9,15 @@
         FROM stdy
         WHERE SUBSTR(start_time, 1, 10) = TO_CHAR(sysdate, 'YYYY.MM.DD')
             AND rdate = TO_CHAR(sysdate, 'YYYY.MM.DD')
-            AND SUBSTR(end_time, 1, 10) = NULL
+            AND SUBSTR(end_time, 1, 10) IS NULL
     </select>
     <select id="stdypage" resultType="Stdy">
         SELECT s.name AS writer, st.WRITER AS stdnId, st.start_time as startTime
         FROM stdy st
         JOIN stdn s ON s.id = st.writer
-        WHERE SUBSTR(start_time, 1, 10) = TO_CHAR(sysdate, 'YYYY.MM.DD')
-          AND rdate = TO_CHAR(sysdate, 'YYYY.MM.DD')
-          AND SUBSTR(end_time, 1, 10) = NULL
+        WHERE SUBSTR(st.start_time, 1, 10) = TO_CHAR(sysdate, 'YYYY.MM.DD')
+          AND st.rdate = TO_CHAR(sysdate, 'YYYY.MM.DD')
+          AND SUBSTR(st.end_time, 1, 10) IS NULL
         ORDER BY s.name
     </select>
 </mapper>

@@ -2,6 +2,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
     <style>
+
         .media {
             overflow-y: auto; /* 반드시 overlay 처리 */
         }
@@ -45,7 +46,108 @@
             display:block;
         }
     </style>
+
     <script>
+
+        let chartmaker = {
+            init:() =>{
+                // alert('start chart making')
+                chartmaker.getdata();
+            },
+            getdata(){
+                // alert('start chart making2')
+
+                $.ajax({
+                    url:'/chartmaker',
+                    data : {
+                        id : '${stdn.id}'
+                    },
+                    method:'GET',
+                    success: (data)=>{
+                        // console.log(data);
+                        // console.log('succeess ===== chartmaker');
+                        //alert(data);
+                        chartmaker.makechart(data);
+                    }
+                })
+            },
+            makechart(data){
+                    var SalesChartCanvas = $("#sales-chart").get(0).getContext("2d");
+                    var SalesChart = new Chart(SalesChartCanvas, {
+                        type: 'bar',
+                        data: {
+                            labels: ["전체", "프론트엔드", "백엔드"],
+                            datasets: [{
+                                label: '평균',
+                                data: data.avg,
+                                backgroundColor: '#98BDFF'
+                            },
+                                {
+                                    label: '내 성적',
+                                    data: data.my,
+                                    backgroundColor: '#4B49AC'
+                                }
+                            ]
+                        },
+                        options: {
+                            cornerRadius: 5,
+                            responsive: false,
+                            maintainAspectRatio: false,
+                            layout: {
+                                padding: {
+                                    left: 0,
+                                    right: 0,
+                                    top: 20,
+                                    bottom: 0
+                                }
+                            },
+                            scales: {
+                                yAxes: [{
+                                    display: true,
+                                    gridLines: {
+                                        display: true,
+                                        drawBorder: false,
+                                        color: "#F2F2F2"
+                                    },
+                                    ticks: {
+                                        display: true,
+                                        min: 0,
+                                        max: 100,
+                                        callback: function(value, index, values) {
+                                            return  value + '$' ;
+                                        },
+                                        // autoSkip: true,
+                                        maxTicksLimit: 10,
+                                        fontColor:"#6C7383",
+                                    }
+                                }],
+                                xAxes: [{
+                                    stacked: false,
+                                    ticks: {
+                                        beginAtZero: true,
+                                        fontColor: "#6C7383"
+                                    },
+                                    gridLines: {
+                                        color: "rgba(0, 0, 0, 0)",
+                                        display: false
+                                    },
+                                    barPercentage: 0.3
+                                }]
+                            },
+                            legend: {
+                                display: false
+                            },
+                            elements: {
+                                point: {
+                                    radius: 0
+                                }
+                            }
+                        },
+                    });
+                    document.getElementById('sales-legend').innerHTML = SalesChart.generate();
+                }
+        }
+
         let tab = {
             init: function() {
                 $('ul.nav-tabs li a').click(function(){
@@ -61,6 +163,7 @@
         };
         $(function(){
             tab.init();
+            chartmaker.init();
         })
     </script>
 
@@ -195,6 +298,10 @@
                                     <li class="nav-item">
                                         <a class="nav-link" id="study-tab" data-bs-toggle="tab" href="#"
                                            role="tab" aria-controls="study-1" aria-selected="true">스터디</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="stat-tab" data-bs-toggle="tab" href="#"
+                                           role="tab" aria-controls="stat-1" aria-selected="true">통계</a>
                                     </li>
                                 </ul>
                                 <div class="tab-content" style="padding:30px 30px 20px 30px">
@@ -357,6 +464,24 @@
                                         </div>
                                         <div style="writing-mode: horizontal-tb; margin-top: 20px; font-weight: 800; display: flex; align-items: center"><i class="mdi mdi-alarm" style="margin-right: 10px"></i> 스터디 총 합계 : ${totalTime.get(0)}시간 ${totalTime.get(1)}분</div>
                                     </div>
+<%--통계 탭 추가----------------------------------------------------------------------------------------------------------------%>
+                                    <div class="tab-pane fade" id="stat-1" role="tabpanel" aria-labelledby="stat-tab"  style="overflow: auto">
+                                        <div class="media">
+
+                                                <div class="card-body">
+                                                    <div class="d-flex justify-content-between">
+                                                        <p class="card-title">학생별 통계</p>
+                                                        <a href="/stdn/attd" class="text-info">전체 출결</a>
+                                                    </div>
+<%--                                                    <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>--%>
+                                                    <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                                                    <canvas id="sales-chart" style = "width : 85vh; height : 60vh"></canvas>
+                                                </div>
+
+                                        </div>
+                                    </div>
+<%--통계 탭 추가----------------------------------------------------------------------------------------------------------------%>
+
                                 </div>
                             </div>
                         </div>

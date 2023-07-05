@@ -35,8 +35,8 @@ public class NotificationApiController {
         Adm adm = (Adm) httpSession.getAttribute("loginadm");
         userSession.setUserId(adm.getId());
         notificationService.register("adm_"+userSession.getUserId(), token);
-        log.info("++++++++++++++++++++++++++++++" + userSession.getUserId());
-        log.info("++++++++++++++++++++++++++++++" + token);
+//        log.info("++++++++++++++++++++++++++++++" + userSession.getUserId());
+//        log.info("++++++++++++++++++++++++++++++" + token);
 
         return ResponseEntity.ok().build();
     }

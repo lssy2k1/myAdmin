@@ -8,7 +8,7 @@
                 mrk_detail.send();
             });
             $('#mrk_delete_btn').click(()=>{
-                let b = confirm("delete?");
+                let b = confirm("삭제하시겠습니까?");
                 if(b){
                     location.href = '/mrk/deleteimpl?id=${mrk.id}';
                 }
@@ -90,7 +90,7 @@
                         </div>
                         <div class="float-right mt-4">
                             <button id = "mrk_update_btn" type="button" class="btn btn-primary mr-2">수정</button>
-                            <button id = "mrk_delete_btn" type="button" class="btn btn-light">취소</button>
+                            <button id = "mrk_delete_btn" type="button" class="btn btn-light">삭제</button>
                         </div>
                     </form>
                 </div>

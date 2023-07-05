@@ -58,6 +58,13 @@
                         <input type="password" class="form-control" name = "pwd" id="pwd" placeholder="비밀번호를 입력하세요...">
                     </div>
                     <div class="form-group">
+                        <label for="name">이름</label>
+                        <input type="text" class="form-control" name = "name" id="name" placeholder="이름을 입력하세요...">
+                        <div>
+                            <span id = "check_name"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label for="lev">권한 타입</label>
                         <select class="form-control" id="lev" name = "lev" >
                             <option>1</option>

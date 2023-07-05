@@ -28,7 +28,7 @@
                     <h4 class="card-title pl-1 mt-1 mb-5 text-primary">강의 세부사항</h4>
                     <div class="table-responsive d-flex justify-content-between">
                         <div class="d-flex align-content-start" style="width: 30%">
-                            <img src="/uimg/${lec.img}" alt="강의 이미지" style="width: 100%; height: auto">
+                            <img src="/uimg/${lec.img}" alt="강의 이미지" style="width: 100%; height: 26%; padding-left : 1rem; margin-top : 1rem">
                         </div>
                         <div class="pl-4 pr-2" style="width: 70%">
                             <table class="table table-border">

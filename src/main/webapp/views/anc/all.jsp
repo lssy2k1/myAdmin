@@ -45,7 +45,8 @@
 <%--                                    <td><a href = "/anc/document/fileDownload.do?document_nm=${obj.img}">첨부파일</a></td>--%>
                                     <td class="text-center">
                                         <c:if test="${obj.img!=null}">
-                                            <button type = "button" class="anc_download_btn btn btn-sm btn-inverse-primary" data-document_nm="${obj.img}">다운로드</button>
+                                            <button type = "button" class="anc_download_btn btn btn-sm btn-inverse-primary"
+                                                    data-document_nm="${obj.img}">다운로드</button>
                                         </c:if>
                                     </td>
 

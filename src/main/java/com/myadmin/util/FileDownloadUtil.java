@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class FileDownloadUtil {
     public static void downloadFile(String filePath, String fileName, HttpServletRequest request, HttpServletResponse response) throws IOException {
         File file = new File(filePath);
+
         if (file.exists() && file.isFile()) {
             response.setContentType("application/octet-stream");
             response.setContentLength((int) file.length());

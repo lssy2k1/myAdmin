@@ -35,7 +35,8 @@ public class GetDateUtil {
                 break;
         }
         String month_formatted = String.format("%02d", month);
-        result = "" + year + "년 " + month_formatted + "월 " + day + "일 " + dow_formatted + "요일";
+        String day_formatted = String.format("%02d", day);
+        result = "" + year + "년 " + month_formatted + "월 " + day_formatted + "일 " + dow_formatted + "요일";
         return result;
     }
 }

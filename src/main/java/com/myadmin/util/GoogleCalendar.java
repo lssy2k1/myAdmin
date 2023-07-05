@@ -113,25 +113,17 @@ public class GoogleCalendar {
         // Load client secrets.
 
         InputStream in = GoogleCalendar.class.getResourceAsStream(CLIENT_SECRET_DIR);
-
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
-
-
 
         // Build flow and trigger user authorization request.
 
         GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(
-
                 HTTP_TRANSPORT, JSON_FACTORY, clientSecrets, SCOPES)
-
                 .setDataStoreFactory(new FileDataStoreFactory(new java.io.File(CREDENTIALS_FOLDER)))
-
                 .setAccessType("offline")
-
                 .build();
 
         return new AuthorizationCodeInstalledApp(flow, new LocalServerReceiver()).authorize("user");
-
     }
 
     public Event makeEvent(CalEvent calEvent) throws IOException, GeneralSecurityException {

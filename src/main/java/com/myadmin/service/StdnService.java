@@ -93,4 +93,8 @@ public class StdnService implements MyAdminService<String, Stdn> {
     public List<Stdn> latestdn() throws Exception{
         return mapper.latestdn();
     }
+
+    public Stdn myscore(String id) throws Exception{
+        return mapper.myscore(id);
+    }
 }

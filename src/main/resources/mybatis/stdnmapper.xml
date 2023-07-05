@@ -276,4 +276,36 @@
         ) bt ON s.id = bt.stdn_id
 
     </select>
+
+    <select id = "myscore" parameterType="String" resultType="Stdn">
+
+        SELECT
+            AVG(t.totalScore / t.totalCount) AS OverallAvg,
+            AVG(ft.FrontTestSum / ft.FrontTestCount) AS FrontTestAvgAll,
+            AVG(bt.BackTestSum / bt.BackTestCount) AS BackTestAvgAll,
+            AVG(CASE WHEN s.id = #{id} THEN t.totalScore / t.totalCount ELSE NULL END) AS OverallAvgMe,
+            AVG(CASE WHEN s.id = #{id} THEN ft.FrontTestSum / ft.FrontTestCount ELSE NULL END) AS FrontTestAvgMe,
+            AVG(CASE WHEN s.id = #{id} THEN bt.BackTestSum / bt.BackTestCount ELSE NULL END) AS BackTestAvgMe
+        FROM stdn s
+                 LEFT JOIN (
+            SELECT stdn_id, SUM(score) AS totalScore,
+                   COUNT(score) AS totalCount
+            FROM test
+            GROUP BY stdn_id
+        ) t ON s.id = t.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id, SUM(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery') THEN score ELSE 0 END) AS FrontTestSum,
+                   COUNT(CASE WHEN sbj IN ('CSS', 'HTML', 'JavaScript', 'Node.js', 'React', 'JQuery')  THEN 1 END) AS FrontTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) ft ON s.id = ft.stdn_id
+                 LEFT JOIN (
+            SELECT stdn_id, SUM(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot') THEN score ELSE 0 END) AS BackTestSum,
+                   COUNT(CASE WHEN sbj IN ('Firebase', 'Java', 'MVC', 'Spring', 'Spring boot')  THEN 1 END) AS BackTestCount
+            FROM test
+            GROUP BY stdn_id
+        ) bt ON s.id = bt.stdn_id
+
+    </select>
+
 </mapper>

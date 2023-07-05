@@ -25,4 +25,5 @@ public interface StdnMapper extends MyAdminMapper<String, Stdn> {
     List<Stdn> topback() throws Exception;
     List<Stdn> topsbj() throws Exception;
     List<Stdn> latestdn() throws Exception;
+    Stdn myscore(String id) throws Exception;
 }

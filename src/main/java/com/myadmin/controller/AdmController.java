@@ -90,6 +90,7 @@ public class AdmController {
             model.addAttribute("adm",list);
             model.addAttribute("center",dir+"all");
         } catch (Exception e) {
+            e.printStackTrace();
             throw new Exception("adm add and all error");
         }
         return "index";

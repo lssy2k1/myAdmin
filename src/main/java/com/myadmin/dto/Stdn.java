@@ -46,6 +46,12 @@ public class Stdn {
     private Integer countScore;
     private Integer frontTestCount;
     private Integer backTestCount;
+    private double overallAvg;
+    private double frontTestAvgAll;
+    private double backTestAvgAll;
+    private double overallAvgMe;
+    private double frontTestAvgMe;
+    private double backTestAvgMe;
 
 
 //    public Stdn(String id, String pwd, String name, String isSubsc, String isExit, String isJoin) {
