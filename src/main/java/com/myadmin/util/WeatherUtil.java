@@ -66,8 +66,9 @@ public class WeatherUtil {
         int day = calendar.get(calendar.DAY_OF_MONTH);
         int hour = calendar.get(calendar.HOUR_OF_DAY);
         String month_formatted = String.format("%02d", month);
+        String day_formatted = String.format("%02d", day);
         String hour_formatted = String.format("%02d", hour);
-        result = "" + year + month_formatted + day + hour_formatted + "00";
+        result = "" + year + month_formatted + day_formatted + hour_formatted + "00";
         return result;
     }
 
