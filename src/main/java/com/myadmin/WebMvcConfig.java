@@ -26,7 +26,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**") //인터셉터를 적용할 url 패턴
                 .excludePathPatterns("/", "/vendors/**", "/scss/**", "/images/**", "/fonts/**", "/css/**", "/js/**", "/logins", "/register","/registerimpl", "/loginimpl"
                         , "/vendor/**","/webjars/**", "/checkid", "/giveid", "/adm/addimpl"
-                        , "/notification.js", "/firebase-messaging-sw.js", "/piechart.js"); //인터셉터에서 제외할 패턴 지정
+                        , "/notification.js", "/firebase-messaging-sw.js", "/piechart.js", "/uimg/**", "/logs/**"); //인터셉터에서 제외할 패턴 지정
 
     }
 }

@@ -30,7 +30,7 @@ public class AttdService implements MyAdminService<String, Attd> {
 
     @Override
     public void modify(Attd attd) throws Exception {
-
+        mapper.update(attd);
     }
 
     @Override
